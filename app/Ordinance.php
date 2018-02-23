@@ -43,4 +43,20 @@ class Ordinance extends Model
         return $this->hasMany('App\UpdateReport');
     }
 
+    public function getQuestionnaire()
+    {
+        return Questionnaire::where('ordinance_id', $this->id)->first();
+
+    }
+
+    public function isAccepting()
+    {
+        if(!$this->getQuestionnaire()){
+            return false;
+        } else{
+
+        }
+        return $this->getQuestionnaire()->isAccepting || $this->is_accepting;
+
+    }
 }

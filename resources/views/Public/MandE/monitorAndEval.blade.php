@@ -147,33 +147,18 @@
                             </form>
                         </tr>
                         @foreach($ordinances as $ordinance)
-                            @foreach($ordId as $id)
-                                @if($id->ordinance_id === $ordinance->id && $id->isAccepting === 1 )
-                                    <tr>
-                                        <td>{{ $ordinance->number }}</td>
-                                        <td>{{ $ordinance->series }}</td>
-                                        <td>{{ str_limit($ordinance->title, $limit = 200, $end = '...') }}</td>
-                                        <td>{{ str_limit($ordinance->keywords, $limit = 200, $end = '...') }}</td>
-                                        <td>
-                                            <button onclick="window.location.href='/public/showOrdinance/{{$ordinance->id}}\ ' "
-                                                    class="btn btn-info pull-right">Read More
-                                            </button>
-                                        </td>
-                                    </tr>
-                                @endif
-                            @endforeach
-                            @if( $ordinance->is_accepting === 1)
-                                <tr>
-                                    <td>{{ $ordinance->number }}</td>
-                                    <td>{{ $ordinance->series }}</td>
-                                    <td>{{ str_limit($ordinance->title, $limit = 200, $end = '...') }}</td>
-                                    <td>{{ str_limit($ordinance->keywords, $limit = 200, $end = '...') }}</td>
-                                    <td>
-                                        <button onclick="window.location.href='/public/showOrdinance/{{$ordinance->id}}\ ' "
-                                                class="btn btn-info pull-right">Read More
-                                        </button>
-                                    </td>
-                                </tr>
+                            @if($ordinance->isAccepting())
+                            <tr>
+                                <td>{{ $ordinance->number }}</td>
+                                <td>{{ $ordinance->series }}</td>
+                                <td>{{ str_limit($ordinance->title, $limit = 200, $end = '...') }}</td>
+                                <td>{{ str_limit($ordinance->keywords, $limit = 200, $end = '...') }}</td>
+                                <td>
+                                    <button onclick="window.location.href='/public/showOrdinance/{{$ordinance->id}}\ ' "
+                                            class="btn btn-info pull-right">Read More
+                                    </button>
+                                </td>
+                            </tr>
                             @endif
                         @endforeach
                         </tbody>
@@ -309,22 +294,7 @@
                         </tr>
 
                         @foreach($resolutions as $resolution)
-                            @foreach($resId as $id)
-                                @if($id->resolution_id === $resolution->id && $id->isAccepting === 1)
-                                <tr>
-                                    <td>{{ $resolution->number }}</td>
-                                    <td>{{ $resolution->series }}</td>
-                                    <td>{{ str_limit($resolution->title, $limit = 200, $end = '...') }}</td>
-                                    <td>{{ str_limit($resolution->keywords, $limit = 200, $end = '...') }}</td>
-                                    <td>
-                                        <button onclick="window.location.href='/public/showResolution/{{$resolution->id}}\ ' "
-                                                class="btn btn-info pull-right">Read More
-                                        </button>
-                                    </td>
-                                </tr>
-                                @endif
-                            @endforeach
-                            @if( $resolution->is_accepting === 1)
+                            @if($resolution->isAccepting())
                                 <tr>
                                     <td>{{ $resolution->number }}</td>
                                     <td>{{ $resolution->series }}</td>
@@ -337,6 +307,7 @@
                                     </td>
                                 </tr>
                             @endif
+
                         @endforeach
 
                         </tbody>

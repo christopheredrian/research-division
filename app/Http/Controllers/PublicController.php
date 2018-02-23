@@ -308,31 +308,15 @@ class PublicController extends Controller
         // Implement filtering / sorting
         $ordinances = $ordinances->orderBy($colName, $order);
 
+//        dd($ordinances->count());
         // Paginate with filters
         $ordinances = $ordinances->paginate($limit)->appends($request->all());
 
         $resolutions = null;
 
-        $ordId = Questionnaire::all();
-
-        //accepting comments
-        $v = DB::table('ordinances')->select('*')
-            ->whereNotIn('id', function ($query) {
-                $query->select('ordinance_id')->from('questionnaires')
-                    ->whereRaw('isAccepting = 1')
-                    ->whereNotNull('ordinance_id');
-            })
-            ->where('is_monitoring',1)
-            ->where('is_accepting',1)
-            ->orderBy($colName, $order)
-            ->paginate($limit);
-
-//        dd($v);
-
         return view('public.MandE.monitorAndEval', [
             'ordinances' => $ordinances,
             'resolutions' => $resolutions, //null
-            'ordId'=> $ordId,
             'type' => PublicController::RR,
         ]);
     }
@@ -379,24 +363,11 @@ class PublicController extends Controller
 
         // Paginate with filters
         $resolutions = $resolutions->paginate($limit)->appends($request->all());
-//        dd($resolutions);
-
         $ordinances = null;
-
-        $resId = Questionnaire::all();
-
-//        foreach ($resolutions as $resolution){
-//            foreach ($resId as $id){
-//                if($id->resolution_id === $resolution->id && $id->isAccepting === 1){
-////                    dd($resolution->id);
-//                }
-//            }
-//        }
 
         return view('public.MandE.monitorAndEval', [
             'resolutions' => $resolutions,
             'ordinances' => $ordinances,
-            'resId' => $resId,
             'type' => PublicController::RR,]);
     }
     //    Monitoring and Eval end
