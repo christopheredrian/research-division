@@ -14,6 +14,7 @@
 
 /* Public routes */
 Route::get('/', 'PublicController@index');
+
 Route::get('/aboutDiv', 'PublicController@aboutDiv');
 Route::get('/about', 'PublicController@about');
 

@@ -48,12 +48,17 @@ class Resolution extends Model
         return Questionnaire::where('resolution_id', $this->id)->first();
 
     }
-
     public function isAccepting()
     {
         if(!$this->getQuestionnaire()){
             return false;
+        } else {
+
         }
-        return $this->getQuestionnaire()->isAccepting || $this->is_accepting;
+            return $this->getQuestionnaire()->isAccepting || $this->is_accepting;
+    }
+    public function  acceptingComments()
+    {
+        return $this->is_accepting;
     }
 }

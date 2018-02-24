@@ -53,10 +53,15 @@ class Ordinance extends Model
     {
         if(!$this->getQuestionnaire()){
             return false;
-        } else{
+        } else {
 
         }
         return $this->getQuestionnaire()->isAccepting || $this->is_accepting;
 
+    }
+
+    public function  acceptingComments()
+    {
+        return $this->is_accepting;
     }
 }
