@@ -55,7 +55,7 @@
                                 {{--<a href="{{"/admin/forms/{$questionnaire->id}"}}"--}}
                                 {{--class="btn btn-info"><span><span--}}
                                 {{--class="fa fa-eye"></span> Preview</span></a>--}}
-                                    <a href="" class="btn  btn-danger" >
+                                    <a href="{{ url("/admin/preview/{$questionnaire->ordinance_id }/") }}" target="_blank" class="btn  btn-danger" >
                                     <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                     Download</a>
 
