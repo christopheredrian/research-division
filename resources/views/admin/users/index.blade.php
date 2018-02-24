@@ -10,6 +10,10 @@
 @endsection
 
 @section('content')
+
+    <ol class="breadcrumb">
+        <li class="active"><a href="/admin/users"><i class="fa fa-users"></i>Users</a></li>
+    </ol>
     <div class="box box-default color-palette-box">
         <div class="box-header with-border">
             <h3 class="box-title"><i class="fa fa-users"></i> Users</h3>

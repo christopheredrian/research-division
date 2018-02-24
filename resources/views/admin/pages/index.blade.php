@@ -10,6 +10,11 @@
 @endsection
 
 @section('content')
+
+    <ol class="breadcrumb">
+        <li  class="active"><a href="/admin/pages"><i class="fa fa-file-code-o"></i> Pages</a></li>
+    </ol>
+
     <div class="box box-default color-palette-box">
         <div class="box-header with-border">
             <h3 class="box-title"><i class="fa fa-file-code-o"></i> Public Pages</h3>

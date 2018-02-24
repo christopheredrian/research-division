@@ -4,8 +4,21 @@
 @endsection
 
 @section('content')
+
+    @if(Auth::user()->id == $user->id)
+        <ol class="breadcrumb">
+            <li><i class="fa fa-user"></i> Profile</li>
+        </ol>
+    @else
+        <ol class="breadcrumb">
+            <li><a href="/admin/users"><i class="fa fa-users"></i> Users</a></li>
+            <li class="active">{{ $user->id }}</li>
+        </ol>
+    @endif
+
     <div class="col-md-8">
-        <!-- general form elements -->
+
+    <!-- general form elements -->
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">Profile</h3>
@@ -42,7 +55,7 @@
             </div>
 
             <div class="box-footer">
-                <a href="/admin/users/{{$user->id}}/edit" class="pull-right btn btn-primary">Edit</a>
+                <a href="/admin/profile/edit" class="pull-right btn btn-primary">Edit</a>
             </div>
         </div>
     </div>

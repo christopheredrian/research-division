@@ -249,7 +249,7 @@ class OrdinancesController extends Controller
         $ordinance = Ordinance::findOrFail($id);
 
         return view('admin.ordinances.edit', [
-            'ordinance' => $ordinance
+            'ordinance' => $ordinance,
         ]);
     }
 

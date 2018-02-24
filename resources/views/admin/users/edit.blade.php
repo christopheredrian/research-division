@@ -112,6 +112,20 @@
     </style>
 @endsection
 @section('content')
+
+    @if(Auth::user()->id == $user->id)
+        <ol class="breadcrumb">
+            <li><a href="/admin/profile"><i class="fa fa-user"></i> Profile</a></li>
+            <li class="active">Edit</li>
+        </ol>
+    @else
+        <ol class="breadcrumb">
+            <li><a href="/admin/users"><i class="fa fa-users"></i> Users</a></li>
+            <li><a href="/admin/users/{{ $user->id }}">{{ $user->name }}</a></li>
+            <li class="active">Edit</li>
+        </ol>
+    @endif
+
     <div class="col-md-2"></div>
     <div class="col-md-8">
         <div class="panel panel-login">
@@ -141,7 +155,7 @@
                     <!-- /.box-header -->
                         <!-- form start -->
                         @if(Auth::user()->id == $user->id)
-                            <form id="profile-form" method="post" action="{{ url("/admin/show/{$user->id}") }}"
+                            <form id="profile-form" method="post" action="{{ url("/admin/update/{$user->id}") }}"
                                   style="display: block;" enctype="multipart/form-data">
                                 @else
                                     <form id="profile-form" method="post"
@@ -156,7 +170,7 @@
                                             <div class="form-group">
                                                 <label for="image">Profile Picture</label>
                                                 <input name="image" type="file" id="image"
-                                                       value="{{ old ('image', isset($user) ? $user->image : '' )}}" >
+                                                       value="{{ old ('image', isset($user) ? $user->image : '' )}}">
                                             </div>
 
                                             <div class="form-group">
@@ -198,49 +212,54 @@
                                                     </select>
                                                 </div>
                                             @endif
+                                            <div class="form-group">
+                                                <input class="btn btn-primary pull-right" type="submit"
+                                                       value="{{ $submitButtonText or 'Update' }}">
+                                            </div>
+                                            <!-- /.box-body -->
                                         </div>
-                                        <div class="form-group">
-                                            <input class="btn btn-primary pull-right" type="submit"
-                                                   value="{{ $submitButtonText or 'Update' }}">
-                                        </div>
-                                        <!-- /.box-body -->
                                     </form>
+                            </form>
                     </div>
                 </div>
+
                 <!-- /.box -->
 
-                <!-- form start -->
-                <form id="cp-form" method="post" action="/admin/update-password" style="display: none;">
-                    {{ csrf_field() }}
-                    <div class="box-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <!-- form start -->
+                        <form id="cp-form" method="post" action="/admin/update-password" style="display: none;">
+                            {{ csrf_field() }}
+                            <div class="box-body">
 
-                        @php
-                            $required = false;
-                        @endphp
+                                @php
+                                    $required = false;
+                                @endphp
 
-                        <div class="form-group">
-                            <label for="old-password">Old Password</label>
-                            <input name="old-password" type="password" class="form-control" id="old-password"
-                                   value="{{ old('old-password') }}">
-                        </div>
+                                <div class="form-group">
+                                    <label for="old-password">Old Password</label>
+                                    <input name="old-password" type="password" class="form-control" id="old-password"
+                                           value="{{ old('old-password') }}">
+                                </div>
 
-                        <div class="form-group">
-                            <label for="new-password">New Password</label>
-                            <input name="new-password" type="password" class="form-control" id="new-password">
-                        </div>
+                                <div class="form-group">
+                                    <label for="new-password">New Password</label>
+                                    <input name="new-password" type="password" class="form-control" id="new-password">
+                                </div>
 
-                        <div class="form-group">
-                            <label for="re-password">Re-enter Password</label>
-                            <input name="re-password" type="password" class="form-control" id="re-password">
-                        </div>
+                                <div class="form-group">
+                                    <label for="re-password">Re-enter Password</label>
+                                    <input name="re-password" type="password" class="form-control" id="re-password">
+                                </div>
+                            </div>
+                            <!-- /.box-body -->
+
+                            <div class="box-footer">
+                                <button type="submit" class="pull-right btn btn-primary">Submit</button>
+                            </div>
+                        </form>
                     </div>
-                    <!-- /.box-body -->
-
-                    <div class="box-footer">
-                        <button type="submit" class="pull-right btn btn-primary">Submit</button>
-                    </div>
-                </form>
-
+                </div>
             </div>
         </div>
     </div>

@@ -15,6 +15,17 @@
 
 @section('content')
 
+    <ol class="breadcrumb">
+        @if($ordinance->is_monitoring == 0)
+            <li><a href="/admin/ordinances"><i class="fa fa-book"></i> Research & Records</a></li>
+            <li><a href="/admin/ordinances">Ordinances</a></li>
+        @else
+            <li><a href="/admin/forms/ordinances"><i class="fa fa-file-text"></i> Monitoring & Evaluation</a></li>
+            <li><a href="/admin/forms/ordinances">Ordinances</a></li>
+        @endif
+        <li class="active">{{$ordinance->id}}</li>
+    </ol>
+
     @if($ordinance->is_monitoring === 1)
         {{-- IS in M&E --}}
         <div class="row">

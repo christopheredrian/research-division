@@ -18,6 +18,16 @@
 @endsection
 
 @section('content')
+
+    <ol class="breadcrumb">
+        @if($type === 'RR')
+            <li><a href="/admin/resolutions"><i class="fa fa-book"></i> Research & Records</a></li>
+        @else
+            <li><a href="/admin/forms/resolutions"><i class="fa fa-bar-chart"></i> Monitoring & Evaluation</a></li>
+        @endif
+        <li class="active">Resolutions</li>
+    </ol>
+
     <div class="box box-default color-palette-box">
         <div class="box-header with-border">
             <h3 class="box-title"><i class="fa fa-file-text"></i>
