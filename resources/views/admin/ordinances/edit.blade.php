@@ -2,6 +2,19 @@
 
 
 @section('content')
+
+    <ol class="breadcrumb">
+        @if($ordinance->is_monitoring == 0)
+            <li><a href="/admin/ordinances"><i class="fa fa-book"></i> Research & Records</a></li>
+            <li><a href="/admin/ordinances">Ordinances</a></li>
+        @else
+            <li><a href="/admin/forms/ordinances"><i class="fa fa-bar-chart"></i> Monitoring & Evaluation</a></li>
+            <li><a href="/admin/forms/ordinances">Ordinances</a></li>
+        @endif
+        <li><a href="/admin/ordinances/{{$ordinance->id}}">{{$ordinance->id}}</a></li>
+        <li  class="active">Edit</li>
+    </ol>
+
     <div class="col-md-12">
         <!-- general form elements -->
         <div class="box box-primary">

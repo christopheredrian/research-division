@@ -18,6 +18,16 @@
 @endsection
 
 @section('content')
+
+    <ol class="breadcrumb">
+        @if($type === 'RR')
+            <li><a href="/admin/ordinances"><i class="fa fa-book"></i> Research & Records</a></li>
+        @else
+            <li><a href="/admin/forms/ordinances"><i class="fa fa-bar-chart"></i> Monitoring & Evaluation</a></li>
+        @endif
+        <li class="active">Ordinances</li>
+    </ol>
+
     <div class="box box-default color-palette-box">
         <div class="box-header with-border">
             <h3 class="box-title"><i class="fa fa-file-text"></i>
@@ -154,14 +164,18 @@
                             <tbody>
                             <tr>
                                 <form method="get" action="#">
-{{--                                    {{ dd(array_unique(request()->all())) }}--}}
+                                    {{--                                    {{ dd(array_unique(request()->all())) }}--}}
                                     @foreach(array_filter(request()->all(), function($k){ return !starts_with($k, 'col-'); }, ARRAY_FILTER_USE_KEY) as $k => $v)
                                         <input type="hidden" name="{{$k}}" value="{{ $v }}">
                                     @endforeach
-                                    <td><input type="text" class="form-control" name="col-number" value="{{ request()->input('col-number')}}"></td>
-                                    <td><input type="text" class="form-control" name="col-series" value="{{ request()->input('col-series')}}"></td>
-                                    <td><input type="text" class="form-control" name="col-title" value="{{ request()->input('col-title') }}"></td>
-                                    <td><input type="text" class="form-control" name="col-keywords" value="{{ request()->input('col-keywords') }}"></td>
+                                    <td><input type="text" class="form-control" name="col-number"
+                                               value="{{ request()->input('col-number')}}"></td>
+                                    <td><input type="text" class="form-control" name="col-series"
+                                               value="{{ request()->input('col-series')}}"></td>
+                                    <td><input type="text" class="form-control" name="col-title"
+                                               value="{{ request()->input('col-title') }}"></td>
+                                    <td><input type="text" class="form-control" name="col-keywords"
+                                               value="{{ request()->input('col-keywords') }}"></td>
                                     <td><input class="btn btn-primary" type="submit" value="Filter"></td>
                                 </form>
                             </tr>

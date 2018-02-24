@@ -113,7 +113,7 @@ function skin($user)
                             <li class="user-footer">
                                 <div class="pull-right">
 
-                                    <a href="/admin/users/{{Auth::user()->id}}/edit" class="btn btn-default btn-flat">
+                                    <a href="/admin/profile/edit" class="btn btn-default btn-flat">
                                         <span class="glyphicon glyphicon-pencil"></span>
                                     </a>
                                     <a href="#" class="btn btn-default btn-flat" href="{{ route('logout') }}"
@@ -174,7 +174,7 @@ function skin($user)
                     <li class="header">MANAGEMENT</li>
                     <li class="{{ Request::is('admin/users*') ? 'active' : '' }}">
                         <a href="/admin/users">
-                            <i class="fa fa-dashboard"></i>
+                            <i class="fa fa-users"></i>
                             <span>Users</span>
                         </a>
 
@@ -278,7 +278,7 @@ function skin($user)
                             active
                     @endif treeview menu">
                         <a href="#">
-                            <i class="fa fa-book"></i>
+                            <i class="fa fa-bar-chart"></i>
                             <span>Monitoring & Evaluation</span>
                             <span class="pull-right-container">
                           <i class="fa fa-angle-left pull-right"></i>
@@ -329,7 +329,7 @@ function skin($user)
                     </li>
                     <li class="{{ Request::is('admin/logs*') ? 'active' : '' }}">
                         <a href="/admin/logs">
-                            <i class="fa fa-shield"></i>
+                            <i class="fa fa-wrench"></i>
                             <span>Logs</span>
                             <span class="pull-right-container">
                             </span>
