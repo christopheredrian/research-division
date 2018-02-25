@@ -4,10 +4,10 @@
             <div class="col-md-4">
                 Research Department Image
             </div>
+
             <div class="col-md-6">
                 message body
             </div>
-
         </div>
 
         <div class="col-md-12">

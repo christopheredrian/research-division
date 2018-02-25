@@ -20,13 +20,17 @@ Route::get('/about', 'PublicController@about');
 
 //Route::get('/monitorAndEval', 'PublicController@monitorAndEval');
 
+/* M and E */
 Route::get('/ordinances', 'PublicController@monitorAndEvalOrdinances'); /* used in monitoring and evaluation */
 Route::get('/resolutions', 'PublicController@monitorAndEvalResolutions'); /* used in monitoring and evaluation */
 Route::get('/monitorAndEval/ordinances', 'PublicController@ordinance');
 Route::get('/monitorAndEval/resolutions', 'PublicController@resolutions');
+/* End M and E*/
 
+/* R and R */
 Route::get('/r&r/resolutions', 'PublicController@researchAndRecordsResolution');
 Route::get('/r&r/ordinances', 'PublicController@researchAndRecordsOrdinance');
+/* End R and R */
 
 Route::get('/public/showOrdinance/{id}', 'PublicController@showOrdinance');
 Route::get('/public/showOrdinanceQuestionnaire/{id}', 'PublicController@showOrdinanceQuestionnaire');
@@ -90,7 +94,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::post('/resolution-pload-update-report',
             'Admin\\ResolutionsController@storeUpdateReport')->name('resolutionStoreUpdateReport');
 
-        /** Download  */
+        /** Download  // print */
         Route::get('/preview/{id}', 'Admin\\OrdinancesController@preview');
     });
 
