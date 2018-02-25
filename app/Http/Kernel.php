@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\CheckRole;
+use App\Http\Middleware\LogRequest;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -20,6 +21,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrustProxies::class,
+        LogRequest::class
     ];
 
     /**
