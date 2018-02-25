@@ -14,7 +14,7 @@ class LogsController extends Controller
      * */
     public function index(){
         return view('admin.logs.index', [
-            'logs' => Log::orderBy('id', 'desc')->get()
+            'logs' => Log::orderBy('id', 'desc')->paginate(15)
         ]);
     }
 }
