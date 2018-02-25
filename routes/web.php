@@ -103,15 +103,15 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     ]);
     /** END --- Research and Records */
 
-    // Routes ONLY for Admin
+    // Routes ONLY for Admin and superadmin
     Route::group(['middleware' => 'role:superadmin,admin'], function () {
         Route::resource('pages', 'Admin\\PagesController');
         Route::get('/reset-password/{user_id}/', 'Admin\\UsersController@resetPassword');
         Route::get('/logs', 'Admin\\LogsController@index');
     });
 
-    // Routes ONLY for Super
-    Route::group(['middleware' => 'role:admin,superadmin'], function () {
+    // Routes ONLY for superadmin
+    Route::group(['middleware' => 'role:superadmin'], function () {
         Route::resource('users', 'Admin\\UsersController');
     });
 
