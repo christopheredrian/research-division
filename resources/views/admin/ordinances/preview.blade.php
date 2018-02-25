@@ -1,5 +1,15 @@
 @extends('layouts.app')
     @section('content')
+        <div class="col-lg-12">
+            <div class="col-md-4">
+                Research Department Image
+            </div>
+            <div class="col-md-6">
+                message body
+            </div>
+
+        </div>
+
         <div class="col-md-12">
             <h2> {{$questionnaire->name}}</h2>
             {{$questionnaire->description}}
@@ -96,4 +106,8 @@
                 @endphp
             </div>
         @endforeach
+                <script type="text/javascript">
+                    window.print();
+                </script>
     @endsection
+
