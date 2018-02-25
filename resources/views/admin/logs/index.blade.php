@@ -1,14 +1,7 @@
 @extends('layouts.admin')
 
 @section('scripts')
-    <script src="public/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"></script>
-    <script>
-        $(document).ready(function () {
-
-
-        })
-
-    </script>
+  
 @endsection
 
 @section('content')
@@ -18,24 +11,20 @@
         </div>
 
         <div class="box-body">
-            <form action="">
-                <div class="form-group">
-                    <label>Date range button:</label>
-
-                    <div class="row">
-                        <div class='col-sm-6'>
-                            <input type='text' class="form-control" id='datetimepicker4' />
-                        </div>
-                        <script type="text/javascript">
-                            $(function () {
-                                $('#datetimepicker4').datetimepicker();
-                            });
-                        </script>
+            <div class="well ">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="exampleInputName2">From</label>
+                        <input name="from" type="date" class="form-control" >
                     </div>
-                </div>
-
-            </form>
-            <table class="table table-striped table-bordered">
+                    <div class="form-group">
+                        <label for="exampleInputEmail2">To</label>
+                        <input name="to" type="date" class="form-control" >
+                    </div>
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </form>
+            </div>
+            <table id="datatable" class="table table-striped table-bordered">
                 <thead>
                 <tr>
                     <th>Id</th>
