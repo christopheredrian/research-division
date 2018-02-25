@@ -1,6 +1,18 @@
 @extends('layouts.admin')
 
 @section('content')
+
+    <ol class="breadcrumb">
+        @if($resolution->is_monitoring == 0)
+            <li><a href="/admin/resolutions"><i class="fa fa-book"></i> Research & Records</a></li>
+            <li><a href="/admin/resolutions">Resolutions</a></li>
+        @else
+            <li><a href="/admin/forms/resolutions"><i class="fa fa-bar-chart"></i> Monitoring & Evaluation</a></li>
+            <li><a href="/admin/forms/resolutions">Resolutions</a></li>
+        @endif
+        <li class="active">{{$resolution->id}}</li>
+    </ol>
+
     @if($resolution->is_monitoring === 1)
         {{-- IS in M&E --}}
         <div class="box box-primary color-palette-box">

@@ -10,6 +10,12 @@
 @endsection
 
 @section('content')
+    <ol class="breadcrumb">
+        <li><a href="/admin/pages"><i class="fa fa-file-code-o"></i> Pages</a></li>
+        <li><a href="/admin/pages/{{ $page->id }}">{{ $page->id }}</a></li>
+        <li class="active">Edit</li>
+    </ol>
+
     <div class="box box-default color-palette-box">
         <div class="box-header with-border">
             <h3 class="box-title">Edit {{ $page->title }}</h3>

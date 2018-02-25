@@ -15,6 +15,17 @@
 
 @section('content')
 
+    <ol class="breadcrumb">
+        @if($ordinance->is_monitoring == 0)
+            <li><a href="/admin/ordinances"><i class="fa fa-book"></i> Research & Records</a></li>
+            <li><a href="/admin/ordinances">Ordinances</a></li>
+        @else
+            <li><a href="/admin/forms/ordinances"><i class="fa fa-file-text"></i> Monitoring & Evaluation</a></li>
+            <li><a href="/admin/forms/ordinances">Ordinances</a></li>
+        @endif
+        <li class="active">{{$ordinance->id}}</li>
+    </ol>
+
     @if($ordinance->is_monitoring === 1)
         {{-- IS in M&E --}}
         <div class="row">
@@ -55,7 +66,7 @@
                                 {{--<a href="{{"/admin/forms/{$questionnaire->id}"}}"--}}
                                 {{--class="btn btn-info"><span><span--}}
                                 {{--class="fa fa-eye"></span> Preview</span></a>--}}
-                                    <a href="" class="btn  btn-danger" >
+                                    <a href="{{ url("/admin/preview/{$questionnaire->ordinance_id }/") }}" target="_blank" class="btn  btn-danger" >
                                     <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                     Download</a>
 

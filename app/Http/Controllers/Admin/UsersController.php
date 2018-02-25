@@ -75,10 +75,22 @@ class UsersController extends Controller
     public function show($id)
     {
 
-        Session::flash('flash_message',"Profile Updated!");
+        Session::flash('flash_message', "Profile Updated!");
 
         return view('admin.users.show', [
-            'user' => User::find($id)
+            'user' => User::findOrFail($id)
+        ]);
+    }
+
+    public function profile()
+    {
+
+        Session::flash('flash_message', "Profile Updated!");
+
+        $id = Auth::user()->id;
+
+        return view('admin.users.show', [
+            'user' => User::findOrFail($id)
         ]);
     }
 
@@ -88,12 +100,22 @@ class UsersController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
+
     public function edit($id)
     {
         return view('admin.users.edit', [
             'user' => User::findOrFail($id)
         ]);
     }
+
+    public function profEdit()
+    {
+        return view('admin.users.edit', [
+            'user' => User::findOrFail(Auth::user()->id)
+        ]);
+    }
+
+
 
     /**
      * Update the specified resource in storage.
@@ -130,10 +152,11 @@ class UsersController extends Controller
 
         }
 
-        if (Auth::user()->role == "superadmin") {
+        if (Auth::user()->id != $id) {
             return redirect('/admin/users');
-        } else
-            return redirect('/admin/show');
+        } elseif(Auth::user()->id == $id) {
+            return redirect('/admin/profile');
+        }
     }
 
     /**
@@ -180,7 +203,7 @@ class UsersController extends Controller
                 'flash_message',
                 "Password has been changed!");
         }
-        return redirect('/admin/users/edit')->with('user',$user);
+        return redirect('/admin/users/edit')->with('user', $user);
     }
 
     public function resetPassword($user_id)

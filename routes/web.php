@@ -49,7 +49,10 @@ Route::get('/deletePDF/{directory}/{file}', 'PublicController@deletePDF');
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
     Route::get('/', 'Admin\\DashboardController@index');
-    Route::post('/show/{id}', 'Admin\\UsersController@show');
+    Route::get('/show/{id}', 'Admin\\UsersController@show');
+    Route::post('/update/{id}', 'Admin\\UsersController@update');
+    Route::get('/profile/edit', 'Admin\\UsersController@profEdit');
+    Route::get('/profile', 'Admin\\UsersController@profile');
 
 
     Route::get('change-password', 'Admin\\UsersController@changePassword');
@@ -86,6 +89,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
             'Admin\\ResolutionsController@storeStatusReport')->name('resolutionStoreStatusReport');
         Route::post('/resolution-pload-update-report',
             'Admin\\ResolutionsController@storeUpdateReport')->name('resolutionStoreUpdateReport');
+
+        /** Download  */
+        Route::get('/preview/{id}', 'Admin\\OrdinancesController@preview');
     });
 
     /** END --- Monitoring and Evaluation */
@@ -98,8 +104,15 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     /** END --- Research and Records */
 
     // Routes ONLY for Super Admin
-    Route::group(['middleware' => 'role:superadmin,admin'], function () {
+    Route::group(['middleware' => 'role:superadmin'], function () {
         Route::resource('users', 'Admin\\UsersController');
+        Route::resource('pages', 'Admin\\PagesController');
+        Route::get('/reset-password/{user_id}/', 'Admin\\UsersController@resetPassword');
+        Route::get('/logs', 'Admin\\LogsController@index');
+    });
+
+    // Routes ONLY for Admin
+    Route::group(['middleware' => 'role:admin'], function () {
         Route::resource('pages', 'Admin\\PagesController');
         Route::get('/reset-password/{user_id}/', 'Admin\\UsersController@resetPassword');
         Route::get('/logs', 'Admin\\LogsController@index');

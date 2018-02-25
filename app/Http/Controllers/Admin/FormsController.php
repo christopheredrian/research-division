@@ -134,7 +134,8 @@ class FormsController extends Controller
         $questionnaire_json->questions = $temp;
         return view('forms.show', [
             'questionnaire' => $questionnaire,
-            'questionnaire_json' => json_encode($questionnaire_json)
+            'questionnaire_json' => json_encode($questionnaire_json),
+            'type' => FormsController::ME,
         ]);
 //        });
     }
@@ -176,7 +177,8 @@ class FormsController extends Controller
 //            return response()->json($questionnaire_json);
         return view('forms.edit', [
             'questionnaire' => $questionnaire,
-            'questionnaire_json' => json_encode($questionnaire_json)
+            'questionnaire_json' => json_encode($questionnaire_json),
+            'type' => FormsController::ME,
         ]);
     }
 

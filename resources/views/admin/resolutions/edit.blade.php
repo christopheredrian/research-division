@@ -2,6 +2,19 @@
 
 
 @section('content')
+    <ol class="breadcrumb">
+        @if($resolution->is_monitoring == 0)
+            <li><a href="/admin/resolutions"><i class="fa fa-book"></i> Research & Records</a></li>
+            <li><a href="/admin/resolutions">Resolutions</a></li>
+        @else
+            <li><a href="/admin/forms/resolutions"><i class="fa fa-bar-chart"></i> Monitoring & Evaluation</a></li>
+            <li><a href="/admin/forms/resolutions">Resolutions</a></li>
+        @endif
+        <li><a href="/admin/resolutions/{{$resolution->id}}">{{$resolution->id}}</a></li>
+        <li  class="active">Edit</li>
+    </ol>
+
+
     <div class="col-md-12">
         <!-- general form elements -->
         <div class="box box-primary">
