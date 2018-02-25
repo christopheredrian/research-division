@@ -41,7 +41,7 @@ Route::get('/public/showResolution/{id}', 'PublicController@showResolution');
 Route::get('/public/showResolutionQuestionnaire/{id}', 'PublicController@showResolutionQuestionnaire');
 Route::get('/public/showResolutionQuestionnaire/{id}/required', 'PublicController@showRequiredResolutionQuestionnaire');
 
-Route::get('/reports', 'PublicController@reports');
+//Route::get('/reports', 'PublicController@reports');
 Route::get('/page/{id}', 'PublicController@page');
 Route::post('/suggestions/{id}', 'PublicController@storeSuggestion');
 Route::get('/contactUs', 'PublicController@contactUs');
@@ -118,6 +118,11 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::group(['middleware' => 'role:superadmin'], function () {
         Route::resource('users', 'Admin\\UsersController');
     });
+
+    /** Reports */
+    Route::get('/reports', 'ReportsController@index')->name('reports');
+    Route::post('/reports', 'ReportsController@query')->name('postreports');
+    /** END --- Reports*/
 
 });
 

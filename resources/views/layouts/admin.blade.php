@@ -337,6 +337,15 @@ function skin($user)
                     </li>
                 @endif
 
+                <li class="{{ Request::is('/reports*') ? 'active' : '' }}">
+                    <a href="/reports">
+                        <i class="fa fa-th-list"></i>
+                        <span>Reports</span>
+                        <span class="pull-right-container">
+                            </span>
+                    </a>
+                </li>
+
                 {{--<li class="{{ Request::is('admin/change*') ? 'active' : '' }}">--}}
                 {{--<a href="/admin/change-password">--}}
                 {{--<i class="fa fa-wrench"></i>--}}
