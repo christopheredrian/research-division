@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Ordinance;
 use App\Questionnaire;
+use App\Question;
+use App\Value;
 use App\StatusReport;
 use App\UpdateReport;
-use function GuzzleHttp\Promise\all;
+use GuzzleHttp\Promise\all;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use App\File;
@@ -358,5 +361,19 @@ class OrdinancesController extends Controller
             "Successfully uploaded update report for<strong> Ordinance " . $updateReport->ordinance->number . "</strong>!");
 
         return redirect('/admin/ordinances/' . $updateReport->ordinance_id);
+    }
+
+    public function preview($id)
+    {
+        $questionnaire = Questionnaire::Where('ordinance_id', '=', $id)->first();
+        $questions = Question::Where('questionnaire_id', '=', $questionnaire->id)->get();
+        $values = Value::WhereIn('question_id', $questions->pluck('id'))->get();
+        $required = false;
+
+        return view('admin.ordinances.preview',
+            ['questionnaire' => $questionnaire],
+            ['questions' => $questions])
+            ->with('values', $values)
+            ->with('required', $required);
     }
 }

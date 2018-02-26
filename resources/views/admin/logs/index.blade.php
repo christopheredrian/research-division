@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 
+@section('scripts')
+  
+@endsection
 
 @section('content')
     <ol class="breadcrumb">
@@ -10,8 +13,22 @@
         <div class="box-header with-border">
             <h3 class="box-title"><i class="fa fa-wrench"></i> System Logs</h3>
         </div>
+
         <div class="box-body">
-            <table class="table table-striped table-bordered">
+            <div class="well ">
+                <form class="form-inline">
+                    <div class="form-group">
+                        <label for="exampleInputName2">From</label>
+                        <input name="from" type="date" class="form-control" >
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail2">To</label>
+                        <input name="to" type="date" class="form-control" >
+                    </div>
+                    <button type="submit" class="btn btn-primary">Filter</button>
+                </form>
+            </div>
+            <table id="datatable" class="table table-striped table-bordered">
                 <thead>
                 <tr>
                     <th>Id</th>
@@ -33,6 +50,7 @@
                 @endforeach
                 </tbody>
             </table>
+            {{ $logs->links() }}
         </div>
     </div>
 @endsection

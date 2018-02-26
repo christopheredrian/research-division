@@ -16,7 +16,7 @@
                                 </a>
                             </div>
                             <div class="pull-right">
-                                <form action="/ordinances" class="form-inline">
+                                <form  method="get" action="#" class="form-inline">
                                     <input name="q" value="{{ request()->q }}" class="form-control" type="search" placeholder="Search...">
                                     <button class="btn" style="height: 35px; width: 35px; margin-right: 65px"><span class="fa fa-search"></span></button>
                                 </form>

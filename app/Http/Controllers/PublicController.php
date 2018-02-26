@@ -520,7 +520,9 @@ class PublicController extends Controller
         $questions = Question::Where('questionnaire_id', '=', $questionnaire->id)->get();
         $values = Value::WhereIn('question_id', $questions->pluck('id'))->get();
         $required=false;
-        return view('public.showOrdinanceQuestionnaire', ['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values)->with('required', $required);
+        return view('public.showOrdinanceQuestionnaire',
+            ['questionnaire' => $questionnaire],
+            ['questions' => $questions])->with('values', $values)->with('required', $required);
     }
 
     public function showRequiredOrdinanceQuestionnaire($id)

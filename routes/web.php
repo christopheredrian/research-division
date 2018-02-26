@@ -20,13 +20,17 @@ Route::get('/about', 'PublicController@about');
 
 //Route::get('/monitorAndEval', 'PublicController@monitorAndEval');
 
+/* M and E */
 Route::get('/ordinances', 'PublicController@monitorAndEvalOrdinances'); /* used in monitoring and evaluation */
 Route::get('/resolutions', 'PublicController@monitorAndEvalResolutions'); /* used in monitoring and evaluation */
 Route::get('/monitorAndEval/ordinances', 'PublicController@ordinance');
 Route::get('/monitorAndEval/resolutions', 'PublicController@resolutions');
+/* End M and E*/
 
+/* R and R */
 Route::get('/r&r/resolutions', 'PublicController@researchAndRecordsResolution');
 Route::get('/r&r/ordinances', 'PublicController@researchAndRecordsOrdinance');
+/* End R and R */
 
 Route::get('/public/showOrdinance/{id}', 'PublicController@showOrdinance');
 Route::get('/public/showOrdinanceQuestionnaire/{id}', 'PublicController@showOrdinanceQuestionnaire');
@@ -37,17 +41,19 @@ Route::get('/public/showResolution/{id}', 'PublicController@showResolution');
 Route::get('/public/showResolutionQuestionnaire/{id}', 'PublicController@showResolutionQuestionnaire');
 Route::get('/public/showResolutionQuestionnaire/{id}/required', 'PublicController@showRequiredResolutionQuestionnaire');
 
-Route::get('/reports', 'PublicController@reports');
+//Route::get('/reports', 'PublicController@reports');
 Route::get('/page/{id}', 'PublicController@page');
 Route::post('/suggestions/{id}', 'PublicController@storeSuggestion');
 Route::get('/contactUs', 'PublicController@contactUs');
 
 Route::get('/downloadPDF/{directory}/{file}', 'PublicController@downloadPDF');
 Route::get('/deletePDF/{directory}/{file}', 'PublicController@deletePDF');
+Route::get('/search', 'SearchController@index');
 
 /* Admin routes */
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
+    Route::get('/search', 'SearchController@index');
     Route::get('/', 'Admin\\DashboardController@index');
     Route::get('/show/{id}', 'Admin\\UsersController@show');
     Route::post('/update/{id}', 'Admin\\UsersController@update');
@@ -90,6 +96,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
             'Admin\\ResolutionsController@storeStatusReport')->name('resolutionStoreStatusReport');
         Route::post('/resolution-pload-update-report',
             'Admin\\ResolutionsController@storeUpdateReport')->name('resolutionStoreUpdateReport');
+
+        /** Download  // print */
+        Route::get('/preview/{id}', 'Admin\\OrdinancesController@preview');
     });
 
     /** END --- Monitoring and Evaluation */
@@ -101,20 +110,22 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     ]);
     /** END --- Research and Records */
 
-    // Routes ONLY for Super Admin
-    Route::group(['middleware' => 'role:superadmin'], function () {
-        Route::resource('users', 'Admin\\UsersController');
+    // Routes ONLY for Admin and superadmin
+    Route::group(['middleware' => 'role:superadmin,admin'], function () {
         Route::resource('pages', 'Admin\\PagesController');
         Route::get('/reset-password/{user_id}/', 'Admin\\UsersController@resetPassword');
         Route::get('/logs', 'Admin\\LogsController@index');
     });
 
-    // Routes ONLY for Admin
-    Route::group(['middleware' => 'role:admin'], function () {
-        Route::resource('pages', 'Admin\\PagesController');
-        Route::get('/reset-password/{user_id}/', 'Admin\\UsersController@resetPassword');
-        Route::get('/logs', 'Admin\\LogsController@index');
+    // Routes ONLY for superadmin
+    Route::group(['middleware' => 'role:superadmin'], function () {
+        Route::resource('users', 'Admin\\UsersController');
     });
+
+    /** Reports */
+    Route::get('/reports', 'ReportsController@index')->name('reports');
+    Route::post('/reports', 'ReportsController@query')->name('postreports');
+    /** END --- Reports*/
 
 });
 
