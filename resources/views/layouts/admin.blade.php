@@ -92,7 +92,7 @@ function skin($user)
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            
+
                             @if(File::exists(public_path()."/uploads/user-".Auth::user()->id.".jpg"))
                                 <img src="/uploads/user-{{ Auth::user()->id }}.jpg" class="user-image" alt="User Image">
                             @else

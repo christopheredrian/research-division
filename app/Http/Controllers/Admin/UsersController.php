@@ -105,8 +105,11 @@ class UsersController extends Controller
     public function deleteImage()
     {
         $id = Auth::user()->id;
-
         $profImage = User::where('id', $id)->update(['image' => null]);
+
+        $profpic = 'user-' . $id . '.jpg';
+
+        File::delete('uploads/'.$profpic);
 
         return redirect('/admin/profile/edit');
     }
