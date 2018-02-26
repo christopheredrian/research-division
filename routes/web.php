@@ -72,12 +72,18 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::resource('forms', 'Admin\\FormsController');
         Route::post('/acceptResponses/{id}', 'Admin\\FormsController@acceptResponses');
         Route::post('/declineResponses/{id}', 'Admin\\FormsController@declineResponses');
+        Route::post('/acceptSuggestions/{id}/{flag}', 'Admin\\FormsController@acceptSuggestions');
+        Route::post('/declineSuggestions/{id}/{flag}', 'Admin\\FormsController@declineSuggestions');
         Route::group(['prefix' => 'result'], function () {
             Route::get('download/{id}', 'Admin\\ResultController@downloadExcel');
             Route::get('resolutions', 'Admin\\FormsController@resolutions');
         });
         Route::resource('result', 'Admin\\ResultController');
+        Route::get('/showComments/{id}', 'Admin\\ResultController@showComments');
         Route::post('/updateAnswer', 'Admin\\ResultController@updateAnswer');
+        Route::post('/updateComment', 'Admin\\ResultController@updateComment');
+        Route::delete('/deleteComment/{id}', 'Admin\\ResultController@deleteComment');
+        Route::get('downloadComments/{id}', 'Admin\\ResultController@downloadCommentsExcel');
 
         /** Status and Update Reports */
         Route::get('/ordinances/{id}/upload-status-report', 'Admin\\OrdinancesController@statusReportCreate');
@@ -96,6 +102,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
         /** Download  // print */
         Route::get('/preview/{id}', 'Admin\\OrdinancesController@preview');
+
+
     });
 
     /** END --- Monitoring and Evaluation */
