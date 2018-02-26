@@ -268,6 +268,36 @@ class FormsController extends Controller
         return back();
     }
 
+    public function acceptSuggestions($id, $flag)
+    {
+
+        if($flag === "ordinances"){
+            $ordinance = Ordinance::find($id);
+            $ordinance->is_accepting = 1;
+            $ordinance->save();
+        }else{
+            $resolution = Resolution::find($id);
+            $resolution->is_accepting = 1;
+            $resolution->save();
+        }
+        return back();
+    }
+
+    public function declineSuggestions($id, $flag)
+    {
+        if($flag === "ordinances"){
+            $ordinance = Ordinance::find($id);
+            $ordinance->is_accepting = 0;
+            $ordinance->save();
+        }else{
+            $resolution = Resolution::find($id);
+            $resolution->is_accepting = 0;
+            $resolution->save();
+        }
+        return back();
+    }
+
+
     function ordinancesIndex(Request $request)
     {
         $limit = 5;

@@ -2,6 +2,11 @@
 
 @section('styles')
     <link rel="stylesheet" type="text/css" href="/DataTables/datatables.min.css"/>
+    <style>
+        td a{
+            width: 100%;
+        }
+    </style>
 @endsection
 
 @section('scripts')
@@ -81,7 +86,13 @@
                                         <td>{{ $item->series }}</td>
                                         <td>{{ $item->title }}</td>
                                         <td>{{ $item->keywords }}</td>
-                                        <td><a href="/"></a></td>
+                                        <td>
+                                            <a class="btn btn-flat btn-sm btn-primary"
+                                               href="{{ url('/admin/ordinances/' . $item->id)}}">Open</a> <br>
+                                            <a class="btn btn-flat btn-sm btn-info" target="_blank"
+                                               href="{{ url('/admin/ordinances/' . $item->id)}}">Open in new Tab</a>
+                                            <br>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -108,7 +119,13 @@
                                         <td>{{ $item->series }}</td>
                                         <td>{{ $item->title }}</td>
                                         <td>{{ $item->keywords }}</td>
-                                        <td><a href="/"></a></td>
+                                        <td>
+                                            <a class="btn btn-flat btn-sm btn-primary"
+                                               href="{{ url('/admin/resolutions/' . $item->id)}}">Open</a> <br>
+                                            <a class="btn btn-flat btn-sm btn-info" target="_blank"
+                                               href="{{ url('/admin/resolutions/' . $item->id)}}">Open in new Tab</a>
+                                            <br>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -125,6 +142,7 @@
                                     <th>Series</th>
                                     <th>Title</th>
                                     <th>Keywords</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
@@ -135,7 +153,16 @@
                                         <td>{{ $item->series }}</td>
                                         <td>{{ $item->title }}</td>
                                         <td>{{ $item->keywords }}</td>
-                                        <td><a href="/"></a></td>
+                                        <td>{!!  $item->isAccepting()  ? '<span class="label label-success">Monitoring</span>':
+                                        '<span class="label label-danger">Not Monitoring</span>'!!}
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-flat btn-sm btn-primary"
+                                               href="{{ url('/admin/ordinances/' . $item->id)}}">Open</a> <br>
+                                            <a class="btn btn-flat btn-sm btn-info" target="_blank"
+                                               href="{{ url('/admin/ordinances/' . $item->id)}}">Open in new Tab</a>
+                                            <br>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -151,6 +178,7 @@
                                     <th>Series</th>
                                     <th>Title</th>
                                     <th>Keywords</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
@@ -161,7 +189,16 @@
                                         <td>{{ $item->series }}</td>
                                         <td>{{ $item->title }}</td>
                                         <td>{{ $item->keywords }}</td>
-                                        <td><a href="/"></a></td>
+                                        <td>{!!  $item->isAccepting()  ? '<span class="label label-success">Monitoring</span>':
+                                        '<span class="label label-danger">Not Monitoring</span>'!!}
+                                        </td>
+                                        <td>
+                                            <a class="btn-flat btn btn-sm btn-primary"
+                                               href="{{ url('/admin/resolutions/' . $item->id)}}">Open</a> <br>
+                                            <a class="btn-flat btn btn-sm btn-info" target="_blank"
+                                               href="{{ url('/admin/resolutions/' . $item->id)}}">Open in new Tab</a>
+                                            <br>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -173,4 +210,5 @@
                 <!-- /.tab-content -->
             </div>
         </div>
+    </div>
 @endsection

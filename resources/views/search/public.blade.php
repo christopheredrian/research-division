@@ -22,7 +22,7 @@
 @endsection
 
 @section('content')
-    <div class="container box box-default">
+    <div class="container box box-default color-palette-box">
         <div class="box-header with-border">
             <h3 class="box-title"><i class="fa fa-file-text"></i>
                 Search Results
@@ -87,7 +87,13 @@
                                         <td>{{ $item->series }}</td>
                                         <td>{{ $item->title }}</td>
                                         <td>{{ $item->keywords }}</td>
-                                        <td><a href="/"></a></td>
+                                        <td>
+                                            <a class="btn btn-flat btn-sm btn-primary"
+                                               href="{{ url('/public/showOrdinance/' . $item->id)}}">Open</a> <br>
+                                            <a class="btn btn-flat btn-sm btn-info" target="_blank"
+                                               href="{{ url('/public/showOrdinance/' . $item->id)}}">Open in new Tab</a>
+                                            <br>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -114,7 +120,13 @@
                                         <td>{{ $item->series }}</td>
                                         <td>{{ $item->title }}</td>
                                         <td>{{ $item->keywords }}</td>
-                                        <td><a href="/"></a></td>
+                                        <td>
+                                            <a class="btn btn-flat btn-sm btn-primary"
+                                               href="{{ url('/public/showResolution/' . $item->id)}}">Open</a> <br>
+                                            <a class="btn btn-flat btn-sm btn-info" target="_blank"
+                                               href="{{ url('/public/showResolution/' . $item->id)}}">Open in new Tab</a>
+                                            <br>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -131,6 +143,7 @@
                                     <th>Series</th>
                                     <th>Title</th>
                                     <th>Keywords</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
@@ -141,7 +154,16 @@
                                         <td>{{ $item->series }}</td>
                                         <td>{{ $item->title }}</td>
                                         <td>{{ $item->keywords }}</td>
-                                        <td><a href="/"></a></td>
+                                        <td>{!!  $item->isAccepting()  ? '<span class="label label-success">Monitoring</span>':
+                                        '<span class="label label-danger">Not Monitoring</span>'!!}
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-flat btn-sm btn-primary"
+                                               href="{{ url('/public/showOrdinance/' . $item->id)}}">Open</a> <br>
+                                            <a class="btn btn-flat btn-sm btn-info" target="_blank"
+                                               href="{{ url('/public/showOrdinance/' . $item->id)}}">Open in new Tab</a>
+                                            <br>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
@@ -157,6 +179,7 @@
                                     <th>Series</th>
                                     <th>Title</th>
                                     <th>Keywords</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
@@ -167,7 +190,16 @@
                                         <td>{{ $item->series }}</td>
                                         <td>{{ $item->title }}</td>
                                         <td>{{ $item->keywords }}</td>
-                                        <td><a href="/"></a></td>
+                                        <td>{!!  $item->isAccepting()  ? '<span class="label label-success">Monitoring</span>':
+                                        '<span class="label label-danger">Not Monitoring</span>'!!}
+                                        </td>
+                                        <td>
+                                            <a class="btn-flat btn btn-sm btn-primary"
+                                               href="{{ url('/public/showResolution/' . $item->id)}}">Open</a> <br>
+                                            <a class="btn-flat btn btn-sm btn-info" target="_blank"
+                                               href="{{ url('/public/showResolution/' . $item->id)}}">Open in new Tab</a>
+                                            <br>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>
