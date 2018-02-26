@@ -62,6 +62,7 @@ class UsersController extends Controller
 
         $user->fill($request->all());
         $user->password = bcrypt($request->password);
+
         $user->save();
         return redirect('/admin/users');
     }
@@ -101,6 +102,15 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function deleteImage()
+    {
+        $id = Auth::user()->id;
+
+        $profImage = User::where('id', $id)->update(['image' => null]);
+
+        return redirect('/admin/profile/edit');
+    }
+
     public function edit($id)
     {
         return view('admin.users.edit', [
@@ -114,7 +124,6 @@ class UsersController extends Controller
             'user' => User::findOrFail(Auth::user()->id)
         ]);
     }
-
 
 
     /**
@@ -141,11 +150,11 @@ class UsersController extends Controller
         if ($request->file('image') != null) {
             $profpic = 'user-' . $user->id . '.jpg';
 
-            $path = base_path() . '/public/uploads/' . $profpic;
+            $path = '/uploads/' . $profpic;
             $user->image = $path;
 
             $request->file('image')->move(
-                base_path() . '/public/uploads/', $profpic
+                public_path() . '/uploads/', $profpic
             );
 
             $user->save();
@@ -154,7 +163,7 @@ class UsersController extends Controller
 
         if (Auth::user()->id != $id) {
             return redirect('/admin/users');
-        } elseif(Auth::user()->id == $id) {
+        } elseif (Auth::user()->id == $id) {
             return redirect('/admin/profile');
         }
     }

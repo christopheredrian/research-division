@@ -154,6 +154,26 @@
                         @endif
                     <!-- /.box-header -->
                         <!-- form start -->
+
+                        <div style="text-align: center;">
+                            @if($user->image != null)
+                                <img src="{{$user->image}}"
+                                     class="img-circle" style="max-width: 2in; border: dashed"
+                                     alt="User Image">
+
+                                <br/><br>
+
+                                <form action="{{ url ("/admin/profile/deleteImage") }}" method="post">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                    <button class="btn btn-danger">Delete Photo</button>
+                                </form>
+                            @else
+                                <img src="/uploads/default.jpg" class="img-circle"
+                                     style="max-width: 2in; border: dashed" alt="User Image">
+                            @endif
+                        </div>
+
                         @if(Auth::user()->id == $user->id)
                             <form id="profile-form" method="post" action="{{ url("/admin/update/{$user->id}") }}"
                                   style="display: block;" enctype="multipart/form-data">
@@ -168,8 +188,8 @@
                                         <div class="box-body">
 
                                             <div class="form-group">
-                                                <label for="image">Profile Picture</label>
-                                                <input name="image" type="file" id="image"
+                                                <label for="image">Upload Profile Picture</label>
+                                                <input name="image" type="file" id="image" class="form-control"
                                                        value="{{ old ('image', isset($user) ? $user->image : '' )}}">
                                             </div>
 

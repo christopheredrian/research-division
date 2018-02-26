@@ -48,15 +48,18 @@ Route::get('/contactUs', 'PublicController@contactUs');
 
 Route::get('/downloadPDF/{directory}/{file}', 'PublicController@downloadPDF');
 Route::get('/deletePDF/{directory}/{file}', 'PublicController@deletePDF');
+Route::get('/search', 'SearchController@index');
 
 /* Admin routes */
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
+    Route::get('/search', 'SearchController@index');
     Route::get('/', 'Admin\\DashboardController@index');
     Route::get('/show/{id}', 'Admin\\UsersController@show');
     Route::post('/update/{id}', 'Admin\\UsersController@update');
     Route::get('/profile/edit', 'Admin\\UsersController@profEdit');
     Route::get('/profile', 'Admin\\UsersController@profile');
+    Route::delete('/profile/deleteImage', 'Admin\\UsersController@deleteImage');
 
 
     Route::get('change-password', 'Admin\\UsersController@changePassword');
