@@ -129,13 +129,14 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::group(['middleware' => 'role:superadmin'], function () {
         Route::resource('users', 'Admin\\UsersController');
     });
-
-    /** Reports */
-    Route::get('/reports', 'ReportsController@index')->name('reports');
-    Route::post('/reports', 'ReportsController@query')->name('postreports');
-    /** END --- Reports*/
-
 });
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => ['auth']], function () {
+    /** Reports */
+    Route::get('/reports', 'ReportsController@index')->name('reports');
+    Route::post('/reports', 'ReportsController@query')->name('postreports');
+    /** END --- Reports*/
+});
