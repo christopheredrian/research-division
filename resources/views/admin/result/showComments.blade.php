@@ -77,7 +77,7 @@
     <div class="box box-default color-palette-box">
         <div class="box-header with-border">
             <h3 class="box-title"><i class="fa fa-comments-o"></i> Comments</h3>
-            <a href="/admin/downloadComments/{{$ordinance_id}}" class="btn btn-success btn-md pull-right">
+            <a href="/admin/downloadComments/{{$pass_id}}/{{$flag}}" class="btn btn-success btn-md pull-right">
                 <span class="fa fa fa-file-excel-o"> </span> Download Excel
             </a>
         </div>
@@ -194,7 +194,7 @@
         $(document).on('click', '.delete-modal', function() {
             $('.modal-title').text('Delete');
             $('#id_delete').val($(this).data('id'));
-            $('#suggestion_delete').val($(this).data('answer'));
+            $('#suggestion_delete').val($(this).data('suggestion'));
             $('#deleteModal').modal('show');
             id = $('#id_delete').val();
         });

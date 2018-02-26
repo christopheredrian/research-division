@@ -178,7 +178,7 @@
                                 $counter=0;
                                 @endphp
                                 @foreach($ordinance->suggestions as $suggestion)
-                                    @if($counter == 5)
+                                    @if($counter == 3)
                                         @php
                                             break;
                                         @endphp
@@ -201,7 +201,7 @@
                                             $counter=$counter+1;
                                         @endphp
                                 @endforeach
-                                <a href="/admin/showComments/{{$ordinance->id}}" class="pull-right">View all</a>
+                                <a href="/admin/showComments/{{$ordinance->id}}/ordinances" class="pull-right">View all</a>
                             </div>
                         </div>
                     </div>

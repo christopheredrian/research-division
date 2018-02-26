@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Ordinance;
 use App\Questionnaire;
+use App\Resolution;
 use App\Suggestion;
 use DB;
 use App\Answer;
@@ -103,22 +104,10 @@ class ResultController extends Controller
 
     }
 
-    public function updateComment(Request $request)
-    {
-        $this->validate($request, [
-            'value' => 'bail|required'
-        ]);
-        $suggestion = Suggestion::find($request->pk);
-        $suggestion->suggestion = $request->value;
-        $suggestion->save();
 
-        return response()->json(['success'=>'done']);
 
-    }
+    public function showComments($id, $flag, Request $request){
 
-    public function showComments($id, Request $request){
-        $ordinance = Ordinance::find($id);
-        $suggestions = $ordinance->suggestions;
 //        if ($request->from && $request->to){
 ////            dd(date($request->to));
 //            $from = new Carbon($request->from);
@@ -132,31 +121,73 @@ class ResultController extends Controller
 //        } else{
 //            $logs=$suggestions->orderBy('id', 'desc')->paginate(15);
 //        }
+        if($flag=='ordinances'){
+            $ordinance = Ordinance::find($id);
+            $suggestions = $ordinance->suggestions;
+
+
+        }else{
+            $resolution = Resolution::find($id);
+            $suggestions = $resolution->suggestions;
+        }
+
         return view('admin.result.showComments', [
             'suggestions' => $suggestions,
-            'ordinance_id' => $id
+            'pass_id' => $id,
+            'flag' => $flag
         ]);
+
+    }
+
+    public function updateComment(Request $request)
+    {
+        $this->validate($request, [
+            'value' => 'bail|required'
+        ]);
+        $suggestion = Suggestion::find($request->pk);
+        $suggestion->suggestion = $request->value;
+        $suggestion->save();
+
+        return response()->json(['success'=>'done']);
+
     }
 
     public function deleteComment($id)
     {
-        DB::table('ordinance_suggestion')->where('suggestion_id', '=', $id)->delete();
+
+        if(DB::table('ordinance_suggestion')->where('suggestion_id', '=', $id)->first() != null){
+            DB::table('ordinance_suggestion')->where('suggestion_id', '=', $id)->delete();
+        }else{
+            DB::table('resolution_suggestion')->where('suggestion_id', '=', $id)->delete();
+        }
+
         Suggestion::destroy($id);
         return response()->json(['id'=>$id]);
     }
 
-    public function downloadCommentsExcel($id)
+    public function downloadCommentsExcel($id,$flag)
     {
         // file name to ordinance num
 
         try {
-            $ordinance = Ordinance::find($id);
-            $suggestions = $ordinance->suggestions;
-            $file_name = 'ordinance no.'.$ordinance->number.', '.$ordinance->series.' - comments';
-            Excel::create($file_name, function ($excel) use ($id) {
-                $excel->sheet('Excel sheet', function ($sheet) use ($id) {
-                    $ordinance = Ordinance::find($id);
-                    $suggestions = $ordinance->suggestions;
+            if($flag==='ordinances'){
+                $ordinance = Ordinance::find($id);
+                $file_name = 'ordinance no.'.$ordinance->number.', '.$ordinance->series.' - comments';
+            }else{
+                $resolution = Resolution::find($id);
+                $file_name = 'resolution no.'.$resolution->number.', '.$resolution->series.' - comments';
+            }
+
+            Excel::create($file_name, function ($excel) use ($id,$flag) {
+                $excel->sheet('Excel sheet', function ($sheet) use ($id,$flag) {
+                    if($flag==='ordinances'){
+                        $ordinance = Ordinance::find($id);
+                        $suggestions = $ordinance->suggestions;
+                    }else{
+                        $resolution = Resolution::find($id);
+                        $suggestions = $resolution->suggestions;
+                    }
+
                     $header_arr=['name','email','suggestion'];
                     $name_arr = [];
                     $email_arr = [];

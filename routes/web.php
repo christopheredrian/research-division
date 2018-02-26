@@ -82,11 +82,11 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
             Route::get('resolutions', 'Admin\\FormsController@resolutions');
         });
         Route::resource('result', 'Admin\\ResultController');
-        Route::get('/showComments/{id}', 'Admin\\ResultController@showComments');
+        Route::get('/showComments/{id}/{flag}', 'Admin\\ResultController@showComments');
         Route::post('/updateAnswer', 'Admin\\ResultController@updateAnswer');
         Route::post('/updateComment', 'Admin\\ResultController@updateComment');
         Route::delete('/deleteComment/{id}', 'Admin\\ResultController@deleteComment');
-        Route::get('downloadComments/{id}', 'Admin\\ResultController@downloadCommentsExcel');
+        Route::get('downloadComments/{id}/{flag}', 'Admin\\ResultController@downloadCommentsExcel');
 
         /** Status and Update Reports */
         Route::get('/ordinances/{id}/upload-status-report', 'Admin\\OrdinancesController@statusReportCreate');
