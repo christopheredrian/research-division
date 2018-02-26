@@ -158,7 +158,7 @@
                         <div style="text-align: center;">
                             @if($user->image != null)
                                 <img src="{{$user->image}}"
-                                     class="img-circle" style="max-width: 2in; border: dashed"
+                                     class="user-circle" style="max-width: 2in; border: dashed"
                                      alt="User Image">
 
                                 <br/><br>
