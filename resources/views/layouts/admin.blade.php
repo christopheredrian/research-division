@@ -105,7 +105,8 @@ function skin($user)
                             <li class="user-header">
 
                                 @if(File::exists(public_path()."/uploads/user-".Auth::user()->id.".jpg"))
-                                    <img src="/uploads/user-{{ Auth::user()->id }}.jpg" class="img-circle" alt="User Image">
+                                    <img src="/uploads/user-{{ Auth::user()->id }}.jpg" class="img-circle"
+                                         alt="User Image">
                                 @else
                                     <img src="/uploads/default.jpg" class="img-circle" alt="User Image">
                                 @endif
@@ -174,17 +175,17 @@ function skin($user)
                 </div>
             </div>
             <!-- search form -->
-        <form action="/admin/search" method="get" class="sidebar-form">
-        <div class="input-group">
-        <input type="text" name="q" class="form-control" placeholder="Search...">
-        <span class="input-group-btn">
+            <form action="/admin/search" method="get" class="sidebar-form">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
         <button type="submit" name="search" id="search-btn" class="btn btn-flat">
         <i class="fa fa-search"></i>
         </button>
         </span>
-        </div>
-        </form>
-        <!-- /.search form -->
+                </div>
+            </form>
+            <!-- /.search form -->
             <!-- sidebar menu: : style can be found in sidebar.less -->
             @if(Auth::user()->hasRole('superadmin'))
                 <ul class="sidebar-menu" data-widget="tree">
@@ -310,7 +311,7 @@ function skin($user)
                             {{--</a>--}}
                             {{--</li>--}}
                             <li class="@if(isset($ordinance))
-                            @if($ordinance->is_monitoring === 1)
+                            @if($ordinance->is_monitoring === 1 && $ordinance->is_monitored === 0)
                                     active
                                 @endif
                             @elseif(Request::is('admin/forms/ordinances*') or Request::is('admin/forms/ordinances*')
@@ -322,7 +323,7 @@ function skin($user)
                                 </a>
                             </li>
                             <li class="@if(isset($resolution))
-                            @if($resolution->is_monitoring === 1)
+                            @if($resolution->is_monitoring === 1 && $resolution->is_monitored === 0)
                                     active
                                 @endif
                             @elseif(Request::is('admin/forms/resolutions*')
@@ -331,6 +332,30 @@ function skin($user)
                             @endif">
                                 <a href="/admin/forms/resolutions"><i class="fa fa-circle-o"></i>
                                     <span>Resolutions</span>
+                                </a>
+                            </li>
+                            <li class="@if(isset($ordinance))
+                            @if($ordinance->is_monitoring === 1 && $ordinance->is_monitored === 1)
+                                    active
+                                @endif
+                            @elseif(Request::is('admin/forms/ordinances*')
+                            or (Request::is('admin/ordinances/create*') and request()->type === 'ME'))
+                                    active
+                            @endif">
+                                <a href="/admin/forms/ordinances?status=monitored"><i class="fa fa-circle-o"></i>
+                                    <span>Monitored Ordinances</span>
+                                </a>
+                            </li>
+                            <li class="@if(isset($resolution))
+                            @if($resolution->is_monitoring === 1 && $resolution->is_monitored === 1)
+                                    active
+                                @endif
+                            @elseif(Request::is('admin/forms/resolutions*')
+                            or (Request::is('admin/resolutions/create*') and request()->type === 'ME'))
+                                    active
+                            @endif">
+                                <a href="/admin/forms/resolutions?status=monitored"><i class="fa fa-circle-o"></i>
+                                    <span>Monitored Resolutions</span>
                                 </a>
                             </li>
                         </ul>
@@ -354,13 +379,13 @@ function skin($user)
                     </li>
                 @endif
                 <li class="{{ Request::is('/reports*') ? 'active' : '' }}">
-                     <a href="/reports">
-                         <i class="fa fa-th-list"></i>
-                         <span>Reports</span>
-                         <span class="pull-right-container">
+                    <a href="/reports">
+                        <i class="fa fa-th-list"></i>
+                        <span>Reports</span>
+                        <span class="pull-right-container">
                              </span>
-                     </a>
-                 </li>
+                    </a>
+                </li>
 
                 {{--<li class="{{ Request::is('admin/change*') ? 'active' : '' }}">--}}
                 {{--<a href="/admin/change-password">--}}
