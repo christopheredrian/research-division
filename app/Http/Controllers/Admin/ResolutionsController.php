@@ -224,6 +224,16 @@ class ResolutionsController extends Controller
             strrpos($statusReport->pdf_file_path, '/') + 1);
         $statusReport->save();
 
+        $resolution = Resolution::find($validatedData['resolution_id']);
+
+        $questionnaire = $resolution->getQuestionnaire();
+        $questionnaire->isAccepting = 0;
+        $questionnaire->save();
+
+        $resolution->is_accepting = 0;
+        $resolution->is_monitored = 1;
+        $resolution->save();
+
         Session::flash('flash_message',
             "Successfully uploaded status report for <strong> Resolution " . $statusReport->resolution->number . "</strong>!");
 

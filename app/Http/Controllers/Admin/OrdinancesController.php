@@ -334,6 +334,16 @@ class OrdinancesController extends Controller
             strrpos($statusReport->pdf_file_path, '/') + 1);
         $statusReport->save();
 
+        $ordinance = Ordinance::find($validatedData['ordinance_id']);
+
+        $questionnaire = $ordinance->getQuestionnaire();
+        $questionnaire->isAccepting = 0;
+        $questionnaire->save();
+
+        $ordinance->is_accepting = 0;
+        $ordinance->is_monitored = 1;
+        $ordinance->save();
+
         Session::flash('flash_message',
             "Successfully uploaded status report for <strong> Ordinance " . $statusReport->ordinance->number . "</strong>!");
 

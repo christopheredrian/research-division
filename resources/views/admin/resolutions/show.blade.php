@@ -26,50 +26,57 @@
                         {{--It has a questionnaire--}}
                         <div class="col-xs-12">
                             <div class="pull-right">
-                                @if($questionnaire->isAccepting == 0)
-                                    <form style="display: inline;" method="post"
-                                          action="{{ url('/admin/acceptResponses/' . $questionnaire->id) }}">
-                                        {{ csrf_field() }}
-                                        <button class="btn btn-success">
-                                            <span class="fa fa-comments-o"></span> Accept Responses
-                                        </button>
-                                    </form>
-                                    @if(!$questionnaire->hasAnswers())
-                                        <a href="{{ url("/admin/forms/{$questionnaire->id}/edit") }}"
-                                           class="btn  btn-warning"><span class="fa fa-edit"></span> Edit</a>
+                                @if($resolution->is_monitored == 0)
+                                    @if($questionnaire->isAccepting == 0)
+                                        <form style="display: inline;" method="post"
+                                              action="{{ url('/admin/acceptResponses/' . $questionnaire->id) }}">
+                                            {{ csrf_field() }}
+                                            <button class="btn btn-success">
+                                                <span class="fa fa-comments-o"></span> Accept Responses
+                                            </button>
+                                        </form>
+                                        @if(!$questionnaire->hasAnswers())
+                                            <a href="{{ url("/admin/forms/{$questionnaire->id}/edit") }}"
+                                               class="btn  btn-warning"><span class="fa fa-edit"></span> Edit</a>
+                                        @endif
+                                    @else
+                                        <form style="display: inline;" method="post"
+                                              action="{{ url('/admin/declineResponses/' . $questionnaire->id) }}">
+                                            {{ csrf_field() }}
+                                            <button class="btn btn-danger">
+                                                <span class="fa fa-times"></span> Decline Responses
+                                            </button>
+                                        </form>
                                     @endif
-                                @else
-                                    <form style="display: inline;" method="post"
-                                          action="{{ url('/admin/declineResponses/' . $questionnaire->id) }}">
-                                        {{ csrf_field() }}
-                                        <button class="btn btn-danger">
-                                            <span class="fa fa-times"></span> Decline Responses
-                                        </button>
-                                    </form>
                                 @endif
 
                                 <a href="{{"/admin/result/{$questionnaire->id}"}}"
                                    class="btn btn-success"><span class="fa fa-th-list"></span> Results</a>
                                 {{--<a href="{{"/admin/forms/{$questionnaire->id}"}}" class="btn btn-info"><span><span--}}
-                                                {{--class="fa fa-eye"></span> Preview</span></a>--}}
+                                {{--class="fa fa-eye"></span> Preview</span></a>--}}
                                 <a href="" class="btn  btn-danger"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>
                                     Download</a>
-
-                                <form style="display: inline;" method="post"
-                                      action="{{ url('/admin/forms/' . $questionnaire->id) }}">
-                                    {{ method_field('DELETE') }}
-                                    {{ csrf_field() }}
-                                    <button class="btn btn-danger"
-                                            onclick="return confirm('Are you sure you want to remove this Questionnaire?')">
-                                        <span class="fa fa-trash"></span> Delete
-                                    </button>
-                                </form>
-                                    <br>
+                                @if($resolution->is_monitored == 0)
+                                    <form style="display: inline;" method="post"
+                                          action="{{ url('/admin/forms/' . $questionnaire->id) }}">
+                                        {{ method_field('DELETE') }}
+                                        {{ csrf_field() }}
+                                        <button class="btn btn-danger"
+                                                onclick="return confirm('Are you sure you want to remove this Questionnaire?')">
+                                            <span class="fa fa-trash"></span> Delete
+                                        </button>
+                                    </form>
+                                @endif
+                                <br>
+                                @if($resolution->is_monitored == 0)
                                     @if($questionnaire->isAccepting == 1)
                                         Public Link: <a href="/public/showResolutionQuestionnaire/{{$resolution->id}}">http://localhost:8000/public/showResolutionQuestionnaire/{{$resolution->id}}</a>
                                         <br>
-                                        Required Link: <a href="/public/showResolutionQuestionnaire/{{$resolution->id}}/required">http://localhost:8000/public/showResolutionQuestionnaire/{{$resolution->id}}/required</a>
+                                        Required Link: <a
+                                                href="/public/showResolutionQuestionnaire/{{$resolution->id}}/required">http://localhost:8000/public/showResolutionQuestionnaire/{{$resolution->id}}
+                                            /required</a>
                                     @endif
+                                @endif
 
                             </div>
                         </div>
@@ -77,10 +84,12 @@
                         <p>{{ $questionnaire->description }}</p>
                         <p><strong>Number of Responses:</strong> {{ $questionnaire->getResponseCount() }}</p>
                     @else
-                        <div class="col-xs-12">
-                            <a href="/admin/forms/create?flag={{ $flag }}&resolution_id={{$resolution->id}}"
-                               class="btn btn-success">Create Questionnaire</a>
-                        </div>
+                        @if($resolution->is_monitored == 0)
+                            <div class="col-xs-12">
+                                <a href="/admin/forms/create?flag={{ $flag }}&resolution_id={{$resolution->id}}"
+                                   class="btn btn-success">Create Questionnaire</a>
+                            </div>
+                        @endif
                     @endif
                 </div>
             </div>
@@ -226,22 +235,24 @@
                     <div class="box box-danger color-palette-box">
                         <div class="box-header with-border">
                             <h3 class="box-title"><i class="fa fa-comments-o"></i> Comments/Suggestions</h3>
-                            @if($resolution->is_accepting == 0)
-                                <form style="display: inline;" method="post"
-                                      action="{{ url('/admin/acceptSuggestions/' . $resolution->id.'/'.$flag) }}">
-                                    {{ csrf_field() }}
-                                    <button class="btn btn-success pull-right">
-                                        <span class="fa fa-comments-o"></span> Accept Suggestions
-                                    </button>
-                                </form>
-                            @else
-                                <form style="display: inline;" method="post"
-                                      action="{{ url('/admin/declineSuggestions/' . $resolution->id.'/'.$flag) }}">
-                                    {{ csrf_field() }}
-                                    <button class="btn btn-danger pull-right">
-                                        <span class="fa fa-times"></span> Decline Suggestions
-                                    </button>
-                                </form>
+                            @if($resolution->is_monitored == 0)
+                                @if($resolution->is_accepting == 0)
+                                    <form style="display: inline;" method="post"
+                                          action="{{ url('/admin/acceptSuggestions/' . $resolution->id.'/'.$flag) }}">
+                                        {{ csrf_field() }}
+                                        <button class="btn btn-success pull-right">
+                                            <span class="fa fa-comments-o"></span> Accept Suggestions
+                                        </button>
+                                    </form>
+                                @else
+                                    <form style="display: inline;" method="post"
+                                          action="{{ url('/admin/declineSuggestions/' . $resolution->id.'/'.$flag) }}">
+                                        {{ csrf_field() }}
+                                        <button class="btn btn-danger pull-right">
+                                            <span class="fa fa-times"></span> Decline Suggestions
+                                        </button>
+                                    </form>
+                                @endif
                             @endif
                         </div>
 
@@ -268,11 +279,12 @@
                                     </div>
                                     <!-- /.comment-text -->
                                 </div>
-                                    @php
-                                        $counter=$counter+1;
-                                    @endphp
+                                @php
+                                    $counter=$counter+1;
+                                @endphp
                             @endforeach
-                            <a href="/admin/showComments/{{$resolution->id}}/resolutions" class="pull-right">View all</a>
+                            <a href="/admin/showComments/{{$resolution->id}}/resolutions" class="pull-right">View
+                                all</a>
                         </div>
                     </div>
                 </div>
@@ -297,9 +309,11 @@
                             <div id="status" class="tab-pane fade in active">
                                 <div class="row" style="margin-bottom: 5px;">
                                     <div class="col-md-12">
-                                        <a href="/admin/resolutions/{{$resolution->id}}/upload-status-report" class="btn btn-xs btn-group btn-soundcloud">
+                                        <a href="/admin/resolutions/{{$resolution->id}}/upload-status-report"
+                                           class="btn btn-xs btn-group btn-soundcloud">
                                             <i class="fa fa-file-text"></i>
-                                            {{($resolution->statusReport === null or $resolution->statusReport->pdf_file_path === " ") ? 'Upload' : 'Reupload'}} Status Report
+                                            {{($resolution->statusReport === null or $resolution->statusReport->pdf_file_path === " ") ? 'Upload' : 'Reupload'}}
+                                            Status Report
                                         </a>
                                     </div>
                                 </div>
@@ -394,20 +408,21 @@
                     <div class="col-md-12">
                         <div class="box box-danger color-palette-box">
                             <div class="box-header with-border">
-                                <h3 class="box-title"><i class="fa fa-comments-o"></i> Comments/Suggestions Statistics</h3>
+                                <h3 class="box-title"><i class="fa fa-comments-o"></i> Comments/Suggestions Statistics
+                                </h3>
                             </div>
                         </div>
                     </div>
                 </div>
-    @endif
-@endsection
+            @endif
+            @endsection
             @section('scripts')
                 <script type="text/javascript">
-                    $('.deletePDFButton').click(function(e) {
+                    $('.deletePDFButton').click(function (e) {
                         var link = e.target;
                         var fileName = $(link).parent().parent().children().first().text();
 
-                        return confirm( "Are you sure you want to delete the file " + fileName +"?");
+                        return confirm("Are you sure you want to delete the file " + fileName + "?");
                     });
                 </script>
 @endsection
