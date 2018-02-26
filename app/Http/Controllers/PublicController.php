@@ -301,7 +301,11 @@ class PublicController extends Controller
                 ->where('series', 'LIKE', '%' . $request->input('col-series') . '%')
                 ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
         }
-
+        if($request->status == 'monitored'){
+            $ordinances = $ordinances->where('is_monitored','=',1);
+        }else{
+            $ordinances = $ordinances->where('is_monitored','=',0);
+        }
         // Implement filtering / sorting
         $ordinances = $ordinances->orderBy($colName, $order);
 
@@ -354,6 +358,11 @@ class PublicController extends Controller
                 ->where('keywords', 'LIKE', '%' . $request->input('col-keywords') . '%')
                 ->where('series', 'LIKE', '%' . $request->input('col-series') . '%')
                 ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
+        }
+        if($request->status == 'monitored'){
+            $resolutions = $resolutions->where('is_monitored','=',1);
+        }else{
+            $resolutions = $resolutions->where('is_monitored','=',0);
         }
         // Implement filtering / sorting
         $resolutions = $resolutions->orderBy($colName, $order);

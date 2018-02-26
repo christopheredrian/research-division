@@ -96,12 +96,12 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/monitorAndEval/ordinances">
+                                    <a href="/ordinances?status=monitored">
                                         Monitored Ordinances
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/monitorAndEval/resolutions">
+                                    <a href="/resolutions?status=monitored">
                                         Monitored Resolutions
                                     </a>
                                 </li>
