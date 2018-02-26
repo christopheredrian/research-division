@@ -93,7 +93,7 @@ function skin($user)
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                            @if(\Illuminate\Support\Facades\Auth::user()->image != null)
+                            @if($user->image != null)
                                 <img src="{{$user->image}}" class="user-image" alt="User Image">
                             @else
                                 <img src="/uploads/default.jpg" class="user-image" alt="User Image">
@@ -105,7 +105,7 @@ function skin($user)
                             <!-- User image -->
                             <li class="user-header">
 
-                                @if(\Illuminate\Support\Facades\Auth::user()->image != null)
+                                @if($user->image != null)
                                     <img src="{{$user->image}}" class="img-circle" alt="User Image">
                                 @else
                                     <img src="/uploads/default.jpg" class="img-circle" alt="User Image">
@@ -157,7 +157,7 @@ function skin($user)
             <div class="user-panel">
                 <div class="pull-left image">
 
-                    @if(\Illuminate\Support\Facades\Auth::user()->image != null)
+                    @if($user->image != null)
                         <img src="{{$user->image}}" class="img-circle" alt="User Image">
                     @else
                         <img src="/uploads/default.jpg" class="img-circle" alt="User Image">
