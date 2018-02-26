@@ -620,6 +620,13 @@ class PublicController extends Controller
                 'suggestion_id' => $suggestion->id
             ]);
         }
+        Session::flash('flash_message', 'Successfully submitted suggestion!');
+        if ($request->input('type') === 'ordinance') {
+            return redirect('/public/showOrdinance/' .$id);
+        } elseif ($request->input('type') === 'resolution') {
+            return redirect('/public/showResolution/' .$id);
+        }
+
     }
 
     public function showResolution($id)
