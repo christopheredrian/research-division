@@ -154,10 +154,36 @@
                         <div class="box box-danger color-palette-box">
                             <div class="box-header with-border">
                                 <h3 class="box-title"><i class="fa fa-comments-o"></i> Comments/Suggestions</h3>
+                                @if($ordinance->is_accepting == 0)
+                                    <form style="display: inline;" method="post"
+                                          action="{{ url('/admin/acceptSuggestions/' . $ordinance->id.'/'.$flag) }}">
+                                        {{ csrf_field() }}
+                                        <button class="btn btn-success pull-right">
+                                            <span class="fa fa-comments-o"></span> Accept Suggestions
+                                        </button>
+                                    </form>
+                                @else
+                                    <form style="display: inline;" method="post"
+                                          action="{{ url('/admin/declineSuggestions/' . $ordinance->id.'/'.$flag) }}">
+                                        {{ csrf_field() }}
+                                        <button class="btn btn-danger pull-right">
+                                            <span class="fa fa-times"></span> Decline Suggestions
+                                        </button>
+                                    </form>
+                                @endif
                             </div>
 
                             <div class="box-body box-comments">
+                                @php
+                                $counter=0;
+                                @endphp
                                 @foreach($ordinance->suggestions as $suggestion)
+                                    @if($counter == 5)
+                                        @php
+                                            break;
+                                        @endphp
+                                    @endif
+
                                     <div class="box-comment">
                                         <!-- User image -->
                                         {{--<img class="img-circle img-sm" src="/dist/img/user3-128x128.jpg" alt="User Image">--}}
@@ -171,7 +197,11 @@
                                         </div>
                                         <!-- /.comment-text -->
                                     </div>
+                                        @php
+                                            $counter=$counter+1;
+                                        @endphp
                                 @endforeach
+                                <a href="/admin/showComments/{{$ordinance->id}}" class="pull-right">View all</a>
                             </div>
                         </div>
                     </div>
