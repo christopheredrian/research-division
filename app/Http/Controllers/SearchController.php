@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Ordinance;
 use App\Resolution;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SearchController extends Controller
 {
@@ -49,11 +51,18 @@ class SearchController extends Controller
             $query->where('is_monitoring', 1);
         })->get();
 
-        return view('search.index', [
+        $data = [
             'rnr_o' => $rnr_o,
             'rnr_r' => $rnr_r,
             'mne_o' => $mne_o,
             'mne_r' => $mne_r
-        ]);
+        ];
+        if ($request->is('*admin*')) {
+            return view('search.admin', $data);
+        } else{
+            return view('search.public', $data);
+        }
+
+
     }
 }
