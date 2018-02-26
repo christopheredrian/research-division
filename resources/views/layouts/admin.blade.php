@@ -22,7 +22,8 @@
     <link rel="stylesheet" href="/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
     <link rel="stylesheet" href="/css/animate.css">
     <!-- X-editable -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css"
+          rel="stylesheet"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <style>
@@ -91,13 +92,24 @@ function skin($user)
                     <!-- User Account: style can be found in dropdown.less -->
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="/uploads/user-{{ Auth::user()->id }}.jpg" class="user-image" alt="User Image">
+
+                            @if($user->image != null)
+                                <img src="{{$user->image}}" class="user-image" alt="User Image">
+                            @else
+                                <img src="/uploads/default.jpg" class="user-image" alt="User Image">
+                            @endif
+
                             <span class="hidden-xs"> {{ \Illuminate\Support\Facades\Auth::user()->name }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- User image -->
                             <li class="user-header">
-                                <img src="/uploads/user-{{ Auth::user()->id }}.jpg" class="img-circle" alt="User Image">
+
+                                @if($user->image != null)
+                                    <img src="{{$user->image}}" class="img-circle" alt="User Image">
+                                @else
+                                    <img src="/uploads/default.jpg" class="img-circle" alt="User Image">
+                                @endif
 
                                 <p>
                                     {{ \Illuminate\Support\Facades\Auth::user()->name }}
@@ -145,8 +157,14 @@ function skin($user)
             <div class="user-panel">
                 <div class="pull-left image">
 
+                    @if($user->image != null)
+                        <img src="{{$user->image}}" class="img-circle" alt="User Image">
+                    @else
+                        <img src="/uploads/default.jpg" class="img-circle" alt="User Image">
+                    @endif
+
+                    <span class="hidden-xs"> {{ \Illuminate\Support\Facades\Auth::user()->name }}</span>
                     {{-- Make this a png file later depending on the role of the user --}}
-                    <img src="/uploads/user-{{ Auth::user()->id }}.jpg" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
                     <p>{{ \Illuminate\Support\Facades\Auth::user()->name }}

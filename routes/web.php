@@ -59,6 +59,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::post('/update/{id}', 'Admin\\UsersController@update');
     Route::get('/profile/edit', 'Admin\\UsersController@profEdit');
     Route::get('/profile', 'Admin\\UsersController@profile');
+    Route::delete('/profile/deleteImage', 'Admin\\UsersController@deleteImage');
 
 
     Route::get('change-password', 'Admin\\UsersController@changePassword');

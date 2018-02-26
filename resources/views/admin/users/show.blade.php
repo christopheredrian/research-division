@@ -18,7 +18,7 @@
 
     <div class="col-md-8">
 
-    <!-- general form elements -->
+        <!-- general form elements -->
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">Profile</h3>
@@ -36,8 +36,17 @@
 
                 <table class="table table-borderless">
                     <tr>
-                        <th>Image</th>
-                        <td>{{ Auth::user()->image }}</td>
+                        <div style="text-align: center">
+                            @if($user->image != null)
+                                <img src="{{$user->image}}"
+                                     class="img-circle" style="max-width: 2in; border: dashed"
+                                     alt="User Image">
+                            @else
+                                <img src="/uploads/default.jpg" class="img-circle"
+                                     style="max-width: 2in; border: dashed" alt="User Image">
+                            @endif
+                            <br/><br/>
+                        </div>
                     </tr>
                     <tr>
                         <th>Name</th>
