@@ -52,6 +52,7 @@ Route::get('/deletePDF/{directory}/{file}', 'PublicController@deletePDF');
 /* Admin routes */
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
+    Route::get('/search', 'SearchController@index');
     Route::get('/', 'Admin\\DashboardController@index');
     Route::get('/show/{id}', 'Admin\\UsersController@show');
     Route::post('/update/{id}', 'Admin\\UsersController@update');
