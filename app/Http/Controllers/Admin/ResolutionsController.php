@@ -267,16 +267,17 @@ class ResolutionsController extends Controller
 
     public function preview($id)
     {
-        $resolution = Resolution::findOrFail($id);
         $questionnaire = Questionnaire::Where('resolution_id', '=', $id)->first();
         $questions = Question::Where('questionnaire_id', '=', $questionnaire->id)->get();
         $values = Value::WhereIn('question_id', $questions->pluck('id'))->get();
         $required = false;
+        $resolution = Resolution::Where('id', '=', $id)->first();
 
         return view('admin.resolutions.preview',
             ['questionnaire' => $questionnaire],
             ['questions' => $questions])
             ->with('values', $values)
-            ->with('required', $required);
+            ->with('required', $required)
+            ->with('resolution', $resolution);
     }
 }
