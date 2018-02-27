@@ -33,15 +33,18 @@
             <h3 class="box-title"><i class="fa fa-file-text"></i>
                 Resolutions under {{$type === 'RR' ? 'Research & Records' : 'Monitoring & Evaluation'}}
             </h3>
-        </div>
-        <div class="box-body">
-            <div class="add-magin">
+            <div class="pull-right">
                 <a href="/admin/resolutions/create?type={{$type}}" class="btn btn-success"><span
                             class="fa fa-plus"></span> Add</a>
-                <a href="/admin{{$type === 'RR' ? '' : '/forms'}}/resolutions" class="btn btn-primary">
-                    <i class="fa fa-refresh"></i> Reset Filtering
-                </a>
-                <form action="#" method="get" class="pull-right col-md-4">
+                {{--<a href="/admin{{$type === 'RR' ? '' : '/forms'}}/resolutions" class="btn btn-primary">--}}
+                    {{--<i class="fa fa-refresh"></i> Reset Filtering--}}
+                {{--</a>--}}
+            </div>
+        </div>
+        <div class="box-body">
+            {{--<div class="add-magin">--}}
+                {{----}}
+                {{--<form action="#" method="get" class="pull-right col-md-4">
                     <div class="input-group">
                         <input value="{{ request()->q }}" type="text" name="q" class="form-control" placeholder="Search...">
                         <span class="input-group-btn">
@@ -50,8 +53,8 @@
                             </button>
                          </span>
                     </div>
-                </form>
-            </div>
+                </form>--}}
+            {{--</div>--}}
             {{--<table class="table table-striped table-bordered">--}}
                 {{--<thead>--}}
                 {{--<tr>--}}
@@ -112,7 +115,7 @@
                                 echo request()->fullUrlWithQuery($currentUrlQueries);
                             @endphp
                             @endif">
-                                Ordinance Number
+                                Resolution Number
                             </a>
                         </th>
 
@@ -199,7 +202,11 @@
                             <td><input type="text" class="form-control" name="col-series" value="{{ request()->input('col-series')}}"></td>
                             <td><input type="text" class="form-control" name="col-title" value="{{ request()->input('col-title') }}"></td>
                             <td><input type="text" class="form-control" name="col-keywords" value="{{ request()->input('col-keywords') }}"></td>
-                            <td><input class="btn btn-primary" type="submit" value="Filter"></td>
+                            <td><input class="btn btn-xs btn-success btn-equal-width" type="submit" value="Filter">
+                                <a href="/admin{{$type === 'RR' ? '' : '/forms'}}/resolutions" class="btn btn-xs btn-danger btn-equal-width">
+                                    <i class="fa fa-refresh"></i> Reset
+                                </a>
+                            </td>
                         </form>
                     </tr>
                     @foreach($resolutions as $resolution)

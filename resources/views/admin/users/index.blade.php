@@ -17,11 +17,11 @@
     <div class="box box-default color-palette-box">
         <div class="box-header with-border">
             <h3 class="box-title"><i class="fa fa-users"></i> Users</h3>
-        </div>
-        <div class="box-body">
-            <div style="margin-bottom: 10px">
+            <div class="pull-right" style="margin-bottom: 10px">
                 <a href="/admin/users/create" class="btn btn-success">Create</a>
             </div>
+        </div>
+        <div class="box-body">
             <table class="table table-striped table-bordered">
                 <thead>
                 <tr>
