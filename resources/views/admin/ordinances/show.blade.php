@@ -32,73 +32,75 @@
             <div class="box box-primary color-palette-box">
                 <div class="box-header with-border">
                     <h3 class="box-title"><i class="fa fa-file-text"></i> Questionnaire</h3>
+                    @if($questionnaire)
+                        {{--It has a questionnaire--}}
+                        <div class="pull-right">
+                            @if($ordinance->is_monitored === 0)
+                                @if($questionnaire->isAccepting == 0)
+                                    <form style="display: inline;" method="post"
+                                          action="{{ url('/admin/acceptResponses/' . $questionnaire->id) }}">
+                                        {{ csrf_field() }}
+                                        <button class="btn btn-success">
+                                            <span class="fa fa-comments-o"></span> Accept Responses
+                                        </button>
+                                    </form>
+                                    @if(!$questionnaire->hasAnswers())
+                                        <a href="{{ url("/admin/forms/{$questionnaire->id}/edit") }}"
+                                           class="btn  btn-warning"><span class="fa fa-edit"></span> Edit</a>
+                                    @endif
+                                @else
+                                    <form style="display: inline;" method="post"
+                                          action="{{ url('/admin/declineResponses/' . $questionnaire->id) }}">
+                                        {{ csrf_field() }}
+                                        <button class="btn btn-danger">
+
+                                            <span class="fa fa-times"></span> Decline Responses
+                                        </button>
+                                    </form>
+                                @endif
+                            @endif
+                            <a href="{{"/admin/result/{$questionnaire->id}"}}"
+                               class="btn btn-success"><span class="fa fa-th-list"></span> Results</a>
+                            {{--<a href="{{"/admin/forms/{$questionnaire->id}"}}"--}}
+                            {{--class="btn btn-info"><span><span--}}
+                            {{--class="fa fa-eye"></span> Preview</span></a>--}}
+                            <a href="{{ url("/admin/previewOrdinance/{$questionnaire->ordinance_id }/") }}" target="_blank"
+                               class="btn  btn-danger">
+                                <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                Print</a>
+
+
+                            @if($ordinance->is_monitored === 0)
+                                <form style="display: inline;" method="post"
+                                      action="{{ url('/admin/forms/' . $questionnaire->id) }}">
+                                    {{ method_field('DELETE') }}
+                                    {{ csrf_field() }}
+                                    <button class="btn btn-danger"
+                                            onclick="return confirm('Are you sure you want to remove this Questionnaire?')">
+                                        <span class="fa fa-trash"></span> Delete
+                                    </button>
+                                </form>
+                                <br>
+
+                            @endif
+                        </div>
                 </div>
                 <div class="box-body">
                     <div class="col-md-12">
 
-                        @if($questionnaire)
-                            {{--It has a questionnaire--}}
-                            <div class="pull-right">
-                                @if($ordinance->is_monitored === 0)
-                                    @if($questionnaire->isAccepting == 0)
-                                        <form style="display: inline;" method="post"
-                                              action="{{ url('/admin/acceptResponses/' . $questionnaire->id) }}">
-                                            {{ csrf_field() }}
-                                            <button class="btn btn-success">
-                                                <span class="fa fa-comments-o"></span> Accept Responses
-                                            </button>
-                                        </form>
-                                        @if(!$questionnaire->hasAnswers())
-                                            <a href="{{ url("/admin/forms/{$questionnaire->id}/edit") }}"
-                                               class="btn  btn-warning"><span class="fa fa-edit"></span> Edit</a>
-                                        @endif
-                                    @else
-                                        <form style="display: inline;" method="post"
-                                              action="{{ url('/admin/declineResponses/' . $questionnaire->id) }}">
-                                            {{ csrf_field() }}
-                                            <button class="btn btn-danger">
-
-                                                <span class="fa fa-times"></span> Decline Responses
-                                            </button>
-                                        </form>
-                                    @endif
-                                @endif
-                                <a href="{{"/admin/result/{$questionnaire->id}"}}"
-                                   class="btn btn-success"><span class="fa fa-th-list"></span> Results</a>
-                                {{--<a href="{{"/admin/forms/{$questionnaire->id}"}}"--}}
-                                {{--class="btn btn-info"><span><span--}}
-                                {{--class="fa fa-eye"></span> Preview</span></a>--}}
-                                <a href="{{ url("/admin/previewOrdinance/{$questionnaire->ordinance_id }/") }}" target="_blank"
-                                   class="btn  btn-danger">
-                                    <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                                    Print</a>
-
-
-                                @if($ordinance->is_monitored === 0)
-                                    <form style="display: inline;" method="post"
-                                          action="{{ url('/admin/forms/' . $questionnaire->id) }}">
-                                        {{ method_field('DELETE') }}
-                                        {{ csrf_field() }}
-                                        <button class="btn btn-danger"
-                                                onclick="return confirm('Are you sure you want to remove this Questionnaire?')">
-                                            <span class="fa fa-trash"></span> Delete
-                                        </button>
-                                    </form>
-                                    <br>
-                                    @if($questionnaire->isAccepting == 1)
-                                        Public Link: <a href="/public/showOrdinanceQuestionnaire/{{$ordinance->id}}">http://localhost:8000/public/showOrdinanceQuestionnaire/{{$ordinance->id}}</a>
-                                        <br>
-                                        Required Link: <a
-                                                href="/public/showOrdinanceQuestionnaire/{{$ordinance->id}}/required">http://localhost:8000/public/showOrdinanceQuestionnaire/{{$ordinance->id}}
-                                            /required</a>
-                                    @endif
-                                @endif
-
-                            </div>
-                    </div>
                     {{--<h2>{{ $questionnaire->name }}</h2>--}}
+                    <p>
+                        @if($questionnaire->isAccepting == 1)
+                            Public Link: <a href="/public/showOrdinanceQuestionnaire/{{$ordinance->id}}">http://localhost:8000/public/showOrdinanceQuestionnaire/{{$ordinance->id}}</a>
+                            <br>
+                            Required Link: <a
+                                    href="/public/showOrdinanceQuestionnaire/{{$ordinance->id}}/required">http://localhost:8000/public/showOrdinanceQuestionnaire/{{$ordinance->id}}
+                                /required</a>
+                        @endif
+                    </p>
                     <p>{{ $questionnaire->description }}</p>
                     <p><strong>Number of Responses:</strong> {{ $questionnaire->getResponseCount() }}</p>
+                    </div>
 
 
                     @else
@@ -108,27 +110,24 @@
                         @endif
                     @endif
                 </div>
-
-                {{-- If there is none--}}
-
             </div>
         </div>
     @endif
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="row">
                 <div class="box box-success color-palette-box">
                     <div class="box-header with-border">
                         <h3 class="box-title"><i class="fa fa-file-text"></i> ORDINANCE {{ $ordinance->number }}</h3>
                         <div class="pull-right">
                             <a href="/admin/ordinances/{{$ordinance->id}}/edit?type={{$ordinance->is_monitoring === 1 ? 'ME' : 'RR'}}"
-                               class="btn btn-xs btn-warning">
+                               class="btn btn-warning">
                                 <i class="fa fa-edit"></i>
                                 Edit
                             </a>
                             <a href="{{($ordinance->pdf_file_path === "" or $ordinance->pdf_file_path == null) ? '#' : ("/downloadPDF/ordinances/".$ordinance->pdf_file_name)}}"
-                               class="btn btn-xs btn-primary {{($ordinance->pdf_file_path === "" or $ordinance->pdf_file_path == null)? 'disabled' : ''}}">
+                               class="btn btn-primary {{($ordinance->pdf_file_path === "" or $ordinance->pdf_file_path == null)? 'disabled' : ''}}">
                                 <i class="fa fa-download"></i>
                                 Download Ordinance
                             </a>
@@ -221,9 +220,18 @@
         </div>
 
         @if($ordinance->is_monitoring === 1)
-            <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-12">
                 <div class="box box-success color-palette-box">
                     <div class="box-header with-border">
+                        <div class="pull-right">
+                            <a href="/admin/ordinances/{{$ordinance->id}}/upload-status-report"
+                               class="btn btn-group btn-soundcloud">
+                                <i class="fa fa-file-text"></i>
+                                {{($ordinance->statusReport === null or  $ordinance->statusReport->pdf_file_path === " ") ? 'Upload' : 'Reupload'}}
+                                Status Report
+                            </a>
+                        </div>
                         <ul class="nav nav-tabs">
                             <li class="active"><a data-toggle="tab" href="#status">Status Report</a></li>
                             <li {{($ordinance->statusReport === null or $ordinance->statusReport->pdf_file_path === " ") ? "class=disabled" : ' '}}>
@@ -232,18 +240,14 @@
                                 </a>
                             </li>
                         </ul>
+
                     </div>
                     <div class="box-body">
                         <div class="tab-content">
                             <div id="status" class="tab-pane fade in active">
                                 <div class="row" style="margin-bottom: 5px;">
                                     <div class="col-md-12">
-                                        <a href="/admin/ordinances/{{$ordinance->id}}/upload-status-report"
-                                           class="btn btn-xs btn-group btn-soundcloud">
-                                            <i class="fa fa-file-text"></i>
-                                            {{($ordinance->statusReport === null or  $ordinance->statusReport->pdf_file_path === " ") ? 'Upload' : 'Reupload'}}
-                                            Status Report
-                                        </a>
+
                                     </div>
                                 </div>
 
@@ -260,11 +264,11 @@
                                                     <td>{{$ordinance->statusReport->pdf_file_name}}</td>
                                                     <td>
                                                         <a href="/downloadPDF/statusreports/{{$ordinance->statusReport->pdf_file_name}}"
-                                                           class="btn btn-xs btn-primary btn-equal-width">
+                                                           class="btn btn-primary btn-equal-width">
                                                             Download
                                                         </a>
                                                         <a href="/deletePDF/statusreports/{{$ordinance->statusReport->pdf_file_name}}"
-                                                           class="btn btn-xs btn-danger btn-equal-width deletePDFButton">
+                                                           class="btn btn-danger btn-equal-width deletePDFButton">
                                                             Delete
                                                         </a>
                                                     </td>
@@ -325,15 +329,8 @@
                     </div>
                 </div>
             </div>
-        @endif
-
-    </div>
-
-    @if($ordinance->is_monitoring == 1)
-        <div class="row">
             @endif
-
-            @if($ordinance->is_monitoring === 1)
+           {{-- @if($ordinance->is_monitoring === 1)
                 <div class="row">
                     <div class="col-md-12">
                         <div class="box box-danger color-palette-box">
@@ -344,9 +341,10 @@
                         </div>
                     </div>
                 </div>
-            @endif
-
-            @if($ordinance->is_monitoring === 1)
+            @endif--}}
+        </div>
+    </div>
+            {{--@if($ordinance->is_monitoring === 1)--}}
                 {{--IS in M&E--}}
                 {{--<div class="row">--}}
                 {{--<div class="col-md-12">--}}
@@ -439,23 +437,21 @@
                 {{--</div>--}}
                 {{--</div>--}}
                 {{--</div>--}}
-            @endif
-            @endsection
-            @section('scripts')
-                <script type="text/javascript">
-                    $('.deletePDFButton').click(function (e) {
-                        var link = e.target;
-                        var fileName = $(link).parent().parent().children().first().text();
-
-                        return confirm("Are you sure you want to delete the file " + fileName + "?");
-                    });
-
-                    function printExternal(url) {
-                        var printWindow = window.open(url, 'Print', 'left=200, top=200, width=950, height=500, toolbar=0, resizable=0');
-                        printWindow.addEventListener('load', function () {
-                            printWindow.print();
-                            printWindow.close();
-                        }, true);
-                    }
-                </script>
+            {{--@endif--}}
+@endsection
+@section('scripts')
+    <script type="text/javascript">
+        $('.deletePDFButton').click(function (e) {
+            var link = e.target;
+            var fileName = $(link).parent().parent().children().first().text();
+            return confirm("Are you sure you want to delete the file " + fileName + "?");
+        });
+        function printExternal(url) {
+            var printWindow = window.open(url, 'Print', 'left=200, top=200, width=950, height=500, toolbar=0, resizable=0');
+            printWindow.addEventListener('load', function () {
+                printWindow.print();
+                printWindow.close();
+            }, true);
+        }
+    </script>
 @endsection
