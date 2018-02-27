@@ -54,8 +54,9 @@
                                    class="btn btn-success"><span class="fa fa-th-list"></span> Results</a>
                                 {{--<a href="{{"/admin/forms/{$questionnaire->id}"}}" class="btn btn-info"><span><span--}}
                                 {{--class="fa fa-eye"></span> Preview</span></a>--}}
-                                <a href="" class="btn  btn-danger"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                                    Download</a>
+                                <a href="{{ url("/admin/previewResolution/{$questionnaire->resolution_id }/") }}" target="_blank"
+                                   class="btn  btn-danger"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                    Print</a>
                                 @if($resolution->is_monitored == 0)
                                     <form style="display: inline;" method="post"
                                           action="{{ url('/admin/forms/' . $questionnaire->id) }}">

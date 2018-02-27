@@ -128,6 +128,7 @@ class PublicController extends Controller
         return view('public.index', ['resolutions' => $resolutions], ['ordinances' => $ordinances]);
     }
     //    Monitoring and Eval
+    // monitored Resolutions
     public function resolutions(Request $request)
     {
         LogUtility::insertLog("HttpRequest on /resolutions", 'public');
@@ -157,16 +158,6 @@ class PublicController extends Controller
             });
         } else {
             $resolutions = Resolution::where('is_monitoring', 1);
-//            $resolutions = DB::table('ordinances')->select('*')
-//                ->whereNotIn('id', function ($query) {
-//                    $query->select('resolution_id')->from('questionnaires')
-//                        ->whereRaw('isAccepting = 1')
-//                        ->whereNotNull('resolution_id');
-//                })
-//                ->where('is_monitoring', 1)
-//                ->where('is_accepting', 0)
-//                ->orderBy($colName, $order)
-//                ->paginate($limit);
         }
 
         if ($request->has('col-number') || $request->has('col-series') || $request->has('col-title') || $request->has('col-keywords')) {
@@ -174,6 +165,12 @@ class PublicController extends Controller
                 ->where('keywords', 'LIKE', '%' . $request->input('col-keywords') . '%')
                 ->where('series', 'LIKE', '%' . $request->input('col-series') . '%')
                 ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
+        }
+
+        if($request->status == 'monitored'){
+            $resolutions = $resolutions->where('is_monitored','=',1);
+        }else{
+            $resolutions = $resolutions->where('is_monitored','=',0);
         }
 
         // Implement filtering / sorting
@@ -187,7 +184,7 @@ class PublicController extends Controller
             'resolutions' => $resolutions,
             'type' => PublicController::RR,]);
     }
-
+    // monitored Ordinances
     public function ordinance(Request $request)
     {
         LogUtility::insertLog("HttpRequest on /ordinance", 'public');
@@ -237,25 +234,12 @@ class PublicController extends Controller
                 ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
         }
 
-
-
         // Implement filtering / sorting
         $ordinances = $ordinances->orderBy($colName, $order);
 
 
         // Paginate with filters
         $ordinances = $ordinances->paginate($limit)->appends($request->all());
-
-//        $ordId = Ordinance::join('questionnaires','ordinances.id','=','questionnaires.ordinance_id')
-//            ->where('questionnaires.isAccepting', 1)
-//            ->select('ordinances.id')
-//            ->get();
-
-
-
-//        dd($ordinances);
-
-        // ordinances that do not accept requests
 
         return view('public.MandE.monitoredOrdinance', [
             'ordinances' => $ordinances,
@@ -301,11 +285,7 @@ class PublicController extends Controller
                 ->where('series', 'LIKE', '%' . $request->input('col-series') . '%')
                 ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
         }
-        if($request->status == 'monitored'){
-            $ordinances = $ordinances->where('is_monitored','=',1);
-        }else{
-            $ordinances = $ordinances->where('is_monitored','=',0);
-        }
+
         // Implement filtering / sorting
         $ordinances = $ordinances->orderBy($colName, $order);
 
@@ -359,11 +339,7 @@ class PublicController extends Controller
                 ->where('series', 'LIKE', '%' . $request->input('col-series') . '%')
                 ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
         }
-        if($request->status == 'monitored'){
-            $resolutions = $resolutions->where('is_monitored','=',1);
-        }else{
-            $resolutions = $resolutions->where('is_monitored','=',0);
-        }
+
         // Implement filtering / sorting
         $resolutions = $resolutions->orderBy($colName, $order);
 

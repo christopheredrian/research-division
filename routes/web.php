@@ -103,8 +103,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::post('/resolution-pload-update-report',
             'Admin\\ResolutionsController@storeUpdateReport')->name('resolutionStoreUpdateReport');
 
-        /** Download  // print */
-        Route::get('/preview/{id}', 'Admin\\OrdinancesController@preview');
+        /**  Print */
+        Route::get('/previewOrdinance/{id}', 'Admin\\OrdinancesController@preview');
+        Route::get('/previewResolution/{id}', 'Admin\\ResolutionsController@preview');
 
 
     });

@@ -298,7 +298,7 @@ class FormsController extends Controller
     }
 
 
-    function ordinancesIndex(Request $request)
+    public function ordinancesIndex(Request $request)
     {
         $limit = 5;
         $colName = $request->colName;
@@ -334,11 +334,13 @@ class FormsController extends Controller
                 ->where('series', 'LIKE', '%' . $request->input('col-series') . '%')
                 ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
         }
+
         if($request->status == 'monitored'){
             $ordinances = $ordinances->where('is_monitored','=',1);
         }else{
             $ordinances = $ordinances->where('is_monitored','=',0);
         }
+
         // Implement filtering / sorting
         $ordinances = $ordinances->orderBy($colName, $order);
 
@@ -353,7 +355,7 @@ class FormsController extends Controller
         ]);
     }
 
-    function resolutionsIndex(Request $request)
+    public function resolutionsIndex(Request $request)
     {
         $limit = 5;
         $colName = $request->colName;

@@ -68,10 +68,10 @@
                                 {{--<a href="{{"/admin/forms/{$questionnaire->id}"}}"--}}
                                 {{--class="btn btn-info"><span><span--}}
                                 {{--class="fa fa-eye"></span> Preview</span></a>--}}
-                                <a href="{{ url("/admin/preview/{$questionnaire->ordinance_id }/") }}" target="_blank"
+                                <a href="{{ url("/admin/previewOrdinance/{$questionnaire->ordinance_id }/") }}" target="_blank"
                                    class="btn  btn-danger">
                                     <i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                                    Download</a>
+                                    Print</a>
 
 
                                 @if($ordinance->is_monitored === 0)
