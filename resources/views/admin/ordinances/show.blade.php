@@ -46,7 +46,7 @@
                                     </form>
                                     @if(!$questionnaire->hasAnswers())
                                         <a href="{{ url("/admin/forms/{$questionnaire->id}/edit") }}"
-                                           class="btn  btn-warning"><span class="fa fa-edit"></span> Edit</a>
+                                           class="btn btn-warning"><span class="fa fa-edit"></span> Edit</a>
                                     @endif
                                 @else
                                     <form style="display: inline;" method="post"

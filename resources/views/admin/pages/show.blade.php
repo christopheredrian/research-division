@@ -20,10 +20,10 @@
                 <h3 class="box-title">{{ $page->title }}</h3>
             </div>
     <div class="box-body">
-        <div>
+        {{--<div>
             <a href="/admin/pages" class="btn btn-info">Back</a>
 
-        </div>
+        </div>--}}
             <div class="box-header">
                     {!! $page->content !!}
             </div>
