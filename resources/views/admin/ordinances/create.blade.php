@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <div class="col-md-8">
+    <div class="col-md-12">
         <!-- general form elements -->
         <div class="box box-primary">
             <div class="box-header with-border">

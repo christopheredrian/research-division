@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Questionnaire;
+use App\Question;
+use App\Value;
 use App\Resolution;
 use App\StatusReport;
 use App\UpdateReport;
@@ -261,5 +263,21 @@ class ResolutionsController extends Controller
             "Successfully uploaded update report for<strong> Resolution " . $updateReport->resolution->number . "</strong>!");
 
         return redirect('/admin/resolutions/' . $updateReport->resolution_id);
+    }
+
+    public function preview($id)
+    {
+        $questionnaire = Questionnaire::Where('resolution_id', '=', $id)->first();
+        $questions = Question::Where('questionnaire_id', '=', $questionnaire->id)->get();
+        $values = Value::WhereIn('question_id', $questions->pluck('id'))->get();
+        $required = false;
+        $resolution = Resolution::Where('id', '=', $id)->first();
+
+        return view('admin.resolutions.preview',
+            ['questionnaire' => $questionnaire],
+            ['questions' => $questions])
+            ->with('values', $values)
+            ->with('required', $required)
+            ->with('resolution', $resolution);
     }
 }

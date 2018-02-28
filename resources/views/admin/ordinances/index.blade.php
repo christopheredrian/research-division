@@ -33,15 +33,17 @@
             <h3 class="box-title"><i class="fa fa-file-text"></i>
                 Ordinances under {{$type === 'RR' ? 'Research & Records' : 'Monitoring & Evaluation'}}
             </h3>
-        </div>
-        <div class="box-body">
-            <div class="add-magin">
+            <div class="pull-right">
                 <a href="/admin/ordinances/create?type={{$type}}" class="btn btn-success"><span
                             class="fa fa-plus"></span> Add</a>
-                <a href="/admin{{$type === 'RR' ? '' : '/forms'}}/ordinances" class="btn btn-primary">
-                    <i class="fa fa-refresh"></i> Reset Filtering
-                </a>
-                <form action="#" method="get" class="pull-right col-md-4">
+                {{--<a href="/admin{{$type === 'RR' ? '' : '/forms'}}/ordinances" class="btn btn-primary">--}}
+                    {{--<i class="fa fa-refresh"></i> Reset Filtering--}}
+                {{--</a>--}}
+            </div>
+        </div>
+        <div class="box-body">
+
+               {{-- <form action="#" method="get" class="pull-right col-md-4">
                     <div class="input-group">
                         <input value="{{ request()->q }}" type="text" name="q" class="form-control"
                                placeholder="Search...">
@@ -53,7 +55,7 @@
                     </div>
                 </form>
                 <div class="clearfix"></div>
-            </div>
+            </div>--}}
             {{--<div class="row">--}}
             {{--<div class="col-md-12 text-center">--}}
             {{--<a href="/admin/ordinances">Reset Sorting</a>--}}
@@ -176,7 +178,11 @@
                                                value="{{ request()->input('col-title') }}"></td>
                                     <td><input type="text" class="form-control" name="col-keywords"
                                                value="{{ request()->input('col-keywords') }}"></td>
-                                    <td><input class="btn btn-primary" type="submit" value="Filter"></td>
+                                    <td><input class="btn btn-xs btn-success btn-equal-width" type="submit" value="Filter">
+                                        <a href="/admin{{$type === 'RR' ? '' : '/forms'}}/ordinances" class="btn btn-xs btn-danger btn-equal-width">
+                                        <i class="fa fa-refresh"></i> Reset
+                                    </a>
+                                    </td>
                                 </form>
                             </tr>
                             @foreach($ordinances as $ordinance)

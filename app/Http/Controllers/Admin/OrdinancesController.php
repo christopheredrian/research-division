@@ -379,11 +379,13 @@ class OrdinancesController extends Controller
         $questions = Question::Where('questionnaire_id', '=', $questionnaire->id)->get();
         $values = Value::WhereIn('question_id', $questions->pluck('id'))->get();
         $required = false;
+        $ordinance = Ordinance::Where('id', '=', $id)->first();
 
         return view('admin.ordinances.preview',
             ['questionnaire' => $questionnaire],
             ['questions' => $questions])
             ->with('values', $values)
-            ->with('required', $required);
+            ->with('required', $required)
+            ->with('ordinance', $ordinance);
     }
 }
