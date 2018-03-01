@@ -241,7 +241,12 @@
                     },
                     exporting: {
                         enabled: true,
-                        filename: "",
+                        filename: "Pie {{ $questionnaire->name }}",
+                        buttons: {
+                            contextButton: {
+                                menuItems: ['downloadPNG', 'downloadJPEG',]
+                            }
+                        }
                     },
                     title: {
                         text: 'Results'
@@ -254,12 +259,13 @@
                             allowPointSelect: true,
                             cursor: 'pointer',
                             dataLabels: {
-                                enabled: true,
+                                enabled: false,
                                 format: '<b>{point.name}</b>: {point.percentage:.1f} %',
                                 style: {
                                     color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                                 }
-                            }
+                            },
+                            showInLegend: true
                         }
                     },
                     series: [{
@@ -298,7 +304,12 @@
                     },
                     exporting: {
                         enabled: true,
-                        filename: "",
+                        filename: "Bar {{ $questionnaire->name }}",
+                        buttons: {
+                            contextButton: {
+                                menuItems: ['downloadPNG', 'downloadJPEG',]
+                            }
+                        }
                     },
                     title: {
                         text: 'Results'
