@@ -369,6 +369,18 @@ function skin($user)
                             <span class="pull-right-container"></span>
                         </a>
                     </li>
+                @endif
+
+                <li class="{{ Request::is('/reports*') ? 'active' : '' }}">
+                    <a href="/reports">
+                        <i class="fa fa-th-list"></i>
+                        <span>Reports</span>
+                        <span class="pull-right-container">
+                             </span>
+                    </a>
+                </li>
+
+                @if(Auth::user()->hasRole('superadmin') || Auth::user()->hasRole('admin'))
                     <li class="{{ Request::is('admin/logs*') ? 'active' : '' }}">
                         <a href="/admin/logs">
                             <i class="fa fa-wrench"></i>
@@ -378,14 +390,7 @@ function skin($user)
                         </a>
                     </li>
                 @endif
-                <li class="{{ Request::is('/reports*') ? 'active' : '' }}">
-                    <a href="/reports">
-                        <i class="fa fa-th-list"></i>
-                        <span>Reports</span>
-                        <span class="pull-right-container">
-                             </span>
-                    </a>
-                </li>
+
 
                 {{--<li class="{{ Request::is('admin/change*') ? 'active' : '' }}">--}}
                 {{--<a href="/admin/change-password">--}}

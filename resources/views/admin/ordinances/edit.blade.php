@@ -14,10 +14,8 @@
         <li><a href="/admin/ordinances/{{$ordinance->id}}">{{$ordinance->id}}</a></li>
         <li  class="active">Edit</li>
     </ol>
-
-    <div class="col-md-12">
-        <!-- general form elements -->
-        <div class="box box-primary">
+<<div class="row">
+        <div class="box box-primary color-palette-box">
             <div class="box-header with-border">
                 {{--'number', 'title', 'description', 'authors'--}}
                 <h3 class="box-title">Edit ORDINANCE {{ $ordinance->number }}</h3>
@@ -85,8 +83,7 @@
             </form>
         </div>
         <!-- /.box -->
-
-    </div>
+</div>
     {{--<div class="col-md-6">--}}
         {{--<iframe src = "/ViewerJS/#../storage/ordinances/{{substr($ordinance->pdf_file_path, strrpos( $ordinance->pdf_file_path, '/' ) + 1 )}}"--}}
                 {{--width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>--}}

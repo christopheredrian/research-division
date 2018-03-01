@@ -59,7 +59,15 @@
         <!-- general form elements -->
         <div class="box box-success">
             <div class="box-header with-border">
-                <h3 class="box-title">Results {!! isset($series) === true ? ('for the year <strong>' . $series . '</strong>') : '' !!}</h3>
+                <h3 class="box-title">
+                    Results {!! isset($series) === true ? ('for the year <strong>' . $series . '</strong>') : '' !!}
+                </h3>
+                @if(isset($results))
+                    <a href="{{ route('downloadReport') }}" class="btn btn-sm btn-success pull-right">
+                        <i class="fa fa-file-excel-o"></i>
+                        Download Excel
+                    </a>
+                @endif
             </div>
             <div class="box-body">
                 <div class="row">
@@ -75,7 +83,7 @@
                                 @foreach($results as $key => $value)
                                     <tr>
                                         <td>{{$key}}</td>
-                                        <td>{{$value}}</td>
+                                        <td>{{count($value)}}</td>
                                     </tr>
                                 @endforeach
                             @endif

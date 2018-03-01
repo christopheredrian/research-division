@@ -15,7 +15,7 @@
         </div>
 
         <div class="box-body">
-            <div class="well ">
+            <div class="well" style="text-align: center">
                 <form class="form-inline">
                     <div class="form-group">
                         <label for="exampleInputName2">From</label>

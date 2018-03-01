@@ -14,11 +14,8 @@
                     old="{{  $questionnaire_json }}">
                 Loading Component...
             </questionnaire-update-component>
-
         </div>
         <!-- /.box -->
-
-
     </div>
 
 @endsection

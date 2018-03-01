@@ -139,5 +139,6 @@ Route::group(['middleware' => ['auth']], function () {
     /** Reports */
     Route::get('/reports', 'ReportsController@index')->name('reports');
     Route::post('/reports', 'ReportsController@query')->name('postreports');
+    Route::get('/downloadReport', 'ReportsController@downloadReport')->name('downloadReport');
     /** END --- Reports*/
 });

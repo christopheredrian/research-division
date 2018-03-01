@@ -21,12 +21,6 @@
             <h3 class="box-title">Edit {{ $page->title }}</h3>
         </div>
         <div class="box-body">
-            <div>
-                <a href="/admin/pages" class="btn btn-info">Back</a>
-            </div>
-
-            <br/>
-
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>

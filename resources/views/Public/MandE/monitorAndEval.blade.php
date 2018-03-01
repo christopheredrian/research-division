@@ -154,7 +154,6 @@
                                 </form>
                             </tr>
                             @foreach($ordinances as $ordinance)
-                                @if($ordinance->isAccepting() || $ordinance->acceptingComments())
                                 <tr>
                                     <td>{{ $ordinance->number }}</td>
                                     <td>{{ $ordinance->series }}</td>
@@ -166,7 +165,6 @@
                                         </button>
                                     </td>
                                 </tr>
-                                @endif
                             @endforeach
                             </tbody>
                         </table>
@@ -302,7 +300,6 @@
                             </tr>
 
                             @foreach($resolutions as $resolution)
-                                @if($resolution->isAccepting() || $resolution->acceptingComments())
                                 <tr>
                                     <td>{{ $resolution->number }}</td>
                                     <td>{{ $resolution->series }}</td>
@@ -314,7 +311,6 @@
                                         </button>
                                     </td>
                                 </tr>
-                                @endif
                             @endforeach
 
                             </tbody>
