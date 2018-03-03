@@ -110,7 +110,7 @@ class ResolutionsController extends Controller
             substr($resolution->pdf_file_path, strrpos($resolution->pdf_file_path, '/') + 1);
         $resolution->save();
 
-        // POST TO FACEBOOK IF M&E ORDINANCE
+        // POST TO FACEBOOK
         app('App\Http\Controllers\Admin\FacebookPostsController')->postToPage($resolution);
 
         Session::flash('flash_message', "Successfully added <strong>Resolution" . $resolution->number . "</strong>!");

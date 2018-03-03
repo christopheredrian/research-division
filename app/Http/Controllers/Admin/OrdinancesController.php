@@ -217,7 +217,7 @@ class OrdinancesController extends Controller
         Session::flash('flash_message', "Successfully added <strong> Ordinance" . $ordinance->number . "</strong>!");
 
         // POST TO FACEBOOK
-
+        app('App\Http\Controllers\Admin\FacebookPostsController')->postToPage($ordinance);
 
         $redirectLink = $ordinance->is_monitoring == 1 ? '/admin/forms/ordinances' : '/admin/ordinances';
 
