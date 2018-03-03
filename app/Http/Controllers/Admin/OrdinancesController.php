@@ -8,6 +8,7 @@ use App\Question;
 use App\Value;
 use App\StatusReport;
 use App\UpdateReport;
+use Facebook\Facebook;
 use GuzzleHttp\Promise\all;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -215,6 +216,9 @@ class OrdinancesController extends Controller
 
         Session::flash('flash_message', "Successfully added <strong> Ordinance" . $ordinance->number . "</strong>!");
 
+        // POST TO FACEBOOK
+        app('App\Http\Controllers\Admin\FacebookPostsController')->postToPage($ordinance);
+
         $redirectLink = $ordinance->is_monitoring == 1 ? '/admin/forms/ordinances' : '/admin/ordinances';
 
         return redirect($redirectLink);
@@ -230,11 +234,13 @@ class OrdinancesController extends Controller
     {
         $ordinance = Ordinance::findOrFail($id);
         $questionnaire = Questionnaire::where('ordinance_id', $id)->first();
+        $facebookComments = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($ordinance);
 
         return view('admin.ordinances.show', [
             'ordinance' => $ordinance,
             'questionnaire' => $questionnaire,
-            'flag' => FormsController::ORDINANCES
+            'flag' => FormsController::ORDINANCES,
+            'facebookComments' => $facebookComments
         ]);
     }
 

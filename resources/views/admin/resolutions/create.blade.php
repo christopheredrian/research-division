@@ -15,7 +15,7 @@
                 @if(request()->type === \App\Http\Controllers\Admin\OrdinancesController::RR
                     or request()->type === \App\Http\Controllers\Admin\FormsController::ME)
                     <div class="box-body">
-                        <input type="hidden" name="is_monitoring" value="{{ request()->type === 'ME' ? 1 : 0 }}">
+                        <input type="hidden" name="is_monitoring" value={{ request()->type === 'ME' ? 1 : 0 }}>
                         <div class="form-group {{$errors->has('number') ? 'has-error' : ''}}">
                             <label for="number">Number</label>
                             <input name="number" type="text" class="form-control" id="number"

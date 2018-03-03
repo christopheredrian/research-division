@@ -23,6 +23,7 @@ class Resolution extends Model
         'pdf_file_path',
         'pdf_file_name',
         'is_monitoring',
+        'facebook_post_id',
     ];
 
     /**

@@ -115,7 +115,7 @@
     @endif
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6">
             <div class="row">
                 <div class="box box-success color-palette-box">
                     <div class="box-header with-border">
@@ -162,7 +162,7 @@
                 <div class="row">
                     <div class="box box-danger color-palette-box">
                         <div class="box-header with-border">
-                            <h3 class="box-title"><i class="fa fa-comments-o"></i> Comments/Suggestions</h3>
+                            {{--<h3 class="box-title"><i class="fa fa-comments-o"></i> Comments/Suggestions</h3>--}}
                             @if($ordinance->is_monitored === 0)
                                 @if($ordinance->is_accepting == 0)
                                     <form style="display: inline;" method="post"
@@ -182,37 +182,74 @@
                                     </form>
                                 @endif
                             @endif
-                        </div>
 
-                        <div class="box-body box-comments">
-                            @php
-                                $counter=0;
-                            @endphp
-                            @foreach($ordinance->suggestions as $suggestion)
-                                @if($counter == 3)
-                                    @php
-                                        break;
-                                    @endphp
-                                @endif
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#comments">Comments/Suggestions</a></li>
+                                <li>
+                                    <a data-toggle="tab" href="#fbComments">
+                                        <i class="fa fa-facebook-f"></i>
+                                        Facebook Comments
+                                    </a>
+                                </li>
+                            </ul>
 
-                                <div class="box-comment">
-                                    <!-- User image -->
-                                    {{--<img class="img-circle img-sm" src="/dist/img/user3-128x128.jpg" alt="User Image">--}}
+                            <div class="tab-content">
+                                <div id="comments" class="tab-pane fade in active">
+                                    <div class="box-body box-comments">
+                                        @php
+                                            $counter=0;
+                                        @endphp
+                                        @foreach($ordinance->suggestions as $suggestion)
+                                            @if($counter == 3)
+                                                @php
+                                                    break;
+                                                @endphp
+                                            @endif
 
-                                    <div class="comment-text">
-                              <span class="username">
-                                {{ $suggestion->first_name }} {{ $suggestion->last_name }}
-                                  <span class="text-muted pull-right">{{ $suggestion->created_at }}</span>
-                              </span><!-- /.username -->
-                                        {{ $suggestion->suggestion }}
+                                            <div class="box-comment">
+                                                <!-- User image -->
+                                                {{--<img class="img-circle img-sm" src="/dist/img/user3-128x128.jpg" alt="User Image">--}}
+
+                                                <div class="comment-text">
+                                                  <span class="username">
+                                                    {{ $suggestion->first_name }} {{ $suggestion->last_name }}
+                                                      <span class="text-muted pull-right">{{ $suggestion->created_at }}</span>
+                                                  </span><!-- /.username -->
+                                                    {{ $suggestion->suggestion }}
+                                                </div>
+                                                <!-- /.comment-text -->
+                                            </div>
+                                            @php
+                                                $counter=$counter+1;
+                                            @endphp
+                                        @endforeach
+                                        <a href="/admin/showComments/{{$ordinance->id}}/ordinances" class="pull-right">View all</a>
                                     </div>
-                                    <!-- /.comment-text -->
                                 </div>
-                                @php
-                                    $counter=$counter+1;
-                                @endphp
-                            @endforeach
-                            <a href="/admin/showComments/{{$ordinance->id}}/ordinances" class="pull-right">View all</a>
+
+                                <div id="fbComments" class="tab-pane fade">
+                                    @if(empty($facebookComments))
+                                        <h3>No comments as of yet.</h3>
+                                    @else
+                                        <div class="box-body box-comments">
+                                            @foreach($facebookComments as $facebookComment)
+                                                <div class="box-comment">
+                                                    <!-- User image -->
+                                                    <img class="img-circle img-sm" src="/uploads/default.jpg" alt="User Image">
+                                                    <div class="comment-text">
+                                                      <span class="username">
+                                                        {{ $facebookComment['from']['name']  }}
+                                                          <span class="text-muted pull-right">{{ $facebookComment['created_time'] }}</span>
+                                                      </span>
+                                                        {{ $facebookComment['message'] }}
+                                                    </div>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    @endif
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

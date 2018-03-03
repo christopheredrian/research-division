@@ -8,6 +8,7 @@ use App\Value;
 use App\Resolution;
 use App\StatusReport;
 use App\UpdateReport;
+use Facebook\Facebook;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -109,6 +110,9 @@ class ResolutionsController extends Controller
             substr($resolution->pdf_file_path, strrpos($resolution->pdf_file_path, '/') + 1);
         $resolution->save();
 
+        // POST TO FACEBOOK IF M&E ORDINANCE
+        app('App\Http\Controllers\Admin\FacebookPostsController')->postToPage($resolution);
+
         Session::flash('flash_message', "Successfully added <strong>Resolution" . $resolution->number . "</strong>!");
 
         $redirectLink = $resolution->is_monitoring == 1 ? '/admin/forms/resolutions' : '/admin/resolutions';
@@ -125,11 +129,13 @@ class ResolutionsController extends Controller
     {
         $resolution = Resolution::findOrFail($id);
         $questionnaire = Questionnaire::where('resolution_id', $id)->first();
+        $facebookComments = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($resolution);
 
         return view('admin.resolutions.show', [
             'resolution' => $resolution,
             'questionnaire' => $questionnaire,
             'flag' => FormsController::RESOLUTIONS,
+            'facebookComments' => $facebookComments,
         ]);
     }
 
