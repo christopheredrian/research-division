@@ -26,6 +26,11 @@
         .dropdown-menu, nav {
             z-index: 100;
         }
+        .footer {
+            right: 0;
+            bottom: 0;
+            left: 0;
+        }
     </style>
 </head>
 
@@ -156,6 +161,7 @@
 <div style="background:rgb(240, 248, 255)">
     @yield('content')
 </div>
+
 <!--bottom footer-->
 <footer class="footer" id="bottom-footer">
     <div class="container">

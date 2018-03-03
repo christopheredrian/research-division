@@ -246,7 +246,7 @@ class PublicController extends Controller
     public function monitorAndEvalOrdinances(Request $request)
     {
         LogUtility::insertLog("HttpRequest on /monitorAndEvalOrdinances", 'public');
-        $limit = 10;
+        $limit = 5;
         $colName = $request->colName;
         $order = $request->order;
 
@@ -307,7 +307,7 @@ class PublicController extends Controller
     public function monitorAndEvalResolutions(Request $request)
     {
         LogUtility::insertLog("HttpRequest on /monitorAndEvalResolutions", 'public');
-        $limit = 10;
+        $limit = 5;
         $colName = $request->colName;
         $order = $request->order;
 

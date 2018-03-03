@@ -31,7 +31,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo" >
-        <a href="../../index2.html">
+        <a href="#">
             <b>Sangguniang Panglungsod</b>
             <br> Research Division
         </a>

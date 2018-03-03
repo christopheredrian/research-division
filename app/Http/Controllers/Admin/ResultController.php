@@ -40,7 +40,8 @@ class ResultController extends Controller
 
         try {
             $questionnaire = Questionnaire::find($id);
-            $file_name = $questionnaire->name;
+            $file_name = $questionnaire->description;
+
             Excel::create($file_name, function ($excel) use ($id) {
                 $excel->sheet('Excel sheet', function ($sheet) use ($id) {
                     $questions_arr = [];

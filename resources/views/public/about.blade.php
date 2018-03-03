@@ -1,10 +1,14 @@
 @extends('layouts.public')
+@section('styles')
+    <style>
+        .footer {
+            position: fixed;
+            bottom: 0;
+        }
+    </style>
+@endsection
 @section('content')
     <div class="container">
-        <div class="row">
-            This is the about page which contains the information about what this website does.
-        </div>
-    </div>
             <h2>About Us</h2>
 
             <div class=" aboutus col-md-6">
@@ -28,6 +32,5 @@
                 </p>
             </div>
 
-        </div>
     </div>
 @endsection
