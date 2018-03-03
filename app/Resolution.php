@@ -44,6 +44,11 @@ class Resolution extends Model
         return $this->hasMany('App\UpdateReport');
     }
 
+    public function questionnaire()
+    {
+        return $this->hasOne('App\Questionnaire');
+    }
+
     public function getQuestionnaire()
     {
         return Questionnaire::where('resolution_id', $this->id)->first();
