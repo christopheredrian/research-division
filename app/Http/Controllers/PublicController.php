@@ -25,7 +25,7 @@ use Illuminate\Http\Request;
 
 class PublicController extends Controller
 {
-    const RR = 'RR';
+
     const ordinanceColumns = [
         'number',
         'series',
@@ -176,9 +176,8 @@ class PublicController extends Controller
         $resolutions = $resolutions->paginate($limit)->appends($request->all());
 
 //        dd($resolutions);
-        return view('public.MandE.monitoredResolution', [
-            'resolutions' => $resolutions
-            ]);
+        return view('public.MandE.monitoredResolution')
+        ->with('resolutions', $resolutions);
     }
     // monitored Ordinances
     public function ordinance(Request $request)
@@ -227,10 +226,9 @@ class PublicController extends Controller
         // Paginate with filters
         $ordinances = $ordinances->paginate($limit)->appends($request->all());
 
-        return view('public.MandE.monitoredOrdinance', [
-            'ordinances' => $ordinances,
-            'type' => PublicController::RR,
-        ]);
+        return view('public.MandE.monitoredOrdinance')
+            ->with('ordinances' , $ordinances);
+
     }
 
     public function monitorAndEvalOrdinances(Request $request)
@@ -287,10 +285,9 @@ class PublicController extends Controller
 
         $resolutions = null;
 
-        return view('public.MandE.monitorAndEval', [
-            'ordinances' => $ordinances,
-            'resolutions' => $resolutions, //null
-        ]);
+        return view('public.MandE.monitorAndEval')
+            ->with('ordinances' , $ordinances)
+            ->with('resolutions' , $resolutions);
     }
 
     public function monitorAndEvalResolutions(Request $request)
@@ -345,10 +342,9 @@ class PublicController extends Controller
         $resolutions = $resolutions->paginate($limit)->appends($request->all());
         $ordinances = null;
 
-        return view('public.MandE.monitorAndEval', [
-            'resolutions' => $resolutions,
-            'ordinances' => $ordinances
-        ]);
+        return view('public.MandE.monitorAndEval')
+            ->with('ordinances' , $ordinances)
+            ->with('resolutions' , $resolutions);
     }
     //    Monitoring and Eval end
 
@@ -397,9 +393,8 @@ class PublicController extends Controller
         // Paginate with filters
         $ordinances = $ordinances->paginate($limit)->appends($request->all());
 
-        return view('public.RandR.ordinance', [
-            'ordinances' => $ordinances
-        ]);
+        return view('public.RandR.ordinance')
+        ->with('ordinances', $ordinances);
     }
 
     public function researchAndRecordsResolution(Request $request)
@@ -446,9 +441,8 @@ class PublicController extends Controller
         // Paginate with filters
         $resolutions = $resolutions->paginate($limit)->appends($request->all());
 
-        return view('public.RandR.resolution', [
-            'resolutions' => $resolutions
-            ]);
+        return view('public.RandR.resolution')
+            ->with('resolutions', $resolutions);
     }
     //   Research and Record end
 
