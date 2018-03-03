@@ -32,7 +32,7 @@
 <div class="login-box">
     <div class="login-logo" >
         <a href="#">
-            <b>Sangguniang Panglungsod</b>
+            <b>Sangguniang Panlungsod</b>
             <br> Research Division
         </a>
     </div>

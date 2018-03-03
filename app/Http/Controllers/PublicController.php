@@ -177,8 +177,8 @@ class PublicController extends Controller
 
 //        dd($resolutions);
         return view('public.MandE.monitoredResolution', [
-            'resolutions' => $resolutions,
-            'type' => PublicController::RR,]);
+            'resolutions' => $resolutions
+            ]);
     }
     // monitored Ordinances
     public function ordinance(Request $request)
@@ -211,17 +211,7 @@ class PublicController extends Controller
             });
         } else {
             $ordinances = Ordinance::where('is_monitoring', 1);
-//            $ordinances = DB::table('ordinances')->select('*')
-//                ->whereNotIn('id', function ($query) {
-//                    $query->select('ordinance_id')->from('questionnaires')
-//                        ->whereRaw('isAccepting = 1')
-//                        ->whereNotNull('ordinance_id');
-//                })
-//                ->where('is_monitoring',1)
-//                ->where('is_accepting',0)
-//                ->orderBy($colName, $order)
-//                ->paginate($limit);
-        }
+    }
 
         if ($request->has('col-number') || $request->has('col-series') || $request->has('col-title') || $request->has('col-keywords')) {
             $ordinances = $ordinances->where('number', 'LIKE', '%' . $request->input('col-number') . '%')
@@ -300,7 +290,6 @@ class PublicController extends Controller
         return view('public.MandE.monitorAndEval', [
             'ordinances' => $ordinances,
             'resolutions' => $resolutions, //null
-            'type' => PublicController::RR,
         ]);
     }
 
@@ -358,8 +347,8 @@ class PublicController extends Controller
 
         return view('public.MandE.monitorAndEval', [
             'resolutions' => $resolutions,
-            'ordinances' => $ordinances,
-            'type' => PublicController::RR,]);
+            'ordinances' => $ordinances
+        ]);
     }
     //    Monitoring and Eval end
 
@@ -409,8 +398,7 @@ class PublicController extends Controller
         $ordinances = $ordinances->paginate($limit)->appends($request->all());
 
         return view('public.RandR.ordinance', [
-            'ordinances' => $ordinances,
-            'type' => PublicController::RR,
+            'ordinances' => $ordinances
         ]);
     }
 
@@ -459,8 +447,8 @@ class PublicController extends Controller
         $resolutions = $resolutions->paginate($limit)->appends($request->all());
 
         return view('public.RandR.resolution', [
-            'resolutions' => $resolutions,
-            'type' => PublicController::RR,]);
+            'resolutions' => $resolutions
+            ]);
     }
     //   Research and Record end
 

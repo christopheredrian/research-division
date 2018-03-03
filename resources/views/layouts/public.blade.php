@@ -75,12 +75,12 @@
                         <li><a href="/">Home</a></li>
 
                         <li>
-                            <a href="/r&r/ordinances">
+                            <a href="/randr/ordinances">
                                 Ordinances
                             </a>
                         </li>
                         <li>
-                            <a href="/r&r/resolutions">
+                            <a href="/randr/resolutions">
                                 Resolutions
                             </a>
                         </li>
