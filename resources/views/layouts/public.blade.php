@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+
+    <link rel="icon"  href="/images/partgov.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Research Division</title>
@@ -25,6 +27,11 @@
     <style>
         .dropdown-menu, nav {
             z-index: 100;
+        }
+        .footer {
+            right: 0;
+            bottom: 0;
+            left: 0;
         }
     </style>
 </head>
@@ -70,12 +77,12 @@
                         <li><a href="/">Home</a></li>
 
                         <li>
-                            <a href="/r&r/ordinances">
+                            <a href="/randr/ordinances">
                                 Ordinances
                             </a>
                         </li>
                         <li>
-                            <a href="/r&r/resolutions">
+                            <a href="/randr/resolutions">
                                 Resolutions
                             </a>
                         </li>
@@ -156,6 +163,7 @@
 <div style="background:rgb(240, 248, 255)">
     @yield('content')
 </div>
+
 <!--bottom footer-->
 <footer class="footer" id="bottom-footer">
     <div class="container">
