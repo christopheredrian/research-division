@@ -16,7 +16,7 @@
                     using or
                     otherwise accessing the Application, you acknowledge that you accept the practices and policies outlined
                     in this
-                    Privacy Statement.&nbsp;<br/><br/>WHAT PERSONAL INFORMATION DOES PartGov COLLECT?&nbsp;<br/><br/>We
+                    Privacy Statement.&nbsp;<br/><br/>WHAT PERSONAL INFORMATION DOES PARTGOV COLLECT?&nbsp;<br/><br/>We
                     collect the
                     following types of information from our users:&nbsp;<br/><br/>Personal Information You Provide to
                     Us:<br/>We may
@@ -47,7 +47,7 @@
                     Application Partner&rsquo;s use of your personal information is subject to the Application Partner&rsquo;s
                     separate privacy policy &ndash; and not this Privacy Statement. The Application Partner&rsquo;s privacy
                     policy
-                    is linked to from within the Partner&rsquo;s Facebook application.&nbsp;<br/><br/>WILL PartGov SHARE ANY
+                    is linked to from within the Partner&rsquo;s Facebook application.&nbsp;<br/><br/>WILL PARTGOV SHARE ANY
                     OF THE
                     PERSONAL INFORMATION IT RECEIVES?&nbsp;<br/><br/>Personal information about our users is an integral
                     part of our
