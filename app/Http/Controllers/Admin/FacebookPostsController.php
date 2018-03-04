@@ -20,7 +20,7 @@ class FacebookPostsController extends Controller
             'app_secret' => env('FACEBOOK_APP_SECRET'),
             'default_graph_version' => env('FACEBOOK_DEFAULT_GRAPH_VERSION')
         ]);
-        $fb->setDefaultAccessToken(env('FACEBOOK_FOREVER_PAGE_ACCESS_TOKEN'));
+        $fb->setDefaultAccessToken(Configuration::where('key', 'facebook_forever_page_access_token')->first()->value);
 
         return $fb;
     }
