@@ -129,6 +129,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::group(['middleware' => 'role:superadmin'], function () {
         Route::resource('users', 'Admin\\UsersController');
     });
+
+    // CONFIGURATIONS
+    Route::get('/configurations', 'Admin\\ConfigurationsController@index');
 });
 
 Auth::routes();
@@ -141,3 +144,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/downloadReport', 'ReportsController@downloadReport')->name('downloadReport');
     /** END --- Reports*/
 });
+
+Route::post('/toggleConfiguration', 'Admin\\ConfigurationsController@toggleConfiguration');
+Route::post('/updateFacebookVariables', 'Admin\\ConfigurationsController@updateFacebookVariables');
