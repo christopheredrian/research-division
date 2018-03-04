@@ -30,7 +30,7 @@ class FacebookPostsController extends Controller
         $legislationType = get_class($legislation) == 'App\\Ordinance' ? 'Ordinance' : 'Resolution';
         $fbMessage = '';
 
-        if ($legislation->is_monitoring === 1) {
+        if ($legislation->is_monitoring) {
             $fbMessage .= 'Good day! A new ' . $legislationType . ' is being monitored!';
         } else {
             $legislationAction = $legislationType === 'Ordinance' ? 'enacted' : 'approved';
