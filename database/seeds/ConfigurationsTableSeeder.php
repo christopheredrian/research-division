@@ -26,13 +26,13 @@ class ConfigurationsTableSeeder extends Seeder
             [
                 'id' => 3,
                 'key' => 'facebook_forever_page_access_token',
-                'value' => 'EAACKvSbcEf8BAPy9llNXBSx3Ufz5eMWBxLH2fEob88GQk3dGmZAkQBvgjdzYYawpshtj0iqUT6HSmK5EQtGgr8C1YFv1bnwFGZBI2c7pzhQ7ErtiEnu6JMQO0shV7dNKPkiUqb2Gg4yyoscxpEfyeN1ZCcXKlzrHVsHvLd4ZCQZDZD',
+                'value' => 'EAACKvSbcEf8BAEypGuVtx4wkIgfC9O8mIdz9khV7jsm33STl8HI9Kbck0QcwCZA96Cqlkfq1kPQ0ZAua0PxEf2AdHrl59QNqpZAFv405zJVWnjn5zCDjvHwWEzSxtjZAhV6wxpGR4MMVep2YXw9toD18zZAoavzuEXXS9qGjnUAZDZD',
 
             ],
             [
                 'id' => 4,
                 'key' => 'facebook_user_access_token',
-                'value' => 'EAACKvSbcEf8BAHTgqGgcc0wHMDhdteiz7zOwmQvo5JLbinZCgcM0rmyQujtrX8Rz7hnbBcSYZAxhmDdVajehu04J46adr5GQbnm144krMskI19AsBs3a9ZAk2UKvhtLaTpYlYSYKFERGMUQTK0NzFRnCvF89qcM8yxIm88pChlTSAmorwZC6ZCoOYVAtfVEZCWeZA9tvMt6jgZDZD',
+                'value' => 'EAACEdEose0cBAIhSMnMHGYRqCbaARTSZCQEHF30sq7LUrvWDnB0mMRritzQKo7zqbaQdZCZCDrsPsMB6sC01EBxxbJwbiKMzB5HOJ3fO7bDZBdkFSESi0aZAKSJFR2n4uKAY0TwBMyuwIsUOZCIs60BxZCR5z0bt8I9qHK9g2PQIe6XfPJytW6HeoOQdpHDI3cbZCM0holmf8QZDZD',
             ]
         );
 
