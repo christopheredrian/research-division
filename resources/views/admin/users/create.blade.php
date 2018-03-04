@@ -2,6 +2,7 @@
 
 
 @section('content')
+    <div class="col-md-2"></div>
     <div class="col-md-8">
         <!-- general form elements -->
         <div class="box box-primary">
@@ -71,4 +72,5 @@
         <!-- /.box -->
 
     </div>
+    <div class="col-md-2"></div>
 @endsection
