@@ -44,8 +44,4 @@ class ConfigurationsController extends Controller
 
         return $configuration->toJson();
     }
-
-    public function isNLPEnabled(){
-        return (Configuration::where('key', 'is_NLP_enabled')->first()->value === "1" ? true : false );
-    }
 }

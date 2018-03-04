@@ -1,5 +1,14 @@
 @extends('layouts.admin')
 
+@section('styles')
+    <style>
+        .box-comment > i{
+            height: 100%;
+            font-size: 22px;
+        }
+    </style>
+@endsection
+
 @section('content')
 
     <ol class="breadcrumb">
@@ -364,12 +373,14 @@
 
                             <ul class="nav nav-tabs">
                                 <li class="active"><a data-toggle="tab" href="#comments">Comments/Suggestions</a></li>
-                                <li>
-                                    <a data-toggle="tab" href="#fbComments">
-                                        <i class="fa fa-facebook-f"></i>
-                                        Facebook Comments
-                                    </a>
-                                </li>
+                                @if(isset($isNLPEnabled) and $resolution->facebook_post_id !== null)
+                                    <li>
+                                        <a data-toggle="tab" href="#fbComments">
+                                            <i class="fa fa-facebook-f"></i>
+                                            Facebook Comments
+                                        </a>
+                                    </li>
+                                @endif
                             </ul>
 
                             <div class="tab-content">
@@ -406,28 +417,40 @@
                                     </div>
                                 </div>
 
-                                <div id="fbComments" class="tab-pane fade">
-                                    @if(empty($facebookComments))
-                                        <h4 class="text-center">No comments as of yet.</h4>
-                                    @else
-                                        <div class="box-body box-comments">
-                                            @foreach($facebookComments as $facebookComment)
-                                                <div class="box-comment">
-                                                    <!-- User image -->
-                                                    <img class="img-circle img-sm" src="/uploads/default.jpg" alt="User Image">
-                                                    <div class="comment-text">
-                                                      <span class="username">
-                                                        {{ $facebookComment['from']['name']  }}
-                                                          <span class="text-muted pull-right">{{ $facebookComment['created_time'] }}</span>
-                                                      </span>
-                                                        {{ $facebookComment['message'] }}
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    @endif
+                                @if(isset($isNLPEnabled) and $resolution->facebook_post_id !== null)
+                                    <div id="fbComments" class="tab-pane fade">
+                                        @if(!isset($facebookComments))
+                                            <h4 class="text-center">No comments as of yet.</h4>
+                                        @else
+                                            <div class="box-body box-comments">
+                                                @foreach($facebookComments as $facebookComment)
+                                                    <div class="box-comment">
+                                                        <!-- User image -->
+                                                        {{--<img class="img-circle img-sm" src="/uploads/default.jpg"--}}
+                                                        {{--alt="User Image">--}}
+                                                        @if($facebookComment['result']->sentiment === 'positive')
+                                                            <i class="pull-left fa fa-smile-o text-success"></i>
+                                                        @elseif($facebookComment['result']->sentiment === 'negative')
+                                                            <i class="pull-left fa fa-minus text-danger"></i>
 
-                                </div>
+                                                        @elseif($facebookComment['result']->sentiment === 'neutral')
+                                                            <i class="pull-left fa fa-warning text-warning"></i>
+                                                        @else
+                                                            N/A
+                                                        @endif
+                                                        <div class="comment-text">
+                                                              <span class="username">
+                                                                  {{ $facebookComment['name'] }}
+                                                                  <span class="text-muted pull-right">{{ $facebookComment['created_time'] }}</span>
+                                                              </span>
+                                                            {{ $facebookComment['result']->sentence }}
+                                                        </div>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        @endif
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>

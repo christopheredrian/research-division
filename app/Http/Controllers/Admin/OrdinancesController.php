@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\NLPUtilities;
 use App\Ordinance;
 use App\Questionnaire;
 use App\Question;
@@ -217,7 +218,7 @@ class OrdinancesController extends Controller
         Session::flash('flash_message', "Successfully added <strong> Ordinance" . $ordinance->number . "</strong>!");
 
         // POST TO FACEBOOK
-        if (app('App\Http\Controllers\Admin\ConfigurationsController')->isNLPEnabled()) {
+        if (NLPUtilities::isNLPEnabled()) {
             app('App\Http\Controllers\Admin\FacebookPostsController')->postToPage($ordinance);
         }
 
@@ -236,15 +237,14 @@ class OrdinancesController extends Controller
     {
         $ordinance = Ordinance::findOrFail($id);
         $questionnaire = Questionnaire::where('ordinance_id', $id)->first();
-        $facebookComments = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($ordinance);
         $variables = [
             'ordinance' => $ordinance,
             'questionnaire' => $questionnaire,
             'flag' => FormsController::ORDINANCES,
-            'facebookComments' => $facebookComments
             ];
 
-        if (app('App\Http\Controllers\Admin\ConfigurationsController')->isNLPEnabled()) {
+        if (NLPUtilities::isNLPEnabled()) {
+            $variables['facebookComments'] = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($ordinance);
             $variables['isNLPEnabled'] = 1;
         }
 
