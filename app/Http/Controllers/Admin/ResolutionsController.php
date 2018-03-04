@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\NLPUtilities;
 use App\Questionnaire;
 use App\Question;
 use App\Value;
@@ -111,7 +112,10 @@ class ResolutionsController extends Controller
         $resolution->save();
 
         // POST TO FACEBOOK
-        app('App\Http\Controllers\Admin\FacebookPostsController')->postToPage($resolution);
+        if (NLPUtilities::isNLPEnabled()) {
+            app('App\Http\Controllers\Admin\FacebookPostsController')->postToPage($resolution);
+        }
+
 
         Session::flash('flash_message', "Successfully added <strong>Resolution" . $resolution->number . "</strong>!");
 
@@ -129,14 +133,20 @@ class ResolutionsController extends Controller
     {
         $resolution = Resolution::findOrFail($id);
         $questionnaire = Questionnaire::where('resolution_id', $id)->first();
-        $facebookComments = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($resolution);
-
-        return view('admin.resolutions.show', [
+        $variables = [
             'resolution' => $resolution,
             'questionnaire' => $questionnaire,
             'flag' => FormsController::RESOLUTIONS,
-            'facebookComments' => $facebookComments,
-        ]);
+        ];
+
+        if (NLPUtilities::isNLPEnabled()) {
+            if ($resolution->facebook_post_id !== null) {
+                $variables['facebookComments'] = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($resolution);
+            }
+            $variables['isNLPEnabled'] = 1;
+        }
+
+        return view('admin.resolutions.show', $variables);
     }
 
     /**
