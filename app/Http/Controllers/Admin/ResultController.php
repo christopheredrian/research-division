@@ -27,26 +27,44 @@ class ResultController extends Controller
     {
         // NOTE: An alternative for the above query
         $questionnaire = Questionnaire::find($id);
-        $allQuestions = $questionnaire->questions;
 
+        if ($questionnaire->ordinance_id !== null) {
+            $ordinance = Ordinance::find($questionnaire->ordinance_id);
+            return view('admin.result.show')
+                ->with('questionnaire', $questionnaire)
+                ->with('legislation', $ordinance);
+        } else {
+            $resolution = Resolution::find($questionnaire->resolution_id);
+            return view('admin.result.show')
+                ->with('questionnaire', $questionnaire)
+                ->with('legislation', $resolution);
+        }
 
-        return view('admin.result.show')
-            ->with('questionnaire', $questionnaire);
+//        return view('admin.result.show')
+//        ->with('questionnaire', $questionnaire);
     }
 
     public function downloadExcel($id)
     {
-        // file name to ordinance num
-
         try {
             $questionnaire = Questionnaire::find($id);
-            $file_name = $questionnaire->description;
+            if ($questionnaire->ordinance_id !== null) {
+                $ordinance = Ordinance::find($questionnaire->ordinance_id);
+//                $file_name = str_replace('.', '', $ordinance->title);
+//                $file_name = str_replace(' ','_', $file_name);
+                $file_name = "Ordinance number " .$ordinance->number . " of series " . $ordinance->series;
+            } else {
+                $resolution = Resolution::find($questionnaire->resolution_id);
+                $file_name = "Resolution number " . $resolution->number . " of series " . $resolution->series;
+            }
 
             Excel::create($file_name, function ($excel) use ($id) {
                 $excel->sheet('Excel sheet', function ($sheet) use ($id) {
                     $questions_arr = [];
                     $answers_arr = [];
                     $count = 0;
+                    $space = 4; // will appear first on A[number], will appear on A4
+                    $skip = $space + 1; //answers will append after the question
                     $questionnaire = Questionnaire::find($id);
                     foreach ($questionnaire->questions as $question) {
                         $questions_arr[] = $question->question;
@@ -55,8 +73,20 @@ class ResultController extends Controller
                         }
                         $count += 1;
                     }
+
+                    $sheet->setOrientation('landscape');
+
+
+                    $range = 'A1:B1';
+                    $sheet->mergeCells($range);
+
+                    $sheet->appendRow(array(
+                        'Sangguniang Panglungsod', 'Sangguniang Panglungsod'
+                    ));
+
                     // filling arrays with data ^
-                    $sheet->appendRow($questions_arr);
+                    $sheet->appendRow($space, $questions_arr);
+
                     $rows = [];
                     for ($x = 0; $x < count($answers_arr); $x++) {
                         for ($y = 0; $y < count($answers_arr[$x]); $y++) {
@@ -65,10 +95,20 @@ class ResultController extends Controller
                     }
 
                     foreach ($rows as $row) {
-                        $sheet->appendRow($row);
+                        $sheet->appendRow($skip,$row);
+                        $skip++;
                     }
 
-                    $sheet->setOrientation('landscape');
+                    $sheet->cells($range, function($cells) {
+                        $cells->setAlignment('center');
+                        $cells->setValignment('center');
+                    });
+
+//                    $sheet->setHeight(array(
+//                        1     =>  50,
+//                        2     =>  25,
+//                        3     =>  50
+//                    ));
 
                 });
             })->export('xls');
@@ -171,7 +211,7 @@ class ResultController extends Controller
         // file name to ordinance num
 
         try {
-            if($flag==='ordinances'){
+            if($flag ==='ordinances'){
                 $ordinance = Ordinance::find($id);
                 $file_name = 'ordinance no.'.$ordinance->number.', '.$ordinance->series.' - comments';
             }else{
