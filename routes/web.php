@@ -141,3 +141,5 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/downloadReport', 'ReportsController@downloadReport')->name('downloadReport');
     /** END --- Reports*/
 });
+Route::post('/toggleConfiguration', 'Admin\\ConfigurationsController@toggleConfiguration');
+Route::get('/test', 'Admin\\ConfigurationsController@index');
