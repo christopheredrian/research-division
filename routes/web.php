@@ -143,7 +143,10 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/reports', 'ReportsController@query')->name('postreports');
     Route::get('/downloadReport', 'ReportsController@downloadReport')->name('downloadReport');
     /** END --- Reports*/
+
+    Route::post('/toggleConfiguration', 'Admin\\ConfigurationsController@toggleConfiguration');
+    Route::post('/updateFacebookVariables', 'Admin\\ConfigurationsController@updateFacebookVariables');
 });
 
-Route::post('/toggleConfiguration', 'Admin\\ConfigurationsController@toggleConfiguration');
-Route::post('/updateFacebookVariables', 'Admin\\ConfigurationsController@updateFacebookVariables');
+Route::view('/privacy-policy', 'privacy');
+
