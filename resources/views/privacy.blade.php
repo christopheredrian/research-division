@@ -127,7 +127,7 @@
                     such
                     changes have been first posted.&nbsp;<br/><br/>QUESTIONS OR CONCERNS.&nbsp;<br/><br/>If you have any
                     questions
-                    or concerns regarding privacy on our Website, please send us a detailed message at [COMPANY-EMAIL]. We
+                    or concerns regarding privacy on our Website, please send us a detailed message at baguioresearchdivision@gmail.com. We
                     will make
                     every effort to resolve your concerns.&nbsp;<br/><br/>Effective Date: March 4, 2011</p>
             </div>
