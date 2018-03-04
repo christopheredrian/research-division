@@ -197,6 +197,14 @@ function skin($user)
                         </a>
 
                     </li>
+
+                    <li class="{{ Request::is('admin/configurations*') ? 'active' : '' }}">
+                        <a href="/admin/configurations">
+                            <i class="fa fa-gears"></i>
+                            <span>Configuration</span>
+                        </a>
+
+                    </li>
                 </ul>
             @endif
             <ul class="sidebar-menu" data-widget="tree">

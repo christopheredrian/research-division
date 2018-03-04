@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Configuration;
 use App\Ordinance;
 use Facebook\Facebook;
 use Illuminate\Http\Request;
@@ -59,9 +60,12 @@ class FacebookPostsController extends Controller
         // Create new Facebook instance
         $fb = $this->newFacebookInstance();
 
+        // Get Facebook page ID from saved configurations in database
+        $facebookPageID = Configuration::where('key', 'facebook_page_id')->first()->value;
+
         $legislation->facebook_post_id = $fb->sendRequest(
             'POST',
-            env('FACEBOOK_PAGE_ID') . "/feed",
+            $facebookPageID . "/feed",
             $array)
             ->getDecodedBody()['id'];
 

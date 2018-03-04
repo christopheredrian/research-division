@@ -293,12 +293,14 @@
 
                             <ul class="nav nav-tabs">
                                 <li class="active"><a data-toggle="tab" href="#comments">Comments/Suggestions</a></li>
-                                <li>
-                                    <a data-toggle="tab" href="#fbComments">
-                                        <i class="fa fa-facebook-f"></i>
-                                        Facebook Comments
-                                    </a>
-                                </li>
+                                @if(isset($isNLPEnabled))
+                                    <li>
+                                        <a data-toggle="tab" href="#fbComments">
+                                            <i class="fa fa-facebook-f"></i>
+                                            Facebook Comments
+                                        </a>
+                                    </li>
+                                @endif
                             </ul>
 
                             <div class="tab-content">
@@ -335,28 +337,29 @@
                                     </div>
                                 </div>
 
-                                <div id="fbComments" class="tab-pane fade">
-                                    @if(empty($facebookComments))
-                                        <h4 class="text-center">No comments as of yet.</h4>
-                                    @else
-                                        <div class="box-body box-comments">
-                                            @foreach($facebookComments as $facebookComment)
-                                                <div class="box-comment">
-                                                    <!-- User image -->
-                                                    <img class="img-circle img-sm" src="/uploads/default.jpg" alt="User Image">
-                                                    <div class="comment-text">
+                                @if(isset($isNLPEnabled))
+                                    <div id="fbComments" class="tab-pane fade">
+                                        @if(empty($facebookComments))
+                                            <h4 class="text-center">No comments as of yet.</h4>
+                                        @else
+                                            <div class="box-body box-comments">
+                                                @foreach($facebookComments as $facebookComment)
+                                                    <div class="box-comment">
+                                                        <!-- User image -->
+                                                        <img class="img-circle img-sm" src="/uploads/default.jpg" alt="User Image">
+                                                        <div class="comment-text">
                                                       <span class="username">
                                                         {{ $facebookComment['from']['name']  }}
                                                           <span class="text-muted pull-right">{{ $facebookComment['created_time'] }}</span>
                                                       </span>
-                                                        {{ $facebookComment['message'] }}
+                                                            {{ $facebookComment['message'] }}
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
-                                    @endif
-
-                                </div>
+                                                @endforeach
+                                            </div>
+                                        @endif
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>

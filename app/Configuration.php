@@ -11,5 +11,4 @@ class Configuration extends Model
         'key',
         'value',
     ];
-
 }

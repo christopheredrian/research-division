@@ -217,7 +217,9 @@ class OrdinancesController extends Controller
         Session::flash('flash_message', "Successfully added <strong> Ordinance" . $ordinance->number . "</strong>!");
 
         // POST TO FACEBOOK
-        app('App\Http\Controllers\Admin\FacebookPostsController')->postToPage($ordinance);
+        if (app('App\Http\Controllers\Admin\ConfigurationsController')->isNLPEnabled()) {
+            app('App\Http\Controllers\Admin\FacebookPostsController')->postToPage($ordinance);
+        }
 
         $redirectLink = $ordinance->is_monitoring == 1 ? '/admin/forms/ordinances' : '/admin/ordinances';
 
@@ -235,13 +237,18 @@ class OrdinancesController extends Controller
         $ordinance = Ordinance::findOrFail($id);
         $questionnaire = Questionnaire::where('ordinance_id', $id)->first();
         $facebookComments = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($ordinance);
-
-        return view('admin.ordinances.show', [
+        $variables = [
             'ordinance' => $ordinance,
             'questionnaire' => $questionnaire,
             'flag' => FormsController::ORDINANCES,
             'facebookComments' => $facebookComments
-        ]);
+            ];
+
+        if (app('App\Http\Controllers\Admin\ConfigurationsController')->isNLPEnabled()) {
+            $variables['isNLPEnabled'] = 1;
+        }
+
+        return view('admin.ordinances.show', $variables);
     }
 
     /**
