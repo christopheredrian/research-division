@@ -15,8 +15,8 @@
             <li class="active">{{ $user->id }}</li>
         </ol>
     @endif
-
-    <div class="col-md-8">
+<div class="col-md-1"></div>
+    <div class="col-md-10">
 
         <!-- general form elements -->
         <div class="box box-primary">
@@ -68,6 +68,7 @@
             </div>
         </div>
     </div>
+    <div class="col-md-1"></div>
 
 
 @endsection

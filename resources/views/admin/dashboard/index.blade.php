@@ -136,7 +136,7 @@
         </div>
         <!-- /.row -->
         <div class="row">
-            <div class="col-lg-3 col-xs-6">
+            <div class="col-lg-4 col-xs-6">
                 <!-- small box -->
                 <div class="small-box bg-light-blue">
                     <div class="inner">
@@ -151,7 +151,7 @@
                 </div>
             </div>
             
-            <div class="col-lg-3 col-xs-6">
+            <div class="col-lg-4 col-xs-6">
                 <!-- small box -->
                 <div class="small-box bg-light-blue">
                     <div class="inner">
@@ -166,7 +166,7 @@
                 </div>
             </div>
             
-            <div class="col-lg-6 col-xs-6">
+            <div class="col-lg-4 col-xs-6">
                 <!-- small box -->
                 <div class="small-box bg-light-blue">
                     <div class="inner">
