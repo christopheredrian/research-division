@@ -48,6 +48,8 @@ class OrdinancesController extends Controller
 
     public function upload($instance, $pdfFile, $directory)
     {
+
+        dd($instance);
         /** Custom naming for files depending on what type:
          * (Ordinance, Resolution, Status Report, Update Report)
          */
@@ -279,6 +281,7 @@ class OrdinancesController extends Controller
         $file = $request->file('pdf');
 
         $ordinance = Ordinance::find($id);
+        dd($ordinance);
         $ordinance->update($validatedData);
         $ordinance->pdf_file_path =
             $request->has('pdf') ? $this->upload($ordinance, $file, 'ordinances') : $ordinance->pdf_file_path;
