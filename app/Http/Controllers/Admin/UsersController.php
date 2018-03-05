@@ -159,6 +159,8 @@ class UsersController extends Controller
             $user->save();
         }
 
+        Session::flash('flash_message', "Successfully updated profile!");
+
         if (Auth::user()->id != $id) {
             return redirect('/admin/users');
         } elseif (Auth::user()->id == $id) {
