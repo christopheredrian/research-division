@@ -34,7 +34,7 @@ class LoginController extends Controller
     {
         session(['profile_image_link' => GoogleDriveUtilities::getShareableLink('userimages', Auth::user()->image)]);
 
-        return redirect('/admin');
+        return '/admin';
     }
 
     /**
