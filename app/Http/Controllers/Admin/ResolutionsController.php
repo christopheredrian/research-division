@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\GoogleDriveUtilities;
 use App\Http\NLPUtilities;
 use App\Questionnaire;
 use App\Question;
@@ -104,9 +105,7 @@ class ResolutionsController extends Controller
         $resolution = new Resolution();
         $resolution->fill($validatedData);
         $resolution->save();
-        $resolution->pdf_file_path = $request->has('pdf') ?
-            app('App\Http\Controllers\Admin\OrdinancesController')->upload($resolution, $file, 'resolutions')
-            : '';
+        $resolution->pdf_file_path = $request->has('pdf') ? GoogleDriveUtilities::upload($resolution, $file, 'resolutions') : '';
         $resolution->pdf_file_name = $resolution->pdf_file_path === "" ? "" :
             substr($resolution->pdf_file_path, strrpos($resolution->pdf_file_path, '/') + 1);
         $resolution->save();
@@ -178,7 +177,7 @@ class ResolutionsController extends Controller
 
         $resolution = Resolution::find($id);
         $resolution->update($validatedData);
-        $resolution->pdf_file_path = $request->has('pdf') ? app('App\Http\Controllers\Admin\OrdinancesController')->upload($resolution, $file, 'resolutions') : $resolution->pdf_file_path;
+        $resolution->pdf_file_path = $request->has('pdf') ? GoogleDriveUtilities::upload($resolution, $file, 'resolutions') : $resolution->pdf_file_path;
         $resolution->pdf_file_name = $resolution->pdf_file_path === "" ? "" :
             substr($resolution->pdf_file_path, strrpos($resolution->pdf_file_path, '/') + 1);
         $resolution->save();
@@ -237,7 +236,7 @@ class ResolutionsController extends Controller
         // Store Status Report
         $statusReport->resolution_id = $validatedData['resolution_id'];
         $statusReport->save();
-        $statusReport->pdf_file_path = app('App\Http\Controllers\Admin\OrdinancesController')->upload($statusReport, $file, 'statusreports');
+        $statusReport->pdf_file_path = GoogleDriveUtilities::upload($statusReport, $file, 'statusreports');
         $statusReport->pdf_file_name = substr($statusReport->pdf_file_path,
             strrpos($statusReport->pdf_file_path, '/') + 1);
         $statusReport->save();
@@ -271,7 +270,7 @@ class ResolutionsController extends Controller
         // Store Update Report
         $updateReport->resolution_id = $validatedData['resolution_id'];
         $updateReport->save();
-        $updateReport->pdf_file_path = app('App\Http\Controllers\Admin\OrdinancesController')->upload($updateReport, $file, 'updatereports');
+        $updateReport->pdf_file_path = GoogleDriveUtilities::upload($updateReport, $file, 'updatereports');
         $updateReport->pdf_file_name = substr($updateReport->pdf_file_path, strrpos($updateReport->pdf_file_path, '/') + 1);
         $updateReport->save();
 

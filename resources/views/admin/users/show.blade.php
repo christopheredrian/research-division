@@ -38,7 +38,7 @@
                     <tr>
                         <div style="text-align: center">
                             @if($user->image != null)
-                                <img src="{{$user->image}}"
+                                <img src="{{ session('profile_image_link') }}"
                                      class="img-circle" style="max-width: 2in; border: dashed"
                                      alt="User Image">
                             @else

@@ -93,8 +93,8 @@ function skin($user)
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                            @if(File::exists(public_path()."/uploads/user-".Auth::user()->id.".jpg"))
-                                <img src="/uploads/user-{{ Auth::user()->id }}.jpg" class="user-image" alt="User Image">
+                            @if(Auth::user()->image)
+                                <img src="{{ session('profile_image_link') }}" class="user-image" alt="User Image">
                             @else
                                 <img src="/uploads/default.jpg" class="user-image" alt="User Image">
                             @endif
@@ -104,8 +104,8 @@ function skin($user)
                             <!-- User image -->
                             <li class="user-header">
 
-                                @if(File::exists(public_path()."/uploads/user-".Auth::user()->id.".jpg"))
-                                    <img src="/uploads/user-{{ Auth::user()->id }}.jpg" class="img-circle"
+                                @if(\Illuminate\Support\Facades\Auth::user()->image)
+                                    <img src="{{ session('profile_image_link') }}" class="img-circle"
                                          alt="User Image">
                                 @else
                                     <img src="/uploads/default.jpg" class="img-circle" alt="User Image">
@@ -157,8 +157,8 @@ function skin($user)
             <div class="user-panel">
                 <div class="pull-left image">
 
-                    @if(File::exists(public_path()."/uploads/user-".Auth::user()->id.".jpg"))
-                        <img src="/uploads/user-{{ Auth::user()->id }}.jpg" class="img-circle" alt="User Image">
+                    @if(\Illuminate\Support\Facades\Auth::user()->image)
+                        <img src="{{ session('profile_image_link') }}" class="img-circle" alt="User Image">
                     @else
                         <img src="/uploads/default.jpg" class="img-circle" alt="User Image">
                     @endif
