@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\GoogleDriveUtilities;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
+use \Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -25,7 +28,14 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin';
+//    protected $redirectTo = '/admin';
+
+    protected function redirectTo()
+    {
+        session(['profile_image_link' => GoogleDriveUtilities::getShareableLink('userimages', Auth::user()->image)]);
+
+        return redirect('/admin');
+    }
 
     /**
      * Create a new controller instance.
