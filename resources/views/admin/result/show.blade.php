@@ -46,25 +46,6 @@
         .fa.fa-print{
             margin-right: 5px;
         }
-
-        a.print{
-             text-decoration: none;
-             display: inline-block;
-             width: 100px;
-             margin: 20px auto;
-             background: #dc143c;
-             background: linear-gradient(#e3647e, #DC143C);
-             text-align: center;
-             color: #fff;
-             padding: 3px 6px;
-             border-radius: 3px;
-             border: 1px solid #e3647e;
-         }
-
-        a.print:hover{
-            background: linear-gradient(#DC143C, #e3647e);
-            color: #fff;
-        }
     </style>
 
 @endsection
@@ -73,18 +54,21 @@
     <div id="_token" class="hidden" data-token="{{ csrf_token() }}"></div>
     <div class="box box-primary">
         <div class="box-header with-border">
+
             <a href="/admin/result/download/{{ $questionnaire->id }}" class="btn btn-success btn-md pull-right">
                 <span class="fa fa fa-file-excel-o"> </span> Download Excel
             </a>
 
-            <h1 class="box-title">Results for: <strong>{{ $questionnaire->name }}</strong></h1>
-            <p>{{ $questionnaire->description }}</p>
-
-            <a href="" onclick="window.print()" class="print btn btn-md pull-right ">
-                <i class=" fa fa-print">
-                    Print
-                </i>
+            <a onclick="window.print()" class="btn btn-primary btn-md pull-right ">
+                <span class="fa fa fa-print"> </span> Print
             </a>
+
+            <h1 class="box-title">Results for:
+                <strong>{{ $legislation->title }}</strong>
+            </h1>
+
+
+
         </div>
         <div class="box-body">
             <div class="content">

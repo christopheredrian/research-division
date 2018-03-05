@@ -17,9 +17,7 @@ class Questionnaire extends Model
      */
     protected $dates = ['deleted_at'];
 
-    protected $fillable = [
-        'title', 'description', 'question', 'answer'
-    ];
+
 
     /**
      * Returns all questions for a given questionnaire

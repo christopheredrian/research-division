@@ -2,29 +2,35 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Configuration;
+use App\Http\NLPUtilities;
 use App\Ordinance;
 use Facebook\Facebook;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Mockery\Exception;
 
 class FacebookPostsController extends Controller
 {
-    public function newFacebookInstance(){
+    public function newFacebookInstance()
+    {
         $fb = new Facebook([
             'app_id' => env('FACEBOOK_APP_ID'),
             'app_secret' => env('FACEBOOK_APP_SECRET'),
             'default_graph_version' => env('FACEBOOK_DEFAULT_GRAPH_VERSION')
         ]);
-        $fb->setDefaultAccessToken(env('FACEBOOK_FOREVER_PAGE_ACCESS_TOKEN'));
+        $fb->setDefaultAccessToken(Configuration::where('key', 'facebook_forever_page_access_token')->first()->value);
 
         return $fb;
     }
 
-    public function getMessage($legislation){
+    public function getMessage($legislation)
+    {
         $legislationType = get_class($legislation) == 'App\\Ordinance' ? 'Ordinance' : 'Resolution';
         $fbMessage = '';
 
-        if($legislation->is_monitoring === 1) {
+        if ($legislation->is_monitoring) {
             $fbMessage .= 'Good day! A new ' . $legislationType . ' is being monitored!';
         } else {
             $legislationAction = $legislationType === 'Ordinance' ? 'enacted' : 'approved';
@@ -48,7 +54,8 @@ class FacebookPostsController extends Controller
         return $fbMessage;
     }
 
-    public function postToPage($legislation){
+    public function postToPage($legislation)
+    {
         $legislationType = get_class($legislation) == 'App\\Ordinance' ? 'Ordinance' : 'Resolution';
         $link = 'https://research-division-baguio.herokuapp.com/public/show' . $legislationType . '/' . $legislation->id;
 
@@ -59,18 +66,22 @@ class FacebookPostsController extends Controller
         // Create new Facebook instance
         $fb = $this->newFacebookInstance();
 
+        // Get Facebook page ID from saved configurations in database
+        $facebookPageID = Configuration::where('key', 'facebook_page_id')->first()->value;
+
         $legislation->facebook_post_id = $fb->sendRequest(
             'POST',
-            env('FACEBOOK_PAGE_ID') . "/feed",
+            $facebookPageID . "/feed",
             $array)
             ->getDecodedBody()['id'];
 
         $legislation->save();
     }
 
-    public function getComments($legislation){
+    public function getComments($legislation)
+    {
         // GET FACEBOOK COMMENTS OF FACEBOOK POST IF M&E ORDINANCE
-        if($legislation->is_monitoring === 1 and $legislation->facebook_post_id !== null) {
+        if ($legislation->is_monitoring === 1 and $legislation->facebook_post_id !== null) {
             try {
                 // Create new Facebook instance
                 $fb = $this->newFacebookInstance();
@@ -80,8 +91,26 @@ class FacebookPostsController extends Controller
                     ('/' . $legislation->facebook_post_id . '/comments')
                 );
 
-                return $response->getDecodedBody()['data'];
-            } catch(Exception $e) {
+                $fb_sentences = $response->getDecodedBody()['data'];
+                $temp_sentences = [];
+                $results = [];
+
+                foreach ($fb_sentences as $k => $fb_sentence){
+                    $temp_sentences[] = $fb_sentence['message'];
+                    $results[$k] = [
+                        'name' => $fb_sentence['from']['name'],
+                        'created_time' => $fb_sentence['created_time']
+                    ];
+                }
+
+                $sentiments = NLPUtilities::getSentiments($temp_sentences);
+
+                foreach ($sentiments as $k => $v) {
+                    $results[$k]['result'] = $v;
+                }
+
+                return $results;
+            } catch (Exception $e) {
                 echo 'Facebook SDK returned an error: ' . $e->getMessage();
                 exit;
             }
