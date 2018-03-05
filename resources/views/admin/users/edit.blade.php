@@ -205,7 +205,7 @@
                                                 <input name="email" type="email" class="form-control" id="email"
                                                        placeholder="Enter email"
                                                        value="{{ old ('email', isset($user) ? $user->email : '') }}"
-                                                       readonly>
+                                                       {{$user->role == 'superadmin','','readonly'}}>
                                             </div>
 
                                             @if(Auth::user()->role == "admin")

@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
+use Mail;
 
 class UsersController extends Controller
 {
@@ -109,7 +110,7 @@ class UsersController extends Controller
 
         $profpic = 'user-' . $id . '.jpg';
 
-        File::delete('uploads/'.$profpic);
+        File::delete('uploads/' . $profpic);
 
         return redirect('/admin/profile/edit');
     }
@@ -220,7 +221,8 @@ class UsersController extends Controller
 
     public function resetPassword($user_id)
     {
-        $user = User::findorFail($user_id)->first();
+        $user = User::findorFail($user_id);
+
         $temporaryPassword = $this->generateRandomString(5);
 
         $user->password = bcrypt($temporaryPassword);
@@ -228,7 +230,7 @@ class UsersController extends Controller
 
         Session::flash(
             'flash_message',
-            "Password has been reset for" . $user->name . ". The temporary password is <b>" . $temporaryPassword . "<b>.");
+            "Password has been reset for " . $user->name . ". The temporary password is <b>" . $temporaryPassword . "<b>.");
 
         return redirect('/admin/users');
     }

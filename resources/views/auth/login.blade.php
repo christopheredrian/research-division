@@ -118,13 +118,12 @@
                         {{--<button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>--}}
                     {{--</div>--}}
 
-                    {{--<a class="btn btn-link" href="{{ route('password.request') }}">--}}
-                        {{--Forgot Your Password?--}}
-                    {{--</a>--}}
+                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                        Forgot Your Password?
+                    </a>
                 {{--</div>--}}
             {{--</div>--}}
         </form>
-        <a href="#">I forgot my password</a><br>
     </div>
     <!-- /.login-box-body -->
 </div>

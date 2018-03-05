@@ -121,7 +121,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     // Routes ONLY for Admin and superadmin
     Route::group(['middleware' => 'role:superadmin,admin'], function () {
         Route::resource('pages', 'Admin\\PagesController');
-        Route::get('/reset-password/{user_id}/', 'Admin\\UsersController@resetPassword');
+        Route::get('/reset-password/{user_id}', 'Admin\\UsersController@resetPassword');
         Route::get('/logs', 'Admin\\LogsController@index');
     });
 

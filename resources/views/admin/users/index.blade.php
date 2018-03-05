@@ -52,7 +52,7 @@
                                 <button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#exampleModal">
                                     Delete
                                 </button>
-                                <a href="/admin/reset-password/{{$user->id}}/"
+                                <a href="/admin/reset-password/{{$user->id}}"
                                    class="btn btn-xs btn-info resetPasswordButton">Reset Password</a>
                             </td>
                         </tr>
