@@ -281,8 +281,8 @@ class OrdinancesController extends Controller
         $file = $request->file('pdf');
 
         $ordinance = Ordinance::find($id);
-        dd($ordinance);
         $ordinance->update($validatedData);
+        dd($ordinance);
         $ordinance->pdf_file_path =
             $request->has('pdf') ? $this->upload($ordinance, $file, 'ordinances') : $ordinance->pdf_file_path;
         $ordinance->pdf_file_name = $ordinance->pdf_file_path === "" ? "" :
