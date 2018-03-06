@@ -110,6 +110,8 @@ class UsersController extends Controller
         $user->image = GoogleDriveUtilities::deleteFile($user->image);
         $user->save();
 
+        \session(['profile_image_link' => '']);
+
         Session::flash('flash_message', "Successfully deleted profile picture!");
 
         return redirect('/admin/profile/edit');
