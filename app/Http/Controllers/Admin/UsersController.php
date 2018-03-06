@@ -142,7 +142,6 @@ class UsersController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -150,6 +149,7 @@ class UsersController extends Controller
 
         $user = User::findOrFail($id);
         $user->update($requestData);
+
         $user->save();
 
         if ($request->file('imageFile') !== null) {
