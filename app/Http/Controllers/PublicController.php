@@ -364,6 +364,7 @@ class PublicController extends Controller
         }else{
             $resolutions = $resolutions->where('is_monitored','=',0);
         }
+
         // Implement filtering / sorting
         $resolutions = $resolutions->orderBy($colName, $order);
 
