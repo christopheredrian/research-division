@@ -107,12 +107,14 @@
                 <!-- small box -->
                 <div class="small-box bg-light-blue">
                     <div class="inner">
-                        <h3>{{ \App\Questionnaire::count() }}</h3>
 
-                        <p>Questionnaires</p>
+                        <h3>{{ \App\Suggestion::count() }} <small class="text-gray">({{ \App\Suggestion::Where('created_at','>', Carbon\Carbon::now()->subDays(4))->count() }} new)</small></h3>
+
+
+                        <p>Comments/Suggestions</p>
                     </div>
                     <div class="icon">
-                        <i class="fa fa-question-circle-o"></i>
+                        <i class="fa fa-paper-plane"></i>
                     </div>
                     <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
@@ -122,7 +124,7 @@
                 <!-- small box -->
                 <div class="small-box bg-light-blue">
                     <div class="inner">
-                        <h3>{{ \App\Response::count() }}</h3>
+                        <h3>{{ \App\Response::count() }} <small class="text-gray">({{ \App\Response::Where('created_at','>', Carbon\Carbon::now()->subDays(4))->count() }} new)</small></h3>
 
                         <p>Feedback</p>
                     </div>
@@ -140,12 +142,12 @@
                 <!-- small box -->
                 <div class="small-box bg-light-blue">
                     <div class="inner">
-                        <h3>{{ \App\Suggestion::count() }}</h3>
+                        <h3>{{ \App\Questionnaire::count() }}</h3>
 
-                        <p>Total Suggestions</p>
+                        <p>Questionnaires</p>
                     </div>
                     <div class="icon">
-                        <i class="fa fa-paper-plane"></i>
+                        <i class="fa fa-question-circle-o"></i>
                     </div>
                     <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
