@@ -23,6 +23,7 @@ class Ordinance extends Model
         'is_accepting',
         'pdf_file_path',
         'is_monitoring',
+        'facebook_post_id',
     ];
 
     /**
@@ -42,11 +43,14 @@ class Ordinance extends Model
     {
         return $this->hasMany('App\UpdateReport');
     }
+    public function questionnaire()
+    {
+        return $this->hasOne('App\Questionnaire');
+    }
 
     public function getQuestionnaire()
     {
         return Questionnaire::where('ordinance_id', $this->id)->first();
-
     }
 
     public function isAccepting()
@@ -60,7 +64,7 @@ class Ordinance extends Model
 
     }
 
-    public function  acceptingComments()
+    public function acceptingComments()
     {
         return $this->is_accepting;
     }

@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\GoogleDriveUtilities;
+use App\Http\NLPUtilities;
 use App\Ordinance;
 use App\Questionnaire;
 use App\Question;
 use App\Value;
 use App\StatusReport;
 use App\UpdateReport;
+use Facebook\Facebook;
 use GuzzleHttp\Promise\all;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -27,80 +30,6 @@ class OrdinancesController extends Controller
         'title',
         'keywords',
     ];
-
-    public function getFileFromCloud($filename)
-    {
-        $dir = '/';
-        $recursive = true; // Get subdirectories also?
-        $contents = collect(Storage::disk('google')->listContents($dir, $recursive));
-
-        // Check if file exists
-        $file = $contents
-            ->where('type', '=', 'file')
-            ->where('filename', '=', pathinfo($filename, PATHINFO_FILENAME))
-            ->where('extension', '=', pathinfo($filename, PATHINFO_EXTENSION))
-            ->first();
-
-        return $file;
-    }
-
-    public function upload($instance, $pdfFile, $directory)
-    {
-        /** Custom naming for files depending on what type:
-         * (Ordinance, Resolution, Status Report, Update Report)
-         */
-
-        if (get_class($instance->ordinance) == 'App\\Ordinance') {
-            $basedOn = 'Ordinance' . $instance->ordinance->number;
-        } elseif (get_class($instance->resolution) == 'App\\Resolution') {
-            $basedOn = 'Resolution' . $instance->resolution->number;
-        }
-
-        if ($directory === 'statusreports' or $directory === 'updatereports') {
-            $filename =
-                $instance->id .
-                '-' .
-                substr(get_class($instance), strrpos(get_class($instance), "\\") + 1) .
-                '-' .
-                $basedOn .
-                '.pdf';
-        } else {
-            $filename = $instance->id .
-                '-' .
-                substr(get_class($instance), strrpos(get_class($instance), "\\") + 1) .
-                $instance->number . '.pdf';
-        }
-
-        /**
-         * File upload will depend on environment
-         * local = local upload
-         * production = Google Drive
-         */
-
-        if (env('APP_ENV') === 'local') {
-            $pdfFile->storeAs(
-                'public/' . $directory, $filename
-            );
-
-            $path = Storage::url($filename);
-        } else {
-            // Get file listing...
-            $file = $this->getFileFromCloud($filename);
-
-            // If file does exist, delete the existing file
-            if ($file !== null and $directory !== 'updatereports') {
-                Storage::disk('google')->delete($file['path']);
-            }
-
-            // save NEW FILE to Google Drive
-            $path = $pdfFile->storeAs(
-                env('GOOGLE_DRIVE_' . strtoupper($directory) . '_FOLDER_ID'),
-                $filename,
-                'google');
-        }
-
-        return $path;
-    }
 
     public function validateData($request)
     {
@@ -208,12 +137,17 @@ class OrdinancesController extends Controller
         $ordinance->fill($validatedData);
         $ordinance->save();
         $ordinance->pdf_file_path =
-            $request->has('pdf') ? $this->upload($ordinance, $file, 'ordinances') : '';
+            $request->has('pdf') ? GoogleDriveUtilities::upload($ordinance, $file, 'ordinances') : '';
         $ordinance->pdf_file_name = $ordinance->pdf_file_path === "" ? "" :
             substr($ordinance->pdf_file_path, strrpos($ordinance->pdf_file_path, '/') + 1);
         $ordinance->save();
 
         Session::flash('flash_message', "Successfully added <strong> Ordinance" . $ordinance->number . "</strong>!");
+
+        // POST TO FACEBOOK
+        if (NLPUtilities::isNLPEnabled()) {
+            app('App\Http\Controllers\Admin\FacebookPostsController')->postToPage($ordinance);
+        }
 
         $redirectLink = $ordinance->is_monitoring == 1 ? '/admin/forms/ordinances' : '/admin/ordinances';
 
@@ -230,12 +164,18 @@ class OrdinancesController extends Controller
     {
         $ordinance = Ordinance::findOrFail($id);
         $questionnaire = Questionnaire::where('ordinance_id', $id)->first();
-
-        return view('admin.ordinances.show', [
+        $variables = [
             'ordinance' => $ordinance,
             'questionnaire' => $questionnaire,
-            'flag' => FormsController::ORDINANCES
-        ]);
+            'flag' => FormsController::ORDINANCES,
+            ];
+
+        if (NLPUtilities::isNLPEnabled()) {
+            $variables['facebookComments'] = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($ordinance);
+            $variables['isNLPEnabled'] = 1;
+        }
+
+        return view('admin.ordinances.show', $variables);
     }
 
     /**
@@ -268,7 +208,7 @@ class OrdinancesController extends Controller
         $ordinance = Ordinance::find($id);
         $ordinance->update($validatedData);
         $ordinance->pdf_file_path =
-            $request->has('pdf') ? $this->upload($ordinance, $file, 'ordinances') : $ordinance->pdf_file_path;
+            $request->has('pdf') ? GoogleDriveUtilities::upload($ordinance, $file, 'ordinances') : $ordinance->pdf_file_path;
         $ordinance->pdf_file_name = $ordinance->pdf_file_path === "" ? "" :
             substr($ordinance->pdf_file_path, strrpos($ordinance->pdf_file_path, '/') + 1);
         $ordinance->save();
@@ -329,7 +269,7 @@ class OrdinancesController extends Controller
         // Store Status Report
         $statusReport->ordinance_id = $validatedData['ordinance_id'];
         $statusReport->save();
-        $statusReport->pdf_file_path = $this->upload($statusReport, $file, 'statusreports');
+        $statusReport->pdf_file_path = GoogleDriveUtilities::upload($statusReport, $file, 'statusreports');
         $statusReport->pdf_file_name = substr($statusReport->pdf_file_path,
             strrpos($statusReport->pdf_file_path, '/') + 1);
         $statusReport->save();
@@ -363,7 +303,7 @@ class OrdinancesController extends Controller
         // Store Update Report
         $updateReport->ordinance_id = $validatedData['ordinance_id'];
         $updateReport->save();
-        $updateReport->pdf_file_path = $this->upload($updateReport, $file, 'updatereports');
+        $updateReport->pdf_file_path = GoogleDriveUtilities::upload($updateReport, $file, 'updatereports');
         $updateReport->pdf_file_name = substr($updateReport->pdf_file_path, strrpos($updateReport->pdf_file_path, '/') + 1);
         $updateReport->save();
 
@@ -379,11 +319,13 @@ class OrdinancesController extends Controller
         $questions = Question::Where('questionnaire_id', '=', $questionnaire->id)->get();
         $values = Value::WhereIn('question_id', $questions->pluck('id'))->get();
         $required = false;
+        $ordinance = Ordinance::Where('id', '=', $id)->first();
 
         return view('admin.ordinances.preview',
             ['questionnaire' => $questionnaire],
             ['questions' => $questions])
             ->with('values', $values)
-            ->with('required', $required);
+            ->with('required', $required)
+            ->with('ordinance', $ordinance);
     }
 }

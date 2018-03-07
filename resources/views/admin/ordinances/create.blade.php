@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <div class="col-md-8">
+    <div class="col-md-12">
         <!-- general form elements -->
         <div class="box box-primary">
             <div class="box-header with-border">
@@ -16,7 +16,7 @@
                     or request()->type === \App\Http\Controllers\Admin\FormsController::ME
                     or Request::is('*edit*'))
                         <div class="box-body">
-                            <input type="hidden" name="is_monitoring" value="{{ request()->type === 'ME' ? 1 : 0 }}">
+                            <input type="hidden" name="is_monitoring" value={{ request()->type === 'ME' ? 1 : 0 }}>
                             <div class="form-group {{$errors->has('number') ? 'has-error' : ''}}">
                                 <label for="number">Number</label>
                                 <input name="number" type="text" class="form-control" id="number" value="{{ old('number') }}">

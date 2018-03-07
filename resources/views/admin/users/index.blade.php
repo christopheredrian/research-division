@@ -14,14 +14,15 @@
     <ol class="breadcrumb">
         <li class="active"><a href="/admin/users"><i class="fa fa-users"></i>Users</a></li>
     </ol>
+
     <div class="box box-default color-palette-box">
         <div class="box-header with-border">
             <h3 class="box-title"><i class="fa fa-users"></i> Users</h3>
-        </div>
-        <div class="box-body">
-            <div style="margin-bottom: 10px">
+            <div class="pull-right" style="margin-bottom: 10px">
                 <a href="/admin/users/create" class="btn btn-success">Create</a>
             </div>
+        </div>
+        <div class="box-body">
             <table class="table table-striped table-bordered">
                 <thead>
                 <tr>
@@ -77,7 +78,7 @@
                     Are you sure you want to delete this user?
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel
                     </button>
                     <form action="/admin/users/{{ $user->id }}" method="post">
                         {{ method_field('DELETE') }}

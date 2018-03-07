@@ -93,8 +93,8 @@ function skin($user)
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                            @if(File::exists(public_path()."/uploads/user-".Auth::user()->id.".jpg"))
-                                <img src="/uploads/user-{{ Auth::user()->id }}.jpg" class="user-image" alt="User Image">
+                            @if(Auth::user()->image)
+                                <img src="{{ session('profile_image_link') }}" class="user-image" alt="User Image">
                             @else
                                 <img src="/uploads/default.jpg" class="user-image" alt="User Image">
                             @endif
@@ -104,8 +104,8 @@ function skin($user)
                             <!-- User image -->
                             <li class="user-header">
 
-                                @if(File::exists(public_path()."/uploads/user-".Auth::user()->id.".jpg"))
-                                    <img src="/uploads/user-{{ Auth::user()->id }}.jpg" class="img-circle"
+                                @if(\Illuminate\Support\Facades\Auth::user()->image)
+                                    <img src="{{ session('profile_image_link') }}" class="img-circle"
                                          alt="User Image">
                                 @else
                                     <img src="/uploads/default.jpg" class="img-circle" alt="User Image">
@@ -157,8 +157,8 @@ function skin($user)
             <div class="user-panel">
                 <div class="pull-left image">
 
-                    @if(File::exists(public_path()."/uploads/user-".Auth::user()->id.".jpg"))
-                        <img src="/uploads/user-{{ Auth::user()->id }}.jpg" class="img-circle" alt="User Image">
+                    @if(\Illuminate\Support\Facades\Auth::user()->image)
+                        <img src="{{ session('profile_image_link') }}" class="img-circle" alt="User Image">
                     @else
                         <img src="/uploads/default.jpg" class="img-circle" alt="User Image">
                     @endif
@@ -194,6 +194,14 @@ function skin($user)
                         <a href="/admin/users">
                             <i class="fa fa-users"></i>
                             <span>Users</span>
+                        </a>
+
+                    </li>
+
+                    <li class="{{ Request::is('admin/configurations*') ? 'active' : '' }}">
+                        <a href="/admin/configurations">
+                            <i class="fa fa-gears"></i>
+                            <span>Configuration</span>
                         </a>
 
                     </li>
@@ -369,6 +377,18 @@ function skin($user)
                             <span class="pull-right-container"></span>
                         </a>
                     </li>
+                @endif
+
+                <li class="{{ Request::is('/reports*') ? 'active' : '' }}">
+                    <a href="/reports">
+                        <i class="fa fa-th-list"></i>
+                        <span>Reports</span>
+                        <span class="pull-right-container">
+                             </span>
+                    </a>
+                </li>
+
+                @if(Auth::user()->hasRole('superadmin') || Auth::user()->hasRole('admin'))
                     <li class="{{ Request::is('admin/logs*') ? 'active' : '' }}">
                         <a href="/admin/logs">
                             <i class="fa fa-wrench"></i>
@@ -378,14 +398,7 @@ function skin($user)
                         </a>
                     </li>
                 @endif
-                <li class="{{ Request::is('/reports*') ? 'active' : '' }}">
-                    <a href="/reports">
-                        <i class="fa fa-th-list"></i>
-                        <span>Reports</span>
-                        <span class="pull-right-container">
-                             </span>
-                    </a>
-                </li>
+
 
                 {{--<li class="{{ Request::is('admin/change*') ? 'active' : '' }}">--}}
                 {{--<a href="/admin/change-password">--}}

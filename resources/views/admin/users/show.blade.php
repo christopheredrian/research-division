@@ -15,8 +15,8 @@
             <li class="active">{{ $user->id }}</li>
         </ol>
     @endif
-
-    <div class="col-md-8">
+<div class="col-md-1"></div>
+    <div class="col-md-10">
 
         <!-- general form elements -->
         <div class="box box-primary">
@@ -38,7 +38,7 @@
                     <tr>
                         <div style="text-align: center">
                             @if($user->image != null)
-                                <img src="{{$user->image}}"
+                                <img src="{{ session('profile_image_link') }}"
                                      class="img-circle" style="max-width: 2in; border: dashed"
                                      alt="User Image">
                             @else
@@ -68,6 +68,7 @@
             </div>
         </div>
     </div>
+    <div class="col-md-1"></div>
 
 
 @endsection

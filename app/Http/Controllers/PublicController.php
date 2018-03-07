@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Admin\OrdinancesController;
 use App\Http\Controllers\Controller;
+use App\Http\GoogleDriveUtilities;
 use App\Http\LogUtility;
 use App\Ordinance;
 use App\Resolution;
@@ -25,7 +26,7 @@ use Illuminate\Http\Request;
 
 class PublicController extends Controller
 {
-    const RR = 'RR';
+
     const ordinanceColumns = [
         'number',
         'series',
@@ -40,7 +41,7 @@ class PublicController extends Controller
             return response()->download(storage_path().'/app/public/'.$directory.'/'.$filename);
 
         } else {
-            $file = app('App\Http\Controllers\Admin\OrdinancesController')->getFileFromCloud($filename);
+            $file = GoogleDriveUtilities::getFileFromCloud($filename);
 
             //return $file; // array with file info
             $rawData = Storage::cloud()->get($file['path']);
@@ -98,7 +99,7 @@ class PublicController extends Controller
             Session::flash('flash_message', 'Successfully deleted file!');
             return redirect('/admin/' . $directory . '/' . $instance->id);
         } else {
-            $file = app('App\Http\Controllers\Admin\OrdinancesController')->getFileFromCloud($filename);
+            $file = GoogleDriveUtilities::getFileFromCloud($filename);
 
             // Delete File
             Storage::disk('google')->delete($file['path']);
@@ -128,6 +129,7 @@ class PublicController extends Controller
         return view('public.index', ['resolutions' => $resolutions], ['ordinances' => $ordinances]);
     }
     //    Monitoring and Eval
+    // monitored Resolutions
     public function resolutions(Request $request)
     {
         LogUtility::insertLog("HttpRequest on /resolutions", 'public');
@@ -157,16 +159,6 @@ class PublicController extends Controller
             });
         } else {
             $resolutions = Resolution::where('is_monitoring', 1);
-//            $resolutions = DB::table('ordinances')->select('*')
-//                ->whereNotIn('id', function ($query) {
-//                    $query->select('resolution_id')->from('questionnaires')
-//                        ->whereRaw('isAccepting = 1')
-//                        ->whereNotNull('resolution_id');
-//                })
-//                ->where('is_monitoring', 1)
-//                ->where('is_accepting', 0)
-//                ->orderBy($colName, $order)
-//                ->paginate($limit);
         }
 
         if ($request->has('col-number') || $request->has('col-series') || $request->has('col-title') || $request->has('col-keywords')) {
@@ -176,6 +168,8 @@ class PublicController extends Controller
                 ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
         }
 
+        
+
         // Implement filtering / sorting
         $resolutions = $resolutions->orderBy($colName, $order);
 
@@ -183,11 +177,10 @@ class PublicController extends Controller
         $resolutions = $resolutions->paginate($limit)->appends($request->all());
 
 //        dd($resolutions);
-        return view('public.MandE.monitoredResolution', [
-            'resolutions' => $resolutions,
-            'type' => PublicController::RR,]);
+        return view('public.MandE.monitoredResolution')
+        ->with('resolutions', $resolutions);
     }
-
+    // monitored Ordinances
     public function ordinance(Request $request)
     {
         LogUtility::insertLog("HttpRequest on /ordinance", 'public');
@@ -218,17 +211,7 @@ class PublicController extends Controller
             });
         } else {
             $ordinances = Ordinance::where('is_monitoring', 1);
-//            $ordinances = DB::table('ordinances')->select('*')
-//                ->whereNotIn('id', function ($query) {
-//                    $query->select('ordinance_id')->from('questionnaires')
-//                        ->whereRaw('isAccepting = 1')
-//                        ->whereNotNull('ordinance_id');
-//                })
-//                ->where('is_monitoring',1)
-//                ->where('is_accepting',0)
-//                ->orderBy($colName, $order)
-//                ->paginate($limit);
-        }
+    }
 
         if ($request->has('col-number') || $request->has('col-series') || $request->has('col-title') || $request->has('col-keywords')) {
             $ordinances = $ordinances->where('number', 'LIKE', '%' . $request->input('col-number') . '%')
@@ -237,8 +220,6 @@ class PublicController extends Controller
                 ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
         }
 
-
-
         // Implement filtering / sorting
         $ordinances = $ordinances->orderBy($colName, $order);
 
@@ -246,27 +227,15 @@ class PublicController extends Controller
         // Paginate with filters
         $ordinances = $ordinances->paginate($limit)->appends($request->all());
 
-//        $ordId = Ordinance::join('questionnaires','ordinances.id','=','questionnaires.ordinance_id')
-//            ->where('questionnaires.isAccepting', 1)
-//            ->select('ordinances.id')
-//            ->get();
+        return view('public.MandE.monitoredOrdinance')
+            ->with('ordinances' , $ordinances);
 
-
-
-//        dd($ordinances);
-
-        // ordinances that do not accept requests
-
-        return view('public.MandE.monitoredOrdinance', [
-            'ordinances' => $ordinances,
-            'type' => PublicController::RR,
-        ]);
     }
 
     public function monitorAndEvalOrdinances(Request $request)
     {
         LogUtility::insertLog("HttpRequest on /monitorAndEvalOrdinances", 'public');
-        $limit = 10;
+        $limit = 5;
         $colName = $request->colName;
         $order = $request->order;
 
@@ -301,11 +270,13 @@ class PublicController extends Controller
                 ->where('series', 'LIKE', '%' . $request->input('col-series') . '%')
                 ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
         }
+        
         if($request->status == 'monitored'){
             $ordinances = $ordinances->where('is_monitored','=',1);
         }else{
             $ordinances = $ordinances->where('is_monitored','=',0);
         }
+        
         // Implement filtering / sorting
         $ordinances = $ordinances->orderBy($colName, $order);
 
@@ -315,17 +286,15 @@ class PublicController extends Controller
 
         $resolutions = null;
 
-        return view('public.MandE.monitorAndEval', [
-            'ordinances' => $ordinances,
-            'resolutions' => $resolutions, //null
-            'type' => PublicController::RR,
-        ]);
+        return view('public.MandE.monitorAndEval')
+            ->with('ordinances' , $ordinances)
+            ->with('resolutions' , $resolutions);
     }
 
     public function monitorAndEvalResolutions(Request $request)
     {
         LogUtility::insertLog("HttpRequest on /monitorAndEvalResolutions", 'public');
-        $limit = 10;
+        $limit = 5;
         $colName = $request->colName;
         $order = $request->order;
 
@@ -359,6 +328,8 @@ class PublicController extends Controller
                 ->where('series', 'LIKE', '%' . $request->input('col-series') . '%')
                 ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
         }
+            
+        
         if($request->status == 'monitored'){
             $resolutions = $resolutions->where('is_monitored','=',1);
         }else{
@@ -372,10 +343,9 @@ class PublicController extends Controller
         $resolutions = $resolutions->paginate($limit)->appends($request->all());
         $ordinances = null;
 
-        return view('public.MandE.monitorAndEval', [
-            'resolutions' => $resolutions,
-            'ordinances' => $ordinances,
-            'type' => PublicController::RR,]);
+        return view('public.MandE.monitorAndEval')
+            ->with('ordinances' , $ordinances)
+            ->with('resolutions' , $resolutions);
     }
     //    Monitoring and Eval end
 
@@ -424,10 +394,8 @@ class PublicController extends Controller
         // Paginate with filters
         $ordinances = $ordinances->paginate($limit)->appends($request->all());
 
-        return view('public.RandR.ordinance', [
-            'ordinances' => $ordinances,
-            'type' => PublicController::RR,
-        ]);
+        return view('public.RandR.ordinance')
+        ->with('ordinances', $ordinances);
     }
 
     public function researchAndRecordsResolution(Request $request)
@@ -474,9 +442,8 @@ class PublicController extends Controller
         // Paginate with filters
         $resolutions = $resolutions->paginate($limit)->appends($request->all());
 
-        return view('public.RandR.resolution', [
-            'resolutions' => $resolutions,
-            'type' => PublicController::RR,]);
+        return view('public.RandR.resolution')
+            ->with('resolutions', $resolutions);
     }
     //   Research and Record end
 

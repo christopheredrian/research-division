@@ -94,11 +94,6 @@
                             </div>
                         </div>
             @if($ordinance->is_accepting == 1)
-                {{--<a href="">--}}
-                {{--<button class="btn-sm btn-success">--}}
-                {{--Give Comment--}}
-                {{--</button>--}}
-                {{--</a>--}}
                 <div class="container pb-cmnt-container" style="border-top: dotted lightseagreen; padding-top: 20px">
                     <div class="row">
                         <div class="col-md-6 col-md-offset-3">

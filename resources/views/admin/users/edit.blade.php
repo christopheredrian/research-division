@@ -156,8 +156,8 @@
                         <!-- form start -->
 
                         <div style="text-align: center;">
-                            @if($user->image != null)
-                                <img src="{{$user->image}}"
+                            @if($user->image)
+                                <img src="{{ session('profile_image_link') }}"
                                      class="user-circle" style="max-width: 2in; border: dashed"
                                      alt="User Image">
 
@@ -189,8 +189,14 @@
 
                                             <div class="form-group">
                                                 <label for="image">Upload Profile Picture</label>
-                                                <input name="image" type="file" id="image" class="form-control"
-                                                       value="{{ old ('image', isset($user) ? $user->image : '' )}}">
+                                                @if(\Illuminate\Support\Facades\Auth::user()->image)
+                                                    <input name="imageFile" type="file" id="imageFile" class="form-control"
+                                                           value="" disabled>
+                                                @else
+                                                    <input name="imageFile" type="file" id="imageFile" class="form-control"
+                                                           value="">
+                                                @endif
+
                                             </div>
 
                                             <div class="form-group">
@@ -205,7 +211,7 @@
                                                 <input name="email" type="email" class="form-control" id="email"
                                                        placeholder="Enter email"
                                                        value="{{ old ('email', isset($user) ? $user->email : '') }}"
-                                                       readonly>
+                                                       disabled>
                                             </div>
 
                                             @if(Auth::user()->role == "admin")

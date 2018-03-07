@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\GoogleDriveUtilities;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -75,9 +76,6 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-
-        Session::flash('flash_message', "Profile Updated!");
-
         return view('admin.users.show', [
             'user' => User::findOrFail($id)
         ]);
@@ -85,13 +83,8 @@ class UsersController extends Controller
 
     public function profile()
     {
-
-        Session::flash('flash_message', "Profile Updated!");
-
-        $id = Auth::user()->id;
-
         return view('admin.users.show', [
-            'user' => User::findOrFail($id)
+            'user' => Auth::user(),
         ]);
     }
 
@@ -104,12 +97,21 @@ class UsersController extends Controller
 
     public function deleteImage()
     {
-        $id = Auth::user()->id;
-        $profImage = User::where('id', $id)->update(['image' => null]);
-
-        $profpic = 'user-' . $id . '.jpg';
 
         File::delete('uploads/'.$profpic);
+
+//        $id = Auth::user()->id;
+//        $profImage = User::where('id', $id)->update(['image' => null]);
+//
+//        $profpic = 'user-' . $id . '.jpg';
+//
+//        File::delete('uploads/'.$profpic);
+
+        $user = Auth::user();
+        $user->image = GoogleDriveUtilities::deleteFile($user->image);
+        $user->save();
+
+        Session::flash('flash_message', "Successfully deleted profile picture!");
 
         return redirect('/admin/profile/edit');
     }
@@ -124,7 +126,7 @@ class UsersController extends Controller
     public function profEdit()
     {
         return view('admin.users.edit', [
-            'user' => User::findOrFail(Auth::user()->id)
+            'user' => User::findOrFail(Auth::user()->id),
         ]);
     }
 
@@ -138,10 +140,8 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -150,19 +150,17 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
         $user->update($requestData);
 
-        if ($request->file('image') != null) {
-            $profpic = 'user-' . $user->id . '.jpg';
+        $user->save();
 
-            $path = '/uploads/' . $profpic;
-            $user->image = $path;
+        if ($request->file('imageFile') !== null) {
+            $imageFile = $request->file('imageFile');
 
-            $request->file('image')->move(
-                public_path() . '/uploads/', $profpic
-            );
+            $user->image = GoogleDriveUtilities::upload($user, $imageFile, 'userimages');
 
             $user->save();
-
         }
+
+        Session::flash('flash_message', "Successfully updated profile!");
 
         if (Auth::user()->id != $id) {
             return redirect('/admin/users');

@@ -23,6 +23,7 @@ class Resolution extends Model
         'pdf_file_path',
         'pdf_file_name',
         'is_monitoring',
+        'facebook_post_id',
     ];
 
     /**
@@ -41,6 +42,11 @@ class Resolution extends Model
     public function updateReport()
     {
         return $this->hasMany('App\UpdateReport');
+    }
+
+    public function questionnaire()
+    {
+        return $this->hasOne('App\Questionnaire');
     }
 
     public function getQuestionnaire()

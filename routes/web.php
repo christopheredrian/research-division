@@ -18,18 +18,17 @@ Route::get('/', 'PublicController@index');
 Route::get('/aboutDiv', 'PublicController@aboutDiv');
 Route::get('/about', 'PublicController@about');
 
-//Route::get('/monitorAndEval', 'PublicController@monitorAndEval');
 
 /* M and E */
-Route::get('/ordinances', 'PublicController@monitorAndEvalOrdinances'); /* used in monitoring and evaluation */
-Route::get('/resolutions', 'PublicController@monitorAndEvalResolutions'); /* used in monitoring and evaluation */
-Route::get('/monitorAndEval/ordinances', 'PublicController@ordinance');
-Route::get('/monitorAndEval/resolutions', 'PublicController@resolutions');
+Route::get('/ordinances', 'PublicController@monitorAndEvalOrdinances'); /* used in monitoring and evaluation of ordinances */
+Route::get('/resolutions', 'PublicController@monitorAndEvalResolutions'); /* used in monitoring and evaluation of resolutions */
+Route::get('/monitorAndEval/ordinances', 'PublicController@ordinance'); /* used in monitored ordinance */
+Route::get('/monitorAndEval/resolutions', 'PublicController@resolutions'); /* used in monitored resolutions */
 /* End M and E*/
 
 /* R and R */
-Route::get('/r&r/resolutions', 'PublicController@researchAndRecordsResolution');
-Route::get('/r&r/ordinances', 'PublicController@researchAndRecordsOrdinance');
+Route::get('/randr/resolutions', 'PublicController@researchAndRecordsResolution');
+Route::get('/randr/ordinances', 'PublicController@researchAndRecordsOrdinance');
 /* End R and R */
 
 Route::get('/public/showOrdinance/{id}', 'PublicController@showOrdinance');
@@ -103,8 +102,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::post('/resolution-pload-update-report',
             'Admin\\ResolutionsController@storeUpdateReport')->name('resolutionStoreUpdateReport');
 
-        /** Download  // print */
-        Route::get('/preview/{id}', 'Admin\\OrdinancesController@preview');
+        /**  Print */
+        Route::get('/previewOrdinance/{id}', 'Admin\\OrdinancesController@preview');
+        Route::get('/previewResolution/{id}', 'Admin\\ResolutionsController@preview');
 
 
     });
@@ -130,12 +130,23 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::resource('users', 'Admin\\UsersController');
     });
 
-    /** Reports */
-    Route::get('/reports', 'ReportsController@index')->name('reports');
-    Route::post('/reports', 'ReportsController@query')->name('postreports');
-    /** END --- Reports*/
-
+    // CONFIGURATIONS
+    Route::get('/configurations', 'Admin\\ConfigurationsController@index');
 });
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => ['auth']], function () {
+    /** Reports */
+    Route::get('/reports', 'ReportsController@index')->name('reports');
+    Route::post('/reports', 'ReportsController@query')->name('postreports');
+    Route::get('/downloadReport', 'ReportsController@downloadReport')->name('downloadReport');
+    /** END --- Reports*/
+
+    Route::post('/toggleConfiguration', 'Admin\\ConfigurationsController@toggleConfiguration');
+    Route::post('/updateFacebookVariables', 'Admin\\ConfigurationsController@updateFacebookVariables');
+});
+
+Route::view('/privacy-policy', 'privacy');
+
