@@ -38,7 +38,7 @@
                                                 {{--</a>--}}
 
                                                 @if(!$questionnaire->isEmpty())
-                                                    <a href="/public/showOrdinanceQuestionnaire/{{$ordinance->id}}">
+                                                    <a href="/answer.o/{{$ordinance->id}}">
                                                         <button class="btn-sm btn-success">
                                                             Answer Questionnaire
                                                         </button>

@@ -25,18 +25,18 @@
                                     <input type="hidden" name="type"
                                            value="{{$questionnaire->ordinance_id === null ? "resolution" : "ordinance"}}">
                                     <input type="hidden" name="questionnaire_id" value="{{$questionnaire->id}}">
-                                    <label for="firstname">First Name</label>
+                                    <label for="firstname">First Name {{$required == 1 ? '*' : '(Optional)'}}</label>
                                     <input name="firstname" type="text" class="form-control" {{$required == 1 ? 'required' : ''}}>
-                                    <label for="lastname">Last Name</label>
+                                    <label for="lastname">Last Name {{$required == 1 ? '*' : '(Optional)'}}</label>
                                     <input name="lastname" type="text" class="form-control" {{$required == 1 ? 'required' : ''}}>
-                                    <label for="email">E-mail</label>
+                                    <label for="email">E-mail {{$required == 1 ? '*' : '(Optional)'}}</label>
                                     <input name="email" type="text" class="form-control" {{$required == 1 ? 'required' : ''}}>
                                     <br>
 
                                     @foreach($questions as $question)
                                         <div class="form-group">
 
-                                            <label for="answer">{{$counter.'. '.$question->question}}</label>
+                                            <label for="answer">{{$question->question}}</label>
 
                                             @if($question->type == 'short')
                                                 <input name="question_id{{$counter}}" type="hidden" class="form-control"
