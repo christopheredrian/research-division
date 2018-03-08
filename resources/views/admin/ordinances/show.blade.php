@@ -97,10 +97,10 @@
                         {{--<h2>{{ $questionnaire->name }}</h2>--}}
                         <p>
                             @if($questionnaire->isAccepting == 1)
-                                Public Link: <a href="/public/showOrdinanceQuestionnaire/{{$ordinance->id}}">http://localhost:8000/public/showOrdinanceQuestionnaire/{{$ordinance->id}}</a>
+                                Public Link: <a href="/answer.o/{{$ordinance->id}}">http://localhost:8000/answer.o/{{$ordinance->id}}</a>
                                 <br>
                                 Required Link: <a
-                                        href="/public/showOrdinanceQuestionnaire/{{$ordinance->id}}/required">http://localhost:8000/public/showOrdinanceQuestionnaire/{{$ordinance->id}}
+                                        href="/answer.o/{{$ordinance->id}}/required">http://localhost:8000/answer.o/{{$ordinance->id}}
                                     /required</a>
                             @endif
                         </p>
