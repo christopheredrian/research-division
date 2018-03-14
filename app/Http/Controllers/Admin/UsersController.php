@@ -111,6 +111,8 @@ class UsersController extends Controller
         $user->image = GoogleDriveUtilities::deleteFile($user->image);
         $user->save();
 
+        \session(['profile_image_link' => '']);
+
         Session::flash('flash_message', "Successfully deleted profile picture!");
 
         return redirect('/admin/profile/edit');
@@ -218,7 +220,7 @@ class UsersController extends Controller
 
     public function resetPassword($user_id)
     {
-        $user = User::findorFail($user_id)->first();
+        $user = User::findorFail($user_id);
         $temporaryPassword = $this->generateRandomString(5);
 
         $user->password = bcrypt($temporaryPassword);
@@ -226,7 +228,7 @@ class UsersController extends Controller
 
         Session::flash(
             'flash_message',
-            "Password has been reset for" . $user->name . ". The temporary password is <b>" . $temporaryPassword . "<b>.");
+            "Password has been reset for " . $user->name . ". The temporary password is <u>" . $temporaryPassword . "</u>");
 
         return redirect('/admin/users');
     }
