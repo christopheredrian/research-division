@@ -10,6 +10,10 @@
         <div class="box box-success">
             <div class="box-header with-border">
                 <h3 class="box-title">Reports</h3>
+                <a href="/reports" class="btn btn-sm btn-primary pull-right">
+                    <i class="fa fa-refresh"></i>
+                     Reset Filter
+                </a>
             </div>
             <!-- /.box-header -->
             <!-- form start -->
@@ -21,24 +25,24 @@
                             <div class="form-group">
                                 <div class="form-group">
                                     <label for="series">Year/Series</label>
-                                    <input name="series" type="number" class="form-control" id="series" value="{{ old('series')}}">
+                                    <input name="series" type="number" class="form-control" id="series" value="{{ isset($series) ? $series : old('series') }}">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="includes[]">Include:</label>
                                     <br>
-                                    <input name="includes[]" type="checkbox" id="series" value="rrOrdinances"> R&R Ordinances
+                                    <input name="includes[]" type="checkbox" id="series" value="rrOrdinances" {{ isset($results['R&R Ordinances']) ? 'checked=checked' : '' }}> R&R Ordinances
                                     <br>
-                                    <input name="includes[]" type="checkbox" id="series" value="monitoringOrdinances"> Monitoring Ordinances
+                                    <input name="includes[]" type="checkbox" id="series" value="monitoringOrdinances" {{ isset($results['Monitoring Ordinances']) ? 'checked=checked' : '' }}> Monitoring Ordinances
                                     <br>
-                                    <input name="includes[]" type="checkbox" id="series" value="monitoredOrdinances"> Monitored Ordinances
+                                    <input name="includes[]" type="checkbox" id="series" value="monitoredOrdinances" {{ isset($results['Monitored Ordinances']) ? 'checked=checked' : '' }}> Monitored Ordinances
                                 </div>
                                 <div class="col-md-6">
                                     <br>
-                                    <input name="includes[]" type="checkbox" id="series" value="rrOrdinances"> R&R Resolutions
+                                    <input name="includes[]" type="checkbox" id="series" value="rrResolutions" {{ isset($results['R&R Resolutions']) ? 'checked=checked' : '' }}> R&R Resolutions
                                     <br>
-                                    <input name="includes[]" type="checkbox" id="series" value="monitoringOrdinances"> Monitoring Resolutions
+                                    <input name="includes[]" type="checkbox" id="series" value="monitoringResolutions" {{ isset($results['Monitoring Resolutions']) ? 'checked=checked' : '' }}> Monitoring Resolutions
                                     <br>
-                                    <input name="includes[]" type="checkbox" id="series" value="monitoredOrdinances"> Monitored Resolutions
+                                    <input name="includes[]" type="checkbox" id="series" value="monitoredResolutions" {{ isset($results['Monitored Resolutions']) ? 'checked=checked' : '' }}> Monitored Resolutions
                                 </div>
                             </div>
                         </div>
