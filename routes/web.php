@@ -32,13 +32,13 @@ Route::get('/randr/ordinances', 'PublicController@researchAndRecordsOrdinance');
 /* End R and R */
 
 Route::get('/public/showOrdinance/{id}', 'PublicController@showOrdinance');
-Route::get('/public/showOrdinanceQuestionnaire/{id}', 'PublicController@showOrdinanceQuestionnaire');
-Route::get('/public/showOrdinanceQuestionnaire/{id}/required', 'PublicController@showRequiredOrdinanceQuestionnaire');
+Route::get('/answer.o/{id}', 'PublicController@showOrdinanceQuestionnaire');
+Route::get('/answer.o/{id}/required', 'PublicController@showRequiredOrdinanceQuestionnaire');
 Route::post('/submitOrdinanceAnswers/{id}', 'PublicController@submitOrdinanceAnswers');
 
 Route::get('/public/showResolution/{id}', 'PublicController@showResolution');
-Route::get('/public/showResolutionQuestionnaire/{id}', 'PublicController@showResolutionQuestionnaire');
-Route::get('/public/showResolutionQuestionnaire/{id}/required', 'PublicController@showRequiredResolutionQuestionnaire');
+Route::get('/answer.r/{id}', 'PublicController@showResolutionQuestionnaire');
+Route::get('/answer.r/{id}/required', 'PublicController@showRequiredResolutionQuestionnaire');
 
 //Route::get('/reports', 'PublicController@reports');
 Route::get('/page/{id}', 'PublicController@page');

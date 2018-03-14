@@ -42,6 +42,23 @@
         img {
             width: 15%;
         }
+
+        @media print {
+        .top-line {
+            font-size: 15px;
+        }
+
+        .mid-line {
+            font-size: 15px;
+        }
+
+        .bottom-line {
+            font-size: 10px;
+        }
+            span.message {
+                top: 10%;
+            }
+        }
     </style>
 @endsection
 @section('content')

@@ -79,10 +79,10 @@
                         <p>
                             @if($resolution->is_monitored == 0)
                                 @if($questionnaire->isAccepting == 1)
-                                    Public Link: <a href="/public/showResolutionQuestionnaire/{{$resolution->id}}">http://localhost:8000/public/showResolutionQuestionnaire/{{$resolution->id}}</a>
+                                    Public Link: <a href="/answer.r/{{$resolution->id}}">http://localhost:8000/answer.r/{{$resolution->id}}</a>
                                     <br>
                                     Required Link: <a
-                                            href="/public/showResolutionQuestionnaire/{{$resolution->id}}/required">http://localhost:8000/public/showResolutionQuestionnaire/{{$resolution->id}}
+                                            href="/answer.r/{{$resolution->id}}/required">http://localhost:8000/answer.r/{{$resolution->id}}
                                         /required</a>
                                 @endif
                             @endif

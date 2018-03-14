@@ -98,6 +98,7 @@ class UsersController extends Controller
     public function deleteImage()
     {
 
+        File::delete('uploads/'.$profpic);
 
 //        $id = Auth::user()->id;
 //        $profImage = User::where('id', $id)->update(['image' => null]);
@@ -143,7 +144,6 @@ class UsersController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -151,6 +151,7 @@ class UsersController extends Controller
 
         $user = User::findOrFail($id);
         $user->update($requestData);
+
         $user->save();
 
         if ($request->file('imageFile') !== null) {
