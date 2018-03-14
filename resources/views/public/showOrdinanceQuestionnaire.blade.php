@@ -26,11 +26,11 @@
                                            value="{{$questionnaire->ordinance_id === null ? "resolution" : "ordinance"}}">
                                     <input type="hidden" name="questionnaire_id" value="{{$questionnaire->id}}">
                                     <label for="firstname">First Name {{$required == 1 ? '*' : '(Optional)'}}</label>
-                                    <input name="firstname" type="text" class="form-control" {{$required == 1 ? 'required' : ''}}>
+                                    <input name="firstname" type="text" class="form-control" {{$required == 1 ? 'required' : ''}} value="{{ old('firstname') }}">
                                     <label for="lastname">Last Name {{$required == 1 ? '*' : '(Optional)'}}</label>
-                                    <input name="lastname" type="text" class="form-control" {{$required == 1 ? 'required' : ''}}>
+                                    <input name="lastname" type="text" class="form-control" value="{{ old('lastname') }}" {{$required == 1 ? 'required' : ''}}>
                                     <label for="email">E-mail {{$required == 1 ? '*' : '(Optional)'}}</label>
-                                    <input name="email" type="text" class="form-control" {{$required == 1 ? 'required' : ''}}>
+                                    <input name="email" type="text" class="form-control" value="{{ old('email') }}" {{$required == 1 ? 'required' : ''}}>
                                     <br>
 
                                     @foreach($questions as $question)
@@ -41,12 +41,12 @@
                                             @if($question->type == 'short')
                                                 <input name="question_id{{$counter}}" type="hidden" class="form-control"
                                                        id="answer" value="{{$question->id}}">
-                                                <input name="answer{{$counter}}" type="text" class="form-control" id="answer" {{$question->required == 1 ? 'required' : ''}}>
+                                                <input name="answer{{$counter}}" type="text" class="form-control" id="answer" value="{{ old('answer'.$counter) }}" {{$question->required == 1 ? 'required' : ''}}>
                                             @endif
                                             @if($question->type == 'long')
                                                 <input name="question_id{{$counter}}" type="hidden" class="form-control"
                                                        id="answer" value="{{$question->id}}">
-                                                <textarea class="form-control" rows="5" id="answer" name="answer{{$counter}}" {{$question->required == 1 ? 'required' : ''}}></textarea>
+                                                <textarea class="form-control" rows="5" id="answer" name="answer{{$counter}}" {{$question->required == 1 ? 'required' : ''}}>{{ old('answer'.$counter) }}</textarea>
                                             @endif
                                             @if($question->type == 'radio')
                                                 <input name="question_id{{$counter}}" type="hidden" class="form-control"
@@ -54,7 +54,7 @@
                                                 @foreach($values as $value)
                                                     @if($value->question_id == $question->id)
                                                         <div class="radio">
-                                                            <label><input id="answer" type="radio" name="answer{{$counter}}" value="{{$value->value}}" {{$question->required == 1 ? 'required' : ''}}>{{$value->value}}</label>
+                                                            <label><input id="answer" type="radio" name="answer{{$counter}}" value="{{$value->value}}" {{ (old('answer'.$counter) == $value->value) ? 'checked' : '' }} {{$question->required == 1 ? 'required' : ''}}>{{$value->value}}</label>
                                                         </div>
                                                     @endif
                                                 @endforeach
@@ -65,7 +65,7 @@
                                                         <input name="question_id{{$counter}}" type="hidden" class="form-control"
                                                                id="answer" value="{{$question->id}}">
                                                         <div class="checkbox">
-                                                            <label><input type="checkbox" name="answer{{$counter}}" value="{{$value->value}}" {{$question->required == 1 ? 'required' : ''}}>{{$value->value}}</label>
+                                                            <label><input type="checkbox" name="answer{{$counter}}" value="{{$value->value}}" {{ (! empty(old('answer'.$counter)) ? 'checked' : '') }}>{{$value->value}}</label>
                                                         </div>
                                                         @php
                                                             $counter=$counter+1;
@@ -107,8 +107,8 @@
                                             @endphp
                                         </div>
                                     @endforeach
-
                                     {!! NoCaptcha::display() !!}
+
                                     @if ($errors->has('g-recaptcha-response'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
@@ -119,7 +119,6 @@
                                         <button class="btn btn-success pull-right" type="submit"><i
                                                     class="fa fa-paper-plane"></i> Submit
                                         </button>
-
                                 </form>
                             </div>
                         </div>
@@ -129,6 +128,7 @@
         </div>
     </div>
     <script>
+
         function show1(counter){
             document.getElementById('show-me1-'+counter).style.display ='block';
             document.getElementById('show-me2-'+counter).style.display ='none';
