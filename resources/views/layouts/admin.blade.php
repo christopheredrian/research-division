@@ -416,7 +416,7 @@ function skin($user)
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Main content -->
-        <section class="content text-center" style="margin: 0 5%">
+        <section class="content" style="margin: 0 5%">
             <!-- Info boxes -->
             @if(Session::has('flash_message'))
                 <div id="flashMessage" class="alert {{Session::get('alert-class', 'alert-success')}}"

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\GoogleDriveUtilities;
+use App\Rules\CurrentPassword;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -25,12 +26,6 @@ class UsersController extends Controller
         'password' => 'required',
         'role' => 'required',
         'repassword' => 'required|same:password'
-    ];
-
-    private $password_validation = [
-        'old-password' => 'required',
-        'new-password' => 'required',
-        're-password' => 'required|same:password'
     ];
 
     public function index()
@@ -199,23 +194,22 @@ class UsersController extends Controller
      */
     public function updatePassword(Request $request)
     {
+        $request->validate([
+            'old-password' => ['required', new CurrentPassword],
+            'new-password' => 'required',
+            're-password' => 'required|same:new-password'
+        ]);
 
-        $request->validate($this->password_validation);
-
-        $old = $request->input('old-password');
         $new = $request->input('new-password');
 
-        if (Auth::check($old, Auth::user()->getAuthPassword())) {
-            $user = Auth::user();
-            $user->password = bcrypt($new);
-            $user->save();
-            // TODO: Add flash message here
+        $user = Auth::user();
+        $user->password = bcrypt($new);
+        $user->save();
+        // TODO: Add flash message here
 
-            Session::flash(
-                'flash_message',
-                "Password has been changed!");
-        }
-        return redirect('/admin/users/edit')->with('user', $user);
+        Session::flash('flash_message', "Password has been changed!");
+
+        return redirect('/admin/profile/edit')->with('user', $user);
     }
 
     public function resetPassword($user_id)
