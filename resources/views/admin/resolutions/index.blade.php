@@ -11,7 +11,7 @@
             width: 57px;
         }
 
-        .add-magin{
+        .add-magin {
             margin: 7px 0;
         }
     </style>
@@ -25,7 +25,12 @@
         @else
             <li><a href="/admin/forms/resolutions"><i class="fa fa-bar-chart"></i> Monitoring & Evaluation</a></li>
         @endif
-        <li class="active">Resolutions</li>
+
+        @if( app('request')->input('status') === 'monitored')
+            <li class="active">Monitored Resolutions</li>
+        @else
+            <li class="active">Resolutions</li>
+        @endif
     </ol>
 
     <div class="box box-default color-palette-box">
@@ -37,57 +42,57 @@
                 <a href="/admin/resolutions/create?type={{$type}}" class="btn btn-success"><span
                             class="fa fa-plus"></span> Add</a>
                 {{--<a href="/admin{{$type === 'RR' ? '' : '/forms'}}/resolutions" class="btn btn-primary">--}}
-                    {{--<i class="fa fa-refresh"></i> Reset Filtering--}}
+                {{--<i class="fa fa-refresh"></i> Reset Filtering--}}
                 {{--</a>--}}
             </div>
         </div>
         <div class="box-body">
             {{--<div class="add-magin">--}}
-                {{----}}
-                {{--<form action="#" method="get" class="pull-right col-md-4">
-                    <div class="input-group">
-                        <input value="{{ request()->q }}" type="text" name="q" class="form-control" placeholder="Search...">
-                        <span class="input-group-btn">
-                            <button type="submit" id="search-btn" class="btn btn-flat">
-                              <i class="fa fa-search"></i>
-                            </button>
-                         </span>
-                    </div>
-                </form>--}}
+            {{----}}
+            {{--<form action="#" method="get" class="pull-right col-md-4">
+                <div class="input-group">
+                    <input value="{{ request()->q }}" type="text" name="q" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+                        <button type="submit" id="search-btn" class="btn btn-flat">
+                          <i class="fa fa-search"></i>
+                        </button>
+                     </span>
+                </div>
+            </form>--}}
             {{--</div>--}}
             {{--<table class="table table-striped table-bordered">--}}
-                {{--<thead>--}}
-                {{--<tr>--}}
-                    {{--<th>Resolution Number</th>--}}
-                    {{--<th>Series</th>--}}
-                    {{--<th>Title</th>--}}
-                    {{--<th>Keywords</th>--}}
-                    {{--<th>Actions</th>--}}
-                {{--</tr>--}}
-                {{--</thead>--}}
-                {{--<tbody>--}}
-                {{--@foreach($resolutions as $resolution)--}}
-                    {{--<tr>--}}
-                        {{--<td>{{ $resolution->number }}</td>--}}
-                        {{--<td>{{ $resolution->series }}</td>--}}
-                        {{--<td>{{ str_limit($resolution->title, $limit = 200, $end = '...')  }}</td>--}}
-                        {{--<td>{{  str_limit($resolution->keywords, $limit = 200, $end = '...')  }}</td>--}}
-                        {{--<td>--}}
-                            {{--<a href="/admin/resolutions/{{$resolution->id}}"--}}
-                               {{--class="btn btn-xs btn-primary btn-equal-width">--}}
-                                {{--{{ Request::is('admin/forms*') ? 'Profile' : 'View' }}--}}
-                            {{--</a>--}}
-                            {{--<a href="/admin/resolutions/{{$resolution->id}}/edit"--}}
-                               {{--class="btn btn-xs btn-warning btn-equal-width">Edit</a>--}}
-                            {{--<form action="/admin/resolutions/{{ $resolution->id }}" method="post">--}}
-                                {{--{{ method_field('DELETE') }}--}}
-                                {{--{{ csrf_field() }}--}}
-                                {{--<button class="btn btn-xs btn-danger btn-equal-width">Delete</button>--}}
-                            {{--</form>--}}
-                        {{--</td>--}}
-                    {{--</tr>--}}
-                {{--@endforeach--}}
-                {{--</tbody>--}}
+            {{--<thead>--}}
+            {{--<tr>--}}
+            {{--<th>Resolution Number</th>--}}
+            {{--<th>Series</th>--}}
+            {{--<th>Title</th>--}}
+            {{--<th>Keywords</th>--}}
+            {{--<th>Actions</th>--}}
+            {{--</tr>--}}
+            {{--</thead>--}}
+            {{--<tbody>--}}
+            {{--@foreach($resolutions as $resolution)--}}
+            {{--<tr>--}}
+            {{--<td>{{ $resolution->number }}</td>--}}
+            {{--<td>{{ $resolution->series }}</td>--}}
+            {{--<td>{{ str_limit($resolution->title, $limit = 200, $end = '...')  }}</td>--}}
+            {{--<td>{{  str_limit($resolution->keywords, $limit = 200, $end = '...')  }}</td>--}}
+            {{--<td>--}}
+            {{--<a href="/admin/resolutions/{{$resolution->id}}"--}}
+            {{--class="btn btn-xs btn-primary btn-equal-width">--}}
+            {{--{{ Request::is('admin/forms*') ? 'Profile' : 'View' }}--}}
+            {{--</a>--}}
+            {{--<a href="/admin/resolutions/{{$resolution->id}}/edit"--}}
+            {{--class="btn btn-xs btn-warning btn-equal-width">Edit</a>--}}
+            {{--<form action="/admin/resolutions/{{ $resolution->id }}" method="post">--}}
+            {{--{{ method_field('DELETE') }}--}}
+            {{--{{ csrf_field() }}--}}
+            {{--<button class="btn btn-xs btn-danger btn-equal-width">Delete</button>--}}
+            {{--</form>--}}
+            {{--</td>--}}
+            {{--</tr>--}}
+            {{--@endforeach--}}
+            {{--</tbody>--}}
             {{--</table>--}}
 
 
@@ -198,12 +203,17 @@
                             @foreach(array_filter(request()->all(), function($k){ return !starts_with($k, 'col-'); }, ARRAY_FILTER_USE_KEY) as $k => $v)
                                 <input type="hidden" name="{{$k}}" value="{{ $v }}">
                             @endforeach
-                            <td><input type="text" class="form-control" name="col-number" value="{{ request()->input('col-number')}}"></td>
-                            <td><input type="text" class="form-control" name="col-series" value="{{ request()->input('col-series')}}"></td>
-                            <td><input type="text" class="form-control" name="col-title" value="{{ request()->input('col-title') }}"></td>
-                            <td><input type="text" class="form-control" name="col-keywords" value="{{ request()->input('col-keywords') }}"></td>
+                            <td><input type="text" class="form-control" name="col-number"
+                                       value="{{ request()->input('col-number')}}"></td>
+                            <td><input type="text" class="form-control" name="col-series"
+                                       value="{{ request()->input('col-series')}}"></td>
+                            <td><input type="text" class="form-control" name="col-title"
+                                       value="{{ request()->input('col-title') }}"></td>
+                            <td><input type="text" class="form-control" name="col-keywords"
+                                       value="{{ request()->input('col-keywords') }}"></td>
                             <td><input class="btn btn-xs btn-success btn-equal-width" type="submit" value="Filter">
-                                <a href="/admin{{$type === 'RR' ? '' : '/forms'}}/resolutions" class="btn btn-xs btn-danger btn-equal-width">
+                                <a href="/admin{{$type === 'RR' ? '' : '/forms'}}/resolutions"
+                                   class="btn btn-xs btn-danger btn-equal-width">
                                     <i class="fa fa-refresh"></i> Reset
                                 </a>
                             </td>
@@ -222,11 +232,40 @@
                                 </a>
                                 <a href="/admin/resolutions/{{$resolution->id}}/edit?type={{$type}}"
                                    class="btn btn-xs btn-warning btn-equal-width ">Edit</a>
-                                <form action="/admin/resolutions/{{ $resolution->id }}" method="post">
-                                    {{ method_field('DELETE') }}
-                                    {{ csrf_field() }}
-                                    <button class="btn btn-xs btn-danger btn-equal-width ">Delete</button>
-                                </form>
+                                <button class="btn btn-xs btn-danger btn-equal-width" data-toggle="modal"
+                                        data-target="#exampleModal">
+                                    Delete
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h3 class="modal-title" id="exampleModalLabel">Confirm Delete</h3>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete resolution {{$resolution->title}}?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Cancel
+                                                </button>
+                                                <form action="/admin/resolutions/{{ $resolution->id }}" method="post">
+                                                    {{ method_field('DELETE') }}
+                                                    {{ csrf_field() }}
+                                                    <button class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </td>
                         </tr>
                     @endforeach
@@ -242,4 +281,6 @@
             @endif
         </div>
     </div>
+
+
 @endsection

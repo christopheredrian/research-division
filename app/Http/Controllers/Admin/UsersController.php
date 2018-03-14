@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\File;
 
 class UsersController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
@@ -175,6 +177,9 @@ class UsersController extends Controller
     public function destroy($id)
     {
         User::destroy($id);
+
+        Session::flash('flash_message', "Delete Successful!");
+
         return redirect('/admin/users');
     }
 

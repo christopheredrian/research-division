@@ -228,7 +228,10 @@ class OrdinancesController extends Controller
     public function destroy($id)
     {
         Ordinance::destroy($id);
-        return redirect('/admin/ordinances');
+        Session::flash('flash_message', "Delete Successful!");
+
+//        return redirect('/admin/ordinances');
+        return back();
     }
 
     public function statusReportCreate($ordinanceID)
