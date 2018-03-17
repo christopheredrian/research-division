@@ -184,14 +184,6 @@
                     <p>Email: baguio.webmin@gmail.com</p>
                     <p>Address: City Hall Loop, Baguio City</p>
                 </div>
-                <div class="col-md-offset-9">
-                    <br>
-                    <p>&copy; MyBix Theme. All rights reserved</p>
-                    <p>Pictures all taken from Google</p>
-                    <div class="credits">
-                        <p>Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a></p>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

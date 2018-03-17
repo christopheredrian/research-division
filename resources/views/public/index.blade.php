@@ -54,8 +54,7 @@
                 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
                     <div class="ordinance-heading">
                         <h2>Resolutions</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent metus magna,malesuada porta
-                            elementum vitae.</p>
+                        <p></p>
                     </div>
                 </div>
             </div>
@@ -103,8 +102,7 @@
                 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
                     <div class="ordinance-heading">
                         <h2>Ordinances</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent metus magna,malesuada porta
-                            elementum vitae.</p>
+                        <p></p>
                     </div>
                 </div>
             </div>
