@@ -28,11 +28,16 @@
         .dropdown-menu, nav {
             z-index: 100;
         }
+
+        #contents{
+            min-height: 65vh;
+        }
         .footer {
             right: 0;
             bottom: 0;
             left: 0;
         }
+
     </style>
 </head>
 
@@ -160,7 +165,7 @@
         {{ Session::get('flash_message') }}
     </div>
 @endif
-<div style="background:rgb(240, 248, 255)">
+<div id="contents" style="background:rgb(240, 248, 255)">
     @yield('content')
 </div>
 

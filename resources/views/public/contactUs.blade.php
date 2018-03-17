@@ -84,9 +84,30 @@
                                 </div>
                             </div>
                         </div>
-
                         <div id="google-map" data-latitude="16.414162" data-longitude="120.591581"></div>
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                                    <div class="contact-heading">
+                                        <h2>Or Follow Us</h2>
+                                        <p>at Facebook</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-8 col-md-6 col-lg-12 col-lg-offset-5 col-sm-offset-4 col-md-offset-5">
+                                <div class="social_icons">
+                                    <div class="square">
+                                        <div class="icons">
+                                            <a href="https://www.facebook.com/partgov/">
+                                                <i class="fa fa-facebook" aria-hidden="true"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -96,6 +117,79 @@
     <style>
         #content {
             background-color: rgb(240, 248, 255);
+        }
+
+        .square {
+            height: 60px;
+            width: 60px;
+            border: 1px dashed white;
+            margin: 0 0 0 55px;
+            /*   padding: 1px; resize squares */
+            /*background-color: rgba(255, 255, 255, 0.2);*/
+            display: inline-block;
+            background-color: ;
+            transform: rotateZ(44deg);
+        }
+
+        .square:hover {
+            background-color: rgba(27, 182, 239, 0.2);
+            transition: ease 0.2s;
+            cursor: pointer;
+        }
+
+        .square .icons {
+            position: absolute;
+            transform: rotateZ(-44deg);
+            margin: 20px 0 0px 21px;
+        }
+
+        .fa-facebook {
+            width: 11px;
+            height: 22px;
+            color: black;
+            font-family: FontAwesome;
+            font-size: 23px;
+            font-weight: 400;
+            text-transform: uppercase;
+        }
+
+        .square:hover .fa-facebook {
+            color: rgba(59, 89, 152, 1)
+        }
+
+        svg{
+        }
+
+        @keyframes rotateInDownLeft {
+            from {
+                transform-origin: left bottom;
+                transform: rotate3d(0,0,0, 0deg);
+                opacity: 1;
+            }
+
+            to {
+                -webkit-transform-origin: left bottom;
+                transform-origin: left bottom;
+                transform: ;
+                transform:translateX(850px) translateY(-83px) rotate3d(0,0,1, -60deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes rotateOut {
+            from {
+                -webkit-transform-origin: center;
+                transform-origin: center;
+                opacity: 1;
+            }
+
+            to {
+                -webkit-transform-origin: center;
+                transform-origin: center;
+                -webkit-transform: rotate3d(0, 0, 1, 90deg);
+                transform: rotate3d(0, 0, 1, 90deg);
+                opacity: 1;
+            }
         }
     </style>
 @endsection
