@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use App\Page;
 
@@ -111,6 +111,8 @@ class PagesController extends Controller
     public function destroy($id)
     {
         Page::destroy($id);
+        Session::flash('flash_message', "Delete Successful!");
+
         return redirect('/admin/pages');
     }
 }

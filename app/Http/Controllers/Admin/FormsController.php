@@ -248,6 +248,7 @@ class FormsController extends Controller
             $question->delete();
         }
         Questionnaire::destroy($id);
+        Session::flash('flash_message', "Delete Successful!");
 
         return back();
     }

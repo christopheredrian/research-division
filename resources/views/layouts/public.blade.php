@@ -28,11 +28,16 @@
         .dropdown-menu, nav {
             z-index: 100;
         }
+
+        #contents{
+            min-height: 65vh;
+        }
         .footer {
             right: 0;
             bottom: 0;
             left: 0;
         }
+
     </style>
 </head>
 
@@ -160,7 +165,7 @@
         {{ Session::get('flash_message') }}
     </div>
 @endif
-<div style="background:rgb(240, 248, 255)">
+<div id="contents" style="background:rgb(240, 248, 255)">
     @yield('content')
 </div>
 
@@ -178,14 +183,6 @@
                     <p>Telephone: (074) 446-3366</p>
                     <p>Email: baguio.webmin@gmail.com</p>
                     <p>Address: City Hall Loop, Baguio City</p>
-                </div>
-                <div class="col-md-offset-9">
-                    <br>
-                    <p>&copy; MyBix Theme. All rights reserved</p>
-                    <p>Pictures all taken from Google</p>
-                    <div class="credits">
-                        <p>Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a></p>
-                    </div>
                 </div>
             </div>
         </div>

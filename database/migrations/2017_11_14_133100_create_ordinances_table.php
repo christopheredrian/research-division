@@ -27,6 +27,8 @@ class CreateOrdinancesTable extends Migration
             $table->text('pdf_link')->nullable();
             $table->text('facebook_post_id')->nullable();
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 

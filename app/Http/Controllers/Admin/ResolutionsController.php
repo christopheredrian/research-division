@@ -195,7 +195,10 @@ class ResolutionsController extends Controller
     public function destroy($id)
     {
         Resolution::destroy($id);
-        return redirect('/admin/resolutions');
+        Session::flash('flash_message', "Delete Successful!");
+
+//        return redirect('/admin/resolutions');
+        return back();
     }
 
     public function statusReportCreate($resolutionID)
