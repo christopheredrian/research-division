@@ -95,15 +95,6 @@ class UsersController extends Controller
     public function deleteImage()
     {
 
-        File::delete('uploads/'.$profpic);
-
-//        $id = Auth::user()->id;
-//        $profImage = User::where('id', $id)->update(['image' => null]);
-//
-//        $profpic = 'user-' . $id . '.jpg';
-//
-//        File::delete('uploads/'.$profpic);
-
         $user = Auth::user();
         $user->image = GoogleDriveUtilities::deleteFile($user->image);
         $user->save();
