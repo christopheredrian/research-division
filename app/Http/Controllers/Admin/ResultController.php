@@ -79,10 +79,42 @@ class ResultController extends Controller
 
                     $range = 'A1:B1';
                     $sheet->mergeCells($range);
-
                     $sheet->appendRow(array(
                         'Sangguniang Panglungsod', 'Sangguniang Panglungsod'
                     ));
+
+
+                    $sheet->cells($range, function($cells) {
+                        $cells->setAlignment('center');
+                        $cells->setValignment('center');
+                    });
+
+                    $sheet->appendRow(array(
+                       'Answers for the Questionnaire for ', 'Answers for the Questionnaire for '
+                    ));
+
+                    $sheet->mergeCells('A2:B2');
+                    $sheet->cells('A2:B2', function($cells) {
+                        $cells->setAlignment('center');
+                        $cells->setValignment('center');
+                    });
+
+                    if ($questionnaire->ordinance_id !== null) {
+                        $ordinance = Ordinance::find($questionnaire->ordinance_id);
+                        $heading = "Ordinance number " .$ordinance->number . " of series " . $ordinance->series;
+                    } else {
+                        $resolution = Resolution::find($questionnaire->resolution_id);
+                        $heading = "Resolution number " .$resolution->number . " of series " . $resolution->series;
+                    }
+                    $sheet->appendRow(array(
+                        $heading, $heading
+                    ));
+
+                    $sheet->mergeCells('A3:B3');
+                    $sheet->cells('A3:B3', function($cells) {
+                        $cells->setAlignment('center');
+                        $cells->setValignment('center');
+                    });
 
                     // filling arrays with data ^
                     $sheet->appendRow($space, $questions_arr);
