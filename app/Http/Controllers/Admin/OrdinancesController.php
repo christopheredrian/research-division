@@ -142,7 +142,7 @@ class OrdinancesController extends Controller
             substr($ordinance->pdf_file_path, strrpos($ordinance->pdf_file_path, '/') + 1);
         $ordinance->save();
 
-        Session::flash('flash_message', "Successfully added <strong> Ordinance" . $ordinance->number . "</strong>!");
+        Session::flash('flash_message', "Successfully added <strong> Ordinance " . $ordinance->number . "</strong>!");
 
         // POST TO FACEBOOK
         if (NLPUtilities::isNLPEnabled()) {

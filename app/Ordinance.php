@@ -24,6 +24,7 @@ class Ordinance extends Model
         'pdf_file_path',
         'is_monitoring',
         'facebook_post_id',
+        'pdf_link',
     ];
 
     /**

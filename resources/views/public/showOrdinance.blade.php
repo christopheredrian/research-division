@@ -14,8 +14,12 @@
                                 <div class="col-md-7">
                                     <div class="panel panel-info">
                                         <div class="panel-body">
-                                            <iframe src = "/ViewerJS/#../storage/ordinances/{{substr($ordinance->pdf_file_path, strrpos( $ordinance->pdf_file_path, '/' ) + 1 )}}"
-                                                    width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
+                                            @if($ordinance->pdf_link)
+                                                <iframe src = "{{$ordinance->pdf_link}}"
+                                                        width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
+                                            @else
+                                                <h3 class="text-center">PDF not available.</h3>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

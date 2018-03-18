@@ -24,6 +24,7 @@ class CreateResolutionsTable extends Migration
             $table->boolean('is_monitored')->default(false);
             $table->text('pdf_file_path')->nullable();
             $table->text('pdf_file_name')->nullable();
+            $table->text('pdf_link')->nullable();
             $table->text('facebook_post_id')->nullable();
             $table->timestamps();
         });

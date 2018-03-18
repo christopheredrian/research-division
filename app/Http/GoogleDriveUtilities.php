@@ -97,7 +97,10 @@ class GoogleDriveUtilities
                 $path = ($cloudFile['filename'] . '.jpeg');
 
                 // Replace image in profile image in session
-                session(['profile_image_link' => GoogleDriveUtilities::getShareableLink('userimages', $path)]);
+                session(['profile_image_link' => self::getShareableLink('userimages', $path)]);
+            } else {
+                $instance->pdf_link = self::getShareableLink($directory, $path);
+                $instance->save();
             }
 
         }

@@ -116,7 +116,7 @@ class ResolutionsController extends Controller
         }
 
 
-        Session::flash('flash_message', "Successfully added <strong>Resolution" . $resolution->number . "</strong>!");
+        Session::flash('flash_message', "Successfully added <strong>Resolution " . $resolution->number . "</strong>!");
 
         $redirectLink = $resolution->is_monitoring == 1 ? '/admin/forms/resolutions' : '/admin/resolutions';
         return redirect($redirectLink);
