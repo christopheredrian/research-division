@@ -177,8 +177,6 @@ class ResultController extends Controller
 
     }
 
-
-
     public function showComments($id, $flag, Request $request){
 
 //        if ($request->from && $request->to){
@@ -260,20 +258,60 @@ class ResultController extends Controller
                         $resolution = Resolution::find($id);
                         $suggestions = $resolution->suggestions;
                     }
-
                     $header_arr=['name','email','suggestion'];
                     $name_arr = [];
                     $email_arr = [];
                     $suggestion_arr = [];
                     $count = 0;
+                    $space = 4; // will appear first on A[number], will appear on A4
+                    $skip = $space + 1; //answers will append after the question
                     foreach ( $suggestions as $suggestion) {
                         $name_arr[$count] = $suggestion->first_name.' '.$suggestion->last_name;
                         $email_arr[] = $suggestion->email ;
                         $suggestion_arr[] = $suggestion->suggestion;
                         $count += 1;
                     }
+                    $sheet->setOrientation('landscape');
+
+                    $range = 'A1:C1';
+                    $sheet->mergeCells($range);
+                    $sheet->appendRow(array(
+                        'Sangguniang Panglungsod', 'Sangguniang Panglungsod'
+                    ));
+                    $sheet->cells($range, function($cells) {
+                        $cells->setAlignment('center');
+                        $cells->setValignment('center');
+                    });
+
+                    $sheet->appendRow(array(
+                        'Comments for the ', 'Comments for the'
+                    ));
+
+                    $sheet->mergeCells('A2:C2');
+                    $sheet->cells('A2:C2', function($cells) {
+                        $cells->setAlignment('center');
+                        $cells->setValignment('center');
+                    });
+
+                    if ($flag==='ordinances') {
+                        $ordinance = Ordinance::find($id);
+                        $heading = "Ordinance number " .$ordinance->number . " of series " . $ordinance->series;
+                    } else {
+                        $resolution = Resolution::find($id);
+                        $heading = "Resolution number " .$resolution->number . " of series " . $resolution->series;
+                    }
+                    $sheet->appendRow(array(
+                        $heading, $heading
+                    ));
+
+                    $sheet->mergeCells('A3:C3');
+                    $sheet->cells('A3:C3', function($cells) {
+                        $cells->setAlignment('center');
+                        $cells->setValignment('center');
+                    });
+
                     // filling arrays with data ^
-                    $sheet->appendRow($header_arr);
+                    $sheet->appendRow($space, $header_arr);
 //                    $rows = [];
                     for ($x = 0; $x < $count; $x++) {
                         $sheet->appendRow([$name_arr[$x],$email_arr[$x],$suggestion_arr[$x]]);
@@ -283,7 +321,6 @@ class ResultController extends Controller
 //                        $sheet->appendRow($row);
 //                    }
 
-                    $sheet->setOrientation('landscape');
 
                 });
             })->export('xls');
