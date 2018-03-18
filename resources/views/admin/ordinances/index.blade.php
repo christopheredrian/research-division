@@ -25,7 +25,12 @@
         @else
             <li><a href="/admin/forms/ordinances"><i class="fa fa-bar-chart"></i> Monitoring & Evaluation</a></li>
         @endif
-        <li class="active">Ordinances</li>
+
+        @if( app('request')->input('status') === 'monitored')
+            <li class="active">Monitored Ordinances</li>
+        @else
+            <li class="active">Ordinances</li>
+        @endif
     </ol>
 
     <div class="box box-default color-palette-box">
@@ -37,25 +42,25 @@
                 <a href="/admin/ordinances/create?type={{$type}}" class="btn btn-success"><span
                             class="fa fa-plus"></span> Add</a>
                 {{--<a href="/admin{{$type === 'RR' ? '' : '/forms'}}/ordinances" class="btn btn-primary">--}}
-                    {{--<i class="fa fa-refresh"></i> Reset Filtering--}}
+                {{--<i class="fa fa-refresh"></i> Reset Filtering--}}
                 {{--</a>--}}
             </div>
         </div>
         <div class="box-body">
 
-               {{-- <form action="#" method="get" class="pull-right col-md-4">
-                    <div class="input-group">
-                        <input value="{{ request()->q }}" type="text" name="q" class="form-control"
-                               placeholder="Search...">
-                        <span class="input-group-btn">
-                            <button type="submit" id="search-btn" class="btn btn-flat">
-                              <i class="fa fa-search"></i>
-                            </button>
-                         </span>
-                    </div>
-                </form>
-                <div class="clearfix"></div>
-            </div>--}}
+            {{-- <form action="#" method="get" class="pull-right col-md-4">
+                 <div class="input-group">
+                     <input value="{{ request()->q }}" type="text" name="q" class="form-control"
+                            placeholder="Search...">
+                     <span class="input-group-btn">
+                         <button type="submit" id="search-btn" class="btn btn-flat">
+                           <i class="fa fa-search"></i>
+                         </button>
+                      </span>
+                 </div>
+             </form>
+             <div class="clearfix"></div>
+         </div>--}}
             {{--<div class="row">--}}
             {{--<div class="col-md-12 text-center">--}}
             {{--<a href="/admin/ordinances">Reset Sorting</a>--}}
@@ -178,10 +183,12 @@
                                                value="{{ request()->input('col-title') }}"></td>
                                     <td><input type="text" class="form-control" name="col-keywords"
                                                value="{{ request()->input('col-keywords') }}"></td>
-                                    <td><input class="btn btn-xs btn-success btn-equal-width" type="submit" value="Filter">
-                                        <a href="/admin{{$type === 'RR' ? '' : '/forms'}}/ordinances" class="btn btn-xs btn-danger btn-equal-width">
-                                        <i class="fa fa-refresh"></i> Reset
-                                    </a>
+                                    <td><input class="btn btn-xs btn-success btn-equal-width" type="submit"
+                                               value="Filter">
+                                        <a href="/admin{{$type === 'RR' ? '' : '/forms'}}/ordinances"
+                                           class="btn btn-xs btn-danger btn-equal-width">
+                                            <i class="fa fa-refresh"></i> Reset
+                                        </a>
                                     </td>
                                 </form>
                             </tr>
@@ -198,11 +205,42 @@
                                         </a>
                                         <a href="/admin/ordinances/{{$ordinance->id}}/edit?type={{$type}}"
                                            class="btn btn-xs btn-warning btn-equal-width ">Edit</a>
-                                        <form action="/admin/ordinances/{{ $ordinance->id }}" method="post">
-                                            {{ method_field('DELETE') }}
-                                            {{ csrf_field() }}
-                                            <button class="btn btn-xs btn-danger btn-equal-width ">Delete</button>
-                                        </form>
+
+                                        <button class="btn btn-xs btn-danger btn-equal-width " data-toggle="modal"
+                                                data-target="#exampleModal">
+                                            Delete
+                                        </button>
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h3 class="modal-title" id="exampleModalLabel">Confirm
+                                                            Delete</h3>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure you want to delete ordinance {{$ordinance->title}}?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Cancel
+                                                        </button>
+                                                        <form action="/admin/ordinances/{{ $ordinance->id }}"
+                                                              method="post">
+                                                            {{ method_field('DELETE') }}
+                                                            {{ csrf_field() }}
+                                                            <button class="btn btn-danger">Delete</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
                                     </td>
                                 </tr>
                             @endforeach

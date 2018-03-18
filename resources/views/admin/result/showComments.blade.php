@@ -108,14 +108,27 @@
                 </thead>
                 <tbody>
                 @foreach($suggestions as $suggestion)
-                    <tr id="item{{$suggestion->id}}">
-                        <td>{{ $suggestion->first_name.' '.$suggestion->last_name}}</td>
-                        <td>{{ $suggestion->email }}</td>
-                        <td><a href="" class="update" data-url="{{ url('/admin/updateComment/') }}" data-name="name" data-type="text" data-pk="{{$suggestion->id}}" data-title="Enter answer">{{ $suggestion->suggestion }}</a></td>
-                        <td>{{ $suggestion->created_at }}</td>
-                        <td><a class="delete-modal text-danger" data-id="{{$suggestion->id}}" data-suggestion="{{$suggestion->suggestion}}">
-                                <button class="btn btn-xs btn-danger btn-equal-width ">Delete</button></a></td>
-                    </tr>
+                    @if($suggestion->created_at > Carbon\Carbon::now()->subDays(4))
+
+                            <tr id="item{{$suggestion->id}}">
+                                <td><b>{{ $suggestion->first_name.' '.$suggestion->last_name}}</b></td>
+                                <td><b>{{ $suggestion->email }}</b></td>
+                                <td><b><a href="" class="update" data-url="{{ url('/admin/updateComment/') }}" data-name="name" data-type="text" data-pk="{{$suggestion->id}}" data-title="Enter answer">{{ $suggestion->suggestion }}</a></b></td>
+                                <td><b>{{ $suggestion->created_at }}</b></td>
+                                <td><a class="delete-modal text-danger" data-id="{{$suggestion->id}}" data-suggestion="{{$suggestion->suggestion}}">
+                                        <button class="btn btn-xs btn-danger btn-equal-width ">Delete</button></a></td>
+                            </tr>
+
+                        @else
+                        <tr id="item{{$suggestion->id}}">
+                            <td>{{ $suggestion->first_name.' '.$suggestion->last_name}}</td>
+                            <td>{{ $suggestion->email }}</td>
+                            <td><a href="" class="update" data-url="{{ url('/admin/updateComment/') }}" data-name="name" data-type="text" data-pk="{{$suggestion->id}}" data-title="Enter answer">{{ $suggestion->suggestion }}</a></td>
+                            <td>{{ $suggestion->created_at }}</td>
+                            <td><a class="delete-modal text-danger" data-id="{{$suggestion->id}}" data-suggestion="{{$suggestion->suggestion}}">
+                                    <button class="btn btn-xs btn-danger btn-equal-width ">Delete</button></a></td>
+                        </tr>
+                    @endif
                 @endforeach
                 </tbody>
             </table>

@@ -4,9 +4,20 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Resolution extends Model
 {
+    use SoftDeletes;
+
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
+
     use Notifiable;
 
     /**
@@ -24,6 +35,7 @@ class Resolution extends Model
         'pdf_file_name',
         'is_monitoring',
         'facebook_post_id',
+        'pdf_link',
     ];
 
     /**

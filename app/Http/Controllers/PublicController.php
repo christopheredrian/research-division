@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Admin\OrdinancesController;
 use App\Http\Controllers\Controller;
+use App\Http\GoogleDriveUtilities;
 use App\Http\LogUtility;
 use App\Ordinance;
 use App\Resolution;
@@ -40,7 +41,7 @@ class PublicController extends Controller
             return response()->download(storage_path().'/app/public/'.$directory.'/'.$filename);
 
         } else {
-            $file = app('App\Http\Controllers\Admin\OrdinancesController')->getFileFromCloud($filename);
+            $file = GoogleDriveUtilities::getFileFromCloud($filename);
 
             //return $file; // array with file info
             $rawData = Storage::cloud()->get($file['path']);
@@ -98,7 +99,7 @@ class PublicController extends Controller
             Session::flash('flash_message', 'Successfully deleted file!');
             return redirect('/admin/' . $directory . '/' . $instance->id);
         } else {
-            $file = app('App\Http\Controllers\Admin\OrdinancesController')->getFileFromCloud($filename);
+            $file = GoogleDriveUtilities::getFileFromCloud($filename);
 
             // Delete File
             Storage::disk('google')->delete($file['path']);
@@ -334,7 +335,7 @@ class PublicController extends Controller
         }else{
             $resolutions = $resolutions->where('is_monitored','=',0);
         }
-        
+
         // Implement filtering / sorting
         $resolutions = $resolutions->orderBy($colName, $order);
 

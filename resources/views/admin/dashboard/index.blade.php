@@ -107,12 +107,15 @@
                 <!-- small box -->
                 <div class="small-box bg-light-blue">
                     <div class="inner">
-                        <h3>{{ \App\Questionnaire::count() }}</h3>
 
-                        <p>Questionnaires</p>
+                        <h3>{{ \App\Suggestion::count() }}
+                        </h3>
+
+
+                        <p>Comments/Suggestions</p>
                     </div>
                     <div class="icon">
-                        <i class="fa fa-question-circle-o"></i>
+                        <i class="fa fa-paper-plane"></i>
                     </div>
                     <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
@@ -122,7 +125,8 @@
                 <!-- small box -->
                 <div class="small-box bg-light-blue">
                     <div class="inner">
-                        <h3>{{ \App\Response::count() }}</h3>
+                        <h3>{{ \App\Response::count() }}
+                        </h3>
 
                         <p>Feedback</p>
                     </div>
@@ -140,17 +144,17 @@
                 <!-- small box -->
                 <div class="small-box bg-light-blue">
                     <div class="inner">
-                        <h3>{{ \App\Suggestion::count() }}</h3>
+                        <h3>{{ \App\Questionnaire::count() }}</h3>
 
-                        <p>Total Suggestions</p>
+                        <p>Questionnaires</p>
                     </div>
                     <div class="icon">
-                        <i class="fa fa-paper-plane"></i>
+                        <i class="fa fa-question-circle-o"></i>
                     </div>
                     <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
-            
+
             <div class="col-lg-4 col-xs-6">
                 <!-- small box -->
                 <div class="small-box bg-light-blue">
@@ -165,7 +169,7 @@
                     <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
-            
+
             <div class="col-lg-4 col-xs-6">
                 <!-- small box -->
                 <div class="small-box bg-light-blue">
@@ -181,9 +185,85 @@
                 </div>
             </div>
 
-            
 
         </div>
+        <div class="col-md-4">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Recent Comments/Suggestions</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                    class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <ul class="products-list product-list-in-box">
+                        @foreach($suggestions as $suggestion)
+                            <li class="item">
+                                <div class="product-info">
+                                    @if($suggestion->ordinances()->first() != null)
+                                        <a href="/admin/showComments/{{$suggestion->ordinances()->first()->id}}/ordinances"
+                                           class="product-title">
+                                            @else
+                                                <a href="/admin/showComments/{{$suggestion->resolutions()->first()->id}}/resolutions"
+                                                   class="product-title">
+                                                    @endif
+                                                    {{$suggestion->first_name.' '.$suggestion->last_name}}
+                                                    <span class="label label-info pull-right">{{$suggestion->created_at}}</span></a>
+                                                <span class="product-description">
+                                        {{$suggestion->suggestion}}
+                                     </span>
+                                </div>
+                            </li>
+                    @endforeach
+                    <!-- /.item -->
+                    </ul>
+                </div>
+                <!-- /.box-footer -->
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Recent Responses</h3>
+
+                    <div class="box-tools pull-right">
+                        <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                    class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <ul class="products-list product-list-in-box">
+                        @foreach($responses as $response)
+                            <li class="item">
+                                <div class="product-info">
+                                        <a href="/admin/result/{{$response->questionnaire_id}}"
+                                           class="product-title">
+                                                    @if($response->first_name == null && $response->last_name == null)
+                                                        Anonymous
+                                                    @else
+                                                        {{$response->first_name.' '.$response->last_name}}
+                                                    @endif
+
+                                                    <span class="label label-info pull-right">{{$response->created_at}}</span></a>
+                                                <span class="product-description">
+                                        {{$response->email}}
+                                     </span>
+                                </div>
+                            </li>
+                        @endforeach
+                    <!-- /.item -->
+                    </ul>
+                </div>
+                <!-- /.box-footer -->
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-xs-12">
                 <div class="box">
@@ -217,8 +297,8 @@
             <div class="col-xs-4">
 
 
-
             </div>
         </div>
+
     </section>
 @endsection

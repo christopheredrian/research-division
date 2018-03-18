@@ -12,14 +12,22 @@
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "maatwebsite/excel": "~2.1.0",
+<<<<<<< HEAD
         "phpunit/phpunit": "6.5.0"
+=======
+        "nao-pon/flysystem-google-drive": "~1.1"
+>>>>>>> 604178844a5a00349ec30b1ba92811e4b7ddfabd
     },
     "require-dev": {
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "~1.0",
+<<<<<<< HEAD
         "nao-pon/flysystem-google-drive": "~1.1",
         "phpunit/dbunit": "3.0.3"
+=======
+        "phpunit/phpunit": "~6.0"
+>>>>>>> 604178844a5a00349ec30b1ba92811e4b7ddfabd
     },
     "autoload": {
         "classmap": [
