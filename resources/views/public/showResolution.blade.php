@@ -111,16 +111,16 @@
                                                       action="{{ url("/suggestions/{$resolution->id }/") }}">
                                                     {{ csrf_field() }}
                                                     <input class="form-control" type="text" name="first_name"
-                                                           placeholder="First Name">
+                                                           placeholder="First Name" value="{{ old('first_name') }}">
                                                     <input class="form-control" type="text" name="last_name"
-                                                           placeholder="Last Name">
+                                                           placeholder="Last Name" value="{{ old('last_name') }}">
                                                     <input class="form-control" type="hidden" name="type"
                                                            value="resolution">
                                                     <input class="form-control" type="email" name="email"
-                                                           placeholder="Email">
+                                                           placeholder="Email" value="{{ old('email') }}">
                                                     <textarea required class="form-control" name="suggestion"
                                                               rows="5"
-                                                              placeholder="Please give us your suggestion on this resolution"></textarea>
+                                                              placeholder="Please give us your suggestion on this resolution">{{ old('suggestion') }}</textarea>
 
                                                     {!! NoCaptcha::display() !!}
                                                     @if ($errors->has('g-recaptcha-response'))
