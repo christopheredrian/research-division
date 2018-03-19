@@ -135,7 +135,7 @@
 
                         <div class="pull-right">
                             <div class="ordinance-right-wrapper">
-                                <button onclick="window.location.href='/ordinance'" class="btn btn-info">View All
+                                <button onclick="window.location.href='/ordinances'" class="btn btn-info">View All
                                 </button>
                             </div>
                         </div>
