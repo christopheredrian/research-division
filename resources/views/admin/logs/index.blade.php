@@ -31,7 +31,6 @@
             <table id="datatable" class="table table-striped table-bordered">
                 <thead>
                 <tr>
-                    <th>Id</th>
                     <th>User</th>
                     <th>Message</th>
                     <th>Ip</th>
@@ -41,7 +40,6 @@
                 <tbody>
                 @foreach($logs as $log)
                     <tr>
-                        <td>{{ $log->id }}</td>
                         <td>{{ $log->user }}</td>
                         <td>{{ $log->message }}</td>
                         <td>{{ $log->ip }}</td>
