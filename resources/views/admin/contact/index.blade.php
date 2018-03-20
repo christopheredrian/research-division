@@ -75,7 +75,7 @@
                     </tbody>
                 </table>
                 <div class="row text-center">
-                    {{$messages->links()}}
+                    {{$messages->appends(['q' => request()->q])->links()}}
                 </div>
 
             </div>

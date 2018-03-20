@@ -218,11 +218,21 @@ function skin($user)
 
 
                 </li>
+                <?php
+                $new_message_count = \App\Message::where('created_at','>=', \Carbon\Carbon::today()->addDay(-5))->count()
+                ?>
+                @php()
+
+                @endphp
                 <li class="{{ Request::is('admin/messages*') ? 'active' : '' }}">
                     <a href="/admin/messages">
                         <i class="fa fa-envelope-o"></i>
                         <span>Messages</span>
+                        <span class="pull-right-container">
+                         <span class="label label-primary pull-right">{{ $new_message_count }}</span>
+                    </span>
                     </a>
+
                 </li>
 
                 {{--<li class="treeview menu-open">--}}
