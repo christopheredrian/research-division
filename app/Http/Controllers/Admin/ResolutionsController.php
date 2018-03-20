@@ -10,6 +10,7 @@ use App\Value;
 use App\Resolution;
 use App\StatusReport;
 use App\UpdateReport;
+use Carbon\Carbon;
 use Facebook\Facebook;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -197,7 +198,16 @@ class ResolutionsController extends Controller
         Resolution::destroy($id);
         Session::flash('flash_message', "Delete Successful!");
 
-//        return redirect('/admin/resolutions');
+        return back();
+    }
+
+    public function softDelete($id){
+        $resolution = Resolution::findOrFail($id);
+        $resolution->deleted_at = Carbon::now();
+        $resolution->save();
+
+        Session::flash('flash_message', 'Successfully deleted Ordinance ' . $resolution->number . '-' . $resolution->series );
+
         return back();
     }
 

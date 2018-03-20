@@ -167,7 +167,7 @@
 
             name.charAt(name.length - 1) == 's' ? name += "'" : name += "'s"
 
-            return confirm("Are you sure you want reset " + name + " password?");
+            return confirm("Are you sure you want to reset " + name + " password?");
         });
     </script>
 @endsection

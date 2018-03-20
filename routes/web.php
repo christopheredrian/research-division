@@ -92,6 +92,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::get('/ordinances/{id}/upload-update-report', 'Admin\\OrdinancesController@updateReportCreate');
         Route::get('/resolutions/{id}/upload-status-report', 'Admin\\ResolutionsController@statusReportCreate');
         Route::get('/resolutions/{id}/upload-update-report', 'Admin\\ResolutionsController@updateReportCreate');
+        Route::get('/resolutions/{id}/upload-update-report', 'Admin\\ResolutionsController@updateReportCreate');
 
         Route::post('/ordinance-upload-status-report',
             'Admin\\OrdinancesController@storeStatusReport')->name('ordinanceStoreStatusReport');
@@ -132,6 +133,10 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
 
     // CONFIGURATIONS
     Route::get('/configurations', 'Admin\\ConfigurationsController@index');
+
+    // LEGISLATION SOFT DELETE
+    Route::get('/ordinances/delete/{id}', 'Admin\\OrdinancesController@softDelete');
+    Route::get('/resolutions/delete/{id}', 'Admin\\ResolutionsController@softDelete');
 });
 
 Auth::routes();

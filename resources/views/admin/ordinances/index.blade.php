@@ -186,7 +186,7 @@
                                     <td><input class="btn btn-xs btn-success btn-equal-width" type="submit"
                                                value="Filter">
                                         <a href="/admin{{$type === 'RR' ? '' : '/forms'}}/ordinances"
-                                           class="btn btn-xs btn-danger btn-equal-width">
+                                           class="btn btn-xs btn-primary btn-equal-width">
                                             <i class="fa fa-refresh"></i> Reset
                                         </a>
                                     </td>
@@ -203,44 +203,13 @@
                                            class="btn btn-xs btn-primary btn-equal-width ">
                                             View
                                         </a>
+
                                         <a href="/admin/ordinances/{{$ordinance->id}}/edit?type={{$type}}"
                                            class="btn btn-xs btn-warning btn-equal-width ">Edit</a>
 
-                                        <button class="btn btn-xs btn-danger btn-equal-width " data-toggle="modal"
-                                                data-target="#exampleModal">
+                                        <a href="/admin/ordinances/delete/{{ $ordinance->id }}" class="btn btn-xs btn-danger btn-equal-width deleteButton">
                                             Delete
-                                        </button>
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h3 class="modal-title" id="exampleModalLabel">Confirm
-                                                            Delete</h3>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Are you sure you want to delete ordinance {{$ordinance->title}}?
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary"
-                                                                data-dismiss="modal">Cancel
-                                                        </button>
-                                                        <form action="/admin/ordinances/{{ $ordinance->id }}"
-                                                              method="post">
-                                                            {{ method_field('DELETE') }}
-                                                            {{ csrf_field() }}
-                                                            <button class="btn btn-danger">Delete</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
+                                        </a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -258,4 +227,16 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script type="text/javascript">
+        $('.deleteButton').click(function (e) {
+            var link = e.target;
+            var name = $(link).parent().parent().children().first().text();
+            var series = $(link).parent().parent().children().eq(1).text();
+
+            return confirm("Are you sure you want to delete Ordinance " + name + "-" + series + "?");
+        });
+    </script>
 @endsection

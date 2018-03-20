@@ -10,6 +10,7 @@ use App\Question;
 use App\Value;
 use App\StatusReport;
 use App\UpdateReport;
+use Carbon\Carbon;
 use Facebook\Facebook;
 use GuzzleHttp\Promise\all;
 use Illuminate\Http\Request;
@@ -231,6 +232,16 @@ class OrdinancesController extends Controller
         Session::flash('flash_message', "Delete Successful!");
 
 //        return redirect('/admin/ordinances');
+        return back();
+    }
+
+    public function softDelete($id){
+        $ordinance = Ordinance::findOrFail($id);
+        $ordinance->deleted_at = Carbon::now();
+        $ordinance->save();
+
+        Session::flash('flash_message', 'Successfully deleted Ordinance ' . $ordinance->number . '-' . $ordinance->series );
+
         return back();
     }
 
