@@ -3,7 +3,7 @@
 
 <head>
 
-    <link rel="icon"  href="/images/partgov.png">
+    <link rel="icon" href="/images/partgov.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>Research Division</title>
@@ -29,7 +29,7 @@
             z-index: 100;
         }
 
-        #contents{
+        #contents {
             min-height: 65vh;
         }
         .bottom-footer {
@@ -131,8 +131,8 @@
                                     @endforeach
                                 </ul>
                         @endif
-
                         <li><a href="/contactUs">Contact</a></li>
+                        <li><a href="/contact">Contact</a></li>
                         <li><a href="/about">About</a></li>
                         <li class="hidden-sm hidden-xs">
                             <a href="#" id="ss"><i class="fa fa-search" aria-hidden="true"></i></a>
@@ -176,6 +176,7 @@
                 </div>
             </div>
         </div>
+    </div>
 </footer>
 
 

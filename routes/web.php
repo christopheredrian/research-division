@@ -43,7 +43,8 @@ Route::get('/answer.r/{id}/required', 'PublicController@showRequiredResolutionQu
 //Route::get('/reports', 'PublicController@reports');
 Route::get('/page/{id}', 'PublicController@page');
 Route::post('/suggestions/{id}', 'PublicController@storeSuggestion');
-Route::get('/contactUs', 'PublicController@contactUs');
+Route::get('/contact', 'PublicController@contact');
+Route::post('/contact', 'PublicController@sendMessage');
 
 Route::get('/downloadPDF/{directory}/{file}', 'PublicController@downloadPDF');
 Route::get('/deletePDF/{directory}/{file}', 'PublicController@deletePDF');
@@ -51,6 +52,9 @@ Route::get('/search', 'SearchController@index');
 
 /* Admin routes */
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
+
+    Route::get('/messages', 'Admin\\MessageController@index');
+    Route::get('/messages/{id}', 'Admin\\MessageController@show');
 
     Route::get('/search', 'SearchController@index');
     Route::get('/', 'Admin\\DashboardController@index');
