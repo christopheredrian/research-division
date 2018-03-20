@@ -3,7 +3,7 @@
 @section('scripts')
     <script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyC7dvhrXSpMj_XFOeDt3DgmWuDG6JHewb4"></script>
     <script src="/js/script.js"></script>
-    <script src="/contactform/contactform.js"></script>
+    {{--<script src="/contactform/contactform.js"></script>--}}
 @endsection
 
 @section('content')
@@ -18,8 +18,7 @@
                                 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 ">
                                     <div class="get-touch-heading">
                                         <h2>Contact Us</h2>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent metus
-                                            magna,malesuada porta elementum vitae.</p>
+                                        <p>Get in touch with us</p>
                                     </div>
                                 </div>
                             </div>
@@ -29,7 +28,8 @@
                                     <div id="sendmessage">Your message has been sent. Thank you!</div>
                                     <div id="errormessage"></div>
 
-                                    <form action="" method="post" role="form" class="form contactForm">
+                                    <form action="/contact" method="post" role="form" class="form contactForm">
+                                        {{ csrf_field() }}
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <input type="text" name="name" class="form-control" id="name"
@@ -157,13 +157,13 @@
             color: rgba(59, 89, 152, 1)
         }
 
-        svg{
+        svg {
         }
 
         @keyframes rotateInDownLeft {
             from {
                 transform-origin: left bottom;
-                transform: rotate3d(0,0,0, 0deg);
+                transform: rotate3d(0, 0, 0, 0deg);
                 opacity: 1;
             }
 
@@ -171,7 +171,7 @@
                 -webkit-transform-origin: left bottom;
                 transform-origin: left bottom;
                 transform: ;
-                transform:translateX(850px) translateY(-83px) rotate3d(0,0,1, -60deg);
+                transform: translateX(850px) translateY(-83px) rotate3d(0, 0, 1, -60deg);
                 opacity: 1;
             }
         }
