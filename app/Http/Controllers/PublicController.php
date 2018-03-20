@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\OrdinancesController;
 use App\Http\Controllers\Controller;
 use App\Http\GoogleDriveUtilities;
 use App\Http\LogUtility;
+use App\Message;
 use App\Ordinance;
 use App\Resolution;
 use App\Response;
@@ -463,7 +464,16 @@ class PublicController extends Controller
 
     public function sendMessage(Request $request)
     {
-        dd($request->input());
+        // Add to messages table
+        $newMessage = new Message();
+        $newMessage->name = $request->input('name');
+        $newMessage->email = $request->input('email');
+        $newMessage->subject = $request->input('subject');
+        $newMessage->message = $request->input('message');
+        $newMessage->save();
+        Session::flash('flash_message', 'Thank you for your message, we will get back to you as soon as we can.');
+        return view('public.contact');
+
     }
 
     public function aboutDiv()

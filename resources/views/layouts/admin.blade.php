@@ -216,7 +216,15 @@ function skin($user)
                         <span>Dashboard</span>
                     </a>
 
+
                 </li>
+                <li class="{{ Request::is('admin/messages*') ? 'active' : '' }}">
+                    <a href="/admin/messages">
+                        <i class="fa fa-envelope-o"></i>
+                        <span>Messages</span>
+                    </a>
+                </li>
+
                 {{--<li class="treeview menu-open">--}}
                 {{--<a href="#">--}}
                 {{--<i class="fa fa-envelope-o"></i> <span>Mail</span>--}}
