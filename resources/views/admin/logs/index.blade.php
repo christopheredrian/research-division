@@ -19,11 +19,11 @@
                 <form class="form-inline">
                     <div class="form-group">
                         <label for="exampleInputName2">From</label>
-                        <input name="from" type="date" class="form-control" >
+                        <input name="from" type="date" class="form-control" value="{{ request('from') ? request('from') : '' }}">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail2">To</label>
-                        <input name="to" type="date" class="form-control" >
+                        <input name="to" type="date" class="form-control" value="{{ request('to') ? request('to') : '' }}">
                     </div>
                     <button type="submit" class="btn btn-primary">Filter</button>
                 </form>

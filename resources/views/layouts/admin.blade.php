@@ -379,7 +379,7 @@ function skin($user)
                     </li>
                 @endif
 
-                <li class="{{ Request::is('/reports*') ? 'active' : '' }}">
+                <li class="{{ Request::is('reports') ? 'active' : '' }}">
                     <a href="/reports">
                         <i class="fa fa-th-list"></i>
                         <span>Reports</span>
