@@ -18,8 +18,6 @@
                                 <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3 ">
                                     <div class="get-touch-heading">
                                         <h2>Contact Us</h2>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent metus
-                                            magna,malesuada porta elementum vitae.</p>
                                     </div>
                                 </div>
                             </div>

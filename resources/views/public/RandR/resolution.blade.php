@@ -14,12 +14,12 @@
                                     <i class="fa fa-refresh"></i> Reset Filtering
                                 </a>
                             </div>
-                            <div class="pull-right">
-                                <form  method="get" action="#" class="form-inline">
-                                <input value="{{ request()->q }}" name="q" class="form-control" type="search" placeholder="Search...">
-                                    <button class="btn" style="height: 35px; width: 35px; margin-right: 65px"><span class="fa fa-search"></span></button>
-                                </form>
-                            </div><!-- /.col-lg-6 -->
+                            {{--<div class="pull-right">--}}
+                                {{--<form  method="get" action="#" class="form-inline">--}}
+                                {{--<input value="{{ request()->q }}" name="q"  style="min-width: 150px" class="form-control" type="search" placeholder="Search...">--}}
+                                    {{--<button class="btn" style="height: 35px; width: 35px; margin-right: 65px"><span class="fa fa-search"></span></button>--}}
+                                {{--</form>--}}
+                            {{--</div><!-- /.col-lg-6 -->--}}
                         </div>
 
                         <div class="ordinance-right">
