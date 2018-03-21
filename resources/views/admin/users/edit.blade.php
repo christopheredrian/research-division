@@ -158,7 +158,7 @@
                         <div style="text-align: center;">
                             @if($user->image)
                                 <img src="{{ session('profile_image_link') }}"
-                                     class="user-circle" style="max-width: 2in; border: dashed"
+                                     class="img-circle" style="max-width: 2in; border: dashed"
                                      alt="User Image">
 
                                 <br/><br>
