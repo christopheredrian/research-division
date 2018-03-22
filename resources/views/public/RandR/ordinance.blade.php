@@ -142,7 +142,7 @@
                                                     <td class="information">{{ str_limit($ordinance->keywords, $limit = 150, $end = '...') }}</td>
                                                     <td>
                                                         <button onclick="window.location.href='/public/showOrdinance/{{$ordinance->id}}\ ' "
-                                                                class="btn btn-info pull-right">Read More
+                                                                class="btn btn-info pull-right button-two"><span>Read More</span>
                                                         </button>
                                                     </td>
                                                 </tr>
@@ -173,10 +173,43 @@
         #content {
             background-color: rgb(240, 248, 255);
         }
+
         .information {
             text-align: center;
             vertical-align:middle;
             position: relative;
+        }
+
+        .button-two {
+             border-radius: 4px;
+             background-color:#d35400;
+             border: none;
+             transition: all 0.5s;
+         }
+
+        .button-two span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .button-two span:after {
+            content: '»';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        .button-two:hover span {
+            padding-right: 25px;
+        }
+
+        .button-two:hover span:after {
+            opacity: 1;
+            right: 0;
         }
     </style>
 @endsection

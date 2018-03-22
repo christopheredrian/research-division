@@ -138,11 +138,11 @@
                                             <tr>
                                                 <td>{{ $resolution->number }}</td>
                                                 <td>{{ $resolution->series }}</td>
-                                                <td>{{ str_limit($resolution->title, $limit = 200, $end = '...') }}</td>
-                                                <td>{{ str_limit($resolution->keywords, $limit = 200, $end = '...') }}</td>
+                                                <td>{{ str_limit($resolution->title, $limit = 150, $end = '...') }}</td>
+                                                <td>{{ str_limit($resolution->keywords, $limit = 150, $end = '...') }}</td>
                                                 <td>
                                                     <button onclick="window.location.href='/public/showResolution/{{$resolution->id}}\ ' "
-                                                            class="btn btn-info pull-right">Read More
+                                                            class="btn btn-info pull-right button-two">Read More
                                                     </button>
                                                 </td>
                                             </tr>
@@ -170,6 +170,38 @@
     <style>
         #content {
             background-color: rgb(240, 248, 255);
+        }
+
+        .button-two {
+            border-radius: 4px;
+            background-color:#d35400;
+            border: none;
+            transition: all 0.5s;
+        }
+
+        .button-two span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+        .button-two span:after {
+            content: '»';
+            position: absolute;
+            opacity: 0;
+            top: 0;
+            right: -20px;
+            transition: 0.5s;
+        }
+
+        .button-two:hover span {
+            padding-right: 25px;
+        }
+
+        .button-two:hover span:after {
+            opacity: 1;
+            right: 0;
         }
     </style>
 @endsection
