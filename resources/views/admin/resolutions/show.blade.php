@@ -63,13 +63,40 @@
                         Print</a>
 
                     @if($resolution->is_monitored == 0)
-                        <form style="display: inline;" method="post" action="{{ url('/admin/forms/' . $questionnaire->id) }}">
-                            {{ method_field('DELETE') }}
-                            {{ csrf_field() }}
-                            <button class="btn btn-danger" onclick="return confirm('Are you sure you want to remove this Questionnaire?')">
-                                <span class="fa fa-trash"></span> Delete
+                        {{--<form style="display: inline;" method="post" action="{{ url('/admin/forms/' . $questionnaire->id) }}">--}}
+                            {{--{{ method_field('DELETE') }}--}}
+                            {{--{{ csrf_field() }}--}}
+                            {{--<button class="btn btn-danger" onclick="return confirm('Are you sure you want to remove this Questionnaire?')">--}}
+                                {{--<span class="fa fa-trash"></span> Delete--}}
+                            {{--</button>--}}
+                        {{--</form>--}}
+
+                            <button class="btn btn-danger btn-equal-width" data-toggle="modal" data-target="#exampleModal">
+                                Delete
                             </button>
-                        </form>
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h3 class="modal-title" id="exampleModalLabel">Confirm Delete</h3>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to delete this questionnaire?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel
+                                            </button>
+                                            <form style="display: inline;" method="post"
+                                                  action="{{ url('/admin/forms/' . $questionnaire->id) }}">
+                                                {{ method_field('DELETE') }}
+                                                {{ csrf_field() }}
+                                                <button class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                     @endif
                 </div>
             </div>

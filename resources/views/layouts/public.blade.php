@@ -131,7 +131,6 @@
                                     @endforeach
                                 </ul>
                         @endif
-                        <li><a href="/contactUs">Contact</a></li>
                         <li><a href="/contact">Contact</a></li>
                         <li><a href="/about">About</a></li>
                         <li class="hidden-sm hidden-xs">

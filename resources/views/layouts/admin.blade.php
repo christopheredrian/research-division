@@ -35,6 +35,15 @@
         #flashMessage {
             margin-top: 10px !important;
         }
+
+        .img-circle{
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+
+            object-fit: cover;
+            object-position: center right;
+        }
     </style>
 <?php
 
@@ -151,12 +160,11 @@ function skin($user)
         <section class="sidebar">
             <!-- Sidebar user panel -->
             <div class="user-panel">
-                <div class="pull-left image">
-
+                <div class="pull-left">
                     @if(\Illuminate\Support\Facades\Auth::user()->image)
-                        <img src="{{ session('profile_image_link') }}" class="img-circle" alt="User Image">
+                        <img src="{{ session('profile_image_link') }}" class="img-circle" alt="User Image" style="width: 50px; height: 50px;">
                     @else
-                        <img src="/uploads/default.jpg" class="img-circle" alt="User Image">
+                        <img src="/uploads/default.jpg" class="img-circle" alt="User Image" style="width: 50px; height: 50px;">
                     @endif
 
                     <span class="hidden-xs"> {{ \Illuminate\Support\Facades\Auth::user()->name }}</span>
