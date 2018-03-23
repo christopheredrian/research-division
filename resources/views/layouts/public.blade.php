@@ -32,6 +32,7 @@
         #contents {
             min-height: 65vh;
         }
+
         .bottom-footer {
             max-height: 50vh;
         }
@@ -102,8 +103,8 @@
                                 Monitoring & Evaluation <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="/ordinances">Ordinances</a></li>
-                                <li><a href="/resolutions">Resolutions</a></li>
+                                <li><a href="/ordinances">Ordinances being Monitored</a></li>
+                                <li><a href="/resolutions">Resolutions being Monitored</a></li>
                                 <li><a href="/ordinances?status=monitored">Monitored Ordinances</a></li>
                                 <li><a href="/resolutions?status=monitored">Monitored Resolutions</a></li>
                             </ul>

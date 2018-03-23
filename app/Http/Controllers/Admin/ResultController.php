@@ -12,7 +12,6 @@ use App\Question;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
-use Psy\Exception\ErrorException;
 
 class ResultController extends Controller
 {
@@ -63,7 +62,7 @@ class ResultController extends Controller
                     $questions_arr = [];
                     $answers_arr = [];
                     $count = 0;
-                    $space = 4; // will appear first on A[number], will appear on A4
+                    $space = 5; // will appear first on A[number], will appear on A4
                     $skip = $space + 1; //answers will append after the question
                     $questionnaire = Questionnaire::find($id);
                     foreach ($questionnaire->questions as $question) {
@@ -76,45 +75,19 @@ class ResultController extends Controller
 
                     $sheet->setOrientation('landscape');
 
-
-                    $range = 'A1:B1';
-                    $sheet->mergeCells($range);
-                    $sheet->appendRow(array(
-                        'Sangguniang Panglungsod', 'Sangguniang Panglungsod'
-                    ));
-
-
-                    $sheet->cells($range, function($cells) {
-                        $cells->setAlignment('center');
-                        $cells->setValignment('center');
-                    });
-
-                    $sheet->appendRow(array(
-                       'Answers for the Questionnaire for ', 'Answers for the Questionnaire for '
-                    ));
-
-                    $sheet->mergeCells('A2:B2');
-                    $sheet->cells('A2:B2', function($cells) {
-                        $cells->setAlignment('center');
-                        $cells->setValignment('center');
-                    });
-
                     if ($questionnaire->ordinance_id !== null) {
                         $ordinance = Ordinance::find($questionnaire->ordinance_id);
-                        $heading = "Ordinance number " .$ordinance->number . " of series " . $ordinance->series;
+                        $heading = "Answers to Ordinance number " .$ordinance->number . " of series " . $ordinance->series . " Questionnaire ";
                     } else {
                         $resolution = Resolution::find($questionnaire->resolution_id);
-                        $heading = "Resolution number " .$resolution->number . " of series " . $resolution->series;
+                        $heading = "Answers to Resolution number " . $resolution->number . " of series " . $resolution->series . " Questionnaire ";
                     }
-                    $sheet->appendRow(array(
-                        $heading, $heading
+                    $sheet->rows(array(
+                        array('Republic of the Philippines', 'Republic of the Philippines'),
+                        array('Sangguniang Panglungsod ng Baguio', 'Sangguniang Panglungsod ng Baguio'),
+                        array('Research Division ', 'Research Division'),
+                        array($heading, $heading),
                     ));
-
-                    $sheet->mergeCells('A3:B3');
-                    $sheet->cells('A3:B3', function($cells) {
-                        $cells->setAlignment('center');
-                        $cells->setValignment('center');
-                    });
 
                     // filling arrays with data ^
                     $sheet->appendRow($space, $questions_arr);
@@ -131,10 +104,34 @@ class ResultController extends Controller
                         $skip++;
                     }
 
-                    $sheet->cells($range, function($cells) {
+
+
+                    $sheet->mergeCells('A1:B1');
+                    $sheet->mergeCells('A2:B2');
+                    $sheet->mergeCells('A3:B3');
+                    $sheet->mergeCells('A4:B4');
+
+                    $sheet->cells('A1:B1', function($cells) {
                         $cells->setAlignment('center');
                         $cells->setValignment('center');
                     });
+
+                    $sheet->cells('A2:B2', function($cells) {
+                        $cells->setAlignment('center');
+                        $cells->setValignment('center');
+                    });
+
+                    $sheet->cells('A3:B3', function($cells) {
+                        $cells->setAlignment('center');
+                        $cells->setValignment('center');
+                    });
+
+                    $sheet->cells('A4:B4', function($cells) {
+                        $cells->setAlignment('center');
+                        $cells->setValignment('center');
+                    });
+
+
 
 //                    $sheet->setHeight(array(
 //                        1     =>  50,
@@ -263,7 +260,7 @@ class ResultController extends Controller
                     $email_arr = [];
                     $suggestion_arr = [];
                     $count = 0;
-                    $space = 4; // will appear first on A[number], will appear on A4
+                    $space = 5; // will appear first on A[number], will appear on A4
                     $skip = $space + 1; //answers will append after the question
                     foreach ( $suggestions as $suggestion) {
                         $name_arr[$count] = $suggestion->first_name.' '.$suggestion->last_name;
@@ -271,44 +268,50 @@ class ResultController extends Controller
                         $suggestion_arr[] = $suggestion->suggestion;
                         $count += 1;
                     }
+
                     $sheet->setOrientation('landscape');
 
-                    $range = 'A1:C1';
-                    $sheet->mergeCells($range);
-                    $sheet->appendRow(array(
-                        'Sangguniang Panglungsod', 'Sangguniang Panglungsod'
+                    if ($flag==='ordinances') {
+                        $ordinance = Ordinance::find($id);
+                        $heading = "Comments on Ordinance number " . $ordinance->number . " of series " . $ordinance->series;
+                    } else {
+                        $resolution = Resolution::find($id);
+                        $heading = "Comments on Resolution number " . $resolution->number . " of series " . $resolution->series;
+                    }
+
+                    $sheet->rows(array(
+                        array('Republic of the Philippines', 'Republic of the Philippines'),
+                        array('Sangguniang Panglungsod ng Baguio', 'Sangguniang Panglungsod ng Baguio'),
+                        array('Research Division ', 'Research Division'),
+                        array($heading, $heading),
                     ));
-                    $sheet->cells($range, function($cells) {
+
+
+                    $sheet->mergeCells('A1:C1');
+                    $sheet->mergeCells('A2:C2');
+                    $sheet->mergeCells('A3:C3');
+                    $sheet->mergeCells('A4:C4');
+
+                    $sheet->cells('A1:C1', function($cells) {
                         $cells->setAlignment('center');
                         $cells->setValignment('center');
                     });
 
-                    $sheet->appendRow(array(
-                        'Comments for the ', 'Comments for the'
-                    ));
-
-                    $sheet->mergeCells('A2:C2');
                     $sheet->cells('A2:C2', function($cells) {
                         $cells->setAlignment('center');
                         $cells->setValignment('center');
                     });
 
-                    if ($flag==='ordinances') {
-                        $ordinance = Ordinance::find($id);
-                        $heading = "Ordinance number " .$ordinance->number . " of series " . $ordinance->series;
-                    } else {
-                        $resolution = Resolution::find($id);
-                        $heading = "Resolution number " .$resolution->number . " of series " . $resolution->series;
-                    }
-                    $sheet->appendRow(array(
-                        $heading, $heading
-                    ));
-
-                    $sheet->mergeCells('A3:C3');
                     $sheet->cells('A3:C3', function($cells) {
                         $cells->setAlignment('center');
                         $cells->setValignment('center');
                     });
+
+                    $sheet->cells('A4:C4', function($cells) {
+                        $cells->setAlignment('center');
+                        $cells->setValignment('center');
+                    });
+
 
                     // filling arrays with data ^
                     $sheet->appendRow($space, $header_arr);
@@ -320,7 +323,6 @@ class ResultController extends Controller
 //                    foreach ($rows as $row) {
 //                        $sheet->appendRow($row);
 //                    }
-
 
                 });
             })->export('xls');
