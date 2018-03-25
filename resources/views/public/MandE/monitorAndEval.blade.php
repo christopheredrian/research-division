@@ -9,6 +9,43 @@
         form button {
             display: inline;
         }
+
+        .information {
+            text-align: center;
+            vertical-align:middle !important;
+            position: relative;
+        }
+        .button-two {
+            border-radius: 4px;
+            border: none;
+            transition: all 0.5s;
+        }
+
+        .button-two span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+
+        .button-two span:after {
+            content: '»';
+            position: absolute;
+            opacity: 0;
+            top: -2px;
+            right: -10px;
+            transition: 0.5s;
+        }
+
+        .button-two:hover span {
+            padding-right: 25px;
+        }
+
+        .button-two:hover span:after {
+            opacity: 1;
+            right: 0;
+        }
     </style>
 @endsection
 
@@ -155,13 +192,13 @@
                             </tr>
                             @foreach($ordinances as $ordinance)
                                 <tr>
-                                    <td>{{ $ordinance->number }}</td>
-                                    <td>{{ $ordinance->series }}</td>
+                                    <td class="information">{{ $ordinance->number }}</td>
+                                    <td class="information">{{ $ordinance->series }}</td>
                                     <td>{{ str_limit($ordinance->title, $limit = 200, $end = '...') }}</td>
-                                    <td>{{ str_limit($ordinance->keywords, $limit = 200, $end = '...') }}</td>
+                                    <td class="information">{{ str_limit($ordinance->keywords, $limit = 200, $end = '...') }}</td>
                                     <td>
                                         <button onclick="window.location.href='/public/showOrdinance/{{$ordinance->id}}\ ' "
-                                                class="btn btn-info pull-right">Read More
+                                                class="btn btn-info pull-right button-two"><span>Read More</span>
                                         </button>
                                     </td>
                                 </tr>
@@ -301,13 +338,13 @@
 
                             @foreach($resolutions as $resolution)
                                 <tr>
-                                    <td>{{ $resolution->number }}</td>
-                                    <td>{{ $resolution->series }}</td>
+                                    <td class="information">{{ $resolution->number }}</td>
+                                    <td class="information">{{ $resolution->series }}</td>
                                     <td>{{ str_limit($resolution->title, $limit = 200, $end = '...') }}</td>
-                                    <td>{{ str_limit($resolution->keywords, $limit = 200, $end = '...') }}</td>
+                                    <td class="information">{{ str_limit($resolution->keywords, $limit = 200, $end = '...') }}</td>
                                     <td>
                                         <button onclick="window.location.href='/public/showResolution/{{$resolution->id}}\ ' "
-                                                class="btn btn-info pull-right">Read More
+                                                class="btn btn-info pull-right button-two"><span>Read More</span>
                                         </button>
                                     </td>
                                 </tr>
@@ -320,7 +357,9 @@
                         </div>
                     @else
                         <div class="row text-center">
-                            <h1>No results found.</h1>
+                            <div class="col-md-12 col-lg-12 col-xl-12">
+                                <h1>No results found.</h1>
+                            </div>
                         </div>
                     @endif
                 </div>

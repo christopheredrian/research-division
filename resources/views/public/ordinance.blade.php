@@ -135,10 +135,10 @@
                                             </form>
                                             @foreach($ordinances as $ordinance)
                                                         <tr>
-                                                            <td>{{ $ordinance->number }}</td>
-                                                            <td>{{ $ordinance->series }}</td>
-                                                            <td>{{ str_limit($ordinance->title, $limit = 200, $end = '...') }}</td>
-                                                            <td>{{ str_limit($ordinance->keywords, $limit = 200, $end = '...') }}</td>
+                                                            <td class="info">{{ $ordinance->number }}</td>
+                                                            <td class="info">{{ $ordinance->series }}</td>
+                                                            <td class="info">{{ str_limit($ordinance->title, $limit = 200, $end = '...') }}</td>
+                                                            <td class="info">{{ str_limit($ordinance->keywords, $limit = 200, $end = '...') }}</td>
                                                             <td>
                                                                 <button onclick="window.location.href='/public/showOrdinance/{{$ordinance->id}}\ ' "
                                                                         class="btn btn-info pull-right">Read More
@@ -146,10 +146,8 @@
                                                             </td>
                                                         </tr>
                                             @endforeach
-
                                             </tbody>
                                         </table>
-
                                         <div class="row text-center">
                                             {{$ordinances->links()}}
                                         </div>

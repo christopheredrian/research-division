@@ -25,7 +25,12 @@
 
                         <div class="ordinance-right">
                             <div class="col-md-12">
-                                @if($resolutions->first() !== null)
+                                @if($resolutions->first() === null)
+                                    <div class="row text-center">
+                                        <h1>No results found.</h1>
+                                    </div>
+                                    <br>
+                                @endif
                                     <table class="table table-striped table-bordered">
                                         <thead>
                                         <tr>
@@ -138,13 +143,13 @@
                                         @foreach($resolutions as $resolution)
                                             @if(!$resolution->isAccepting() || !$resolution->acceptingComments())
                                             <tr>
-                                                <td>{{ $resolution->number }}</td>
-                                                <td>{{ $resolution->series }}</td>
+                                                <td class="information">{{ $resolution->number }}</td>
+                                                <td class="information">{{ $resolution->series }}</td>
                                                 <td>{{ str_limit($resolution->title, $limit = 200, $end = '...') }}</td>
-                                                <td>{{ str_limit($resolution->keywords, $limit = 200, $end = '...') }}</td>
+                                                <td class="information">{{ str_limit($resolution->keywords, $limit = 200, $end = '...') }}</td>
                                                 <td>
                                                     <button onclick="window.location.href='/public/showResolution/{{$resolution->id}}\ ' "
-                                                            class="btn btn-info pull-right">Read More
+                                                            class="btn btn-info pull-right button-two"><span>Read More</span>
                                                     </button>
                                                 </td>
                                             </tr>
@@ -156,11 +161,6 @@
                                     <div class="row text-center">
                                         {{$resolutions->links()}}
                                     </div>
-                                @else
-                                    <div class="row text-center">
-                                        <h1>No results found.</h1>
-                                    </div>
-                                @endif
                             </div>
                         </div>
                     </div>
@@ -173,6 +173,43 @@
     <style>
         #content {
             background-color: rgb(240, 248, 255);
+        }
+
+        .information {
+            text-align: center;
+            vertical-align:middle !important;
+            position: relative;
+        }
+        .button-two {
+            border-radius: 4px;
+            border: none;
+            transition: all 0.5s;
+        }
+
+        .button-two span {
+            cursor: pointer;
+            display: inline-block;
+            position: relative;
+            transition: 0.5s;
+        }
+
+
+        .button-two span:after {
+            content: '»';
+            position: absolute;
+            opacity: 0;
+            top: -2px;
+            right: -10px;
+            transition: 0.5s;
+        }
+
+        .button-two:hover span {
+            padding-right: 25px;
+        }
+
+        .button-two:hover span:after {
+            opacity: 1;
+            right: 0;
         }
     </style>
 @endsection

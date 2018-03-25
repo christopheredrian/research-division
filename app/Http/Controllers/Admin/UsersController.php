@@ -25,9 +25,9 @@ class UsersController extends Controller
         'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         'name' => 'required',
         'email' => 'required|unique:users|email',
-        'password' => 'required',
+        'pass' => 'required',
         'role' => 'required',
-        'repassword' => 'required|same:password'
+        'repassword' => 'required|same:pass'
     ];
 
     public function index()
@@ -55,13 +55,15 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request->a);
         $request->validate($this->user_validation);
         $user = new User();
 
         $user->fill($request->all());
         $user->password = bcrypt($request->password);
-
         $user->save();
+
+        Session::flash('flash_message', "Successfully created new user <u>" . $user->name . "</u>!");
         return redirect('/admin/users');
     }
 

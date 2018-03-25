@@ -26,7 +26,6 @@
             <table class="table table-striped table-bordered">
                 <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Title</th>
                     <th>Manage</th>
                 </tr>
@@ -34,7 +33,6 @@
                 <tbody>
                 @foreach($pages as $page)
                     <tr>
-                        <td>{{ $page->id }}</td>
                         <td>{{ $page->title }}</td>
                         <td>
                             <a href="/admin/pages/{{$page->id}}" class="btn btn-xs btn-info">Preview</a>

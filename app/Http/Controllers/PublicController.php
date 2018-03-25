@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\OrdinancesController;
 use App\Http\Controllers\Controller;
 use App\Http\GoogleDriveUtilities;
 use App\Http\LogUtility;
+use App\Message;
 use App\Ordinance;
 use App\Resolution;
 use App\Response;
@@ -34,11 +35,12 @@ class PublicController extends Controller
         'keywords',
     ];
 
-    public function downloadPDF($directory, $filename) {
+    public function downloadPDF($directory, $filename)
+    {
 
-        if(env('APP_ENV') === 'local') {
+        if (env('APP_ENV') === 'local') {
 
-            return response()->download(storage_path().'/app/public/'.$directory.'/'.$filename);
+            return response()->download(storage_path() . '/app/public/' . $directory . '/' . $filename);
 
         } else {
             $file = GoogleDriveUtilities::getFileFromCloud($filename);
@@ -52,8 +54,9 @@ class PublicController extends Controller
         }
     }
 
-    public function deletePDF($directory, $filename){
-        $instanceID = substr($filename,0);
+    public function deletePDF($directory, $filename)
+    {
+        $instanceID = substr($filename, 0);
 
         // Get instance (Ordinance, Resolution, UpdateReport, StatusReport), then update certain fields
         if ($directory === 'updatereports') {
@@ -77,7 +80,7 @@ class PublicController extends Controller
 
         // Set directory for the blade (admin.ordinances.show OR admin.resolutions.show)
         // FOR GOOGLE DRIVE UPLOAD
-        if($directory === 'statusreports' or $directory === 'updatereports'){
+        if ($directory === 'statusreports' or $directory === 'updatereports') {
             // Check if it is associated to a resolution or a ordinance
             if ($instance->resolution !== null) {
                 $directory = 'resolutions';
@@ -85,7 +88,7 @@ class PublicController extends Controller
                 // set its Resolution instance
                 $instance = $instance->resolution;
             } else {
-                $directory =  'ordinances';
+                $directory = 'ordinances';
 
                 // set its Ordinance instance
                 $instance = $instance->ordinance;
@@ -93,8 +96,8 @@ class PublicController extends Controller
         }
 
         // DELETE FILE
-        if(env('APP_ENV') === 'local') {
-            Storage::disk('local')->delete(storage_path().'/app/public/'.$directory.'/'.$filename);
+        if (env('APP_ENV') === 'local') {
+            Storage::disk('local')->delete(storage_path() . '/app/public/' . $directory . '/' . $filename);
 
             Session::flash('flash_message', 'Successfully deleted file!');
             return redirect('/admin/' . $directory . '/' . $instance->id);
@@ -149,12 +152,12 @@ class PublicController extends Controller
 
         if ($request->q) {
             $q = $request->q;
-            $resolutions = Resolution::where(function($query) use ($q){
+            $resolutions = Resolution::where(function ($query) use ($q) {
                 $query->where('keywords', 'LIKE', '%' . $q . '%')
                     ->orWhere('number', 'LIKE', '%' . $q . '%')
                     ->orWhere('series', 'LIKE', '%' . $q . '%')
                     ->orWhere('title', 'LIKE', '%' . $q . '%');
-            })->where(function($query){
+            })->where(function ($query) {
                 $query->where('is_monitoring', 1);
             });
         } else {
@@ -168,7 +171,6 @@ class PublicController extends Controller
                 ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
         }
 
-        
 
         // Implement filtering / sorting
         $resolutions = $resolutions->orderBy($colName, $order);
@@ -178,8 +180,9 @@ class PublicController extends Controller
 
 //        dd($resolutions);
         return view('public.MandE.monitoredResolution')
-        ->with('resolutions', $resolutions);
+            ->with('resolutions', $resolutions);
     }
+
     // monitored Ordinances
     public function ordinance(Request $request)
     {
@@ -200,18 +203,18 @@ class PublicController extends Controller
 
         if ($request->q) {
             $q = $request->q;
-            $ordinances = Ordinance::where(function($query) use ($q){
+            $ordinances = Ordinance::where(function ($query) use ($q) {
                 $query->where('keywords', 'LIKE', '%' . $q . '%')
                     ->orWhere('number', 'LIKE', '%' . $q . '%')
                     ->orWhere('series', 'LIKE', '%' . $q . '%')
                     ->orWhere('title', 'LIKE', '%' . $q . '%');
 
-            })->where(function($query){
+            })->where(function ($query) {
                 $query->where('is_monitoring', 1);
             });
         } else {
             $ordinances = Ordinance::where('is_monitoring', 1);
-    }
+        }
 
         if ($request->has('col-number') || $request->has('col-series') || $request->has('col-title') || $request->has('col-keywords')) {
             $ordinances = $ordinances->where('number', 'LIKE', '%' . $request->input('col-number') . '%')
@@ -228,7 +231,7 @@ class PublicController extends Controller
         $ordinances = $ordinances->paginate($limit)->appends($request->all());
 
         return view('public.MandE.monitoredOrdinance')
-            ->with('ordinances' , $ordinances);
+            ->with('ordinances', $ordinances);
 
     }
 
@@ -270,13 +273,13 @@ class PublicController extends Controller
                 ->where('series', 'LIKE', '%' . $request->input('col-series') . '%')
                 ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
         }
-        
-        if($request->status == 'monitored'){
-            $ordinances = $ordinances->where('is_monitored','=',1);
-        }else{
-            $ordinances = $ordinances->where('is_monitored','=',0);
+
+        if ($request->status == 'monitored') {
+            $ordinances = $ordinances->where('is_monitored', '=', 1);
+        } else {
+            $ordinances = $ordinances->where('is_monitored', '=', 0);
         }
-        
+
         // Implement filtering / sorting
         $ordinances = $ordinances->orderBy($colName, $order);
 
@@ -287,8 +290,8 @@ class PublicController extends Controller
         $resolutions = null;
 
         return view('public.MandE.monitorAndEval')
-            ->with('ordinances' , $ordinances)
-            ->with('resolutions' , $resolutions);
+            ->with('ordinances', $ordinances)
+            ->with('resolutions', $resolutions);
     }
 
     public function monitorAndEvalResolutions(Request $request)
@@ -310,12 +313,12 @@ class PublicController extends Controller
 
         if ($request->q) {
             $q = $request->q;
-            $resolutions = Resolution::where(function($query) use ($q){
+            $resolutions = Resolution::where(function ($query) use ($q) {
                 $query->where('keywords', 'LIKE', '%' . $q . '%')
                     ->orWhere('number', 'LIKE', '%' . $q . '%')
                     ->orWhere('series', 'LIKE', '%' . $q . '%')
                     ->orWhere('title', 'LIKE', '%' . $q . '%');
-            })->where(function($query){
+            })->where(function ($query) {
                 $query->where('is_monitoring', 1);
             });
         } else {
@@ -328,12 +331,12 @@ class PublicController extends Controller
                 ->where('series', 'LIKE', '%' . $request->input('col-series') . '%')
                 ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
         }
-            
-        
-        if($request->status == 'monitored'){
-            $resolutions = $resolutions->where('is_monitored','=',1);
-        }else{
-            $resolutions = $resolutions->where('is_monitored','=',0);
+
+
+        if ($request->status == 'monitored') {
+            $resolutions = $resolutions->where('is_monitored', '=', 1);
+        } else {
+            $resolutions = $resolutions->where('is_monitored', '=', 0);
         }
 
         // Implement filtering / sorting
@@ -344,8 +347,8 @@ class PublicController extends Controller
         $ordinances = null;
 
         return view('public.MandE.monitorAndEval')
-            ->with('ordinances' , $ordinances)
-            ->with('resolutions' , $resolutions);
+            ->with('ordinances', $ordinances)
+            ->with('resolutions', $resolutions);
     }
     //    Monitoring and Eval end
 
@@ -386,6 +389,8 @@ class PublicController extends Controller
                 ->where('keywords', 'LIKE', '%' . $request->input('col-keywords') . '%')
                 ->where('series', 'LIKE', '%' . $request->input('col-series') . '%')
                 ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
+        } else {
+            $ordinances = Ordinance::where('is_monitoring', 0);
         }
 
         // Implement filtering / sorting
@@ -395,7 +400,7 @@ class PublicController extends Controller
         $ordinances = $ordinances->paginate($limit)->appends($request->all());
 
         return view('public.RandR.ordinance')
-        ->with('ordinances', $ordinances);
+            ->with('ordinances', $ordinances);
     }
 
     public function researchAndRecordsResolution(Request $request)
@@ -417,12 +422,12 @@ class PublicController extends Controller
 
         if ($request->q) {
             $q = $request->q;
-            $resolutions = Resolution::where(function($query) use ($q){
+            $resolutions = Resolution::where(function ($query) use ($q) {
                 $query->where('keywords', 'LIKE', '%' . $q . '%')
                     ->orWhere('number', 'LIKE', '%' . $q . '%')
                     ->orWhere('series', 'LIKE', '%' . $q . '%')
                     ->orWhere('title', 'LIKE', '%' . $q . '%');
-            })->where(function($query){
+            })->where(function ($query) {
                 $query->where('is_monitoring', 0);
             });
         } else {
@@ -445,6 +450,7 @@ class PublicController extends Controller
         return view('public.RandR.resolution')
             ->with('resolutions', $resolutions);
     }
+
     //   Research and Record end
 
     public function about()
@@ -453,10 +459,23 @@ class PublicController extends Controller
         return view('public.about');
     }
 
-    public function contactUs()
+    public function contact()
     {
-        LogUtility::insertLog("HttpRequest on /contactUs", 'public');
-        return view('public.contactUs');
+        return view('public.contact');
+    }
+
+    public function sendMessage(Request $request)
+    {
+        // Add to messages table
+        $newMessage = new Message();
+        $newMessage->name = $request->input('name');
+        $newMessage->email = $request->input('email');
+        $newMessage->subject = $request->input('subject');
+        $newMessage->message = $request->input('message');
+        $newMessage->save();
+        Session::flash('flash_message', 'Thank you for your message, we will get back to you as soon as we can.');
+        return view('public.contact');
+
     }
 
     public function aboutDiv()
@@ -496,7 +515,7 @@ class PublicController extends Controller
         $questionnaire = Questionnaire::Where('ordinance_id', '=', $id)->first();
         $questions = Question::Where('questionnaire_id', '=', $questionnaire->id)->get();
         $values = Value::WhereIn('question_id', $questions->pluck('id'))->get();
-        $required=false;
+        $required = false;
         return view('public.showOrdinanceQuestionnaire',
             ['questionnaire' => $questionnaire],
             ['questions' => $questions])->with('values', $values)->with('required', $required);
@@ -508,7 +527,7 @@ class PublicController extends Controller
         $questionnaire = Questionnaire::Where('ordinance_id', '=', $id)->first();
         $questions = Question::Where('questionnaire_id', '=', $questionnaire->id)->get();
         $values = Value::WhereIn('question_id', $questions->pluck('id'))->get();
-        $required=true;
+        $required = true;
         return view('public.showOrdinanceQuestionnaire', ['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values)->with('required', $required);
     }
 
@@ -539,13 +558,13 @@ class PublicController extends Controller
 
                 $answer->answer = $requestData['answer' . $i];
                 if (array_key_exists('1conditionalAnswer' . $i, $requestData)) {
-                    if($requestData['1conditionalAnswer' . $i] != null){
-                        $answer->answer = $requestData['answer' . $i].", ".$requestData['1conditionalAnswer' . $i];
+                    if ($requestData['1conditionalAnswer' . $i] != null) {
+                        $answer->answer = $requestData['answer' . $i] . ", " . $requestData['1conditionalAnswer' . $i];
                     }
                 }
-                if(array_key_exists('2conditionalAnswer' . $i, $requestData )){
-                    if($requestData['2conditionalAnswer' . $i] != null){
-                        $answer->answer = $requestData['answer' . $i].", ".$requestData['2conditionalAnswer' . $i];
+                if (array_key_exists('2conditionalAnswer' . $i, $requestData)) {
+                    if ($requestData['2conditionalAnswer' . $i] != null) {
+                        $answer->answer = $requestData['answer' . $i] . ", " . $requestData['2conditionalAnswer' . $i];
                     }
                 }
                 $answer->question_id = $requestData['question_id' . $i];
@@ -555,11 +574,11 @@ class PublicController extends Controller
         }
         Session::flash('flash_message', 'Thank you for answering the questionnaire for ' . $document->title);
         if ($request->type === 'ordinance') {
-            return redirect('/public/showOrdinance/'.$request->id);
+            return redirect('/public/showOrdinance/' . $request->id);
         } else {
-            return redirect('/public/showResolution/'.$request->id);
+            return redirect('/public/showResolution/' . $request->id);
         }
-        
+
     }
 
     public function storeSuggestion(Request $request, $id)
@@ -599,9 +618,9 @@ class PublicController extends Controller
         }
         Session::flash('flash_message', 'Successfully submitted suggestion!');
         if ($request->input('type') === 'ordinance') {
-            return redirect('/public/showOrdinance/' .$id);
+            return redirect('/public/showOrdinance/' . $id);
         } elseif ($request->input('type') === 'resolution') {
-            return redirect('/public/showResolution/' .$id);
+            return redirect('/public/showResolution/' . $id);
         }
 
     }
@@ -622,8 +641,8 @@ class PublicController extends Controller
         $questionnaire = Questionnaire::Where('resolution_id', '=', $id)->first();
         $questions = Question::Where('questionnaire_id', '=', $questionnaire->id)->get();
         $values = Value::WhereIn('question_id', $questions->pluck('id'))->get();
-        $required=false;
-        return view('public.showOrdinanceQuestionnaire', ['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values)->with('required',$required);
+        $required = false;
+        return view('public.showOrdinanceQuestionnaire', ['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values)->with('required', $required);
     }
 
     public function showRequiredResolutionQuestionnaire($id)
@@ -633,7 +652,7 @@ class PublicController extends Controller
         $questionnaire = Questionnaire::Where('resolution_id', '=', $id)->first();
         $questions = Question::Where('questionnaire_id', '=', $questionnaire->id)->get();
         $values = Value::WhereIn('question_id', $questions->pluck('id'))->get();
-        $required=true;
-        return view('public.showOrdinanceQuestionnaire', ['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values)->with('required',$required);
+        $required = true;
+        return view('public.showOrdinanceQuestionnaire', ['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values)->with('required', $required);
     }
 }

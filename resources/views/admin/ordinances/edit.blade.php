@@ -14,7 +14,7 @@
         <li><a href="/admin/ordinances/{{$ordinance->id}}">{{$ordinance->id}}</a></li>
         <li  class="active">Edit</li>
     </ol>
-<<div class="row">
+<div class="row">
         <div class="box box-primary color-palette-box">
             <div class="box-header with-border">
                 {{--'number', 'title', 'description', 'authors'--}}
