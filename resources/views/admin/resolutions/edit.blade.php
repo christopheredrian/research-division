@@ -8,9 +8,19 @@
             <li><a href="/admin/resolutions">Resolutions</a></li>
         @else
             <li><a href="/admin/forms/resolutions"><i class="fa fa-bar-chart"></i> Monitoring & Evaluation</a></li>
-            <li><a href="/admin/forms/resolutions">Resolutions</a></li>
+            <li>
+                @if($resolution->is_monitored)
+                    <a href="/admin/forms/resolutions?status=monitored"><i class="fa fa-file-text"></i>
+                        Monitored Resolutions
+                    </a>
+                @else
+                    <a href="/admin/forms/ordinances"><i class="fa fa-file-text"></i>
+                        Resolutions being monitored
+                    </a>
+                @endif
+            </li>
         @endif
-        <li><a href="/admin/resolutions/{{$resolution->id}}">{{$resolution->id}}</a></li>
+        <li><a href="/admin/resolutions/{{$resolution->id}}">{{'Ordinance ' . $resolution->number . ' series of ' . $resolution->series }}</a></li>
         <li class="active">Edit</li>
     </ol>
 

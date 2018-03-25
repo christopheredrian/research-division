@@ -215,7 +215,7 @@ class ResolutionsController extends Controller
         $resolution->deleted_at = Carbon::now();
         $resolution->save();
 
-        Session::flash('flash_message', 'Successfully deleted Resolution ' . $resolution->number . '-' . $resolution->series );
+        Session::flash('flash_message', 'Successfully deleted Resolution ' . $resolution->number . ' series of ' . $resolution->series );
 
         return back();
     }

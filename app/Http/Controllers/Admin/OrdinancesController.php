@@ -258,7 +258,7 @@ class OrdinancesController extends Controller
         $ordinance->deleted_at = Carbon::now();
         $ordinance->save();
 
-        Session::flash('flash_message', 'Successfully deleted Ordinance ' . $ordinance->number . '-' . $ordinance->series );
+        Session::flash('flash_message', 'Successfully deleted Ordinance ' . $ordinance->number . ' series of ' . $ordinance->series );
 
         return back();
     }

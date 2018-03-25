@@ -4,14 +4,24 @@
 @section('content')
 
     <ol class="breadcrumb">
-        @if($ordinance->is_monitoring == 0)
+        @if(!$ordinance->is_monitoring)
             <li><a href="/admin/ordinances"><i class="fa fa-book"></i> Research & Records</a></li>
             <li><a href="/admin/ordinances">Ordinances</a></li>
         @else
             <li><a href="/admin/forms/ordinances"><i class="fa fa-bar-chart"></i> Monitoring & Evaluation</a></li>
-            <li><a href="/admin/forms/ordinances">Ordinances</a></li>
+            <li>
+                @if($ordinance->is_monitored)
+                    <a href="/admin/forms/ordinances?status=monitored"><i class="fa fa-file-text"></i>
+                        Monitored Ordinances
+                    </a>
+                @else
+                    <a href="/admin/forms/ordinances"><i class="fa fa-file-text"></i>
+                        Ordinances being monitored
+                    </a>
+                @endif
+            </li>
         @endif
-        <li><a href="/admin/ordinances/{{$ordinance->id}}">{{$ordinance->id}}</a></li>
+        <li><a href="/admin/ordinances/{{$ordinance->id}}">{{'Ordinance ' . $ordinance->number . ' series of ' . $ordinance->series }}</a></li>
         <li class="active">Edit</li>
     </ol>
     <div class="row">
