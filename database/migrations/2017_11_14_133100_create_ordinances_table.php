@@ -26,6 +26,12 @@ class CreateOrdinancesTable extends Migration
             $table->text('pdf_file_name')->nullable();
             $table->text('pdf_link')->nullable();
             $table->text('facebook_post_id')->nullable();
+            // FOR REPORTS
+            $table->text('status_report_date')->nullable();
+            $table->text('summary')->nullable();
+            $table->text('status')->nullable();
+            $table->text('legislative_action')->nullable();
+            $table->text('updates')->nullable();
             $table->timestamps();
 
             $table->softDeletes();
