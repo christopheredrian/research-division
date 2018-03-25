@@ -147,7 +147,19 @@
     @endif
 
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-3">
+            <div class="panel panel-info">
+                <div class="panel-body">
+                @if($ordinance->pdf_link)
+                    <iframe src = "{{$ordinance->pdf_link}}"
+                            width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
+                @else
+                    <h3 class="text-center">PDF not available.</h3>
+                @endif
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
             <div class="row">
                 <div class="box box-success color-palette-box">
                     <div class="box-header with-border">
@@ -166,26 +178,60 @@
                         </div>
                     </div>
                     <div class="box-body">
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                            <tr>
-                                <th>Ordinance Number</th>
-                                <td>{{ $ordinance->number }}</td>
-                            </tr>
-                            <tr>
-                                <th>Series</th>
-                                <td>{{ $ordinance->series }}</td>
-                            </tr>
-                            <tr>
-                                <th>Title</th>
-                                <td>{{ $ordinance->title }}</td>
-                            </tr>
-                            <tr>
-                                <th>Keywords</th>
-                                <td>{{ $ordinance->keywords }}</td>
-                            </tr>
-                            </thead>
-                        </table>
+                        <div class="row">
+                            <div class="col-md-{{ $ordinance->is_monitored ? '5' : '12' }}">
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>Ordinance Number</th>
+                                        <td>{{ $ordinance->number }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Series</th>
+                                        <td>{{ $ordinance->series }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Title</th>
+                                        <td>{{ str_limit($ordinance->title, $limit = 150, $end = '...') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Keywords</th>
+                                        <td>{{ str_limit($ordinance->keywords, $limit = 150, $end = '...') }}</td>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+
+                            @if($ordinance->is_monitored)
+                                <div class="col-md-7">
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>Date of Status Report</th>
+                                            <td>{{ $ordinance->status_report_date ? $ordinance->status_report_date : 'N/A' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Summary</th>
+                                            <td>{{ $ordinance->summary ? str_limit($ordinance->summary, $limit = 150, $end = '...') : 'N/A' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Status</th>
+                                            <td>{{ $ordinance->status ? str_limit($ordinance->status, $limit = 150, $end = '...') : 'N/A' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Legislative Action</th>
+                                            <td>{{ $ordinance->legislative_action ? $ordinance->legislative_action : 'N/A' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Updates</th>
+                                            <td>{{ $ordinance->updates ? $ordinance->updates : 'N/A' }}</td>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            @endif
+                        </div>
+
                     </div>
                 </div>
             </div>
