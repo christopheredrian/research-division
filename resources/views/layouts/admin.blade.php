@@ -491,16 +491,6 @@ function skin($user)
 <script src="/dist/js/demo.js"></script>
 <script src="/bower_components/ckeditor/ckeditor.js"></script>
 <script src="/js/parsley.min.js"></script>
-<script>
-    $(function () {
-        // Replace the <textarea id="editor1"> with a CKEditor
-        // instance, using default configuration.
-        CKEDITOR.replace('editor1')
-
-    })
-
-
-</script>
 
 {{-- Custom Scripts per page--}}
 @yield('scripts')
