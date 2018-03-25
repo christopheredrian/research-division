@@ -349,7 +349,7 @@ function skin($user)
                                     active
                                     @endif">
                                 <a href="/admin/forms/ordinances"><i class="fa fa-circle-o"></i>
-                                    <span>Ordinances</span>
+                                    <span>Ordinances being Monitored</span>
                                 </a>
                             </li>
                             <li class="@if(isset($resolution))
@@ -361,7 +361,7 @@ function skin($user)
                                     active
                             @endif">
                                 <a href="/admin/forms/resolutions"><i class="fa fa-circle-o"></i>
-                                    <span>Resolutions</span>
+                                    <span>Resolutions being Monitored</span>
                                 </a>
                             </li>
                             <li class="@if(isset($ordinance))
