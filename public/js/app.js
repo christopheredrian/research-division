@@ -50069,7 +50069,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\QuestionnaireComponent.vue"
+Component.options.__file = "resources/assets/js/components/QuestionnaireComponent.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -50079,9 +50079,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-8265245e", Component.options)
+    hotAPI.createRecord("data-v-a17c1ede", Component.options)
   } else {
-    hotAPI.reload("data-v-8265245e", Component.options)
+    hotAPI.reload("data-v-a17c1ede", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -50102,13 +50102,13 @@ var content = __webpack_require__(44);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(11)("3356867a", content, false);
+var update = __webpack_require__(11)("eceffa06", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-8265245e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./QuestionnaireComponent.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-8265245e\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./QuestionnaireComponent.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a17c1ede\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./QuestionnaireComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a17c1ede\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./QuestionnaireComponent.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -50497,6 +50497,43 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 var Questions = function Questions() {
@@ -50544,21 +50581,27 @@ var Questions = function Questions() {
             var _this = this;
 
             this.$validator.validateAll().then(function (result) {
-                if (result) {
-                    // eslint-disable-next-line
-                    // alert('From Submitted!');
-                    _this.$refs.form.submit();
-                    return;
+                $('#modal .modal-body').text('There were missing values. Please check input.');
+                // Check if we have questions
+                if (!(_this.questionnaire.questions.length === 0)) {
+                    // If validations passed
+                    if (result) {
+                        // eslint-disable-next-line
+                        _this.$refs.form.submit();
+                        return;
+                    }
+                } else {
+                    $('#modal .modal-body').text('Please have at least one question.');
                 }
-
-                alert('There were errrors!');
+                // Added: Add modal
+                $('#modal').modal('show');
             });
         },
         addQuestion: function addQuestion() {
             this.questionnaire.questions.push({
                 question: '',
                 required: false,
-                type: '',
+                type: 'short',
                 values: []
             });
         },
@@ -50847,7 +50890,7 @@ var render = function() {
                                   }
                                 ],
                                 staticClass: "form-control",
-                                attrs: { id: "quesType" },
+                                attrs: { id: "quesType", required: "" },
                                 on: {
                                   change: [
                                     function($event) {
@@ -51540,7 +51583,7 @@ var render = function() {
                                     }
                                   }),
                                   _vm._v(
-                                    " " +
+                                    "\n                                    " +
                                       _vm._s(val.value.replace(";1", "")) +
                                       "\n                                    "
                                   ),
@@ -51600,7 +51643,9 @@ var render = function() {
           ])
         ])
       ]
-    )
+    ),
+    _vm._v(" "),
+    _vm._m(3, false, false)
   ])
 }
 var staticRenderFns = [
@@ -51658,6 +51703,61 @@ var staticRenderFns = [
         [_vm._v("Close")]
       )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "modal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h3",
+                  {
+                    staticClass: "modal-title",
+                    attrs: { id: "exampleModalLabel" }
+                  },
+                  [_vm._v("Errors")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _vm._v(
+                  "\n                    There were missing values. Please check input.\n                "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button", "data-dismiss": "modal" }
+                  },
+                  [_vm._v("\n                        Ok\n                    ")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -51665,7 +51765,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-8265245e", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-a17c1ede", module.exports)
   }
 }
 
@@ -51695,7 +51795,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\QuestionnaireDetails.vue"
+Component.options.__file = "resources/assets/js/components/QuestionnaireDetails.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -51705,9 +51805,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-22fb1796", Component.options)
+    hotAPI.createRecord("data-v-ef9d6b54", Component.options)
   } else {
-    hotAPI.reload("data-v-22fb1796", Component.options)
+    hotAPI.reload("data-v-ef9d6b54", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -52195,7 +52295,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-22fb1796", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-ef9d6b54", module.exports)
   }
 }
 
@@ -52229,7 +52329,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources\\assets\\js\\components\\QuestionnaireUpdateComponent.vue"
+Component.options.__file = "resources/assets/js/components/QuestionnaireUpdateComponent.vue"
 if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
 
 /* hot reload */
@@ -52239,9 +52339,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-05e33688", Component.options)
+    hotAPI.createRecord("data-v-661aa948", Component.options)
   } else {
-    hotAPI.reload("data-v-05e33688", Component.options)
+    hotAPI.reload("data-v-661aa948", Component.options)
 ' + '  }
   module.hot.dispose(function (data) {
     disposed = true
@@ -52262,13 +52362,13 @@ var content = __webpack_require__(53);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(11)("1e2da481", content, false);
+var update = __webpack_require__(11)("9e0358ea", content, false);
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-05e33688\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./QuestionnaireUpdateComponent.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-05e33688\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./QuestionnaireUpdateComponent.vue");
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-661aa948\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./QuestionnaireUpdateComponent.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-661aa948\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./QuestionnaireUpdateComponent.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -52301,6 +52401,41 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -52672,21 +52807,27 @@ var Questions = function Questions() {
             var _this = this;
 
             this.$validator.validateAll().then(function (result) {
-                if (result) {
-                    // eslint-disable-next-line
-                    // alert('From Submitted!');
-                    _this.$refs.form.submit();
-                    return;
+                $('#modal .modal-body').text('There were missing values. Please check input.');
+                // Check if we have questions
+                if (!(_this.questionnaire.questions.length === 0)) {
+                    // If validations passed
+                    if (result) {
+                        // eslint-disable-next-line
+                        _this.$refs.form.submit();
+                        return;
+                    }
+                } else {
+                    $('#modal .modal-body').text('Please have at least one question.');
                 }
-
-                alert('There were errrors!');
+                // Added: Add modal
+                $('#modal').modal('show');
             });
         },
         addQuestion: function addQuestion() {
             this.questionnaire.questions.push({
                 question: '',
                 required: false,
-                type: '',
+                type: 'short',
                 values: []
             });
         },
@@ -53664,7 +53805,7 @@ var render = function() {
                                     }
                                   }),
                                   _vm._v(
-                                    " " +
+                                    "\n                                    " +
                                       _vm._s(val.value.replace(";1", "")) +
                                       "\n                                    "
                                   ),
@@ -53724,7 +53865,9 @@ var render = function() {
           ])
         ])
       ]
-    )
+    ),
+    _vm._v(" "),
+    _vm._m(3, false, false)
   ])
 }
 var staticRenderFns = [
@@ -53782,6 +53925,61 @@ var staticRenderFns = [
         [_vm._v("Close")]
       )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "modal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h3",
+                  {
+                    staticClass: "modal-title",
+                    attrs: { id: "exampleModalLabel" }
+                  },
+                  [_vm._v("Errors")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _vm._v(
+                  "\n                    There were missing values. Please check input.\n                "
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button", "data-dismiss": "modal" }
+                  },
+                  [_vm._v("\n                        Ok\n                    ")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -53789,7 +53987,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-05e33688", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-661aa948", module.exports)
   }
 }
 
