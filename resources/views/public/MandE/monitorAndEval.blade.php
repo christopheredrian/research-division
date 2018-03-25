@@ -12,9 +12,10 @@
 
         .information {
             text-align: center;
-            vertical-align:middle !important;
+            vertical-align: middle !important;
             position: relative;
         }
+
         .button-two {
             border-radius: 4px;
             border: none;
@@ -27,7 +28,6 @@
             position: relative;
             transition: 0.5s;
         }
-
 
         .button-two span:after {
             content: '»';
@@ -72,8 +72,13 @@
         <div class="col-md-12">
             @if($ordinances !== null)
                 <div class="ordinance-heading">
-                    <h1>Ordinances</h1>
-                    <hr>
+                    @if( app('request')->input('status') === 'monitored')
+                        <h1>Monitored Ordinances</h1>
+                        <hr>
+                    @else
+                        <h1>Ordinances being Monitored</h1>
+                        <hr>
+                    @endif
                 </div>
                 <div class="col-md-12">
                     @if($ordinances->first() !== null)
@@ -217,8 +222,13 @@
                 </div>
             @elseif ($resolutions !== null)
                 <div class="ordinance-heading">
-                    <h1>Resolutions</h1>
-                    <hr>
+                    @if( app('request')->input('status') === 'monitored')
+                        <h1>Monitored Resolutions</h1>
+                        <hr>
+                    @else
+                        <h1>Resolutions being Monitored</h1>
+                        <hr>
+                    @endif
                 </div>
                 <div class="col-md-12">
                     @if($resolutions->first() !== null)

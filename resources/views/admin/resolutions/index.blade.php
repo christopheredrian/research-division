@@ -29,14 +29,19 @@
         @if( app('request')->input('status') === 'monitored')
             <li class="active">Monitored Resolutions</li>
         @else
-            <li class="active">Resolutions</li>
+            <li class="active">Resolutions being Monitored</li>
         @endif
     </ol>
 
     <div class="box box-default color-palette-box">
         <div class="box-header with-border">
             <h3 class="box-title"><i class="fa fa-file-text"></i>
-                Resolutions under {{$type === 'RR' ? 'Research & Records' : 'Monitoring & Evaluation'}}
+{{--                Resolutions under {{$type === 'RR' ? 'Research & Records' : 'Monitoring & Evaluation'}}--}}
+                @if( app('request')->input('status') === 'monitored')
+                    Monitored Resolutions
+                @else
+                    Resolutions being Monitored
+                @endif
             </h3>
             <div class="pull-right">
                 <a href="/admin/resolutions/create?type={{$type}}" class="btn btn-success"><span

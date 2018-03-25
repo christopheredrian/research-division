@@ -7,7 +7,7 @@
                     <div class="ordinance">
 
                         <div class="page-header">
-                            <h1>Ordinances</h1>
+                            <h1>Ordinances </h1>
                         </div>
                         <div class="col-md-12" style="margin-bottom: 30px">
                             <div class="pull-left">
