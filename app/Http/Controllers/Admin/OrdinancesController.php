@@ -224,6 +224,10 @@ class OrdinancesController extends Controller
             substr($ordinance->pdf_file_path, strrpos($ordinance->pdf_file_path, '/') + 1);
         $ordinance->save();
 
+        if (NLPUtilities::isNLPEnabled() and $request->fbpost) {
+            app('App\Http\Controllers\Admin\FacebookPostsController')->postToPage($ordinance);
+        }
+
         Session::flash('flash_message', "Successfully updated <strong>Ordinance " . $ordinance->number . "</strong>!");
 
         if ($ordinance->is_monitored) {

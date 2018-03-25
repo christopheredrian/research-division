@@ -46,12 +46,12 @@ class GoogleDriveUtilities
             }
 
             $filename .= ('-' . substr(get_class($instance), strrpos(get_class($instance), "\\") + 1) .
-                '-' . $basedOn . '.pdf'
+                '-' . $basedOn . '-' . $instance->series .'.pdf'
             );
 
         } elseif ($directory === 'ordinances' or $directory === 'resolutions') {
             $filename .= ('-' . substr(get_class($instance), strrpos(get_class($instance), "\\") + 1) .
-                $instance->number . '.pdf');
+                $instance->number . '-' . $instance->series  . '.pdf');
         } elseif ($directory === 'userimages') {
             $filename .= ('-' . substr(get_class($instance), strrpos(get_class($instance), "\\") + 1) . '.jpeg');
         }
