@@ -239,31 +239,9 @@
                                 <a href="/admin/resolutions/{{$resolution->id}}/edit?type={{$type}}"
                                    class="btn btn-xs btn-warning btn-equal-width ">Edit</a>
 
-                                <button class="btn btn-xs btn-danger btn-equal-width" data-toggle="modal" data-target="#exampleModal">
-                                    Delete
-                                </button>
-                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h3 class="modal-title" id="exampleModalLabel">Confirm Delete</h3>
-                                            </div>
-                                            <div class="modal-body">
-                                                Are you sure you want to delete Resolution {{ $resolution->id }} series of {{ $resolution->series }}?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel
-                                                </button>
-                                                <form action="/admin/resolutions/{{ $resolution->id }}" method="post">
-                                                    {{ method_field('DELETE') }}
-                                                    {{ csrf_field() }}
-                                                    <button class="btn btn-danger">Delete</button>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <a href="/admin/ordinances/delete/{{$resolution->id}}"
+                                   class="btn btn-xs btn-danger btn-equal-width deleteButton">Delete</a>
+
                             </td>
                         </tr>
                     @endforeach
