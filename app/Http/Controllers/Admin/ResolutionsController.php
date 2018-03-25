@@ -116,7 +116,6 @@ class ResolutionsController extends Controller
             app('App\Http\Controllers\Admin\FacebookPostsController')->postToPage($resolution);
         }
 
-
         Session::flash('flash_message', "Successfully added <strong>Resolution " . $resolution->number . "</strong>!");
 
         $redirectLink = $resolution->is_monitoring == 1 ? '/admin/forms/resolutions' : '/admin/resolutions';
@@ -182,6 +181,10 @@ class ResolutionsController extends Controller
         $resolution->pdf_file_name = $resolution->pdf_file_path === "" ? "" :
             substr($resolution->pdf_file_path, strrpos($resolution->pdf_file_path, '/') + 1);
         $resolution->save();
+
+        if (NLPUtilities::isNLPEnabled() and $request->fbpost) {
+            app('App\Http\Controllers\Admin\FacebookPostsController')->postToPage($resolution);
+        }
 
         Session::flash('flash_message', "Successfully updated <strong>Resolution " . $resolution->number . "</strong>!");
 
