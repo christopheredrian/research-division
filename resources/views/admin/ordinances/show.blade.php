@@ -11,7 +11,7 @@
             width: 62px;
         }
 
-        .box-comment > i{
+        .box-comment > i {
             height: 100%;
             font-size: 22px;
         }
@@ -21,14 +21,24 @@
 @section('content')
 
     <ol class="breadcrumb">
-        @if($ordinance->is_monitoring == 0)
+        @if(!$ordinance->is_monitoring)
             <li><a href="/admin/ordinances"><i class="fa fa-book"></i> Research & Records</a></li>
             <li><a href="/admin/ordinances">Ordinances</a></li>
         @else
             <li><a href="/admin/forms/ordinances"><i class="fa fa-file-text"></i> Monitoring & Evaluation</a></li>
-            <li><a href="/admin/forms/ordinances">Ordinances</a></li>
+            <li>
+                @if($ordinance->is_monitored)
+                    <a href="/admin/forms/ordinances?status=monitored"><i class="fa fa-file-text"></i>
+                        Monitored Ordinances
+                    </a>
+                @else
+                    <a href="/admin/forms/ordinances"><i class="fa fa-file-text"></i>
+                        Ordinances being monitored
+                    </a>
+                @endif
+            </li>
         @endif
-        <li class="active">{{$ordinance->id}}</li>
+        <li class="active">{{'Ordinance ' . $ordinance->number . ' series of ' . $ordinance->series }}</li>
     </ol>
 
     @if($ordinance->is_monitoring === 1)
@@ -78,40 +88,42 @@
 
                             @if($ordinance->is_monitored === 0)
                                 {{--<form style="display: inline;" method="post"--}}
-                                      {{--action="{{ url('/admin/forms/' . $questionnaire->id) }}">--}}
-                                    {{--{{ method_field('DELETE') }}--}}
-                                    {{--{{ csrf_field() }}--}}
-                                    {{--<button class="btn btn-danger"--}}
-                                            {{--onclick="return confirm('Are you sure you want to remove this Questionnaire?')">--}}
-                                        {{--<span class="fa fa-trash"></span> Delete--}}
-                                    {{--</button>--}}
+                                {{--action="{{ url('/admin/forms/' . $questionnaire->id) }}">--}}
+                                {{--{{ method_field('DELETE') }}--}}
+                                {{--{{ csrf_field() }}--}}
+                                {{--<button class="btn btn-danger"--}}
+                                {{--onclick="return confirm('Are you sure you want to remove this Questionnaire?')">--}}
+                                {{--<span class="fa fa-trash"></span> Delete--}}
+                                {{--</button>--}}
                                 {{--</form>--}}
-                                    <button class="btn btn-danger btn-equal-width" data-toggle="modal" data-target="#exampleModal">
-                                        Delete
-                                    </button>
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                         aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h3 class="modal-title" id="exampleModalLabel">Confirm Delete</h3>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Are you sure you want to delete this questionnaire?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel
-                                                    </button>
-                                                    <form style="display: inline;" method="post"
-                                                          action="{{ url('/admin/forms/' . $questionnaire->id) }}">
-                                                        {{ method_field('DELETE') }}
-                                                        {{ csrf_field() }}
-                                                        <button class="btn btn-danger">Delete</button>
-                                                    </form>
-                                                </div>
+                                <button class="btn btn-danger btn-equal-width" data-toggle="modal"
+                                        data-target="#exampleModal">
+                                    Delete
+                                </button>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h3 class="modal-title" id="exampleModalLabel">Confirm Delete</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete this questionnaire?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Cancel
+                                                </button>
+                                                <form style="display: inline;" method="post"
+                                                      action="{{ url('/admin/forms/' . $questionnaire->id) }}">
+                                                    {{ method_field('DELETE') }}
+                                                    {{ csrf_field() }}
+                                                    <button class="btn btn-danger">Delete</button>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
+                                </div>
                                 <br>
 
                             @endif
@@ -123,7 +135,8 @@
                         {{--<h2>{{ $questionnaire->name }}</h2>--}}
                         <p>
                             @if($questionnaire->isAccepting == 1)
-                                Public Link: <a href="/answer.o/{{$ordinance->id}}">http://localhost:8000/answer.o/{{$ordinance->id}}</a>
+                                Public Link: <a
+                                        href="/answer.o/{{$ordinance->id}}">http://localhost:8000/answer.o/{{$ordinance->id}}</a>
                                 <br>
                                 Required Link: <a
                                         href="/answer.o/{{$ordinance->id}}/required">http://localhost:8000/answer.o/{{$ordinance->id}}
@@ -150,12 +163,12 @@
         <div class="col-md-3">
             <div class="panel panel-info">
                 <div class="panel-body">
-                @if($ordinance->pdf_link)
-                    <iframe src = "{{$ordinance->pdf_link}}"
-                            width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
-                @else
-                    <h3 class="text-center">PDF not available.</h3>
-                @endif
+                    @if($ordinance->pdf_link)
+                        <iframe src="{{$ordinance->pdf_link}}"
+                                width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
+                    @else
+                        <h3 class="text-center">PDF not available.</h3>
+                    @endif
                 </div>
             </div>
         </div>
@@ -239,7 +252,7 @@
 
         @if($ordinance->is_monitoring === 1)
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div class="box box-success color-palette-box">
                         <div class="box-header with-border">
                             <ul class="nav nav-tabs">
@@ -344,7 +357,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-7">
                     {{--<div class="row">--}}
                     <div class="box box-danger color-palette-box">
                         <div class="box-header with-border">
@@ -428,7 +441,7 @@
                                                     <div class="box-comment">
                                                         <!-- User image -->
                                                         {{--<img class="img-circle img-sm" src="/uploads/default.jpg"--}}
-                                                             {{--alt="User Image">--}}
+                                                        {{--alt="User Image">--}}
                                                         @if($facebookComment['result']->sentiment === 'positive')
                                                             <i class="pull-left fa fa-smile-o text-success"></i>
                                                         @elseif($facebookComment['result']->sentiment === 'negative')

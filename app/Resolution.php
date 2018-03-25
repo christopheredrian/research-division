@@ -36,6 +36,11 @@ class Resolution extends Model
         'is_monitoring',
         'facebook_post_id',
         'pdf_link',
+        'status_report_date',
+        'summary',
+        'status',
+        'legislative_action',
+        'updates',
     ];
 
     /**

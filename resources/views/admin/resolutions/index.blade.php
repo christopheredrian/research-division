@@ -26,30 +26,33 @@
             <li><a href="/admin/forms/resolutions"><i class="fa fa-bar-chart"></i> Monitoring & Evaluation</a></li>
         @endif
 
-        @if( app('request')->input('status') === 'monitored')
-            <li class="active">Monitored Resolutions</li>
-        @else
-            <li class="active">Resolutions being Monitored</li>
-        @endif
+        <li class="active">
+            @if(strpos(request()->url(), 'forms'))
+                {{ app('request')->input('status') === 'monitored' ? 'Monitored Resolutions' : 'Resolutions being monitored' }}
+            @else
+                Resolutions
+            @endif
+        </li>
     </ol>
 
     <div class="box box-default color-palette-box">
         <div class="box-header with-border">
             <h3 class="box-title"><i class="fa fa-file-text"></i>
-{{--                Resolutions under {{$type === 'RR' ? 'Research & Records' : 'Monitoring & Evaluation'}}--}}
-                @if( app('request')->input('status') === 'monitored')
-                    Monitored Resolutions
+                @if(strpos(request()->url(), 'forms'))
+                    {{ app('request')->input('status') === 'monitored' ? 'Monitored Resolutions' : 'Ordinances being Resolutions' }}
                 @else
-                    Resolutions being Monitored
+                    Resolutions under Research and Records
                 @endif
             </h3>
-            <div class="pull-right">
-                <a href="/admin/resolutions/create?type={{$type}}" class="btn btn-success"><span
-                            class="fa fa-plus"></span> Add</a>
-                {{--<a href="/admin{{$type === 'RR' ? '' : '/forms'}}/resolutions" class="btn btn-primary">--}}
-                {{--<i class="fa fa-refresh"></i> Reset Filtering--}}
-                {{--</a>--}}
-            </div>
+            @if(!request('status'))
+                <div class="pull-right">
+                    <a href="/admin/resolutions/create?type={{$type}}" class="btn btn-success"><span
+                                class="fa fa-plus"></span> Add</a>
+                    {{--<a href="/admin{{$type === 'RR' ? '' : '/forms'}}/resolutions" class="btn btn-primary">--}}
+                    {{--<i class="fa fa-refresh"></i> Reset Filtering--}}
+                    {{--</a>--}}
+                </div>
+            @endif
         </div>
         <div class="box-body">
             {{--<div class="add-magin">--}}
@@ -239,8 +242,33 @@
                                 <a href="/admin/resolutions/{{$resolution->id}}/edit?type={{$type}}"
                                    class="btn btn-xs btn-warning btn-equal-width ">Edit</a>
 
-                                <a href="/admin/ordinances/delete/{{$resolution->id}}"
-                                   class="btn btn-xs btn-danger btn-equal-width deleteButton">Delete</a>
+                                <button class="btn btn-xs btn-danger btn-equal-width" data-toggle="modal"
+                                        data-target="#exampleModal{{$resolution->id}}">
+                                    Delete
+                                </button>
+
+                                <div class="modal fade" id="exampleModal{{$resolution->id}}" tabindex="-1" role="dialog"
+                                     aria-labelledby="exampleModalLabel"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h3 class="modal-title" id="exampleModalLabel">Confirm Delete</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete Resolution {{ $resolution->id }} series
+                                                of {{ $resolution->series }}?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Cancel
+                                                </button>
+                                                <a href="/admin/ordinances/delete/{{$resolution->id}}"
+                                                   class="btn btn-sm btn-danger btn-equal-width deleteButton">Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                             </td>
                         </tr>
