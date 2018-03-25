@@ -29,14 +29,19 @@
         @if( app('request')->input('status') === 'monitored')
             <li class="active">Monitored Ordinances</li>
         @else
-            <li class="active">Ordinances</li>
+            <li class="active">Ordinances being Monitored</li>
         @endif
     </ol>
 
     <div class="box box-default color-palette-box">
         <div class="box-header with-border">
             <h3 class="box-title"><i class="fa fa-file-text"></i>
-                Ordinances under {{$type === 'RR' ? 'Research & Records' : 'Monitoring & Evaluation'}}
+                {{--Ordinances under {{$type === 'RR' ? 'Research & Records' : 'Monitoring & Evaluation'}}--}}
+                @if( app('request')->input('status') === 'monitored')
+                    Monitored Ordinances
+                @else
+                    Ordinances being Monitored
+                @endif
             </h3>
             <div class="pull-right">
                 <a href="/admin/ordinances/create?type={{$type}}" class="btn btn-success"><span
@@ -207,31 +212,9 @@
                                         <a href="/admin/ordinances/{{$ordinance->id}}/edit?type={{$type}}"
                                            class="btn btn-xs btn-warning btn-equal-width ">Edit</a>
 
-                                        <button class="btn btn-xs btn-danger btn-equal-width" data-toggle="modal" data-target="#exampleModal">
-                                            Delete
-                                        </button>
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                             aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h3 class="modal-title" id="exampleModalLabel">Confirm Delete</h3>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        Are you sure you want to delete Ordinance {{ $ordinance->id }} series of {{ $ordinance->series }}?
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel
-                                                        </button>
-                                                        <form action="/admin/ordinances/{{ $ordinance->id }}" method="post">
-                                                            {{ method_field('DELETE') }}
-                                                            {{ csrf_field() }}
-                                                            <button class="btn btn-danger">Delete</button>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <a href="/admin/ordinances/delete/{{$ordinance->id}}"
+                                           class="btn btn-xs btn-danger btn-equal-width deleteButton">Delete</a>
+
                                     </td>
                                 </tr>
                             @endforeach

@@ -36,7 +36,7 @@
             margin-top: 10px !important;
         }
 
-        .img-circle{
+        .img-circle {
             width: 150px;
             height: 150px;
             border-radius: 50%;
@@ -162,9 +162,11 @@ function skin($user)
             <div class="user-panel">
                 <div class="pull-left">
                     @if(\Illuminate\Support\Facades\Auth::user()->image)
-                        <img src="{{ session('profile_image_link') }}" class="img-circle" alt="User Image" style="width: 50px; height: 50px;">
+                        <img src="{{ session('profile_image_link') }}" class="img-circle" alt="User Image"
+                             style="width: 50px; height: 50px;">
                     @else
-                        <img src="/uploads/default.jpg" class="img-circle" alt="User Image" style="width: 50px; height: 50px;">
+                        <img src="/uploads/default.jpg" class="img-circle" alt="User Image"
+                             style="width: 50px; height: 50px;">
                     @endif
 
                     <span class="hidden-xs"> {{ \Illuminate\Support\Facades\Auth::user()->name }}</span>
@@ -223,7 +225,7 @@ function skin($user)
 
                 </li>
                 <?php
-                $new_message_count = \App\Message::where('created_at','>=', \Carbon\Carbon::today()->addDay(-5))->count()
+                $new_message_count = \App\Message::where('created_at', '>=', \Carbon\Carbon::today()->addDay(-5))->count()
                 ?>
                 @php()
 
@@ -333,61 +335,62 @@ function skin($user)
                         </span>
                         </a>
                         <ul class="treeview-menu" style="">
-                            {{--<li class="{{ Request::is('admin/forms') ? 'active' : '' }}">--}}
-                            {{--<a href="/admin/forms">--}}
-                            {{--<i class="fa fa-book"></i>--}}
-                            {{--<span class="{{ Request::is('admin/forms') ? 'text-danger' : '' }}">Ordinances and Resolution</span>--}}
-                            {{--<span class="pull-right-container"></span>--}}
-                            {{--</a>--}}
-                            {{--</li>--}}
-                            <li class="@if(isset($ordinance))
-                            @if($ordinance->is_monitoring === 1 && $ordinance->is_monitored === 0)
+                            <li class="
+                            @if(isset($ordinance))
+                                @if($ordinance->is_monitoring === 1 && $ordinance->is_monitored === 0 or Request::is('admin/forms/ordinances*') or (Request::is('admin/ordinances/create*') and request()->type === 'ME'))
                                     active
                                 @endif
-                            @elseif(Request::is('admin/forms/ordinances*') or Request::is('admin/forms/ordinances*')
-                            or (Request::is('admin/ordinances/create*') and request()->type === 'ME'))
-                                    active
-                                    @endif">
+                            {{--@elseif(Request::is('admin/forms/ordinances*') or (Request::is('admin/ordinances/create*') and request()->type === 'ME'))--}}
+                                    {{--active--}}
+                            @endif
+                                    ">
                                 <a href="/admin/forms/ordinances"><i class="fa fa-circle-o"></i>
-                                    <span>Ordinances</span>
+                                    <span>Ordinances being Monitored</span>
                                 </a>
                             </li>
-                            <li class="@if(isset($resolution))
-                            @if($resolution->is_monitoring === 1 && $resolution->is_monitored === 0)
+
+                            <li class="
+                            @if(isset($resolution))
+                                @if($resolution->is_monitoring === 1 && $resolution->is_monitored === 0 or Request::is('admin/forms/resolutions*') or (Request::is('admin/resolutions/create*') and request()->type === 'ME'))
                                     active
                                 @endif
-                            @elseif(Request::is('admin/forms/resolutions*')
-                            or (Request::is('admin/resolutions/create*') and request()->type === 'ME'))
-                                    active
-                            @endif">
+                            {{--@elseif(Request::is('admin/forms/resolutions*') or (Request::is('admin/resolutions/create*') and request()->type === 'ME'))--}}
+                                    {{--active--}}
+                            @endif
+                                    ">
                                 <a href="/admin/forms/resolutions"><i class="fa fa-circle-o"></i>
-                                    <span>Resolutions</span>
+                                    <span>Resolutions being Monitored</span>
                                 </a>
                             </li>
-                            <li class="@if(isset($ordinance))
-                            @if($ordinance->is_monitoring === 1 && $ordinance->is_monitored === 1)
+
+                            <li class="
+                            @if(isset($ordinance))
+                                @if($ordinance->is_monitoring === 1 && $ordinance->is_monitored === 1)
                                     active
                                 @endif
-                            @elseif(Request::is('admin/forms/ordinances*')
-                            or (Request::is('admin/ordinances/create*') and request()->type === 'ME'))
+                            @elseif(Request::is('admin/forms/ordinances*') or (Request::is('admin/ordinances/create*') and request()->type === 'ME'))
                                     active
-                            @endif">
+                            @endif
+                                    ">
                                 <a href="/admin/forms/ordinances?status=monitored"><i class="fa fa-circle-o"></i>
                                     <span>Monitored Ordinances</span>
                                 </a>
                             </li>
-                            <li class="@if(isset($resolution))
-                            @if($resolution->is_monitoring === 1 && $resolution->is_monitored === 1)
+
+                            <li class="
+                            @if(isset($resolution))
+                                @if($resolution->is_monitoring === 1 && $resolution->is_monitored === 1)
                                     active
                                 @endif
-                            @elseif(Request::is('admin/forms/resolutions*')
-                            or (Request::is('admin/resolutions/create*') and request()->type === 'ME'))
+                            @elseif(Request::is('admin/forms/resolutions*') or (Request::is('admin/resolutions/create*') and request()->type === 'ME'))
                                     active
-                            @endif">
+                            @endif
+                                    ">
                                 <a href="/admin/forms/resolutions?status=monitored"><i class="fa fa-circle-o"></i>
                                     <span>Monitored Resolutions</span>
                                 </a>
                             </li>
+
                         </ul>
                     </li>
                 @endif

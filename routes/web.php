@@ -151,6 +151,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/reports', 'ReportsController@index')->name('reports');
     Route::post('/reports', 'ReportsController@query')->name('postreports');
     Route::get('/downloadReport', 'ReportsController@downloadReport')->name('downloadReport');
+    Route::get('/downloadLegislativeReport/{type}', 'ReportsController@downloadLegislativeReport')->name('downloadLegislativeReport');
     /** END --- Reports*/
 
     Route::post('/toggleConfiguration', 'Admin\\ConfigurationsController@toggleConfiguration');
