@@ -389,6 +389,8 @@ class PublicController extends Controller
                 ->where('keywords', 'LIKE', '%' . $request->input('col-keywords') . '%')
                 ->where('series', 'LIKE', '%' . $request->input('col-series') . '%')
                 ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
+        } else {
+            $ordinances = Ordinance::where('is_monitoring', 0);
         }
 
         // Implement filtering / sorting
