@@ -112,10 +112,9 @@ class ResolutionsController extends Controller
         $resolution->save();
 
         // POST TO FACEBOOK
-        if (NLPUtilities::isNLPEnabled()) {
+        if (NLPUtilities::isNLPEnabled() and $request->fbpost) {
             app('App\Http\Controllers\Admin\FacebookPostsController')->postToPage($resolution);
         }
-
 
         Session::flash('flash_message', "Successfully added <strong>Resolution " . $resolution->number . "</strong>!");
 
@@ -182,6 +181,10 @@ class ResolutionsController extends Controller
         $resolution->pdf_file_name = $resolution->pdf_file_path === "" ? "" :
             substr($resolution->pdf_file_path, strrpos($resolution->pdf_file_path, '/') + 1);
         $resolution->save();
+
+        if (NLPUtilities::isNLPEnabled() and $request->fbpost) {
+            app('App\Http\Controllers\Admin\FacebookPostsController')->postToPage($resolution);
+        }
 
         Session::flash('flash_message', "Successfully updated <strong>Resolution " . $resolution->number . "</strong>!");
 

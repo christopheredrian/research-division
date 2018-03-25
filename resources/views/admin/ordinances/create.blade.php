@@ -48,6 +48,13 @@
                                 </div>
                             @endif
 
+                            @if(\App\Http\NLPUtilities::isNLPEnabled())
+                                <label for="fbpost">Facebook Post</label>
+                                <div class="checkbox">
+                                    <label><input name="fbpost" type="checkbox" value=1>Post to Facebook</label>
+                                </div>
+                            @endif
+
                             <div class="form-group">
                                 <label for="pdf">PDF File</label>
                                 <input name="pdf" type="file" class="form-control" id="pdf" accept="application/pdf">

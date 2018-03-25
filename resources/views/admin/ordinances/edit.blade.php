@@ -77,6 +77,15 @@
                                 </div>
                             @endif
 
+                            @if(\App\Http\NLPUtilities::isNLPEnabled())
+                                @if(!$ordinance->facebook_post_id)
+                                    <label for="fbpost">Facebook Post (No Connected Post to Facebook yet)</label>
+                                    <div class="checkbox">
+                                        <label><input name="fbpost" type="checkbox" value=1>Post to Facebook</label>
+                                    </div>
+                                @endif
+                            @endif
+
                             <div class="form-group">
                                 <label for="pdf">
                                     {{$ordinance->pdf_file_path == "" ? 'No File Uploaded': ('PDF File: ' . substr($ordinance->pdf_file_path, strrpos( $ordinance->pdf_file_path, '/' ) + 1 ))}}
