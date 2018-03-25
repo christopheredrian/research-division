@@ -2,7 +2,7 @@
 
 @section('styles')
     <style>
-        .box-comment > i{
+        .box-comment > i {
             height: 100%;
             font-size: 22px;
         }
@@ -24,89 +24,94 @@
 
     @if($resolution->is_monitoring === 1)
         {{-- IS in M&E --}}
-    <div class="row">
-        <div class="box box-primary color-palette-box">
-            <div class="box-header with-border">
-                <h3 class="box-title"><i class="fa fa-file-text"></i> Questionnaire</h3>
-                @if($questionnaire)
-                    {{--It has a questionnaire--}}
-                <div class="pull-right">
-                    @if($resolution->is_monitored === 0)
-                        @if($questionnaire->isAccepting == 0)
-                            <form style="display: inline;" method="post"
-                                  action="{{ url('/admin/acceptResponses/' . $questionnaire->id) }}">
-                                {{ csrf_field() }}
-                                <button class="btn btn-success">
-                                    <span class="fa fa-comments-o"></span> Accept Responses
-                                </button>
-                            </form>
-                            @if(!$questionnaire->hasAnswers())
-                                <a href="{{ url("/admin/forms/{$questionnaire->id}/edit") }}"
-                                   class="btn btn-warning"><span class="fa fa-edit"></span> Edit</a>
+        <div class="row">
+            <div class="box box-primary color-palette-box">
+                <div class="box-header with-border">
+                    <h3 class="box-title"><i class="fa fa-file-text"></i> Questionnaire</h3>
+                    @if($questionnaire)
+                        {{--It has a questionnaire--}}
+                        <div class="pull-right">
+                            @if($resolution->is_monitored === 0)
+                                @if($questionnaire->isAccepting == 0)
+                                    <form style="display: inline;" method="post"
+                                          action="{{ url('/admin/acceptResponses/' . $questionnaire->id) }}">
+                                        {{ csrf_field() }}
+                                        <button class="btn btn-success">
+                                            <span class="fa fa-comments-o"></span> Accept Responses
+                                        </button>
+                                    </form>
+                                    @if(!$questionnaire->hasAnswers())
+                                        <a href="{{ url("/admin/forms/{$questionnaire->id}/edit") }}"
+                                           class="btn btn-warning"><span class="fa fa-edit"></span> Edit</a>
+                                    @endif
+                                @else
+                                    <form style="display: inline;" method="post"
+                                          action="{{ url('/admin/declineResponses/' . $questionnaire->id) }}">
+                                        {{ csrf_field() }}
+                                        <button class="btn btn-danger">
+                                            <span class="fa fa-times"></span> Decline Responses
+                                        </button>
+                                    </form>
+                                @endif
                             @endif
-                        @else
-                            <form style="display: inline;" method="post" action="{{ url('/admin/declineResponses/' . $questionnaire->id) }}">
-                                {{ csrf_field() }}
-                                <button class="btn btn-danger">
-                                    <span class="fa fa-times"></span> Decline Responses
-                                </button>
-                            </form>
-                        @endif
-                    @endif
 
-                    <a href="{{"/admin/result/{$questionnaire->id}"}}"
-                       class="btn btn-success"><span class="fa fa-th-list"></span> Results</a>
-                        {{--<a href="{{"/admin/forms/{$questionnaire->id}"}}" class="btn btn-info"><span><span--}}
-                        {{--class="fa fa-eye"></span> Preview</span></a>--}}
-                    <a href="{{ url("/admin/previewResolution/{$questionnaire->resolution_id }/") }}" target="_blank"
-                       class="btn btn-danger"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>
-                        Print</a>
+                            <a href="{{"/admin/result/{$questionnaire->id}"}}"
+                               class="btn btn-success"><span class="fa fa-th-list"></span> Results</a>
+                            {{--<a href="{{"/admin/forms/{$questionnaire->id}"}}" class="btn btn-info"><span><span--}}
+                            {{--class="fa fa-eye"></span> Preview</span></a>--}}
+                            <a href="{{ url("/admin/previewResolution/{$questionnaire->resolution_id }/") }}"
+                               target="_blank"
+                               class="btn btn-danger"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+                                Print</a>
 
-                    @if($resolution->is_monitored == 0)
-                        {{--<form style="display: inline;" method="post" action="{{ url('/admin/forms/' . $questionnaire->id) }}">--}}
-                            {{--{{ method_field('DELETE') }}--}}
-                            {{--{{ csrf_field() }}--}}
-                            {{--<button class="btn btn-danger" onclick="return confirm('Are you sure you want to remove this Questionnaire?')">--}}
+                            @if($resolution->is_monitored == 0)
+                                {{--<form style="display: inline;" method="post" action="{{ url('/admin/forms/' . $questionnaire->id) }}">--}}
+                                {{--{{ method_field('DELETE') }}--}}
+                                {{--{{ csrf_field() }}--}}
+                                {{--<button class="btn btn-danger" onclick="return confirm('Are you sure you want to remove this Questionnaire?')">--}}
                                 {{--<span class="fa fa-trash"></span> Delete--}}
-                            {{--</button>--}}
-                        {{--</form>--}}
+                                {{--</button>--}}
+                                {{--</form>--}}
 
-                            <button class="btn btn-danger btn-equal-width" data-toggle="modal" data-target="#exampleModal">
-                                Delete
-                            </button>
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h3 class="modal-title" id="exampleModalLabel">Confirm Delete</h3>
-                                        </div>
-                                        <div class="modal-body">
-                                            Are you sure you want to delete this questionnaire?
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel
-                                            </button>
-                                            <form style="display: inline;" method="post"
-                                                  action="{{ url('/admin/forms/' . $questionnaire->id) }}">
-                                                {{ method_field('DELETE') }}
-                                                {{ csrf_field() }}
-                                                <button class="btn btn-danger">Delete</button>
-                                            </form>
+                                <button class="btn btn-danger btn-equal-width" data-toggle="modal"
+                                        data-target="#exampleModal">
+                                    Delete
+                                </button>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h3 class="modal-title" id="exampleModalLabel">Confirm Delete</h3>
+                                            </div>
+                                            <div class="modal-body">
+                                                Are you sure you want to delete this questionnaire?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Cancel
+                                                </button>
+                                                <form style="display: inline;" method="post"
+                                                      action="{{ url('/admin/forms/' . $questionnaire->id) }}">
+                                                    {{ method_field('DELETE') }}
+                                                    {{ csrf_field() }}
+                                                    <button class="btn btn-danger">Delete</button>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                    @endif
+                            @endif
+                        </div>
                 </div>
-            </div>
-            <div class="box-body">
-                <div class="col-lg-12">
+                <div class="box-body">
+                    <div class="col-lg-12">
                         {{--<h2>{{ $questionnaire->name }}</h2>--}}
                         <p>
                             @if($resolution->is_monitored == 0)
                                 @if($questionnaire->isAccepting == 1)
-                                    Public Link: <a href="/answer.r/{{$resolution->id}}">http://localhost:8000/answer.r/{{$resolution->id}}</a>
+                                    Public Link: <a
+                                            href="/answer.r/{{$resolution->id}}">http://localhost:8000/answer.r/{{$resolution->id}}</a>
                                     <br>
                                     Required Link: <a
                                             href="/answer.r/{{$resolution->id}}/required">http://localhost:8000/answer.r/{{$resolution->id}}
@@ -116,20 +121,20 @@
                         </p>
                         <p>{{ $questionnaire->description }}</p>
                         <p><strong>Number of Responses:</strong> {{ $questionnaire->getResponseCount() }}</p>
-                    @else
-                        @if($resolution->is_monitored == 0)
-                            <div class="col-xs-12">
-                                <a href="/admin/forms/create?flag={{ $flag }}&resolution_id={{$resolution->id}}"
-                                   class="btn btn-success">Create Questionnaire</a>
-                            </div>
+                        @else
+                            @if($resolution->is_monitored == 0)
+                                <div class="col-xs-12">
+                                    <a href="/admin/forms/create?flag={{ $flag }}&resolution_id={{$resolution->id}}"
+                                       class="btn btn-success">Create Questionnaire</a>
+                                </div>
+                            @endif
                         @endif
-                    @endif
+                    </div>
                 </div>
-            </div>
-            {{-- If there is none--}}
+                {{-- If there is none--}}
 
+            </div>
         </div>
-    </div>
     @endif
 
     {{--@if($resolution->is_monitoring === 1)--}}
@@ -222,7 +227,19 @@
 
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-3">
+            <div class="panel panel-info">
+                <div class="panel-body">
+                    @if($resolution->pdf_link)
+                        <iframe src="{{$resolution->pdf_link}}"
+                                width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
+                    @else
+                        <h3 class="text-center">PDF not available.</h3>
+                    @endif
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9">
             <div class="row">
                 <div class="box box-success color-palette-box">
                     <div class="box-header with-border">
@@ -241,34 +258,68 @@
                         </div>
                     </div>
                     <div class="box-body">
-                        <table class="table table-striped table-bordered">
-                            <thead>
-                            <tr>
-                                <th>Resolution Number</th>
-                                <td>{{ $resolution->number }}</td>
-                            </tr>
-                            <tr>
-                                <th>Series</th>
-                                <td>{{ $resolution->series }}</td>
-                            </tr>
-                            <tr>
-                                <th>Title</th>
-                                <td>{{ $resolution->title }}</td>
-                            </tr>
-                            <tr>
-                                <th>Keywords</th>
-                                <td>{{ $resolution->keywords }}</td>
-                            </tr>
-                            </thead>
-                        </table>
+                        <div class="row">
+                            <div class="col-md-{{ $resolution->is_monitored ? '5' : '12' }}">
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>Resolution Number</th>
+                                        <td>{{ $resolution->number }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Series</th>
+                                        <td>{{ $resolution->series }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Title</th>
+                                        <td>{{ str_limit($resolution->title, $limit = 150, $end = '...') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Keywords</th>
+                                        <td>{{ str_limit($resolution->keywords, $limit = 150, $end = '...') }}</td>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            @if($resolution->is_monitored)
+                                <div class="col-md-7">
+                                    <table class="table table-striped table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>Date of Status Report</th>
+                                            <td>{{ $resolution->status_report_date ? $resolution->status_report_date : 'N/A' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Summary</th>
+                                            <td>{{ $resolution->summary ? str_limit($resolution->summary, $limit = 150, $end = '...') : 'N/A' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Status</th>
+                                            <td>{{ $resolution->status ? str_limit($resolution->status, $limit = 150, $end = '...') : 'N/A' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Legislative Action</th>
+                                            <td>{{ $resolution->legislative_action ? $resolution->legislative_action : 'N/A' }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Updates</th>
+                                            <td>{{ $resolution->updates ? $resolution->updates : 'N/A' }}</td>
+                                        </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="row">
         @if($resolution->is_monitoring === 1)
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div class="box box-success color-palette-box">
                         <div class="box-header with-border">
                             <ul class="nav nav-tabs">
@@ -373,7 +424,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-7">
                     {{--<div class="row">--}}
                     <div class="box box-danger color-palette-box">
                         <div class="box-header with-border">
@@ -440,7 +491,8 @@
                                                 $counter=$counter+1;
                                             @endphp
                                         @endforeach
-                                        <a href="/admin/showComments/{{$resolution->id}}/resolutions" class="pull-right">View all</a>
+                                        <a href="/admin/showComments/{{$resolution->id}}/resolutions"
+                                           class="pull-right">View all</a>
                                     </div>
                                 </div>
 
@@ -482,8 +534,8 @@
                         </div>
                     </div>
                 </div>
-                @endif
             </div>
+        @endif
     </div>
 @endsection
 @section('scripts')

@@ -43,6 +43,11 @@ class OrdinancesController extends Controller
                 'is_monitoring' => '',
                 'is_accepting' => '',
                 'pdf' => '',
+                'status_report_date' => '',
+                'summary' => '',
+                'status' => '',
+                'legislative_action' => '',
+                'updates' => '',
             ]);
         } else {
             $validatedData = $request->validate([
@@ -52,8 +57,14 @@ class OrdinancesController extends Controller
                 'keywords' => 'required|string',
                 'is_monitoring' => '',
                 'pdf' => '',
+                'status_report_date' => '',
+                'summary' => '',
+                'status' => '',
+                'legislative_action' => '',
+                'updates' => '',
             ]);
         }
+
         return $validatedData;
     }
 
@@ -215,7 +226,14 @@ class OrdinancesController extends Controller
         $ordinance->save();
 
         Session::flash('flash_message', "Successfully updated <strong>Ordinance " . $ordinance->number . "</strong>!");
-        $redirectLink = $ordinance->is_monitoring == 1 ? '/admin/forms/ordinances' : '/admin/ordinances';
+
+        if($ordinance->is_monitored){
+            $redirectLink = '/admin/forms/ordinances?status=monitored';
+        } elseif ($ordinance->is_monitoring) {
+            $redirectLink = '/admin/forms/ordinances';
+        } else {
+            $redirectLink = '/admin/ordinances';
+        }
 
         return redirect($redirectLink);
     }

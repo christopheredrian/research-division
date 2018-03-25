@@ -43,13 +43,15 @@
                     Resolutions being Monitored
                 @endif
             </h3>
-            <div class="pull-right">
-                <a href="/admin/resolutions/create?type={{$type}}" class="btn btn-success"><span
-                            class="fa fa-plus"></span> Add</a>
-                {{--<a href="/admin{{$type === 'RR' ? '' : '/forms'}}/resolutions" class="btn btn-primary">--}}
-                {{--<i class="fa fa-refresh"></i> Reset Filtering--}}
-                {{--</a>--}}
-            </div>
+            @if(!request('status'))
+                <div class="pull-right">
+                    <a href="/admin/resolutions/create?type={{$type}}" class="btn btn-success"><span
+                                class="fa fa-plus"></span> Add</a>
+                    {{--<a href="/admin{{$type === 'RR' ? '' : '/forms'}}/resolutions" class="btn btn-primary">--}}
+                    {{--<i class="fa fa-refresh"></i> Reset Filtering--}}
+                    {{--</a>--}}
+                </div>
+            @endif
         </div>
         <div class="box-body">
             {{--<div class="add-magin">--}}
