@@ -227,9 +227,9 @@ function skin($user)
                 <?php
                 $new_message_count = \App\Message::where('created_at', '>=', \Carbon\Carbon::today()->addDay(-5))->count()
                 ?>
-                @php()
+                {{--@php()--}}
 
-                @endphp
+                {{--@endphp--}}
                 <li class="{{ Request::is('admin/messages*') ? 'active' : '' }}">
                     <a href="/admin/messages">
                         <i class="fa fa-envelope-o"></i>
