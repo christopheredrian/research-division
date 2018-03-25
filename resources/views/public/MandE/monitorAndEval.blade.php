@@ -76,12 +76,20 @@
                         <h1>Monitored Ordinances</h1>
                         <hr>
                     @else
-                        <h1>Ordinances being Monitored</h1>
+                        <h1 class="text-center">Ordinances Being Monitored</h1>
                         <hr>
                     @endif
                 </div>
                 <div class="col-md-12">
-                    @if($ordinances->first() !== null)
+
+                    @if($ordinances->first() === null)
+                        <div class="row text-center">
+                            <div class="col-md-12 col-lg-12 col-xl-12">
+                                <h1>No results found.</h1>
+                            </div>
+                            <br>
+                        </div>
+                    @endif
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
@@ -214,11 +222,6 @@
                         <div class="row text-center">
                             {{$ordinances->links()}}
                         </div>
-                    @else
-                        <div class="row text-center">
-                            <h1>No results found.</h1>
-                        </div>
-                    @endif
                 </div>
             @elseif ($resolutions !== null)
                 <div class="ordinance-heading">
@@ -226,12 +229,19 @@
                         <h1>Monitored Resolutions</h1>
                         <hr>
                     @else
-                        <h1>Resolutions being Monitored</h1>
+                        <h1 class="text-center">Resolutions Being Monitored</h1>
                         <hr>
                     @endif
                 </div>
                 <div class="col-md-12">
-                    @if($resolutions->first() !== null)
+                    @if($resolutions->first() === null)
+                        <div class="row text-center">
+                            <div class="col-md-12 col-lg-12 col-xl-12">
+                                <h1>No results found.</h1>
+                            </div>
+                            <br>
+                        </div>
+                    @endif
                         <table class="table table-striped table-bordered">
                             <thead>
                             <tr>
@@ -365,13 +375,6 @@
                         <div class="row text-center">
                             {{$resolutions->links()}}
                         </div>
-                    @else
-                        <div class="row text-center">
-                            <div class="col-md-12 col-lg-12 col-xl-12">
-                                <h1>No results found.</h1>
-                            </div>
-                        </div>
-                    @endif
                 </div>
                 {{--@else--}}
                 {{--<div class="resolution-heading">--}}
