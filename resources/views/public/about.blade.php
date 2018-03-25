@@ -41,6 +41,15 @@
                                         </p>
                                         <p>Telephone number: (074) 446-3366</p>
                                     </article>
+
+                                    <h3><b> Mission </b></h3>
+                                    <p>
+                                        "To enact oridnances, approve resolutions, and appropriate funds for the general welfare of the city and its inhabitants."
+                                    </p>
+                                    <h3><b> Vision </b></h3>
+                                    <p>
+                                        "We envision quality legislation reflective of the aspirations of the people for a better quality of life in a clean and green environment."
+                                    </p>
                                 </div>
                                 <br/>
 
@@ -50,16 +59,7 @@
                     </div>
                 </div>
             </div>
-            {{--<div class="col-md-offset-6">--}}
-            {{--<h3><b> Mission </b></h3>--}}
-            {{--<p>--}}
-            {{--"To enact oridnances, approve resolutions, and appropriate funds for the general welfare of the city and its inhabitants."--}}
-            {{--</p>--}}
-            {{--<h3><b> Vision </b></h3>--}}
-            {{--<p>--}}
-            {{--"We envision quality legislation reflective of the aspirations of the people for a better quality of life in a clean and green environment."--}}
-            {{--</p>--}}
-            {{--</div>--}}
+
         </div>
     </div>
 @endsection
