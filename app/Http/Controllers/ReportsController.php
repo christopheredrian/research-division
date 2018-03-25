@@ -14,6 +14,12 @@ class ReportsController extends Controller
     }
 
     public function query(Request $request){
+        // Remove stored Monitored legislations in session
+        session()->pull('LR_monitored_ordinances') ? session()->forget('LR_monitored_ordinances') : null;
+        session()->pull('LR_monitored_resolutions') ? session()->forget('LR_monitored_resolutions') : null;
+        session()->pull('results') ? session()->forget('results') : null;
+        session()->pull('series') ? session()->forget('series') : null;
+
         $series = $request->series === null ? Ordinance::orderBy('series', 'desc')->first()->series : $request->series;
         $includes = $request->includes === null ?
                 ['rrOrdinances', 'monitoringOrdinances', 'monitoredOrdinances',
@@ -23,15 +29,15 @@ class ReportsController extends Controller
         foreach ($includes as $include) {
             switch ($include){
                 case 'rrOrdinances':
-                    $rrOrdinances = Ordinance::where('is_monitoring', '=', 0)
+                    $rr_ordinances = Ordinance::where('is_monitoring', '=', 0)
                         ->where('series', '=', $series)
-                        ->select('number as Ordinance Number', 'series as Series', 'title as Title', 'keywords as Keywords')
+                        ->select('number as ORDINANCE NUMBER', 'series as SERIES', 'title as TITLE', 'keywords as KEYWORDS')
                         ->get();
-                    $results['R&R Ordinances'] = $rrOrdinances;
+                    $results['R&R Ordinances'] = $rr_ordinances;
                     break;
 
                 case 'monitoringOrdinances':
-                    $monitoringOrdinances = Ordinance::where('is_monitoring', '=', 1)
+                    $monitoring_ordinances = Ordinance::where('is_monitoring', '=', 1)
                         ->where(function($query){
                             $query->doesntHave('statusreport');
                             $query->orWhereHas('statusreport', function ($query) {
@@ -40,35 +46,54 @@ class ReportsController extends Controller
                             })->get();
                         })
                         ->where('series', '=', $series)
-                        ->select('number as Ordinance Number', 'series as Series', 'title as Title', 'keywords as Keywords')
+                        ->select(
+                            'number as ORDINANCE NUMBER',
+                            'series as SERIES',
+                            'title as TITLE',
+                            'keywords as KEYWORDS')
                         ->get();
-                    $results['Monitoring Ordinances'] = $monitoringOrdinances;
+                    $results['Monitoring Ordinances'] = $monitoring_ordinances;
                     break;
 
                 case 'monitoredOrdinances':
-                    $monitoredOrdinances = Ordinance::where('is_monitoring', '=', 1)
+                    $monitored_ordinances = Ordinance::where('is_monitoring', '=', 1)
                         ->where(function($query){
                             $query->whereHas('statusreport', function ($query) {
                                 $query->whereNotNull('pdf_file_path');
                                 $query->orWhere('pdf_file_path', '!=', ' ');
                             })->get();
-                        })
+                        });
+                    $results['Monitored Ordinances'] = $monitored_ordinances
                         ->where('series', '=', $series)
-                        ->select('number as Ordinance Number', 'series as Series', 'title as Title', 'keywords as Keywords')
+                        ->select('number as ORDINANCE NUMBER', 'series as SERIES', 'title as TITLE', 'keywords as KEYWORDS')
                         ->get();
-                    $results['Monitored Ordinances'] = $monitoredOrdinances;
+
+                    $LR_monitored_ordinances = $monitored_ordinances
+                        ->where('series', '=', $series)
+                        ->select(
+                            'status_report_date as DATE OF STATUS REPORT',
+                            'number as RESOLUTION NUMBER',
+                            'series as YEAR',
+                            'title as TITLE',
+                            'summary as SUMMARY OF FINDINGS, SUGGESTIONS AND RECOMMENDATIONS',
+                            'status as STATUS',
+                            'legislative_action as LEGISLATIVE ACTION',
+                            'updates as UPDATES'
+                        )
+                        ->get();
+                    session(['LR_monitored_ordinances' => $LR_monitored_ordinances]);
                     break;
 
                 case 'rrResolutions':
-                    $rrResolutions = Resolution::where('is_monitoring', '=', 0)
+                    $rr_resolutions = Resolution::where('is_monitoring', '=', 0)
                         ->where('series', '=', $series)
-                        ->select('number as Resolution Number', 'series as Series', 'title as Title', 'keywords as Keywords')
+                        ->select('number as Resolution Number', 'series as SERIES', 'title as TITLE', 'keywords as KEYWORDS')
                         ->get();
-                    $results['R&R Resolutions'] = $rrResolutions;
+                    $results['R&R Resolutions'] = $rr_resolutions;
                     break;
 
                 case 'monitoringResolutions':
-                    $monitoringResolutions = Resolution::where('is_monitoring', '=', 1)
+                    $monitoring_resolutions = Resolution::where('is_monitoring', '=', 1)
                         ->where(function($query){
                             $query->doesntHave('statusreport');
                             $query->orWhereHas('statusreport', function ($query) {
@@ -77,23 +102,39 @@ class ReportsController extends Controller
                             })->get();
                         })
                         ->where('series', '=', $series)
-                        ->select('number as Resolution Number', 'series as Series', 'title as Title', 'keywords as Keywords')
+                        ->select('number as Resolution Number', 'series as SERIES', 'title as TITLE', 'keywords as KEYWORDS')
                         ->get();
-                    $results['Monitoring Resolutions'] = $monitoringResolutions;
+                    $results['Monitoring Resolutions'] = $monitoring_resolutions;
                     break;
 
                 case 'monitoredResolutions':
-                    $monitoredResolutions = Resolution::where('is_monitoring', '=', 1)
+                    $monitored_resolutions = Resolution::where('is_monitoring', '=', 1)
                         ->where(function($query){
                             $query->whereHas('statusreport', function ($query) {
                                 $query->whereNotNull('pdf_file_path');
                                 $query->orWhere('pdf_file_path', '!=', ' ');
                             })->get();
-                        })
+                        });
+
+                    $results['Monitored Resolutions'] = $monitored_resolutions
                         ->where('series', '=', $series)
-                        ->select('number as Resolution Number', 'series as Series', 'title as Title', 'keywords as Keywords')
+                        ->select('number as Resolution Number', 'series as SERIES', 'title as TITLE', 'keywords as KEYWORDS')
                         ->get();
-                    $results['Monitored Resolutions'] = $monitoredResolutions;
+
+                    $LR_monitored_resolutions = $monitored_resolutions
+                        ->where('series', '=', $series)
+                        ->select(
+                            'status_report_date as DATE OF STATUS REPORT',
+                            'number as RESOLUTION NUMBER',
+                            'series as YEAR',
+                            'title as TITLE',
+                            'summary as SUMMARY OF FINDINGS, SUGGESTIONS AND RECOMMENDATIONS',
+                            'status as STATUS',
+                            'legislative_action as LEGISLATIVE ACTION',
+                            'updates as UPDATES'
+                            )
+                        ->get();
+                    session(['LR_monitored_resolutions' => $LR_monitored_resolutions]);
                     break;
             }
         }
@@ -120,5 +161,19 @@ class ReportsController extends Controller
             }
         })->export('xls');
 
+    }
+
+    public function downloadLegislativeReport($legislation_type){
+        $monitored_legislations  = $legislation_type === 'ordinances' ? session()->pull('LR_monitored_ordinances') : session()->pull('LR_monitored_resolutions');
+        $series = session()->pull('series');
+
+        $file_name = 'Legislative Monitoring and Evaluation Report ' . $series . '(' . lcfirst($legislation_type) . ')';
+        $sheet_title = $series . ' Monitored '. lcfirst($legislation_type);
+
+        Excel::create($file_name, function($excel) use($sheet_title, $monitored_legislations) {
+            $excel->sheet($sheet_title, function($sheet) use($monitored_legislations){
+                $sheet->fromArray($monitored_legislations);
+            });
+        })->export('xls');
     }
 }

@@ -326,7 +326,7 @@
                         message = 'NLP Enabled';
                     } else {
                         message = 'NLP Disabled';
-                        $('#variables').hide();
+                        $('#variables').hidtte();
 
                     }
                     $cloned.find('span').text(message);
