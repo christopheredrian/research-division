@@ -142,7 +142,6 @@ class OrdinancesController extends Controller
     {
         // Check if request has 'is_accepting'
         $validatedData = $this->validateData($request);
-
         $file = $request->file('pdf');
 
         $ordinance = new Ordinance();
@@ -157,7 +156,7 @@ class OrdinancesController extends Controller
         Session::flash('flash_message', "Successfully added <strong> Ordinance " . $ordinance->number . "</strong>!");
 
         // POST TO FACEBOOK
-        if (NLPUtilities::isNLPEnabled()) {
+        if (NLPUtilities::isNLPEnabled() and $request->fbpost) {
             app('App\Http\Controllers\Admin\FacebookPostsController')->postToPage($ordinance);
         }
 
@@ -180,7 +179,7 @@ class OrdinancesController extends Controller
             'ordinance' => $ordinance,
             'questionnaire' => $questionnaire,
             'flag' => FormsController::ORDINANCES,
-            ];
+        ];
 
         if (NLPUtilities::isNLPEnabled()) {
             $variables['facebookComments'] = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($ordinance);
@@ -227,7 +226,7 @@ class OrdinancesController extends Controller
 
         Session::flash('flash_message', "Successfully updated <strong>Ordinance " . $ordinance->number . "</strong>!");
 
-        if($ordinance->is_monitored){
+        if ($ordinance->is_monitored) {
             $redirectLink = '/admin/forms/ordinances?status=monitored';
         } elseif ($ordinance->is_monitoring) {
             $redirectLink = '/admin/forms/ordinances';
@@ -253,12 +252,13 @@ class OrdinancesController extends Controller
         return back();
     }
 
-    public function softDelete($id){
+    public function softDelete($id)
+    {
         $ordinance = Ordinance::findOrFail($id);
         $ordinance->deleted_at = Carbon::now();
         $ordinance->save();
 
-        Session::flash('flash_message', 'Successfully deleted Ordinance ' . $ordinance->number . ' series of ' . $ordinance->series );
+        Session::flash('flash_message', 'Successfully deleted Ordinance ' . $ordinance->number . ' series of ' . $ordinance->series);
 
         return back();
     }

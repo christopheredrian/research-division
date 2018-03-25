@@ -112,7 +112,7 @@ class ResolutionsController extends Controller
         $resolution->save();
 
         // POST TO FACEBOOK
-        if (NLPUtilities::isNLPEnabled()) {
+        if (NLPUtilities::isNLPEnabled() and $request->fbpost) {
             app('App\Http\Controllers\Admin\FacebookPostsController')->postToPage($resolution);
         }
 
