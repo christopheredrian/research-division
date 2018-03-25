@@ -26,30 +26,33 @@
             <li><a href="/admin/forms/ordinances"><i class="fa fa-bar-chart"></i> Monitoring & Evaluation</a></li>
         @endif
 
-        @if( app('request')->input('status') === 'monitored')
-            <li class="active">Monitored Ordinances</li>
-        @else
-            <li class="active">Ordinances being Monitored</li>
-        @endif
+        <li class="active">
+            @if(strpos(request()->url(), 'forms'))
+                {{ app('request')->input('status') === 'monitored' ? 'Monitored Ordinances' : 'Ordinances being monitored' }}
+            @else
+                Ordinances
+            @endif
+        </li>
     </ol>
 
     <div class="box box-default color-palette-box">
         <div class="box-header with-border">
             <h3 class="box-title"><i class="fa fa-file-text"></i>
-                {{--Ordinances under {{$type === 'RR' ? 'Research & Records' : 'Monitoring & Evaluation'}}--}}
-                @if( app('request')->input('status') === 'monitored')
-                    Monitored Ordinances
+                @if(strpos(request()->url(), 'forms'))
+                    {{ app('request')->input('status') === 'monitored' ? 'Monitored Ordinances' : 'Ordinances being monitored' }}
                 @else
-                    Ordinances being Monitored
+                    Ordinances under Research and Records
                 @endif
             </h3>
-            <div class="pull-right">
-                <a href="/admin/ordinances/create?type={{$type}}" class="btn btn-success"><span
-                            class="fa fa-plus"></span> Add</a>
-                {{--<a href="/admin{{$type === 'RR' ? '' : '/forms'}}/ordinances" class="btn btn-primary">--}}
-                {{--<i class="fa fa-refresh"></i> Reset Filtering--}}
-                {{--</a>--}}
-            </div>
+            @if(!request('status'))
+                <div class="pull-right">
+                    <a href="/admin/ordinances/create?type={{$type}}" class="btn btn-success"><span
+                                class="fa fa-plus"></span> Add</a>
+                    {{--<a href="/admin{{$type === 'RR' ? '' : '/forms'}}/ordinances" class="btn btn-primary">--}}
+                    {{--<i class="fa fa-refresh"></i> Reset Filtering--}}
+                    {{--</a>--}}
+                </div>
+            @endif
         </div>
         <div class="box-body">
 
@@ -212,8 +215,35 @@
                                         <a href="/admin/ordinances/{{$ordinance->id}}/edit?type={{$type}}"
                                            class="btn btn-xs btn-warning btn-equal-width ">Edit</a>
 
-                                        <a href="/admin/ordinances/delete/{{$ordinance->id}}"
-                                           class="btn btn-xs btn-danger btn-equal-width deleteButton">Delete</a>
+                                        <button class="btn btn-xs btn-danger btn-equal-width" data-toggle="modal"
+                                                data-target="#exampleModal{{$ordinance->id}}">
+                                            Delete
+                                        </button>
+
+                                        <div class="modal fade" id="exampleModal{{$ordinance->id}}" tabindex="-1"
+                                             role="dialog" aria-labelledby="exampleModalLabel"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h3 class="modal-title" id="exampleModalLabel">Confirm
+                                                            Delete</h3>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure you want to delete Ordinance {{ $ordinance->id }}
+                                                        series of {{ $ordinance->series }}?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">
+                                                            Cancel
+                                                        </button>
+                                                        <a href="/admin/ordinances/delete/{{$ordinance->id}}"
+                                                           class="btn btn-sm btn-danger btn-equal-width deleteButton">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                     </td>
                                 </tr>
@@ -232,16 +262,4 @@
             </div>
         </div>
     </div>
-@endsection
-
-@section('scripts')
-    <script type="text/javascript">
-        $('.deleteButton').click(function (e) {
-            var link = e.target;
-            var name = $(link).parent().parent().children().first().text();
-            var series = $(link).parent().parent().children().eq(1).text();
-
-            return confirm("Are you sure you want to delete Ordinance " + name + "-" + series + "?");
-        });
-    </script>
 @endsection

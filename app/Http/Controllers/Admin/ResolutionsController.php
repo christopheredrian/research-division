@@ -183,7 +183,16 @@ class ResolutionsController extends Controller
             substr($resolution->pdf_file_path, strrpos($resolution->pdf_file_path, '/') + 1);
         $resolution->save();
 
-        Session::flash('flash_message', "Successfully updated <strong>Resolution" . $resolution->number . "</strong>!");
+        Session::flash('flash_message', "Successfully updated <strong>Resolution " . $resolution->number . "</strong>!");
+
+        if($resolution->is_monitored){
+            $redirectLink = '/admin/forms/resolutions?status=monitored';
+        } elseif ($resolution->is_monitoring) {
+            $redirectLink = '/admin/forms/resolutions';
+        } else {
+            $redirectLink = '/admin/resolutions';
+        }
+
         return redirect('/admin/resolutions');
     }
 
@@ -206,7 +215,7 @@ class ResolutionsController extends Controller
         $resolution->deleted_at = Carbon::now();
         $resolution->save();
 
-        Session::flash('flash_message', 'Successfully deleted Ordinance ' . $resolution->number . '-' . $resolution->series );
+        Session::flash('flash_message', 'Successfully deleted Resolution ' . $resolution->number . ' series of ' . $resolution->series );
 
         return back();
     }
