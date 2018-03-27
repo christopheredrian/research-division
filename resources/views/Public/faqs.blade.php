@@ -44,7 +44,22 @@
                                         <div class="panel-body">
                                             <h5><span class="label label-primary">Answer</span></h5>
 
-                                            <p> Answer here. </p>
+                                            <p> The Research Division is one of the four (4) divisions of the Office of the Sangguniang
+                                            Panlungsod that has the following functions:
+                                            <ol>
+                                                <li> Attends the meetings, public hearings, and otther related meetings
+                                                    of the Sanggunian to assist in research work and gathers information for the Sanggunian;</li>
+                                                <li> Performs research work referred to by the Sanggunian, various offices/agencies, and the
+                                                    general public on approved ordinances and resolutions and other related documents;</li>
+                                                <li> Keeps and maintains original copies of the City of Baguio's approved ordinances
+                                                    and resolutions and other related documents;</li>
+                                                <li> Encodes and maintains records in the SP-LMS database including
+                                                    indices of approved ordinances and resolutions;</li>
+                                                <li> Sends out copies of ordinances and resolutions to concerned persons/offices
+                                                    for information/implementations;</li>
+                                                <li> Sends out publications of approved ordinances; and </li>
+                                                <li> Coordinates with other agencies/departments in gathering data.</li>
+                                            </ol></p>
                                         </div>
                                     </div>
                                 </div>
