@@ -16,8 +16,8 @@ class DashboardController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index() {
-        $suggestions = Suggestion::Where('created_at','>', Carbon\Carbon::now()->subDays(4))->get();
-        $responses = Response::Where('created_at','>', Carbon\Carbon::now()->subDays(4))->get();
+        $suggestions = Suggestion::Where('created_at','>', Carbon\Carbon::now()->subDays(4))->OrderByDesc('created_at')->get();
+        $responses = Response::Where('created_at','>', Carbon\Carbon::now()->subDays(4))->OrderByDesc('created_at')->get();
         return view('admin.dashboard.index')->with('suggestions', $suggestions)->with('responses', $responses);
     }
 }

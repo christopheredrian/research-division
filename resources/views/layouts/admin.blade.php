@@ -20,7 +20,7 @@
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css">
-    <link rel="stylesheet" href="/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    {{--<link rel="stylesheet" href="/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">--}}
     <link rel="stylesheet" href="/css/animate.css">
     <!-- X-editable -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css"
@@ -484,13 +484,14 @@ function skin($user)
 <!-- SlimScroll -->
 <script src="/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- ChartJS -->
-<script src="/bower_components/Chart.js/Chart.js"></script>
+{{--<script src="/bower_components/chart.js/Chart.js"></script>--}}
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="/dist/js/pages/dashboard2.js"></script>
+{{--<script src="/dist/js/pages/dashboard2.js"></script>--}}
 <!-- AdminLTE for demo purposes -->
 <script src="/dist/js/demo.js"></script>
 <script src="/bower_components/ckeditor/ckeditor.js"></script>
 <script src="/js/parsley.min.js"></script>
+
 
 {{-- Custom Scripts per page--}}
 @yield('scripts')
