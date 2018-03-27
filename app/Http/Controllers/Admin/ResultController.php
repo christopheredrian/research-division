@@ -51,10 +51,10 @@ class ResultController extends Controller
                 $ordinance = Ordinance::find($questionnaire->ordinance_id);
 //                $file_name = str_replace('.', '', $ordinance->title);
 //                $file_name = str_replace(' ','_', $file_name);
-                $file_name = "Ordinance number " .$ordinance->number . " of series " . $ordinance->series;
+                $file_name = "Sanguniang Panlungsod Ordinance number " .$ordinance->number . " of series " . $ordinance->series;
             } else {
                 $resolution = Resolution::find($questionnaire->resolution_id);
-                $file_name = "Resolution number " . $resolution->number . " of series " . $resolution->series;
+                $file_name = "Sanguniang Panlungsod Resolution number " . $resolution->number . " of series " . $resolution->series;
             }
 
             Excel::create($file_name, function ($excel) use ($id) {
