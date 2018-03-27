@@ -582,7 +582,8 @@
         }
         .example-slider .fnc-slide-3 .fnc-slide__inner,
         .example-slider .fnc-slide-3 .fnc-slide__mask-inner {
-            background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/ironman-alt.jpg");
+            /* TODO: Change to actual pic */
+           /* background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/ironman-alt.jpg");*/
         }
         .example-slider .fnc-slide-3 .fnc-slide__inner:before {
             content: "";
@@ -595,7 +596,8 @@
         }
         .example-slider .fnc-slide-4 .fnc-slide__inner,
         .example-slider .fnc-slide-4 .fnc-slide__mask-inner {
-            background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/thor.jpg");
+            /* TODO: Change to actual pic */
+            /*background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/thor.jpg");*/
         }
         .example-slider .fnc-slide-4 .fnc-slide__inner:before {
             content: "";
@@ -947,15 +949,15 @@
                         <span class="fnc-nav__control-progress"></span>
                     </button>
                     <button class="fnc-nav__control">
-                        Captain America
+                        Burnham Lake
                         <span class="fnc-nav__control-progress"></span>
                     </button>
                     <button class="fnc-nav__control">
-                        Iron Man
+                        Lion's Head
                         <span class="fnc-nav__control-progress"></span>
                     </button>
                     <button class="fnc-nav__control">
-                        Thor
+                        Cathedral
                         <span class="fnc-nav__control-progress"></span>
                     </button>
                 </div>
