@@ -184,6 +184,22 @@ class OrdinancesController extends Controller
         if (NLPUtilities::isNLPEnabled()) {
             $variables['facebook_comments'] = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($ordinance);
             $variables['isNLPEnabled'] = 1;
+
+            if($ordinance->facebook_post_id !== null){
+                $variables['positive_count'] = 0;
+                $variables['negative_count'] = 0;
+                $variables['neutral_count'] = 0;
+
+                foreach ($variables['facebook_comments'] as $facebook_comment) {
+                    if($facebook_comment['result']->sentiment === 'positive'){
+                        $variables['positive_count']++;
+                    } elseif ($facebook_comment['result']->sentiment === 'negative') {
+                        $variables['negative_count']++;
+                    } else {
+                        $variables['neutral_count']++;
+                    }
+                }
+            }
         }
 
         return view('admin.ordinances.show', $variables);

@@ -44,7 +44,22 @@
                                         <div class="panel-body">
                                             <h5><span class="label label-primary">Answer</span></h5>
 
-                                            <p> Answer here. </p>
+                                            <p> The Research Division is one of the four (4) divisions of the Office of the Sangguniang
+                                            Panlungsod that has the following functions:
+                                            <ol>
+                                                <li> Attends the meetings, public hearings, and otther related meetings
+                                                    of the Sanggunian to assist in research work and gathers information for the Sanggunian;</li>
+                                                <li> Performs research work referred to by the Sanggunian, various offices/agencies, and the
+                                                    general public on approved ordinances and resolutions and other related documents;</li>
+                                                <li> Keeps and maintains original copies of the City of Baguio's approved ordinances
+                                                    and resolutions and other related documents;</li>
+                                                <li> Encodes and maintains records in the SP-LMS database including
+                                                    indices of approved ordinances and resolutions;</li>
+                                                <li> Sends out copies of ordinances and resolutions to concerned persons/offices
+                                                    for information/implementations;</li>
+                                                <li> Sends out publications of approved ordinances; and </li>
+                                                <li> Coordinates with other agencies/departments in gathering data.</li>
+                                            </ol></p>
                                         </div>
                                     </div>
                                 </div>
@@ -81,42 +96,46 @@
                                 </div>
                                 <div class="panel panel-default ">
                                     <div class="panel-heading accordion-toggle collapsed question-toggle"
-                                         data-toggle="collapse" data-parent="#faqAccordion" data-target="#question3">
+                                         data-toggle="collapse" data-parent="#faqAccordion" data-target="#question4">
                                         <h4 class="panel-title">
                                             <a href="#" class="ing">Q: What is an ordinance?</a>
                                         </h4>
 
                                     </div>
-                                    <div id="question3" class="panel-collapse collapse" style="height: 0px;">
+                                    <div id="question4" class="panel-collapse collapse" style="height: 0px;">
                                         <div class="panel-body">
                                             <h5><span class="label label-primary">Answer</span></h5>
-                                            <p> Answer here </p>
+                                            <p> An ordinance is a local law that prescribes <b> rules of conduct of a general,
+                                            permanent character. </b> It continues to be in force until <em> repealed or superseded </em>
+                                            by a subsequent enactment of the local legislative body.</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="panel panel-default ">
                                     <div class="panel-heading accordion-toggle collapsed question-toggle"
-                                         data-toggle="collapse" data-parent="#faqAccordion" data-target="#question3">
+                                         data-toggle="collapse" data-parent="#faqAccordion" data-target="#question5">
                                         <h4 class="panel-title">
                                             <a href="#" class="ing">Q: What is a resolution?</a>
                                         </h4>
 
                                     </div>
-                                    <div id="question3" class="panel-collapse collapse" style="height: 0px;">
+                                    <div id="question5" class="panel-collapse collapse" style="height: 0px;">
                                         <div class="panel-body">
                                             <h5><span class="label label-primary">Answer</span></h5>
-                                            <p> Answer here </p>
+                                            <p> A resolution is a <em> mere expression </em>  of the opinion or <em> sentiment </em> of the local
+                                                legislative body on matters relating to <em> proprietary function and private concerns.</em>
+                                            It is <b> temporary </b> in character.</p>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <br>
         </div>
-
+    </div>
         <style>
             #content {
                 background-color: rgb(240, 248, 255);
