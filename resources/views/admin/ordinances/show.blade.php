@@ -137,11 +137,10 @@
                         <p>
                             @if($questionnaire->isAccepting == 1)
                                 Public Link: <a
-                                        href="/answer.o/{{$ordinance->id}}">http://localhost:8000/answer.o/{{$ordinance->id}}</a>
+                                        href="/answer.o/{{$ordinance->id}}">{{env("APP_URL", " ").'answer.o/'.$ordinance->id}}</a>
                                 <br>
                                 Required Link: <a
-                                        href="/answer.o/{{$ordinance->id}}/required">http://localhost:8000/answer.o/{{$ordinance->id}}
-                                    /required</a>
+                                        href="/answer.o/{{$ordinance->id}}/required">{{env("APP_URL", " ").'answer.o/'.$ordinance->id}}/required</a>
                             @endif
                         </p>
                         <p>{{ $questionnaire->description }}</p>
