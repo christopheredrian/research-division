@@ -28,7 +28,7 @@
                     <div class="icon">
                         <i class="ion ion-android-stopwatch"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/admin/ordinances" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-xs-6">
@@ -42,7 +42,7 @@
                     <div class="icon">
                         <i class="ion ion-ios-stopwatch"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/admin/resolutions" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-xs-6">
@@ -56,7 +56,7 @@
                     <div class="icon">
                         <i class="ion ion-android-search"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/admin/forms/ordinances?status=monitored" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-xs-6">
@@ -70,7 +70,7 @@
                     <div class="icon">
                         <i class="ion ion-ios-search"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/admin/forms/resolutions?status=monitored" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-xs-6">
@@ -84,7 +84,7 @@
                     <div class="icon">
                         <i class="fa fa-list-alt"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/admin/forms/ordinances" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -99,7 +99,7 @@
                     <div class="icon">
                         <i class="fa fa-handshake-o"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/admin/forms/resolutions" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -107,17 +107,14 @@
                 <!-- small box -->
                 <div class="small-box bg-light-blue">
                     <div class="inner">
+                        <h3>{{ \App\User::count() }}</h3>
 
-                        <h3>{{ \App\Suggestion::count() }}
-                        </h3>
-
-
-                        <p>Comments/Suggestions</p>
+                        <p>Users</p>
                     </div>
                     <div class="icon">
-                        <i class="fa fa-paper-plane"></i>
+                        <i class="ion ion-person"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/admin/users" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -125,15 +122,14 @@
                 <!-- small box -->
                 <div class="small-box bg-light-blue">
                     <div class="inner">
-                        <h3>{{ \App\Response::count() }}
-                        </h3>
+                        <h3> {{ \App\Log::count() }}</h3>
 
-                        <p>Feedback</p>
+                        <p>Total Visitors</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-chatbox-working"></i>
+                        <i class="ion ion-person-stalker"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/admin/logs" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -151,7 +147,6 @@
                     <div class="icon">
                         <i class="fa fa-question-circle-o"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 
@@ -159,14 +154,14 @@
                 <!-- small box -->
                 <div class="small-box bg-light-blue">
                     <div class="inner">
-                        <h3> {{ \App\Log::count() }}</h3>
+                        <h3>{{ \App\Response::count() }}
+                        </h3>
 
-                        <p>Total Visitors</p>
+                        <p>Feedback</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-person-stalker"></i>
-                    </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                        <i class="ion ion-chatbox-working"></i>
+                    </div>            
                 </div>
             </div>
 
@@ -174,14 +169,17 @@
                 <!-- small box -->
                 <div class="small-box bg-light-blue">
                     <div class="inner">
-                        <h3>{{ \App\User::count() }}</h3>
 
-                        <p>Users</p>
+                        <h3>{{ \App\Suggestion::count() }}
+                        </h3>
+
+
+                        <p>Comments/Suggestions</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-person"></i>
+                        <i class="fa fa-paper-plane"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    
                 </div>
             </div>
         </div>
