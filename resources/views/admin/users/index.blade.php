@@ -44,12 +44,13 @@
                             <td>{{ $user->name }}</td>
 
                             <td>
-                            @if($user->role === 'admin')
-                                Administrator
-                            @elseif($user->role === 'me')
-                                Monitoring & Evaluation
-                            @else
-                                Research & Records
+                                @if($user->role === 'admin')
+                                    Administrator
+                                @elseif($user->role === 'me')
+                                    Monitoring & Evaluation
+                                @else
+                                    Research & Records
+                                @endif
                             </td>
 
                             <td>{{ $user->email }}</td>
@@ -69,7 +70,8 @@
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h3 class="modal-title" id="exampleModalLabel">Confirm Delete</h3>
-                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
@@ -77,7 +79,8 @@
                                                 Are you sure you want to delete user {{ $user->name }}?
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                                    Cancel
                                                 </button>
                                                 <form action="/admin/users/{{ $user->id }}" method="post">
                                                     {{ method_field('DELETE') }}
