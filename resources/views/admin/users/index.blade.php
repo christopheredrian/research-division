@@ -42,7 +42,16 @@
                     @else
                         <tr>
                             <td>{{ $user->name }}</td>
-                            <td>{{ $user->role }}</td>
+
+                            <td>
+                            @if($user->role === 'admin')
+                                Administrator
+                            @elseif($user->role === 'me')
+                                Monitoring & Evaluation
+                            @else
+                                Research & Records
+                            </td>
+
                             <td>{{ $user->email }}</td>
                             {{--<td>{{ $user->status }}</td>--}}
                             <td>{{ $user->created_at }}</td>
