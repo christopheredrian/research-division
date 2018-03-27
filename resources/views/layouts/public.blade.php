@@ -185,6 +185,7 @@
 <script src="/js/bootstrap.min.js"></script>
 <script src="/js/jquery.flexslider.js"></script>
 <script src="/js/jquery.inview.js"></script>
+<script src="/js/script.js"></script>
 <script>
     // Top Search
     $("#ss").click(function (e) {
@@ -193,7 +194,6 @@
         $(".search-form").toggleClass('visible');
     });
 </script>
-{{--<script src="/js/script.js"></script>--}}
 
 @yield('scripts')
 
