@@ -569,21 +569,18 @@
         }
         .example-slider .fnc-slide-1 .fnc-slide__inner,
         .example-slider .fnc-slide-1 .fnc-slide__mask-inner {
-            background-image: url("/images/burnham.jpg");
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
+            background-image: url("https://www.publicdomainpictures.net/pictures/190000/velka/burnham-park.jpg");
+
 
         }
         .example-slider .fnc-slide-2 .fnc-slide__inner,
         .example-slider .fnc-slide-2 .fnc-slide__mask-inner {
-            background-image: url("/images/lake.jpg");
-            background-repeat: no-repeat;
-            background-size: 100% 100%;
+            background-image: url("https://upload.wikimedia.org/wikipedia/commons/a/a4/Burnham_Park_lake_2004.jpg");
+
         }
         .example-slider .fnc-slide-3 .fnc-slide__inner,
         .example-slider .fnc-slide-3 .fnc-slide__mask-inner {
-            /* TODO: Change to actual pic */
-           /* background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/ironman-alt.jpg");*/
+           background-image: url("https://upload.wikimedia.org/wikipedia/commons/f/f4/LeonBaguio.JPG");
         }
         .example-slider .fnc-slide-3 .fnc-slide__inner:before {
             content: "";
@@ -596,8 +593,7 @@
         }
         .example-slider .fnc-slide-4 .fnc-slide__inner,
         .example-slider .fnc-slide-4 .fnc-slide__mask-inner {
-            /* TODO: Change to actual pic */
-            /*background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/142996/thor.jpg");*/
+            background-image: url("https://upload.wikimedia.org/wikipedia/commons/9/92/Bagio_Cathedral.jpg");
         }
         .example-slider .fnc-slide-4 .fnc-slide__inner:before {
             content: "";
@@ -1039,7 +1035,7 @@
             <div class="row">
                 <div class="col-xs-12 hidden-sm col-md-5">
                     <div class="ordinance-left">
-                        <img src="/images/about/law.jpg" alt="">
+                        <img src="https://c1.staticflickr.com/8/7347/27219912311_12ebb667a2_b.jpg" alt="">
                     </div>
                 </div>
                 <!--about wrapper right-->
@@ -1085,7 +1081,7 @@
             <div class="row">
                 <div class="col-xs-12 hidden-sm col-md-5">
                     <div class="ordinance-left">
-                        <img src="/images/about/law.jpg" alt="">
+                        <img src="https://c1.staticflickr.com/8/7347/27219912311_12ebb667a2_b.jpg" alt="">
                     </div>
                 </div>
                 <!--about wrapper right-->
