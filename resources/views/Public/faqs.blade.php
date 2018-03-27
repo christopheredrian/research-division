@@ -96,46 +96,46 @@
                                 </div>
                                 <div class="panel panel-default ">
                                     <div class="panel-heading accordion-toggle collapsed question-toggle"
-                                         data-toggle="collapse" data-parent="#faqAccordion" data-target="#question3">
+                                         data-toggle="collapse" data-parent="#faqAccordion" data-target="#question4">
                                         <h4 class="panel-title">
                                             <a href="#" class="ing">Q: What is an ordinance?</a>
                                         </h4>
 
                                     </div>
-                                    <div id="question3" class="panel-collapse collapse" style="height: 0px;">
+                                    <div id="question4" class="panel-collapse collapse" style="height: 0px;">
                                         <div class="panel-body">
                                             <h5><span class="label label-primary">Answer</span></h5>
-                                            <p> An ordinance is a local law that prescribes rules of conduct of a general,
-                                            permanent character. It continues to be in force until repealed ot superseded
-                                            by a subsequent enactment of the local legistlative body.</p>
+                                            <p> An ordinance is a local law that prescribes <b> rules of conduct of a general,
+                                            permanent character. </b> It continues to be in force until <em> repealed or superseded </em>
+                                            by a subsequent enactment of the local legislative body.</p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="panel panel-default ">
                                     <div class="panel-heading accordion-toggle collapsed question-toggle"
-                                         data-toggle="collapse" data-parent="#faqAccordion" data-target="#question3">
+                                         data-toggle="collapse" data-parent="#faqAccordion" data-target="#question5">
                                         <h4 class="panel-title">
                                             <a href="#" class="ing">Q: What is a resolution?</a>
                                         </h4>
 
                                     </div>
-                                    <div id="question3" class="panel-collapse collapse" style="height: 0px;">
+                                    <div id="question5" class="panel-collapse collapse" style="height: 0px;">
                                         <div class="panel-body">
                                             <h5><span class="label label-primary">Answer</span></h5>
-                                            <p> A resolution is a mere expression of the opinion or sentiment of the local
-                                            legislative body on matters relating to proprietary function and private concerns.
-                                            It is temporary in character.</p>
+                                            <p> A resolution is a <em> mere expression </em>  of the opinion or <em> sentiment </em> of the local
+                                                legislative body on matters relating to <em> proprietary function and private concerns.</em>
+                                            It is <b> temporary </b> in character.</p>
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <br>
         </div>
-
+    </div>
         <style>
             #content {
                 background-color: rgb(240, 248, 255);
