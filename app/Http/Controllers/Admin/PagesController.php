@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\GoogleDriveUtilities;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\File;
 use App\Http\Controllers\Controller;
 use App\Page;
 
@@ -17,6 +19,7 @@ class PagesController extends Controller
      */
 
     private $page_validation = [
+        'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         'title' => 'required',
         'description' => 'required',
         'content' => 'required',
@@ -54,6 +57,7 @@ class PagesController extends Controller
         $page->description = $request->description;
         $page->content = $request->input('content');
         $page->save();
+
         return redirect('/admin/pages');
     }
 
@@ -98,8 +102,36 @@ class PagesController extends Controller
         $request->validate($this->page_validation);
 
         Page::find($id)->update($request->all());
+        
 
         return redirect('/admin/pages');
+    }
+    public function uploadImageContent()
+{
+    $this->validate(request(), [
+        'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+    ]);
+
+    $file = request()->file('image');
+    $filename = $file->getClientOriginalName();
+
+    $year = Carbon::now()->year;
+    $imagePath = "/uploads/post_images/{$year}/";
+
+    if (file_exists(public_path($imagePath) . $filename)) {
+        $filename = Carbon::now()->timestamp . '.' . $filename;
+    }
+
+    $file->move(public_path() . $imagePath, $filename);
+
+    $url = $imagePath . $filename;
+
+    return "<script>window.parent.CKEDITOR.tools.callFunction(1,'{$url}','')</script>";
+}
+    
+     public function attachImage()
+    {
+        $this->uploadImageContent(request()->all());
     }
 
     /**

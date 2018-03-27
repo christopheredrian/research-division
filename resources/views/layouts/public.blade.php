@@ -124,7 +124,7 @@
                         @if (\App\Page::all()->count() > 0)
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    Others <span class="caret"></span>
+                                    More <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu">
                                     @foreach(\App\Page::all() as $page)
@@ -132,7 +132,7 @@
                                     @endforeach
                                 </ul>
                         @endif
-                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="/contact">Contact Us</a></li>
                         <li><a href="/about">About</a></li>
                         <li class="hidden-sm hidden-xs">
                             <a href="#" id="ss"><i class="fa fa-search" aria-hidden="true"></i></a>

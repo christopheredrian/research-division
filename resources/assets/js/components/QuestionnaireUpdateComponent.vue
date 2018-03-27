@@ -80,7 +80,8 @@
                     <div class="form-group">
                         <!--<label for="questionnaireName">Questionnaire Name</label>-->
                         <h3 v-if="questionnaire.associatedOrdinance">{{ questionnaire.associatedOrdinance.title }}</h3>
-                        <h3 v-if="questionnaire.associatedResolution">{{ questionnaire.associatedResolution.title }}</h3>
+                        <h3 v-if="questionnaire.associatedResolution">{{ questionnaire.associatedResolution.title
+                            }}</h3>
 
                         <!--<input v-validate="'required'" name="name" class="form-control" id="questionnaireName"-->
                         <!--v-model="questionnaire.name" type="text"-->
@@ -94,7 +95,8 @@
                                   rows="10"></textarea>
                     </div>
                     <hr>
-                    <button v-on:click="addQuestion()" class="btn btn-success btn-md fixed-button-3"><span class="fa fa-plus"></span> Add Question
+                    <button v-on:click="addQuestion()" class="btn btn-success btn-md fixed-button-3"><span
+                            class="fa fa-plus"></span> Add Question
                     </button>
                     <div v-for="question in questionnaire.questions">
                         <div class="row animated slideInRight">
@@ -113,7 +115,8 @@
                                            class="form-control" type="text"
                                            v-model="question.question">
                                     <span v-show="errors.has('Question Name' + questionnaire.questions.indexOf(question))"
-                                          class="help is-danger text-danger">{{ errors.first('Question Name' + questionnaire.questions.indexOf(question)) }}</span>
+                                          class="help is-danger text-danger">{{ errors.first('Question Name' + questionnaire.questions.indexOf(question))
+                                        }}</span>
                                 </div>
                                 <div class="form-group">
                                     <input type="checkbox" v-model="question.required" class="check">
@@ -149,7 +152,7 @@
                                                         <!--v-validate="'required'"-->
                                                         <!--:name="'Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val)"-->
                                                         <!--type="text" v-model="val.value" required>-->
-                                                        <label>{{ val.value.replace(';1','')}}</label>
+                                                        <label>{{ val.value.replace(';1', '')}}</label>
                                                     </div>
                                                     <!--<span v-show="errors.has('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val))"-->
                                                     <!--class="help is-danger text-danger">{{ errors.first('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val)) }}</span>-->
@@ -203,7 +206,8 @@
                                                         </div>
                                                     </div>
                                                     <span v-show="errors.has('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val))"
-                                                          class="help is-danger text-danger">{{ errors.first('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val)) }}</span>
+                                                          class="help is-danger text-danger">{{ errors.first('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val))
+                                                        }}</span>
 
                                                 </div>
                                             </div>
@@ -234,7 +238,8 @@
 
                                                     </div>
                                                     <span v-show="errors.has('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val))"
-                                                          class="help is-danger text-danger">{{ errors.first('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val)) }}</span>
+                                                          class="help is-danger text-danger">{{ errors.first('Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val))
+                                                        }}</span>
 
                                                 </div>
                                             </div>
@@ -276,8 +281,10 @@
                     </div>
                     <div class="modal-body">
                         <div class="wrap">
-                            <h3 v-if="questionnaire.associatedOrdinance">{{ questionnaire.associatedOrdinance.title }}</h3>
-                            <h3 v-if="questionnaire.associatedResolution">{{ questionnaire.associatedResolution.title }}</h3>
+                            <h3 v-if="questionnaire.associatedOrdinance">{{ questionnaire.associatedOrdinance.title
+                                }}</h3>
+                            <h3 v-if="questionnaire.associatedResolution">{{ questionnaire.associatedResolution.title
+                                }}</h3>
                             <p>{{ questionnaire.description }}</p>
                             <div v-for="question in questionnaire.questions">
                                 <h2 class="page-header">{{ question.question }}</h2>
@@ -286,14 +293,19 @@
                                           rows="10"></textarea>
                                 <div v-for="val in question.values">
                                     <div v-if="question.type === 'radio'">
-                                        <input :name="'radiovalue:' + questionnaire.questions.indexOf(question)" type="radio"> {{ val.value }}
+                                        <input :name="'radiovalue:' + questionnaire.questions.indexOf(question)"
+                                               type="radio"> {{ val.value }}
                                     </div>
                                     <div v-if="question.type === 'conditional'">
                                         <input type="radio" name="questionnaire.questions.indexOf(question)"
-                                               v-model="question.checked" :value="val.value"> {{ val.value.replace(';1','') }}
+                                               v-model="question.checked" :value="val.value">
+                                        {{ val.value.replace(';1', '') }}
                                         <div style="padding-left: 50px;">
                                             <transition name="fade">
-                                                <input style="border-top: none; border-left: none; border-right: 0" placeholder="Reason..." type="text" v-if="val.value.endsWith(';1') && val.value === question.checked" class="form-control">
+                                                <input style="border-top: none; border-left: none; border-right: 0"
+                                                       placeholder="Reason..." type="text"
+                                                       v-if="val.value.endsWith(';1') && val.value === question.checked"
+                                                       class="form-control">
                                             </transition>
                                         </div>
 
@@ -318,10 +330,34 @@
                 <!-- /.modal-dialog -->
             </div>
         </div>
+        <!-- Added: Modal -->
+        <div class="modal fade" id="modal" tabindex="-1"
+             role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="exampleModalLabel">Errors</h3>
+                    </div>
+                    <div class="modal-body">
+                        There were missing values. Please check input.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">
+                            Ok
+                        </button>
+                        <!--<a href="/admin/ordinances/delete/{{$ordinance->id}}"-->
+                        <!--class="btn btn-sm btn-danger btn-equal-width deleteButton">Delete</a>-->
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
+
 
     class Questions {
 
@@ -367,21 +403,27 @@
             },
             validateBeforeSubmit() {
                 this.$validator.validateAll().then((result) => {
-                    if (result) {
-                        // eslint-disable-next-line
-                        // alert('From Submitted!');
-                        this.$refs.form.submit();
-                        return;
+                    $('#modal .modal-body').text('There were missing values. Please check input.')
+                    // Check if we have questions
+                    if (!(this.questionnaire.questions.length === 0)) {
+                        // If validations passed
+                        if (result) {
+                            // eslint-disable-next-line
+                            this.$refs.form.submit();
+                            return;
+                        }
+                    } else {
+                        $('#modal .modal-body').text('Please have at least one question.')
                     }
-
-                    alert('There were errrors!');
+                    // Added: Add modal
+                    $('#modal').modal('show');
                 });
             },
             addQuestion() {
                 this.questionnaire.questions.push({
                     question: '',
                     required: false,
-                    type: '',
+                    type: 'short',
                     values: []
                 });
             },
