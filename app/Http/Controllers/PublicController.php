@@ -122,14 +122,53 @@ class PublicController extends Controller
     {
         LogUtility::insertLog("HttpRequest on /", 'public');
 
-        $ordinances = Ordinance::orderby('created_at', 'desc')
-            ->limit(5)
-            ->get();
-        $resolutions = Resolution::orderby('created_at', 'desc')
+        $ordinances = Ordinance::where('is_monitoring', 0)
+            ->orderby('created_at', 'desc')
             ->limit(5)
             ->get();
 
-        return view('public.index', ['resolutions' => $resolutions], ['ordinances' => $ordinances]);
+        $resolutions = Resolution::where('is_monitoring', 0)
+            ->orderby('created_at', 'desc')
+            ->limit(5)
+            ->get();
+
+        $monitoringOrdinances = Ordinance::where('is_monitoring', 1)
+            ->orWhere('is_accepting' , 1)
+            ->orderby('created_at', 'asc')
+            ->limit(5)
+            ->get();
+
+        $monitoringResolutions = Resolution::where('is_monitoring', 1)
+            ->orWhere('is_accepting' , 1)
+            ->orderby('created_at', 'asc')
+            ->limit(5)
+            ->get();
+
+        $monitoredOrdinances = Ordinance::where('is_monitored', 1)
+            ->orderby('created_at', 'desc')
+            ->limit(5)
+            ->get();
+
+        $monitoredResolutions = Resolution::where('is_monitored', 1)
+            ->orderby('created_at', 'desc')
+            ->limit(5)
+            ->get();
+
+        if ($monitoredResolutions->isEmpty())
+        {
+            $monitoredResolutions = null;
+        }
+        if ($monitoredOrdinances->isEmpty())
+        {
+            $monitoredOrdinances = null;
+        }
+        return view('public.index',
+            ['resolutions' => $resolutions],
+            ['ordinances' => $ordinances])
+            ->with('monitoredResolutions',$monitoredResolutions)
+            ->with('monitoredOrdinances',$monitoredOrdinances)
+            ->with('monitoringRes',$monitoringResolutions)
+            ->with('monitoringOrd',$monitoringOrdinances);
     }
     //    Monitoring and Eval
     // monitored Resolutions
@@ -452,6 +491,12 @@ class PublicController extends Controller
     }
 
     //   Research and Record end
+
+    public function faqs()
+    {
+        LogUtility::insertLog("HttpRequest on /faqs", 'public');
+        return view('public.faqs');
+    }
 
     public function about()
     {

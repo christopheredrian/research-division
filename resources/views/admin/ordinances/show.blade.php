@@ -130,29 +130,24 @@
                                         </div>
                                     </div>
                                     <br>
-
                                 @endif
                             </div>
                     </div>
                     <div class="box-body">
                         <div class="col-md-12">
-
-                            {{--<h2>{{ $questionnaire->name }}</h2>--}}
                             <p>
                                 @if($questionnaire->isAccepting == 1)
                                     Public Link: <a
-                                            href="/answer.o/{{$ordinance->id}}">http://localhost:8000/answer.o/{{$ordinance->id}}</a>
+                                            href="/answer.o/{{$ordinance->id}}">{{env("APP_URL", " ").'/answer.o/'.$ordinance->id}}</a>
                                     <br>
                                     Required Link: <a
-                                            href="/answer.o/{{$ordinance->id}}/required">http://localhost:8000/answer.o/{{$ordinance->id}}
+                                            href="/answer.o/{{$ordinance->id}}/required">{{env("APP_URL", " ").'/answer.o/'.$ordinance->id}}
                                         /required</a>
                                 @endif
                             </p>
                             <p>{{ $questionnaire->description }}</p>
                             <p><strong>Number of Responses:</strong> {{ $questionnaire->getResponseCount() }}</p>
                         </div>
-
-
                         @else
                             @if($ordinance->is_monitored === 0)
                                 <a href="/admin/forms/create?flag={{ $flag }}&ordinance_id={{$ordinance->id}}"
@@ -381,134 +376,135 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            @if(isset($isNLPEnabled) and $ordinance->facebook_post_id !== null)
-                <div class="col-md-3 text-center">
-                    <h3>Ordinance Pulse (Facebook)</h3>
-                    <canvas id="pulseChart" width="220" height="240"></canvas>
-                </div>
-            @endif
-            <div class="col-md-{{ (isset($isNLPEnabled) and $ordinance->facebook_post_id !== null) ? '9' : '12'}}">
-                {{--<div class="row">--}}
-                <div class="box box-danger color-palette-box">
-                    <div class="box-header with-border">
-                        {{--<h3 class="box-title"><i class="fa fa-comments-o"></i> Comments/Suggestions</h3>--}}
-                        @if($ordinance->is_monitored === 0)
-                            @if($ordinance->is_accepting == 0)
-                                <form style="display: inline;" method="post"
-                                      action="{{ url('/admin/acceptSuggestions/' . $ordinance->id.'/'.$flag) }}">
-                                    {{ csrf_field() }}
-                                    <button class="btn btn-success pull-right">
-                                        <span class="fa fa-comments-o"></span> Accept Suggestions
-                                    </button>
-                                </form>
-                            @else
-                                <form style="display: inline;" method="post"
-                                      action="{{ url('/admin/declineSuggestions/' . $ordinance->id.'/'.$flag) }}">
-                                    {{ csrf_field() }}
-                                    <button class="btn btn-danger pull-right">
-                                        <span class="fa fa-times"></span> Decline Suggestions
-                                    </button>
-                                </form>
+    @endif
+    <div class="row">
+        @if(isset($isNLPEnabled) and $ordinance->facebook_post_id !== null)
+            <div class="col-md-3 text-center">
+                <h3>Ordinance Pulse (Facebook)</h3>
+                <canvas id="pulseChart" width="220" height="240"></canvas>
+            </div>
+        @endif
+        <div class="col-md-{{ (isset($isNLPEnabled) and $ordinance->facebook_post_id !== null) ? '9' : '12'}}">
+            {{--<div class="row">--}}
+            <div class="box box-danger color-palette-box">
+                <div class="box-header with-border">
+                    {{--<h3 class="box-title"><i class="fa fa-comments-o"></i> Comments/Suggestions</h3>--}}
+                    @if($ordinance->is_monitored === 0)
+                        @if($ordinance->is_accepting == 0)
+                            <form style="display: inline;" method="post"
+                                  action="{{ url('/admin/acceptSuggestions/' . $ordinance->id.'/'.$flag) }}">
+                                {{ csrf_field() }}
+                                <button class="btn btn-success pull-right">
+                                    <span class="fa fa-comments-o"></span> Accept Suggestions
+                                </button>
+                            </form>
+                        @else
+                            <form style="display: inline;" method="post"
+                                  action="{{ url('/admin/declineSuggestions/' . $ordinance->id.'/'.$flag) }}">
+                                {{ csrf_field() }}
+                                <button class="btn btn-danger pull-right">
+                                    <span class="fa fa-times"></span> Decline Suggestions
+                                </button>
+                            </form>
+                        @endif
+                    @endif
+
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a data-toggle="tab" href="#comments">Comments/Suggestions</a></li>
+                        @if(isset($isNLPEnabled))
+                            @if(isset($isNLPEnabled) and $ordinance->facebook_post_id !== null)
+                                <li>
+                                    <a data-toggle="tab" href="#fbComments">
+                                        <i class="fa fa-facebook-f"></i>
+                                        Facebook Comments
+                                    </a>
+                                </li>
                             @endif
                         @endif
+                    </ul>
 
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a data-toggle="tab" href="#comments">Comments/Suggestions</a></li>
-                            @if(isset($isNLPEnabled))
-                                @if(isset($isNLPEnabled) and $ordinance->facebook_post_id !== null)
-                                    <li>
-                                        <a data-toggle="tab" href="#fbComments">
-                                            <i class="fa fa-facebook-f"></i>
-                                            Facebook Comments
-                                        </a>
-                                    </li>
-                                @endif
-                            @endif
-                        </ul>
+                    <div class="tab-content">
+                        <div id="comments" class="tab-pane fade in active">
+                            <div class="box-body box-comments">
+                                @php
+                                    $counter=0;
+                                @endphp
+                                @foreach($ordinance->suggestions as $suggestion)
+                                    @if($counter == 3)
+                                        @php
+                                            break;
+                                        @endphp
+                                    @endif
 
-                        <div class="tab-content">
-                            <div id="comments" class="tab-pane fade in active">
-                                <div class="box-body box-comments">
-                                    @php
-                                        $counter=0;
-                                    @endphp
-                                    @foreach($ordinance->suggestions as $suggestion)
-                                        @if($counter == 3)
-                                            @php
-                                                break;
-                                            @endphp
-                                        @endif
+                                    <div class="box-comment">
+                                        <!-- User image -->
+                                        {{--<img class="img-circle img-sm" src="/dist/img/user3-128x128.jpg" alt="User Image">--}}
 
-                                        <div class="box-comment">
-                                            <!-- User image -->
-                                            {{--<img class="img-circle img-sm" src="/dist/img/user3-128x128.jpg" alt="User Image">--}}
-
-                                            <div class="comment-text">
+                                        <div class="comment-text">
                                                   <span class="username">
                                                     {{ $suggestion->first_name }} {{ $suggestion->last_name }}
                                                       <span class="text-muted pull-right">{{ $suggestion->created_at }}</span>
                                                   </span><!-- /.username -->
-                                                {{ $suggestion->suggestion }}
-                                            </div>
-                                            <!-- /.comment-text -->
+                                            {{ $suggestion->suggestion }}
                                         </div>
-                                        @php
-                                            $counter=$counter+1;
-                                        @endphp
-                                    @endforeach
-                                    <a href="/admin/showComments/{{$ordinance->id}}/ordinances" class="pull-right">View
-                                        all</a>
-                                </div>
+                                        <!-- /.comment-text -->
+                                    </div>
+                                    @php
+                                        $counter=$counter+1;
+                                    @endphp
+                                @endforeach
+                                <a href="/admin/showComments/{{$ordinance->id}}/ordinances" class="pull-right">View
+                                    all</a>
                             </div>
-
-                            @if(isset($isNLPEnabled) and $ordinance->facebook_post_id !== null)
-                                <div id="fbComments" class="tab-pane fade">
-                                    @if(!isset($facebook_comments))
-                                        <h4 class="text-center">No comments as of yet.</h4>
-                                    @else
-                                        <table id="dataTable" class="table table-hover dt-bootstrap">
-                                            <thead>
-                                            <tr>
-                                                <th>Sentiment</th>
-                                                <th>Name</th>
-                                                <th>Comment</th>
-                                                <th>Time</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            @foreach($facebook_comments as $facebook_comment)
-                                                <tr>
-                                                    <td>
-                                                        @if($facebook_comment['result']->sentiment === 'positive')
-                                                            <i class="pull-left fa fa-smile-o text-success"></i>
-                                                            Positive
-                                                        @elseif($facebook_comment['result']->sentiment === 'negative')
-                                                            <i class="pull-left fa fa-minus text-danger"></i> Negative
-                                                        @elseif($facebook_comment['result']->sentiment === 'neutral')
-                                                            <i class="pull-left fa fa-warning text-warning"></i> Neutral
-                                                        @else
-                                                            N/A
-                                                        @endif
-                                                    </td>
-
-                                                    <td>{{ $facebook_comment['name'] }}</td>
-                                                    <td>{{ $facebook_comment['result']->sentence }}</td>
-                                                    <td>{{ $facebook_comment['created_time'] }}</td>
-                                                </tr>
-                                            @endforeach
-                                            </tbody>
-                                        </table>
-                                        {{--</div>--}}
-                                    @endif
-                                </div>
-                            @endif
                         </div>
+
+                        @if(isset($isNLPEnabled) and $ordinance->facebook_post_id !== null)
+                            <div id="fbComments" class="tab-pane fade">
+                                @if(!isset($facebook_comments))
+                                    <h4 class="text-center">No comments as of yet.</h4>
+                                @else
+                                    <table id="dataTable" class="table table-hover dt-bootstrap">
+                                        <thead>
+                                        <tr>
+                                            <th>Sentiment</th>
+                                            <th>Name</th>
+                                            <th>Comment</th>
+                                            <th>Time</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($facebook_comments as $facebook_comment)
+                                            <tr>
+                                                <td>
+                                                    @if($facebook_comment['result']->sentiment === 'positive')
+                                                        <i class="pull-left fa fa-smile-o text-success"></i>
+                                                        Positive
+                                                    @elseif($facebook_comment['result']->sentiment === 'negative')
+                                                        <i class="pull-left fa fa-minus text-danger"></i> Negative
+                                                    @elseif($facebook_comment['result']->sentiment === 'neutral')
+                                                        <i class="pull-left fa fa-warning text-warning"></i> Neutral
+                                                    @else
+                                                        N/A
+                                                    @endif
+                                                </td>
+
+                                                <td>{{ $facebook_comment['name'] }}</td>
+                                                <td>{{ $facebook_comment['result']->sentence }}</td>
+                                                <td>{{ $facebook_comment['created_time'] }}</td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                    {{--</div>--}}
+                                @endif
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
-            @endif
         </div>
+
+    </div>
 @endsection
 
 @section('scripts')
@@ -526,6 +522,7 @@
             var fileName = $(link).parent().parent().children().first().text();
             return confirm("Are you sure you want to delete the file " + fileName + "?");
         });
+
         function printExternal(url) {
             var printWindow = window.open(url, 'Print', 'left=200, top=200, width=950, height=500, toolbar=0, resizable=0');
             printWindow.addEventListener('load', function () {

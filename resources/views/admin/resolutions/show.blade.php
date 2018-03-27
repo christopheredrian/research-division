@@ -118,10 +118,9 @@
                             @if($resolution->is_monitored == 0)
                                 @if($questionnaire->isAccepting == 1)
                                     Public Link: <a
-                                            href="/answer.r/{{$resolution->id}}">http://localhost:8000/answer.r/{{$resolution->id}}</a>
+                                            href="/answer.r/{{$resolution->id}}">{{env("APP_URL", " ").'answer.r/'.$resolution->id}}</a>
                                     <br>
-                                    Required Link: <a href="/answer.r/{{$resolution->id}}/required">http://localhost:8000/answer.r/{{$resolution->id}}
-                                        /required</a>
+                                    Required Link: <a href="/answer.r/{{$resolution->id}}/required">{{env("APP_URL", " ").'answer.r/'.$resolution->id}}/required</a>
                                 @endif
                             @endif
                         </p>
@@ -357,6 +356,7 @@
             </div>
         </div>
     </div>
+    @endif
     <div class="row">
         @if(isset($isNLPEnabled) and $resolution->facebook_post_id !== null)
             <div class="col-md-3 text-center">
@@ -482,7 +482,7 @@
                 </div>
             </div>
         </div>
-        @endif
+
     </div>
 @endsection
 
