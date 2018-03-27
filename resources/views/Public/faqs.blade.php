@@ -105,7 +105,9 @@
                                     <div id="question3" class="panel-collapse collapse" style="height: 0px;">
                                         <div class="panel-body">
                                             <h5><span class="label label-primary">Answer</span></h5>
-                                            <p> Answer here </p>
+                                            <p> An ordinance is a local law that prescribes rules of conduct of a general,
+                                            permanent character. It continues to be in force until repealed ot superseded
+                                            byy a subsequent enactment of the local legistlative body.</p>
                                         </div>
                                     </div>
                                 </div>
