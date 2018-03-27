@@ -357,6 +357,7 @@
             </div>
         </div>
     </div>
+    @endif
     <div class="row">
         <div class="col-md-12">
             {{--<div class="row">--}}
@@ -470,7 +471,7 @@
                 </div>
             </div>
         </div>
-        @endif
+
     </div>
 
     {{--@if($resolution->is_monitoring === 1)--}}

@@ -68,14 +68,14 @@
                                           form="ordinancesForm">{{trim(old('keywords', $ordinance->keywords))}}</textarea>
                                 {!! $errors->first('keywords', '<p class="help-block">:message</p>') !!}
                             </div>
-                            @if(request()->type === 'ME')
+
                                 <label for="is_accepting">Comments/Suggestions</label>
                                 <div class="checkbox">
                                     <label><input name="is_accepting" type="checkbox"
                                                   value=1 @if($ordinance->is_accepting==1) {{"checked"}} @endif>Accept
                                         Comments</label>
                                 </div>
-                            @endif
+
 
                             @if(\App\Http\NLPUtilities::isNLPEnabled())
                                 @if(!$ordinance->facebook_post_id)
