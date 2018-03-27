@@ -44,7 +44,86 @@
             object-fit: cover;
             object-position: center right;
         }
+
+        /* Loading screen */
+        #loader-wrapper{
+            position: fixed;
+            background-color: gray;
+            background-color: rgba(255,255,255, 0.9);
+            z-index: 1000;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        #loader {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 1;
+            width: 150px;
+            height: 150px;
+            margin: -75px 0 0 -75px;
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            border-bottom: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            -webkit-animation: spin 2s linear infinite;
+            animation: spin 2s linear infinite;
+        }
+
+        @-webkit-keyframes spin {
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Add animation to "page content" */
+        .animate-bottom {
+            position: relative;
+            -webkit-animation-name: animatebottom;
+            -webkit-animation-duration: 1s;
+            animation-name: animatebottom;
+            animation-duration: 1s
+        }
+
+        @-webkit-keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+            to {
+                bottom: 0px;
+                opacity: 1
+            }
+        }
+
+        @keyframes animatebottom {
+            from {
+                bottom: -100px;
+                opacity: 0
+            }
+            to {
+                bottom: 0;
+                opacity: 1
+            }
+        }
+
     </style>
+
 <?php
 
 function skin($user)
@@ -77,6 +156,9 @@ function skin($user)
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition {{ skin(Auth::user()) }} sidebar-mini fixed">
+<div id="loader-wrapper">
+    <div id="loader"></div>
+</div>
 <div class="wrapper">
 
     <header class="main-header">
@@ -334,11 +416,11 @@ function skin($user)
                         <ul class="treeview-menu" style="">
                             <li class="
                             @if(isset($ordinance))
-                                @if($ordinance->is_monitoring === 1 && $ordinance->is_monitored === 0 or Request::is('admin/forms/ordinances*') or (Request::is('admin/ordinances/create*') and request()->type === 'ME'))
+                            @if($ordinance->is_monitoring === 1 && $ordinance->is_monitored === 0 or Request::is('admin/forms/ordinances*') or (Request::is('admin/ordinances/create*') and request()->type === 'ME'))
                                     active
                                 @endif
                             {{--@elseif(Request::is('admin/forms/ordinances*') or (Request::is('admin/ordinances/create*') and request()->type === 'ME'))--}}
-                                    {{--active--}}
+                            {{--active--}}
                             @endif
                                     ">
                                 <a href="/admin/forms/ordinances"><i class="fa fa-circle-o"></i>
@@ -348,11 +430,11 @@ function skin($user)
 
                             <li class="
                             @if(isset($resolution))
-                                @if($resolution->is_monitoring === 1 && $resolution->is_monitored === 0 or Request::is('admin/forms/resolutions*') or (Request::is('admin/resolutions/create*') and request()->type === 'ME'))
+                            @if($resolution->is_monitoring === 1 && $resolution->is_monitored === 0 or Request::is('admin/forms/resolutions*') or (Request::is('admin/resolutions/create*') and request()->type === 'ME'))
                                     active
                                 @endif
                             {{--@elseif(Request::is('admin/forms/resolutions*') or (Request::is('admin/resolutions/create*') and request()->type === 'ME'))--}}
-                                    {{--active--}}
+                            {{--active--}}
                             @endif
                                     ">
                                 <a href="/admin/forms/resolutions"><i class="fa fa-circle-o"></i>
@@ -362,7 +444,7 @@ function skin($user)
 
                             <li class="
                             @if(isset($ordinance))
-                                @if($ordinance->is_monitoring === 1 && $ordinance->is_monitored === 1)
+                            @if($ordinance->is_monitoring === 1 && $ordinance->is_monitored === 1)
                                     active
                                 @endif
                             @elseif(Request::is('admin/forms/ordinances*') or (Request::is('admin/ordinances/create*') and request()->type === 'ME'))
@@ -376,7 +458,7 @@ function skin($user)
 
                             <li class="
                             @if(isset($resolution))
-                                @if($resolution->is_monitoring === 1 && $resolution->is_monitored === 1)
+                            @if($resolution->is_monitoring === 1 && $resolution->is_monitored === 1)
                                     active
                                 @endif
                             @elseif(Request::is('admin/forms/resolutions*') or (Request::is('admin/resolutions/create*') and request()->type === 'ME'))
@@ -488,6 +570,11 @@ function skin($user)
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 {{--<script src="/dist/js/pages/dashboard2.js"></script>--}}
 <!-- AdminLTE for demo purposes -->
+<script>
+    $(document).ready(function(){
+        $('#loader-wrapper').hide();
+    });
+</script>
 <script src="/dist/js/demo.js"></script>
 <script src="/bower_components/ckeditor/ckeditor.js"></script>
 <script src="/js/parsley.min.js"></script>
