@@ -46,6 +46,10 @@ class Questionnaire extends Model
     /**
      * Returns true if a questionnaire with associated questions has answers
      */
+    public function response()
+    {
+        return $this->hasMany('App\Response');
+    }
     public function hasAnswers()
     {
         foreach($this->questions as $q){

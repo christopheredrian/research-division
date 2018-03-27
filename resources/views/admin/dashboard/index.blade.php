@@ -23,7 +23,7 @@
                     <div class="inner">
                         <h3>{{\App\Ordinance::where('is_monitoring',0)->count()}}</h3>
 
-                        <p>Pending Ordinances</p>
+                        <p>R&R Ordinances</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-android-stopwatch"></i>
@@ -37,7 +37,7 @@
                     <div class="inner">
                         <h3>{{\App\Resolution::where('is_monitoring',0)->count()}}</h3>
 
-                        <p>Pending Resolutions</p>
+                        <p>R&R Resolutions</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-ios-stopwatch"></i>
@@ -49,7 +49,7 @@
                 <!-- small box -->
                 <div class="small-box bg-light-blue">
                     <div class="inner">
-                        <h3>{{ \App\Ordinance::where('is_monitoring',1)->count() }}</h3>
+                        <h3>{{ \App\Ordinance::where('is_monitored',1)->count() }}</h3>
 
                         <p>Monitored Ordinances</p>
                     </div>
@@ -63,7 +63,7 @@
                 <!-- small box -->
                 <div class="small-box bg-light-blue">
                     <div class="inner">
-                        <h3>{{ \App\Resolution::where('is_monitoring',1)->count() }}</h3>
+                        <h3>{{ \App\Resolution::where('is_monitored',1)->count() }}</h3>
 
                         <p>Monitored Resolutions</p>
                     </div>
@@ -77,9 +77,9 @@
                 <!-- small box -->
                 <div class="small-box bg-light-blue">
                     <div class="inner">
-                        <h3>{{\App\Ordinance::where('is_monitoring',0)->count()}}</h3>
+                        <h3>{{\App\Ordinance::where('is_monitoring',1)->count()}}</h3>
 
-                        <p>Ordinances</p>
+                        <p>Ordinances Being Monitored</p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-list-alt"></i>
@@ -92,9 +92,9 @@
                 <!-- small box -->
                 <div class="small-box bg-light-blue">
                     <div class="inner">
-                        <h3>{{\App\Resolution::where('is_monitoring',0)->count()}}</h3>
+                        <h3>{{\App\Resolution::where('is_monitoring',1)->count()}}</h3>
 
-                        <p>Resolutions</p>
+                        <p>Resolutions Being Monitored</p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-handshake-o"></i>
@@ -210,12 +210,23 @@
                                                     <a href="/admin/showComments/{{$suggestion->resolutions()->first()->id}}/resolutions"
                                                        class="product-title">
                                                         @endif
-                                                        {{$suggestion->first_name.' '.$suggestion->last_name}}
+                                                        {{$suggestion->first_name.' '.$suggestion->last_name.'    '}}
+
+
                                                         <span class="label label-info pull-right">{{$suggestion->created_at}}</span></a>
+                                                <br/>
+                                                    <span class="product-title">
+                                                        @if($suggestion->ordinances->first() != null)
+                                                            {{'Ordinance no. '.$suggestion->ordinances->first()->number.' Series of '.$suggestion->ordinances->first()->series}}
+                                                        @else
+                                                            {{'Resolution no. '.$suggestion->resolutions->first()->number.' Series of '.$suggestion->resolutions->first()->series}}
+                                                        @endif
+                                                    </span>
                                                     <span class="product-description">
                                         {{$suggestion->suggestion}}
                                      </span>
                                     </div>
+
                                 </li>
                         @endforeach
                         <!-- /.item -->
@@ -250,6 +261,17 @@
                                             @endif
 
                                             <span class="label label-info pull-right">{{$response->created_at}}</span></a>
+                                        <br/>
+                                        <span class="product-title">
+                                            {{--@php--}}
+                                            {{--dd(\App\Ordinance::FindOrFail($response->questionnaire->ordinance_id)->number);--}}
+                                            {{--@endphp--}}
+                                            @if($response->questionnaire->ordinance_id != null)
+                                                {{'Ordinance no. '.\App\Ordinance::FindOrFail($response->questionnaire->ordinance_id)->number.' Series of '.\App\Ordinance::FindOrFail($response->questionnaire->ordinance_id)->series}}
+                                            @else
+                                                {{'Resolution no. '.\App\Ordinance::FindOrFail($response->questionnaire->resolution_id)->number.' Series of '.\App\Ordinance::FindOrFail($response->questionnaire->resolution_id)->series}}
+                                            @endif
+                                        </span>
                                         <span class="product-description">
                                         {{$response->email}}
                                      </span>
