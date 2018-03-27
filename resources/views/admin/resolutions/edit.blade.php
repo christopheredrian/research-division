@@ -67,14 +67,14 @@
                                 {!! $errors->first('keywords', '<p class="help-block">:message</p>') !!}
                             </div>
 
-                            @if(request()->type === 'ME')
+
                                 <label for="is_accepting">Comments/Suggestions</label>
                                 <div class="checkbox">
                                     <label><input name="is_accepting" type="checkbox" value=1
                                                 {{$resolution->is_accepting == 1 ? 'checked' : '' }}>Accept
                                         Comments</label>
                                 </div>
-                            @endif
+
 
                             @if(\App\Http\NLPUtilities::isNLPEnabled())
                                 @if(!$resolution->facebook_post_id)

@@ -189,6 +189,7 @@
                                 <li><a href="/resolutions?status=monitored">Monitored Resolutions</a></li>
                             </ul>
                         </li>
+                        <li><a href="/faqs">FAQs</a></li>
 
 
                         {{--<li><a href="/monitorAndEval">Monitoring & Evaluation</a></li>--}}
@@ -212,6 +213,7 @@
                                     @endforeach
                                 </ul>
                         @endif
+
                         <li><a href="/contact">Contact Us</a></li>
                         <li><a href="/about">About</a></li>
                         <li class="hidden-sm hidden-xs">

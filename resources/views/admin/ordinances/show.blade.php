@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 
 @section('styles')
+    <link rel="stylesheet" type="text/css" href="/DataTables/datatables.min.css"/>
+
     <style>
         form {
             display: inline;
@@ -19,7 +21,6 @@
 @endsection
 
 @section('content')
-
     <ol class="breadcrumb">
         @if(!$ordinance->is_monitoring)
             <li><a href="/admin/ordinances"><i class="fa fa-book"></i> Research & Records</a></li>
@@ -136,11 +137,10 @@
                         <p>
                             @if($questionnaire->isAccepting == 1)
                                 Public Link: <a
-                                        href="/answer.o/{{$ordinance->id}}">http://localhost:8000/answer.o/{{$ordinance->id}}</a>
+                                        href="/answer.o/{{$ordinance->id}}">{{env("APP_URL", " ").'answer.o/'.$ordinance->id}}</a>
                                 <br>
                                 Required Link: <a
-                                        href="/answer.o/{{$ordinance->id}}/required">http://localhost:8000/answer.o/{{$ordinance->id}}
-                                    /required</a>
+                                        href="/answer.o/{{$ordinance->id}}/required">{{env("APP_URL", " ").'answer.o/'.$ordinance->id}}/required</a>
                             @endif
                         </p>
                         <p>{{ $questionnaire->description }}</p>
@@ -375,6 +375,7 @@
                 </div>
             </div>
         </div>
+    @endif
         <div class="row">
             <div class="col-md-12">
                 {{--<div class="row">--}}
@@ -452,35 +453,67 @@
 
                             @if(isset($isNLPEnabled) and $ordinance->facebook_post_id !== null)
                                 <div id="fbComments" class="tab-pane fade">
-                                    @if(!isset($facebookComments))
+                                    @if(!isset($facebook_comments))
                                         <h4 class="text-center">No comments as of yet.</h4>
                                     @else
-                                        <div class="box-body box-comments">
-                                            @foreach($facebookComments as $facebookComment)
-                                                <div class="box-comment">
-                                                    <!-- User image -->
+                                        {{--<div class="box-body box-comments">--}}
+                                            {{--@foreach($facebookComments as $facebookComment)--}}
+                                                {{--<div class="box-comment">--}}
+                                                    {{--<!-- User image -->--}}
                                                     {{--<img class="img-circle img-sm" src="/uploads/default.jpg"--}}
                                                     {{--alt="User Image">--}}
-                                                    @if($facebookComment['result']->sentiment === 'positive')
-                                                        <i class="pull-left fa fa-smile-o text-success"></i>
-                                                    @elseif($facebookComment['result']->sentiment === 'negative')
-                                                        <i class="pull-left fa fa-minus text-danger"></i>
+                                                    {{--@if($facebookComment['result']->sentiment === 'positive')--}}
+                                                        {{--<i class="pull-left fa fa-smile-o text-success"></i>--}}
+                                                    {{--@elseif($facebookComment['result']->sentiment === 'negative')--}}
+                                                        {{--<i class="pull-left fa fa-minus text-danger"></i>--}}
 
-                                                    @elseif($facebookComment['result']->sentiment === 'neutral')
-                                                        <i class="pull-left fa fa-warning text-warning"></i>
-                                                    @else
-                                                        N/A
-                                                    @endif
-                                                    <div class="comment-text">
-                                                              <span class="username">
-                                                                  {{ $facebookComment['name'] }}
-                                                                  <span class="text-muted pull-right">{{ $facebookComment['created_time'] }}</span>
-                                                              </span>
-                                                        {{ $facebookComment['result']->sentence }}
-                                                    </div>
-                                                </div>
-                                            @endforeach
-                                        </div>
+                                                    {{--@elseif($facebookComment['result']->sentiment === 'neutral')--}}
+                                                        {{--<i class="pull-left fa fa-warning text-warning"></i>--}}
+                                                    {{--@else--}}
+                                                        {{--N/A--}}
+                                                    {{--@endif--}}
+                                                    {{--<div class="comment-text">--}}
+                                                              {{--<span class="username">--}}
+                                                                  {{--{{ $facebookComment['name'] }}--}}
+                                                                  {{--<span class="text-muted pull-right">{{ $facebookComment['created_time'] }}</span>--}}
+                                                              {{--</span>--}}
+                                                        {{--{{ $facebookComment['result']->sentence }}--}}
+                                                    {{--</div>--}}
+                                                {{--</div>--}}
+                                            {{--@endforeach--}}
+
+                                            <table id="dataTable" class="table table-hover dt-bootstrap">
+                                                <thead>
+                                                <tr>
+                                                    <th>Sentiment</th>
+                                                    <th>Name</th>
+                                                    <th>Comment</th>
+                                                    <th>Time</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                @foreach($facebook_comments as $facebook_comment)
+                                                    <tr>
+                                                        <td>
+                                                            @if($facebook_comment['result']->sentiment === 'positive')
+                                                                <i class="pull-left fa fa-smile-o text-success"></i> Positive
+                                                            @elseif($facebook_comment['result']->sentiment === 'negative')
+                                                                <i class="pull-left fa fa-minus text-danger"></i> Negative
+                                                            @elseif($facebook_comment['result']->sentiment === 'neutral')
+                                                                <i class="pull-left fa fa-warning text-warning"></i> Neutral
+                                                            @else
+                                                                N/A
+                                                            @endif
+                                                        </td>
+
+                                                        <td>{{ $facebook_comment['name'] }}</td>
+                                                        <td>{{ $facebook_comment['result']->sentence }}</td>
+                                                        <td>{{ $facebook_comment['created_time'] }}</td>
+                                                    </tr>
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        {{--</div>--}}
                                     @endif
                                 </div>
                             @endif
@@ -488,110 +521,26 @@
                     </div>
                 </div>
             </div>
-            @endif
+
         </div>
-        {{--@if($ordinance->is_monitoring === 1)--}}
-        {{--IS in M&E--}}
-        {{--<div class="row">--}}
-        {{--<div class="col-md-12">--}}
-        {{--<div>--}}
-        {{--<!-- general form elements -->--}}
-        {{--<div class="box box-primary">--}}
-        {{--<div class="box-header with-border">--}}
-        {{--<h3 class="box-title">Questionnaires</h3>--}}
-        {{--</div>--}}
-        {{--<div class="box-body">--}}
-        {{--@if($flag !== 'all')--}}
-        {{--<div>--}}
-        {{--<p>--}}
-        {{--<a href="/admin/forms/create?flag={{ $flag }}" class="btn btn-success">Create new Questionnaire</a>--}}
-        {{--</p>--}}
-        {{--</div>--}}
-        {{--@endif--}}
-        {{--<table class="table table-striped table-condensed table-bordered">--}}
-        {{--<thead>--}}
-        {{--<tr>--}}
-        {{--<th>Id</th>--}}
-        {{--<th>Questionnaire Name</th>--}}
-        {{--<th>Assoc. Oridinance</th>--}}
-        {{--<th>Assoc. Resolution</th>--}}
-        {{--<th>Status</th>--}}
-        {{--<th>Action</th>--}}
-        {{--</tr>--}}
-        {{--</thead>--}}
-        {{--<tbody>--}}
-        {{--@foreach($questionnaires as $questionnaire)--}}
-        {{--<tr>--}}
-        {{--<td>{{ $questionnaire->id }}</td>--}}
-        {{--<td>{{ $questionnaire->name }}</td>--}}
-        {{--Refactore below--}}
-        {{--<td> {{ $questionnaire->ordinance ? $questionnaire->ordinance->title : '-' }}</td>--}}
-        {{--<td> {{ $questionnaire->resolution ? $questionnaire->resolution->title : '-'}}</td>--}}
-        {{--<td>--}}
-        {{--@if($questionnaire->isAccepting == 0)--}}
-
-        {{--<span class="label label-danger">--}}
-        {{--Not Accepting Responses--}}
-        {{--</span>--}}
-        {{--@else--}}
-        {{--<span class="label label-success">--}}
-        {{--Accepting Responses--}}
-        {{--</span>--}}
-        {{--@endif--}}
-        {{--</td>--}}
-        {{--<td>--}}
-        {{--<a href="{{"/admin/result/{$questionnaire->id}"}}" class="btn btn-xs btn-success"><span>Results</span></a>--}}
-        {{--<a href="{{"/admin/forms/{$questionnaire->id}"}}" class="btn btn-xs btn-info"><span>Preview</span></a>--}}
-        {{--<a href="{{ url("/admin/forms/{$questionnaire->id}/edit") }}"--}}
-        {{--class="btn btn-xs btn-warning">Edit</a>--}}
-        {{--<a href="" class="btn btn-xs btn-danger"><i class="fa fa-file-pdf-o" aria-hidden="true"></i>--}}
-        {{--Download</a>--}}
-        {{--@if($questionnaire->isAccepting == 0)--}}
-        {{--<form style="display: inline;" method="post"--}}
-        {{--action="{{ url('/admin/acceptResponses/' . $questionnaire->id) }}">--}}
-        {{--{{ csrf_field() }}--}}
-        {{--<button class="btn btn-xs btn-success">--}}
-        {{--Accept Responses--}}
-        {{--</button>--}}
-        {{--</form>--}}
-        {{--@else--}}
-        {{--<form style="display: inline;" method="post"--}}
-        {{--action="{{ url('/admin/declineResponses/' . $questionnaire->id) }}">--}}
-        {{--{{ csrf_field() }}--}}
-        {{--<button class="btn btn-xs btn-danger">--}}
-
-        {{--Decline Responses--}}
-        {{--</button>--}}
-        {{--</form>--}}
-        {{--@endif--}}
-        {{--<form style="display: inline;" method="post"--}}
-        {{--action="{{ url('/admin/forms/' . $questionnaire->id) }}">--}}
-        {{--{{ method_field('DELETE') }}--}}
-        {{--{{ csrf_field() }}--}}
-        {{--<button class="btn btn-xs btn-danger"--}}
-        {{--onclick="return confirm('Are you sure you want to remove this Questionnaire?')">--}}
-        {{--Delete--}}
-        {{--</button>--}}
-        {{--</form>--}}
-        {{--</td>--}}
-        {{--</tr>--}}
-        {{--@endforeach--}}
-        {{--</tbody>--}}
-        {{--</table>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--</div>--}}
-        {{--@endif--}}
 @endsection
+
 @section('scripts')
+    <script type="text/javascript" src="/DataTables/datatables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+    </script>
+
     <script type="text/javascript">
         $('.deletePDFButton').click(function (e) {
             var link = e.target;
             var fileName = $(link).parent().parent().children().first().text();
             return confirm("Are you sure you want to delete the file " + fileName + "?");
         });
+
         function printExternal(url) {
             var printWindow = window.open(url, 'Print', 'left=200, top=200, width=950, height=500, toolbar=0, resizable=0');
             printWindow.addEventListener('load', function () {
