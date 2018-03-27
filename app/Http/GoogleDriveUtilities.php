@@ -39,9 +39,9 @@ class GoogleDriveUtilities
          */
 
         if ($directory === 'statusreports' or $directory === 'updatereports') {
-            if (get_class($instance->ordinance) == 'App\\Ordinance') {
+            if ($instance->ordinance) {
                 $basedOn = 'Ordinance' . $instance->ordinance->number;
-            } elseif (get_class($instance->resolution) == 'App\\Resolution') {
+            } else{
                 $basedOn = 'Resolution' . $instance->resolution->number;
             }
 
