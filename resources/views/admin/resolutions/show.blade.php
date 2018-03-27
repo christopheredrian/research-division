@@ -235,7 +235,7 @@
         </div>
     </div>
 
-    @if($resolution->is_monitoring)FPDF
+    @if($resolution->is_monitoring)
     <div class="row">
         @if($resolution->is_monitoring)
             <div class="col-md-7">
