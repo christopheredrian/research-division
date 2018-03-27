@@ -207,7 +207,7 @@
                 </div>
             </div>
             @endif
-
+            <div class="col-xl-2 col-lg-2 col-md-2"></div>
             @if($monitoredResolutions !== null)
             <div class="col-sm-12 col-xl-5 col-lg-5 col-md-5 folded">
                 <div class="Heading">
