@@ -2,8 +2,8 @@
 
 @section('styles')
     <link rel="stylesheet" type="text/css" href="/DataTables/datatables.min.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js">
-    <link rel="stylesheet" href="https://cdnjs.cloudflar e.com/ajax/libs/Chart.js/2.7.2/Chart.min.js">
+    <link rel="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js">
+    <link rel="text/javascript" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js">
 
     <style>
         form {
@@ -532,7 +532,7 @@
         }
     </script>
 
-    <script>
+    <script async="false">
         var ctx = document.getElementById("pulseChart").getContext('2d');
         data = [
             {

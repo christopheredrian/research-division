@@ -17,6 +17,7 @@ class CreateUpdateReportsTable extends Migration
             $table->increments('id');
             $table->text('pdf_file_name')->nullable();
             $table->text('pdf_file_path')->nullable();
+            $table->text('pdf_link')->nullable();
             $table->integer('ordinance_id')->unsigned()->nullable();
             $table->integer('resolution_id')->unsigned()->nullable();
             $table->boolean('is_deleted')->default(false);

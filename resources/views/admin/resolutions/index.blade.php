@@ -39,7 +39,7 @@
         <div class="box-header with-border">
             <h3 class="box-title"><i class="fa fa-file-text"></i>
                 @if(strpos(request()->url(), 'forms'))
-                    {{ app('request')->input('status') === 'monitored' ? 'Monitored Resolutions' : 'Ordinances being Resolutions' }}
+                    {{ app('request')->input('status') === 'monitored' ? 'Monitored Resolutions' : 'Resolutions being monitored' }}
                 @else
                     Resolutions under Research and Records
                 @endif
