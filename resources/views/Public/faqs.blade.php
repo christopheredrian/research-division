@@ -22,7 +22,13 @@
                                     <div id="question0" class="panel-collapse collapse" style="height: 0px;">
                                         <div class="panel-body">
                                             <h5><span class="label label-primary">Answer</span></h5>
-                                            <p> Answer here</p>
+                                            <p> The Sangguniang Panlungsod, as the legislative body of the city,
+                                                shall <em> enact ordinances, approve resolutions, and appropriate funds </em> for
+                                                the general welfare of the city and inhabitants pursuant to <b>Section 16 of Republic Act No. 7160</b>
+                                                or <b>Local Government Code of 1991</b> and in the proper exercise of the
+                                                corporate powers of the city as provided for under <b>Section 22</b> of the said
+                                                Code. The Local Legislators are expected to perform other roles as contained in the
+                                                Local Legislators' Tool Kit and their Internal Rules of Procedure. </p>
                                         </div>
                                     </div>
                                 </div>
