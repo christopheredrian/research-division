@@ -34,6 +34,7 @@ class Resolution extends Model
         'pdf_file_path',
         'pdf_file_name',
         'is_monitoring',
+        'is_monitored',
         'facebook_post_id',
         'pdf_link',
         'status_report_date',

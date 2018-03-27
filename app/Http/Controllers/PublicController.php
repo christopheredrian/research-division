@@ -57,7 +57,6 @@ class PublicController extends Controller
     public function deletePDF($directory, $filename)
     {
         $instanceID = substr($filename, 0);
-
         // Get instance (Ordinance, Resolution, UpdateReport, StatusReport), then update certain fields
         if ($directory === 'updatereports') {
             $instance = UpdateReport::findOrFail($instanceID);
@@ -71,6 +70,14 @@ class PublicController extends Controller
                 $instance = Resolution::findOrFail($instanceID);
             } elseif ($directory === 'statusreports') {
                 $instance = StatusReport::findOrFail($instanceID);
+
+                if($instance->ordinance){
+                    $instance->ordinance->is_monitored = 0;
+                    $instance->ordinance->save();
+                } else {
+                    $instance->resolution->is_monitored = 0;
+                    $instance->resolution->save();
+                }
             }
 
             $instance->pdf_file_path = " ";
