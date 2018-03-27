@@ -30,7 +30,7 @@
         }
 
         #contents {
-            min-height: 65vh;
+            min-height: 100vh;
         }
 
         .bottom-footer {
@@ -217,11 +217,13 @@
                         <li><a href="/contact">Contact Us</a></li>
                         <li><a href="/about">About</a></li>
                         <li class="hidden-sm hidden-xs">
-                            <a href="#" id="ss"><i class="fa fa-search" aria-hidden="true"></i></a>
+                            <a id="ss">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </a>
                         </li>
                     </ul>
                 </div>
-                <div class="search-form">
+                <div class="search-form ">
                     <form action="/search" method="get">
                         <input name="q" type="text" id="s" size="40" placeholder="Search..."/>
                     </form>
@@ -271,14 +273,6 @@
 <script>
     $(document).ready(function(){
         $('#loader-wrapper').hide();
-    });
-</script>
-<script>
-    // Top Search
-    $("#ss").click(function (e) {
-        e.preventDefault();
-        $(this).toggleClass('current');
-        $(".search-form").toggleClass('visible');
     });
 </script>
 <script src="/js/script.js"></script>

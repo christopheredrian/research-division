@@ -62,7 +62,5 @@ class SearchController extends Controller
         } else{
             return view('search.public', $data);
         }
-
-
     }
 }
