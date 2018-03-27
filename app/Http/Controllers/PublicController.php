@@ -73,8 +73,10 @@ class PublicController extends Controller
 
                 if($instance->ordinance){
                     $instance->ordinance->is_monitored = 0;
+                    $instance->ordinance->save();
                 } else {
                     $instance->resolution->is_monitored = 0;
+                    $instance->resolution->save();
                 }
             }
 
