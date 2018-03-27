@@ -492,6 +492,12 @@ class PublicController extends Controller
 
     //   Research and Record end
 
+    public function faqs()
+    {
+        LogUtility::insertLog("HttpRequest on /faqs", 'public');
+        return view('public.faqs');
+    }
+
     public function about()
     {
         LogUtility::insertLog("HttpRequest on /about", 'public');

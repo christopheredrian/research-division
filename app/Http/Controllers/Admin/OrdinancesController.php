@@ -182,7 +182,7 @@ class OrdinancesController extends Controller
         ];
 
         if (NLPUtilities::isNLPEnabled()) {
-            $variables['facebookComments'] = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($ordinance);
+            $variables['facebook_comments'] = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($ordinance);
             $variables['isNLPEnabled'] = 1;
         }
 

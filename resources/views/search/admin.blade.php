@@ -3,19 +3,20 @@
 @section('styles')
     <link rel="stylesheet" type="text/css" href="/DataTables/datatables.min.css"/>
     <style>
-        td a{
+        td a {
             width: 100%;
         }
     </style>
 @endsection
 
 @section('scripts')
-    {{--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.css"/>--}}
-    {{--<script type="text/javascript" src="https://cdn.datatables.net/v/bs/dt-1.10.16/datatables.min.js"></script>--}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js"></script>
     <script type="text/javascript" src="/DataTables/datatables.min.js"></script>
+
     <script>
         $(document).ready(function () {
             $('table').DataTable();
+            $('table').mark('{{ request('q') }}')
         });
     </script>
 @endsection
@@ -28,15 +29,19 @@
             </h3>
         </div>
         <div class="box-body">
-            <form action="#" method="get" class="" style="margin: 15px 0">
+            <form action="#" method="get" class="pull-right" style="margin: 15px 0  0 40%">
                 <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search..." value="{{ request()->q }}">
+                    <input type="text" name="q" class="form-control" placeholder="Search..."
+                           value="{{ request()->q }}">
                     <span class="input-group-btn">
-                   <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                     <i class="fa fa-search"></i>
-                    </button>
-                    </span>
+                               <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                                 <i class="fa fa-search"></i>
+                                </button>
+                            </span>
                 </div>
+                <a style="margin-top: 10px;" href="{{ url()->current() }}" class="btn btn-primary pull-right">
+                    <i class="fa fa-refresh"></i> Reset
+                </a>
             </form>
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
