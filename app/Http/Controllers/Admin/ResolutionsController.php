@@ -140,9 +140,25 @@ class ResolutionsController extends Controller
 
         if (NLPUtilities::isNLPEnabled()) {
             if ($resolution->facebook_post_id !== null) {
-                $variables['facebookComments'] = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($resolution);
+                $variables['facebook_comments'] = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($resolution);
             }
             $variables['isNLPEnabled'] = 1;
+
+            if($resolution->facebook_post_id !== null){
+                $variables['positive_count'] = 0;
+                $variables['negative_count'] = 0;
+                $variables['neutral_count'] = 0;
+
+                foreach ($variables['facebook_comments'] as $facebook_comment) {
+                    if($facebook_comment['result']->sentiment === 'positive'){
+                        $variables['positive_count']++;
+                    } elseif ($facebook_comment['result']->sentiment === 'negative') {
+                        $variables['negative_count']++;
+                    } else {
+                        $variables['neutral_count']++;
+                    }
+                }
+            }
         }
 
         return view('admin.resolutions.show', $variables);
