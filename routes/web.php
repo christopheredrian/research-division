@@ -17,6 +17,7 @@ Route::get('/', 'PublicController@index');
 
 Route::get('/aboutDiv', 'PublicController@aboutDiv');
 Route::get('/about', 'PublicController@about');
+Route::get('/faqs', 'PublicController@faqs');
 
 
 /* M and E */
