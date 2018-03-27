@@ -375,6 +375,7 @@
                 </div>
             </div>
         </div>
+    @endif
         <div class="row">
             <div class="col-md-12">
                 {{--<div class="row">--}}
@@ -488,7 +489,7 @@
                     </div>
                 </div>
             </div>
-            @endif
+
         </div>
         {{--@if($ordinance->is_monitoring === 1)--}}
         {{--IS in M&E--}}
@@ -592,6 +593,7 @@
             var fileName = $(link).parent().parent().children().first().text();
             return confirm("Are you sure you want to delete the file " + fileName + "?");
         });
+
         function printExternal(url) {
             var printWindow = window.open(url, 'Print', 'left=200, top=200, width=950, height=500, toolbar=0, resizable=0');
             printWindow.addEventListener('load', function () {
