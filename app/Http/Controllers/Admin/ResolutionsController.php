@@ -11,6 +11,7 @@ use App\Resolution;
 use App\StatusReport;
 use App\UpdateReport;
 use Carbon\Carbon;
+use Facebook\Exceptions\FacebookResponseException;
 use Facebook\Facebook;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
