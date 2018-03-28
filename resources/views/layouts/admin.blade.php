@@ -520,19 +520,21 @@ function skin($user)
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Main content -->
-        <section class="content" style="margin: 0 5%">
-            <!-- Info boxes -->
-            @if(Session::has('flash_message'))
-                <div id="flashMessage" class="alert {{Session::get('alert-class', 'alert-success')}}"
-                     style="margin-top: 8vh;">
-                    {!! Session::get('flash_message') !!}
+        <div class="row">
+            <section class="content" style="margin: 0 5%">
+                <!-- Info boxes -->
+                @if(Session::has('flash_message'))
+                    <div id="flashMessage" class="alert {{Session::get('alert-class', 'alert-success')}}"
+                         style="margin-top: 8vh;">
+                        {!! Session::get('flash_message') !!}
+                    </div>
+                @endif
+                <div class="row">
+                    @yield('content')
                 </div>
-            @endif
-            <div class="row">
-                @yield('content')
-            </div>
-            <!-- /.row -->
-        </section>
+                <!-- /.row -->
+            </section>
+        </div>
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->

@@ -34,7 +34,7 @@
 
     @if($resolution->is_monitoring === 1)
         {{-- IS in M&E --}}
-        <div class="row">
+        <div>
             <div class="box box-primary color-palette-box">
                 <div class="box-header with-border">
                     <h3 class="box-title"><i class="fa fa-file-text"></i> Questionnaire</h3>
@@ -156,7 +156,7 @@
             </div>
         @endif
         <div class="col-md-{{$resolution->is_monitoring ? '12' : '5'}}">
-            <div class="row">
+            <div>
                 <div class="box box-success color-palette-box">
                     <div class="box-header with-border">
                         <h3 class="box-title"><i class="fa fa-file-text"></i> RESOLUTION {{ $resolution->number }}</h3>
@@ -166,8 +166,17 @@
                                 <i class="fa fa-edit"></i>
                                 Edit
                             </a>
+
+                            @if($isNLPEnabled && !$resolution->facebook_post_id)
+                                <a href="/postToFacebook/resolution/{{$resolution->id}}"
+                                   class="btn btn-primary">
+                                    <i class="fa fa-facebook"></i>
+                                    Post to Facebook
+                                </a>
+                            @endif
+
                             <a href="{{($resolution->pdf_file_path === "" or $resolution->pdf_file_path == null) ? '#' : ("/downloadPDF/resolutions/".$resolution->pdf_file_name)}}"
-                               class="btn btn-primary {{($resolution->pdf_file_path === "" or $resolution->pdf_file_path == null)? 'disabled' : ''}}">
+                               class="btn btn-success {{($resolution->pdf_file_path === "" or $resolution->pdf_file_path == null)? 'disabled' : ''}}">
                                 <i class="fa fa-download"></i>
                                 Download Resolution
                             </a>

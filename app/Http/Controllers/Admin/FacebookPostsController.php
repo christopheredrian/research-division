@@ -57,7 +57,7 @@ class FacebookPostsController extends Controller
     public function postToPage($legislation)
     {
         $legislationType = get_class($legislation) == 'App\\Ordinance' ? 'Ordinance' : 'Resolution';
-        $link = 'https://research-division-baguio.herokuapp.com/public/show' . $legislationType . '/' . $legislation->id;
+        $link = env('APP_URL') . '/public/show' . $legislationType . '/' . $legislation->id;
 
         // Filter message if legislation is for monitoring or dissemination
         $fbMessage = $this->getMessage($legislation);

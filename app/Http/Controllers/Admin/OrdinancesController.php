@@ -379,4 +379,13 @@ class OrdinancesController extends Controller
             ->with('required', $required)
             ->with('ordinance', $ordinance);
     }
+
+    public function postToFacebook($id){
+        $ordinance = Ordinance::findOrFail($id);
+        app('App\Http\Controllers\Admin\FacebookPostsController')->postToPage($ordinance);
+
+        Session::flash('flash_message', "Successfully posted <strong> Ordinance " . $ordinance->number . "</strong> to Facebook!");
+
+        return redirect('/admin/ordinances/' . $ordinance->id);
+    }
 }

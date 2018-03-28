@@ -334,4 +334,13 @@ class ResolutionsController extends Controller
             ->with('required', $required)
             ->with('resolution', $resolution);
     }
+
+    public function postTofacebook($id){
+        $resolution = Resolution::findOrFail($id);
+        app('App\Http\Controllers\Admin\FacebookPostsController')->postToPage($resolution);
+
+        Session::flash('flash_message', "Successfully posted <strong> Resolution " . $resolution->number . "</strong> to Facebook!");
+
+        return redirect('/admin/resolutions/' . $resolution->id);
+    }
 }

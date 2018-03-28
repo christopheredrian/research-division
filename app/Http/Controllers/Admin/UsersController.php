@@ -60,7 +60,7 @@ class UsersController extends Controller
         $user = new User();
 
         $user->fill($request->all());
-        $user->password = bcrypt($request->password);
+        $user->password = bcrypt($request->pass);
         $user->save();
 
         Session::flash('flash_message', "Successfully created new user <u>" . $user->name . "</u>!");

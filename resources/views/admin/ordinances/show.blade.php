@@ -174,7 +174,7 @@
             </div>
         @endif
         <div class="col-md-{{$ordinance->is_monitoring ? '12' : '5'}}">
-            <div class="row">
+            <div class>
                 <div class="box box-success color-palette-box">
                     <div class="box-header with-border">
                         <h3 class="box-title"><i class="fa fa-file-text"></i> ORDINANCE {{ $ordinance->number }}</h3>
@@ -184,10 +184,19 @@
                                 <i class="fa fa-edit"></i>
                                 Edit
                             </a>
+
+                            @if($isNLPEnabled && !$ordinance->facebook_post_id)
+                                <a href="/postToFacebook/ordinance/{{$ordinance->id}}"
+                                   class="btn btn-primary">
+                                    <i class="fa fa-facebook"></i>
+                                    Post to Facebook
+                                </a>
+                            @endif
+
                             <a href="{{($ordinance->pdf_file_path === "" or $ordinance->pdf_file_path == null) ? '#' : ("/downloadPDF/ordinances/".$ordinance->pdf_file_name)}}"
-                               class="btn btn-primary {{($ordinance->pdf_file_path === "" or $ordinance->pdf_file_path == null)? 'disabled' : ''}}">
+                               class="btn btn-success {{($ordinance->pdf_file_path === "" or $ordinance->pdf_file_path == null)? 'disabled' : ''}}">
                                 <i class="fa fa-download"></i>
-                                Download Ordinance
+                                 Download Ordinance
                             </a>
                         </div>
                     </div>

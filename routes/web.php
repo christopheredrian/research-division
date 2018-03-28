@@ -157,6 +157,8 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::post('/toggleConfiguration', 'Admin\\ConfigurationsController@toggleConfiguration');
     Route::post('/updateFacebookVariables', 'Admin\\ConfigurationsController@updateFacebookVariables');
+    Route::get('/postToFacebook/ordinance/{id}', 'Admin\\OrdinancesController@postToFacebook');
+    Route::get('/postToFacebook/resolution/{id}', 'Admin\\ResolutionsController@postToFacebook');
 });
 
 Route::view('/privacy-policy', 'privacy');
