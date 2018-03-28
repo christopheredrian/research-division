@@ -11,6 +11,7 @@ use App\Value;
 use App\StatusReport;
 use App\UpdateReport;
 use Carbon\Carbon;
+use Facebook\Exceptions\FacebookResponseException;
 use Facebook\Facebook;
 use GuzzleHttp\Promise\all;
 use Illuminate\Http\Request;
@@ -184,7 +185,7 @@ class OrdinancesController extends Controller
         if (NLPUtilities::isNLPEnabled()) {
             try{
                 $variables['facebook_comments'] = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($ordinance);
-            } catch(Exception $e) {
+            } catch(FacebookResponseException $e) {
                 $variables['facebook_comments'] = [];
             }
             $variables['isNLPEnabled'] = 1;
