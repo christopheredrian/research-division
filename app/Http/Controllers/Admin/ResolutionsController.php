@@ -141,7 +141,7 @@ class ResolutionsController extends Controller
 
         if (NLPUtilities::isNLPEnabled()) {
             try{
-                $variables['facebook_comments'] = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($ordinance);
+                $variables['facebook_comments'] = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($resolution);
             } catch(FacebookResponseException $e) {
                 $resolution->facebook_post_id = null;
                 $resolution->save();
