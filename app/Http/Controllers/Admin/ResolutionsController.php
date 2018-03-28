@@ -139,9 +139,14 @@ class ResolutionsController extends Controller
         ];
 
         if (NLPUtilities::isNLPEnabled()) {
-            if ($resolution->facebook_post_id !== null) {
-                $variables['facebook_comments'] = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($resolution);
+            try{
+                $variables['facebook_comments'] = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($ordinance);
+            } catch(FacebookResponseException $e) {
+                $resolution->facebook_post_id = null;
+                $resolution->save();
+                $variables['facebook_comments'] = [];
             }
+
             $variables['isNLPEnabled'] = 1;
 
             if($resolution->facebook_post_id !== null){

@@ -186,6 +186,8 @@ class OrdinancesController extends Controller
             try{
                 $variables['facebook_comments'] = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($ordinance);
             } catch(FacebookResponseException $e) {
+                $ordinance->facebook_post_id = null;
+                $ordinance->save();
                 $variables['facebook_comments'] = [];
             }
             $variables['isNLPEnabled'] = 1;
