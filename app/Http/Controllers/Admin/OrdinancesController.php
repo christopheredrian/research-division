@@ -246,15 +246,7 @@ class OrdinancesController extends Controller
 
         Session::flash('flash_message', "Successfully updated <strong>Ordinance " . $ordinance->number . "</strong>!");
 
-        if ($ordinance->is_monitored) {
-            $redirectLink = '/admin/forms/ordinances?status=monitored';
-        } elseif ($ordinance->is_monitoring) {
-            $redirectLink = '/admin/forms/ordinances';
-        } else {
-            $redirectLink = '/admin/ordinances';
-        }
-
-        return redirect($redirectLink);
+        return redirect('/admin/ordinances/' . $ordinance->id);
     }
 
     /**

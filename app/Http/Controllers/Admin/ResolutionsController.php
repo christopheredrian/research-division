@@ -204,15 +204,7 @@ class ResolutionsController extends Controller
 
         Session::flash('flash_message', "Successfully updated <strong>Resolution " . $resolution->number . "</strong>!");
 
-        if($resolution->is_monitored){
-            $redirectLink = '/admin/forms/resolutions?status=monitored';
-        } elseif ($resolution->is_monitoring) {
-            $redirectLink = '/admin/forms/resolutions';
-        } else {
-            $redirectLink = '/admin/resolutions';
-        }
-
-        return redirect('/admin/resolutions');
+        return redirect('/admin/resolutions/' . $resolution->id);
     }
 
     /**
