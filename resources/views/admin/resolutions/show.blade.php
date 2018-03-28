@@ -361,7 +361,11 @@
         @if(isset($isNLPEnabled) and $resolution->facebook_post_id !== null)
             <div class="col-md-3 text-center">
                 <h3>Resolution Pulse (Facebook)</h3>
-                <canvas id="pulseChart" width="220" height="240"></canvas>
+                @if($facebook_comments)
+                    <canvas id="pulseChart" width="220" height="240"></canvas>
+                @else
+                    <h5><i>No comments as of yet.</i></h5>
+                @endif
             </div>
         @endif
         <div class="col-md-{{ (isset($isNLPEnabled) and $resolution->facebook_post_id !== null) ? '9' : '12'}}">
@@ -495,26 +499,41 @@
         });
     </script>
 
-    <script>
-        var ctx = document.getElementById("pulseChart").getContext('2d');
-        data = [
-            {
-                value: {{isset($positive_count) ? $positive_count : 0}},
-                color: "#00a65a",
-                label: "Positive Sentiments"
-            },
-            {
-                value: {{isset($negative_count) ? $negative_count : 0}},
-                color: "#d9534f",
-                label: "Negative Sentiments"
-            },
-            {
-                value: {{isset($neutral_count) ? $neutral_count : 0}},
-                color: "gold",
-                label: "Neutral Sentiments"
-            }
-        ];
+    @if($facebook_comments)
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+        <script async="false">
+            var config = {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: [
+                            {{isset($positive_count) ? $positive_count : 0}},
+                            {{isset($negative_count) ? $negative_count : 0}},
+                            {{isset($neutral_count) ? $neutral_count : 0}}
+                        ],
+                        backgroundColor: [
+                            "#46BFBD",
+                            "#F7464A",
+                            "#FDB45C"
+                        ],
+                    }],
+                    labels: [
+                        "Positive Sentiments",
+                        "Negative Sentiments",
+                        "Neutral Sentiments"
+                    ]
+                },
+                options: {
+                    responsive: true
+                }
+            };
 
-        new Chart(ctx).Doughnut(data);
-    </script>
+            window.onload = function () {
+                var ctx = document.getElementById("pulseChart").getContext("2d");
+                window.myPie = new Chart(ctx, config);
+            };
+
+        </script>
+    @endif
 @endsection

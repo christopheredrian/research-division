@@ -11,6 +11,7 @@ use App\Value;
 use App\StatusReport;
 use App\UpdateReport;
 use Carbon\Carbon;
+use Facebook\Exceptions\FacebookResponseException;
 use Facebook\Facebook;
 use GuzzleHttp\Promise\all;
 use Illuminate\Http\Request;
@@ -182,7 +183,11 @@ class OrdinancesController extends Controller
         ];
 
         if (NLPUtilities::isNLPEnabled()) {
-            $variables['facebook_comments'] = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($ordinance);
+            try{
+                $variables['facebook_comments'] = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($ordinance);
+            } catch(FacebookResponseException $e) {
+                $variables['facebook_comments'] = [];
+            }
             $variables['isNLPEnabled'] = 1;
 
             if($ordinance->facebook_post_id !== null){
@@ -246,15 +251,7 @@ class OrdinancesController extends Controller
 
         Session::flash('flash_message', "Successfully updated <strong>Ordinance " . $ordinance->number . "</strong>!");
 
-        if ($ordinance->is_monitored) {
-            $redirectLink = '/admin/forms/ordinances?status=monitored';
-        } elseif ($ordinance->is_monitoring) {
-            $redirectLink = '/admin/forms/ordinances';
-        } else {
-            $redirectLink = '/admin/ordinances';
-        }
-
-        return redirect($redirectLink);
+        return redirect('/admin/ordinances/' . $ordinance->id);
     }
 
     /**
