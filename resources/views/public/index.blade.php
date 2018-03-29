@@ -44,11 +44,11 @@
         }
 
         div.folded{
-            background-color:  	#C0C0C0;
+            background-color:  	#ADDBE4;
         }
 
         div.folded h2 {
-            background: #08b;
+            background: #0A488D;
             background-image: radial-gradient(transparent 30%, rgba(0, 0, 0, 0.2));
             border: 0 solid rgba(0,0,0,0.2);
             color: #ffffff;
@@ -132,7 +132,7 @@
         <div class="row">
             <div class="col-sm-12 col-xl-6 col-lg-6 col-md-6 folded">
                 <div class="Heading">
-                    <h2>Recent Ordinances</h2>
+                    <h2>Latest Ordinances</h2>
                 </div>
                 <div class="box">
                     @foreach($ordinances as $ordinance)
@@ -147,7 +147,7 @@
 
             <div class="col-sm-12 col-xl-5 col-lg-5 col-md-5 folded">
                 <div class="Heading">
-                    <h2>Recent Resolutions</h2>
+                    <h2>Latest Resolutions</h2>
                 </div>
                 <div class="box">
                     @foreach($resolutions as $resolution)
@@ -159,6 +159,19 @@
             </div>
         </div>
         <br>
+
+        <div class="row">
+            <div class="col-md-12">
+                <h3>
+                    Do you want to help us?
+                </h3>
+                <h4>
+                    We need your participation on making better legislations for our city! Simply select one of the monitored legislations
+                    and give us your recommendations/suggestions!
+                </h4>
+                <br>
+            </div>
+        </div>
 
         {{-- being monitored--}}
         <div class="row">

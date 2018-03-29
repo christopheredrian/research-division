@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div class="box-footer">
-                        <button type="submit" class="pull-right btn btn-primary">Upload</button>
+                        <button type="mit" class="pull-right btn btn-primary">Upload</button>
                     </div>
                 </form>
             @endif
