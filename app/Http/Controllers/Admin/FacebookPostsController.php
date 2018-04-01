@@ -81,7 +81,7 @@ class FacebookPostsController extends Controller
     public function getComments($legislation)
     {
         // GET FACEBOOK COMMENTS OF FACEBOOK POST IF M&E ORDINANCE
-        if ($legislation->is_monitoring === 1 and $legislation->facebook_post_id !== null) {
+        if ($legislation->facebook_post_id !== null) {
             try {
                 // Create new Facebook instance
                 $fb = $this->newFacebookInstance();
