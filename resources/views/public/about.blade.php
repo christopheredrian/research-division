@@ -3,12 +3,12 @@
     <style>
         @import url('https://fonts.googleapis.com/css?family=Lobster');
         h2 {
-            font-family: Lobster;
+            font-family: "Lobster";
         }
         .banner {
             height: 50vh;
             width: 100%;
-            background-image: url('/images/about/burnham.jpg');
+            background-image: url('./images/about/burnham.jpg');
             background-size: 100% 100%;
         }
 
@@ -27,7 +27,7 @@
         <br>
         <div class="row">
             <div class="col-lg-5">
-                <img src="/images/about/lake.jpg">
+                <img src="./images/about/lake.jpg">
             </div>
             <div class="content col-lg-7">
                 <h2> Baguio City</h2>
@@ -118,6 +118,7 @@
                         We also send out publications of approved ordinances and resolutions. We
                         also coordinate with other agencies for information collection.
                     </article>
+                </section>
             </div>
             <div class="col-lg-5">
                 <h2> Mission</h2>
