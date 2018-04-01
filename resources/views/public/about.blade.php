@@ -8,7 +8,7 @@
         .banner {
             height: 50vh;
             width: 100%;
-            background-image: url('./images/about/burnham.jpg');
+            background-image: url('./images/about/burnham.JPG');
             background-size: 100% 100%;
         }
 
@@ -27,7 +27,7 @@
         <br>
         <div class="row">
             <div class="col-lg-5">
-                <img src="./images/about/lake.jpg">
+                <img src="./images/about/lake.JPG">
             </div>
             <div class="content col-lg-7">
                 <h2> Baguio City</h2>
