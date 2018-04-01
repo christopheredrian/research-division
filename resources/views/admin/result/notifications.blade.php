@@ -25,51 +25,24 @@
     <div class="box box-default color-palette-box">
         <div class="box-header with-border">
             <h3 class="box-title"><i class="fa fa-file-text"></i>
-                Search Results
+                Notifications
             </h3>
         </div>
         <div class="box-body">
-            <form action="#" method="get" class="pull-right" style="margin: 15px 0  0 40%">
-                <div class="input-group">
-                    <input type="text" name="q" class="form-control" placeholder="Search..."
-                           value="{{ request()->q }}">
-                    <span class="input-group-btn">
-                               <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-                                 <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                </div>
-                <a style="margin-top: 10px;" href="{{ url()->current() }}" class="btn btn-primary pull-right">
-                    <i class="fa fa-refresh"></i> Reset
-                </a>
-            </form>
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs">
                     <li class="active">
-                        <a href="#tab_1" data-toggle="tab">R&R Ordinances
+                        <a href="#tab_1" data-toggle="tab">Comments/Suggestions
                             <span data-toggle="tooltip" title="" class="badge bg-yellow"
-                                  data-original-title="Result Count">{{ $rnr_o->count() }}</span>
+                                  data-original-title="Result Count">{{ $suggestions->count() }}</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#tab_2" data-toggle="tab">R&R Resolutions
+                        <a href="#tab_2" data-toggle="tab">Responses
                             <span data-toggle="tooltip" title="" class="badge bg-yellow"
-                                  data-original-title="Result Count">{{ $rnr_r->count() }}</span>
+                                  data-original-title="Result Count">{{ $responses->count() }}</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#tab_3" data-toggle="tab">M&E Ordinances
-                            <span data-toggle="tooltip" title="" class="badge bg-yellow"
-                                  data-original-title="Result Count">{{ $mne_o->count() }}</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#tab_4" data-toggle="tab">M&E Resolutions
-                            <span data-toggle="tooltip" title="" class="badge bg-yellow"
-                                  data-original-title="Result Count">{{ $mne_r->count() }}</span>
-                        </a>
-                    </li>
-
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab_1">
@@ -77,25 +50,42 @@
                             <table class="table table-hover dt-bootstrap">
                                 <thead>
                                 <tr>
-                                    <th>Ordinance Number</th>
-                                    <th>Series</th>
-                                    <th>Title</th>
-                                    <th>Keywords</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Suggestion</th>
+                                    <th>Ordinance/Resolution</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($rnr_o as $item)
+                                @foreach($suggestions as $item)
                                     <tr>
-                                        <td>{{ $item->number }}</td>
-                                        <td>{{ $item->series }}</td>
-                                        <td>{{ $item->title }}</td>
-                                        <td>{{ $item->keywords }}</td>
+                                        <td>{{ $item->first_name.' '.$item->last_name }}</td>
+                                        <td>{{ $item->email }}</td>
+                                        <td>{{ $item->suggestion }}</td>
                                         <td>
-                                            <a class="btn btn-flat btn-sm btn-primary"
-                                               href="{{ url('/admin/ordinances/' . $item->id)}}">Open</a> <br>
-                                            <a class="btn btn-flat btn-sm btn-info" target="_blank"
-                                               href="{{ url('/admin/ordinances/' . $item->id)}}">Open in new Tab</a>
+                                        @if($item->ordinances->first() != null)
+                                            {{'Ordinance no. '.$item->ordinances->first()->number.' Series of '.$item->ordinances->first()->series}}
+                                        @else
+                                            {{'Resolution no. '.$item->resolutions->first()->number.' Series of '.$item->resolutions->first()->series}}
+                                        @endif
+                                        </td>
+                                        <td>
+                                            @if($item->ordinances()->first() != null)
+                                                <a class="btn btn-flat btn-sm btn-primary"
+                                                   href="{{ url('/admin/showComments/'.$item->ordinances()->first()->id.'/ordinances')}}">Open</a>
+                                                    @else
+                                                <a class="btn btn-flat btn-sm btn-primary"
+                                                   href="{{ url('/admin/showComments/'.$item->resolutions()->first()->id.'/resolutions')}}">Open</a>
+                                            @endif
+                                             <br>
+                                                @if($item->ordinances()->first() != null)
+                                                    <a class="btn btn-flat btn-sm btn-info" target="_blank"
+                                                       href="{{ url('/admin/showComments/'.$item->ordinances()->first()->id.'/ordinances')}}">Open in new Tab</a>
+                                                @else
+                                                    <a class="btn btn-flat btn-sm btn-info" target="_blank"
+                                                       href="{{ url('/admin/showComments/'.$item->resolutions()->first()->id.'/resolutions')}}">Open in new Tab</a>
+                                                @endif
                                             <br>
                                         </td>
                                     </tr>
@@ -110,98 +100,31 @@
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th>Resolution Number</th>
-                                    <th>Series</th>
-                                    <th>Title</th>
-                                    <th>Keywords</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Ordinance/Resolution</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach($rnr_r as $item)
+                                @foreach($responses as $item)
                                     <tr>
-                                        <td>{{ $item->number }}</td>
-                                        <td>{{ $item->series }}</td>
-                                        <td>{{ $item->title }}</td>
-                                        <td>{{ $item->keywords }}</td>
+                                        <td>@if($item->firstname === null || $item->lastname === null)Anonymous
+                                            @else{{ $item->firstname.' '.$item->lastname }}
+                                            @endif</td>
+                                        <td>{{ $item->email }}</td>
                                         <td>
-                                            <a class="btn btn-flat btn-sm btn-primary"
-                                               href="{{ url('/admin/resolutions/' . $item->id)}}">Open</a> <br>
-                                            <a class="btn btn-flat btn-sm btn-info" target="_blank"
-                                               href="{{ url('/admin/resolutions/' . $item->id)}}">Open in new Tab</a>
-                                            <br>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- /.tab-pane -->
-                    <div class="tab-pane" id="tab_3">
-                        <div class="box-body table-responsive no-padding">
-                            <table class="table table-hover">
-                                <thead>
-                                <tr>
-                                    <th>Ordinance Number</th>
-                                    <th>Series</th>
-                                    <th>Title</th>
-                                    <th>Keywords</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($mne_o as $item)
-                                    <tr>
-                                        <td>{{ $item->number }}</td>
-                                        <td>{{ $item->series }}</td>
-                                        <td>{{ $item->title }}</td>
-                                        <td>{{ $item->keywords }}</td>
-                                        <td>{!!  $item->isAccepting()  ? '<span class="label label-success">Monitoring</span>':
-                                        '<span class="label label-danger">Not Monitoring</span>'!!}
+                                            @if($item->questionnaire->ordinance_id != null)
+                                                {{'Ordinance no. '.\App\Ordinance::FindOrFail($item->questionnaire->ordinance_id)->number.' Series of '.\App\Ordinance::FindOrFail($item->questionnaire->ordinance_id)->series}}
+                                            @else
+                                                {{'Resolution no. '.\App\Ordinance::FindOrFail($item->questionnaire->resolution_id)->number.' Series of '.\App\Ordinance::FindOrFail($item->questionnaire->resolution_id)->series}}
+                                            @endif
                                         </td>
                                         <td>
                                             <a class="btn btn-flat btn-sm btn-primary"
-                                               href="{{ url('/admin/ordinances/' . $item->id)}}">Open</a> <br>
+                                               href="{{ url('/admin/result/' . $item->questionnaire_id)}}">Open</a> <br>
                                             <a class="btn btn-flat btn-sm btn-info" target="_blank"
-                                               href="{{ url('/admin/ordinances/' . $item->id)}}">Open in new Tab</a>
-                                            <br>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="tab_4">
-                        <div class="box-body table-responsive no-padding">
-                            <table class="table table-hover">
-                                <thead>
-                                <tr>
-                                    <th>Resolution Number</th>
-                                    <th>Series</th>
-                                    <th>Title</th>
-                                    <th>Keywords</th>
-                                    <th>Status</th>
-                                    <th>Actions</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($mne_r as $item)
-                                    <tr>
-                                        <td>{{ $item->number }}</td>
-                                        <td>{{ $item->series }}</td>
-                                        <td>{{ $item->title }}</td>
-                                        <td>{{ $item->keywords }}</td>
-                                        <td>{!!  $item->isAccepting()  ? '<span class="label label-success">Monitoring</span>':
-                                        '<span class="label label-danger">Not Monitoring</span>'!!}
-                                        </td>
-                                        <td>
-                                            <a class="btn-flat btn btn-sm btn-primary"
-                                               href="{{ url('/admin/resolutions/' . $item->id)}}">Open</a> <br>
-                                            <a class="btn-flat btn btn-sm btn-info" target="_blank"
-                                               href="{{ url('/admin/resolutions/' . $item->id)}}">Open in new Tab</a>
+                                               href="{{ url('/admin/result/' . $item->questionnaire_id)}}">Open in new Tab</a>
                                             <br>
                                         </td>
                                     </tr>

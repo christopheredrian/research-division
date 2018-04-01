@@ -6,12 +6,14 @@ use App\Ordinance;
 use App\Questionnaire;
 use App\Resolution;
 use App\Suggestion;
+use App\Response;
 use DB;
 use App\Answer;
 use App\Question;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
+use Carbon\Carbon;
 
 class ResultController extends Controller
 {
@@ -329,6 +331,20 @@ class ResultController extends Controller
         } catch (\Exception $e) {
             dd('Invalid query....');
         }
+
+    }
+
+    public function notifications()
+    {
+        $suggestions = Suggestion::Where('created_at','>', Carbon::now()->subDays(4))->OrderByDesc('created_at')->get();
+        $responses = Response::Where('created_at','>', Carbon::now()->subDays(4))->OrderByDesc('created_at')->get();
+
+        $data = [
+            'suggestions' => $suggestions,
+            'responses' => $responses
+        ];
+
+        return view('admin.result.notifications', $data);
 
     }
 }
