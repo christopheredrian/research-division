@@ -160,7 +160,7 @@
                         <p>Feedback</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-chatbox-working"></i>
+                        <i class="fa fa-paper-plane"></i>
                     </div>            
                 </div>
             </div>
@@ -177,7 +177,7 @@
                         <p>Comments/Suggestions</p>
                     </div>
                     <div class="icon">
-                        <i class="fa fa-paper-plane"></i>
+                        <i class="ion ion-chatbox-working"></i>
                     </div>
                     
                 </div>
@@ -187,7 +187,8 @@
             <div class="col-md-6">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Recent Comments/Suggestions</h3>
+                        <h3 class="box-title">Recent Comments/Suggestions   @if($suggestions->count()>0)<span class="label label-danger">{{$suggestions->count()}}</span>@endif</h3>
+
 
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
@@ -198,7 +199,18 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                         <ul class="products-list product-list-in-box">
+                            @php
+                                $counter = 1;
+                            @endphp
                             @foreach($suggestions as $suggestion)
+                                @if($counter>5)
+                                    @php
+                                        break;
+                                    @endphp
+                                @endif
+                                    @php
+                                        $counter=$counter+1;
+                                    @endphp
                                 <li class="item">
                                     <div class="product-info">
                                         @if($suggestion->ordinances()->first() != null)
@@ -230,13 +242,16 @@
                         <!-- /.item -->
                         </ul>
                     </div>
+                    <div class="box-footer text-center">
+                        <a href="/admin/notifications" class="uppercase">View All</a>
+                    </div>
                     <!-- /.box-footer -->
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Recent Responses</h3>
+                        <h3 class="box-title">Recent Responses  @if($responses->count()>0)<span class="label label-danger">{{$responses->count()}}</span>@endif</h3>
 
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
@@ -247,7 +262,18 @@
                     <!-- /.box-header -->
                     <div class="box-body">
                         <ul class="products-list product-list-in-box">
+                            @php
+                                $counter = 1;
+                            @endphp
                             @foreach($responses as $response)
+                                @if($counter>5)
+                                    @php
+                                        break;
+                                    @endphp
+                                @endif
+                                @php
+                                    $counter=$counter+1;
+                                @endphp
                                 <li class="item">
                                     <div class="product-info">
                                         <a href="/admin/result/{{$response->questionnaire_id}}"
@@ -278,6 +304,9 @@
                         @endforeach
                         <!-- /.item -->
                         </ul>
+                    </div>
+                    <div class="box-footer text-center">
+                        <a href="/admin/notifications" class="uppercase">View All</a>
                     </div>
                     <!-- /.box-footer -->
                 </div>

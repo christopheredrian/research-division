@@ -91,6 +91,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::post('/updateComment', 'Admin\\ResultController@updateComment');
         Route::delete('/deleteComment/{id}', 'Admin\\ResultController@deleteComment');
         Route::get('downloadComments/{id}/{flag}', 'Admin\\ResultController@downloadCommentsExcel');
+        Route::get('/notifications', 'Admin\\ResultController@notifications');
 
         /** Status and Update Reports */
         Route::get('/ordinances/{id}/upload-status-report', 'Admin\\OrdinancesController@statusReportCreate');
