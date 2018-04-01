@@ -39,7 +39,7 @@
 
         .banner {
             height: 40vh;
-            background-image: url("./images/City_hall1.JPG");
+            background-image: url("./images/about/City_hall1.JPG");
             background-size: 100% 100%;
         }
 
