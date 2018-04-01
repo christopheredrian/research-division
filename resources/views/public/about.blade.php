@@ -72,7 +72,7 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-5">
+            <div class="col-lg-6">
                 <section>
                     <h2>Climate</h2>
                     <article>
@@ -83,7 +83,7 @@
                             Casual clothing is recommended worn with jackets or sweaters in the late afternoons or evenings.</p>
                     </article>
                 </section></div>
-            <div class="col-lg-7">
+            <div class="col-lg-6">
                 <section>
                     <h2>Geography</h2>
                     <article>
