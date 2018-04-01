@@ -185,16 +185,6 @@
                 <div class="col-md-12 {{ !$isChecked ? 'hidden': '' }}" id="variables">
                     <form action='/updateFacebookVariables' method="POST">
                         {{ csrf_field() }}
-                        {{--@foreach($configurations as $config)--}}
-                            {{--<div style="margin-left: 15px">--}}
-                                {{--<label for="">{{ ucfirst(str_replace('_', ' ', $config->key)) }}</label>--}}
-                                {{--                                <input type="hidden" name="keys[{{$config->id}}]" value="{{ $config->key }}">--}}
-                                {{--<input class="form-control" name="values[{{$config->id}}]]" type="text"--}}
-                                       {{--value="{{ $config->value }}">--}}
-                            {{--</div>--}}
-
-
-                        {{--@endforeach--}}
 
                         <div style="margin-left: 15px">
                             <label for="facebook_page_id">Facebook Page ID</label>

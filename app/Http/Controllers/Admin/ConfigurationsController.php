@@ -29,11 +29,9 @@ class ConfigurationsController extends Controller
         $config_facebook_page_id = Configuration::where('key', 'facebook_page_id')->first();
         $config_facebook_user_access_token = Configuration::where('key', 'facebook_user_access_token')->first();
         $config_facebook_forever_page_access_token = Configuration::where('key', 'facebook_forever_page_access_token')->first();
-//        dd($config_facebook_user_access_token);
 
         $new_facebook_page_id = $request->facebook_page_id;
         $new_facebook_user_access_token = $request->facebook_user_access_token;
-//        dd($new_facebook_user_access_token);
 
         if(!($new_facebook_page_id === $config_facebook_page_id->value) ||
             !($new_facebook_user_access_token === $config_facebook_user_access_token->value)){
