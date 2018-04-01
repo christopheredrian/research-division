@@ -168,7 +168,7 @@
                             </a>
 
                             @if($isNLPEnabled && !$resolution->facebook_post_id)
-                                <a href="/postToFacebook/resolution/{{$resolution->id}}"
+                                <a id="postToFacebookButton" href="/postToFacebook/resolution/{{$resolution->id}}"
                                    class="btn btn-primary">
                                     <i class="fa fa-facebook"></i>
                                     Post to Facebook
@@ -506,6 +506,11 @@
             var fileName = $(link).parent().parent().children().first().text();
             return confirm("Are you sure you want to delete the file " + fileName + "?");
         });
+
+        $('#postToFacebookButton').click(function (e) {
+            var link = e.target;
+            return confirm("Are you sure you want to post Resolution " + "{{$resolution->number . ' series of ' . $resolution->series}}" + " to Facebook?");
+        });git
     </script>
 
     @if($facebook_comments)
