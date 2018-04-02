@@ -57,7 +57,7 @@
 
                             <div class="form-group {{$errors->has('title') ? 'has-error' : ''}}">
                                 <label for="title">Title</label>
-                                <textarea class="form-control" rows="5" name="title" id="title"
+                                <textarea class="form-control capitalize" rows="5" name="title" id="title"
                                           form="ordinancesForm">{{old('title', $ordinance->title)}}</textarea>
                                 {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
                             </div>

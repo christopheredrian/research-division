@@ -28,6 +28,10 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <style>
+        .capitalize{
+            text-transform: uppercase;
+        }
+
         form button {
             display: inline;
         }
@@ -580,7 +584,15 @@ function skin($user)
 <script src="/dist/js/demo.js"></script>
 <script src="/bower_components/ckeditor/ckeditor.js"></script>
 <script src="/js/parsley.min.js"></script>
-
+<script>
+$(document).ready(function() {
+    $("input, textarea.capitalize").keyup(function() {
+        var val = $(this).val()
+        $(this).val(val.toUpperCase());
+    });
+});
+shareim
+</script>
 
 {{-- Custom Scripts per page--}}
 @yield('scripts')
