@@ -106,33 +106,6 @@ class PagesController extends Controller
 
         return redirect('/admin/pages');
     }
-    public function uploadImageContent()
-{
-    $this->validate(request(), [
-        'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    ]);
-
-    $file = request()->file('image');
-    $filename = $file->getClientOriginalName();
-
-    $year = Carbon::now()->year;
-    $imagePath = "/uploads/post_images/{$year}/";
-
-    if (file_exists(public_path($imagePath) . $filename)) {
-        $filename = Carbon::now()->timestamp . '.' . $filename;
-    }
-
-    $file->move(public_path() . $imagePath, $filename);
-
-    $url = $imagePath . $filename;
-
-    return "<script>window.parent.CKEDITOR.tools.callFunction(1,'{$url}','')</script>";
-}
-    
-     public function attachImage()
-    {
-        $this->uploadImageContent(request()->all());
-    }
 
     /**
      * Remove the specified resource from storage.
