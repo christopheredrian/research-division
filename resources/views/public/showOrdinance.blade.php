@@ -55,7 +55,7 @@
                                             <table class="table table-striped table-bordered">
                                                 <thead>
                                                 <tr>
-                                                    <th>Resolution Number</th>
+                                                    <th>Ordinance Number</th>
                                                     <td>{{ $ordinance->number }}</td>
                                                 </tr>
                                                 <tr>
