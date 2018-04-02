@@ -66,7 +66,6 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::delete('/profile/deleteImage', 'Admin\\UsersController@deleteImage');
 
 
-    Route::get('change-password', 'Admin\\UsersController@changePassword');
     Route::post('update-password', 'Admin\\UsersController@updatePassword');
 
     /** Monitoring and Evaluation */

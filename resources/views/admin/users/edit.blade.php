@@ -134,24 +134,26 @@
                     <div class="col-xs-6">
                         <a href="#" class="active" id="profile-link">Account Settings</a>
                     </div>
-                    <div class="col-xs-6">
-                        <a href="#" id="cp-link">Change Password</a>
-                    </div>
+                    @if(str_contains(request()->url(), '/profile'))
+                        <div class="col-xs-6">
+                            <a href="#" id="cp-link">Change Password</a>
+                        </div>
+                    @endif
                 </div>
                 <hr>
             </div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-lg-12">
-                        {{--@if ($errors->any())--}}
-                            {{--<div class="alert alert-danger">--}}
-                                {{--<ul>--}}
-                                    {{--@foreach ($errors->all() as $error)--}}
-                                        {{--<li>{{ $error }}</li>--}}
-                                    {{--@endforeach--}}
-                                {{--</ul>--}}
-                            {{--</div>--}}
-                        {{--@endif--}}
+                    {{--@if ($errors->any())--}}
+                    {{--<div class="alert alert-danger">--}}
+                    {{--<ul>--}}
+                    {{--@foreach ($errors->all() as $error)--}}
+                    {{--<li>{{ $error }}</li>--}}
+                    {{--@endforeach--}}
+                    {{--</ul>--}}
+                    {{--</div>--}}
+                    {{--@endif--}}
                     <!-- /.box-header -->
                         <!-- form start -->
 
@@ -190,10 +192,12 @@
                                             <div class="form-group">
                                                 <label for="image">Upload Profile Picture</label>
                                                 @if(\Illuminate\Support\Facades\Auth::user()->image)
-                                                    <input name="imageFile" type="file" id="imageFile" class="form-control"
+                                                    <input name="imageFile" type="file" id="imageFile"
+                                                           class="form-control"
                                                            value="" disabled>
                                                 @else
-                                                    <input name="imageFile" type="file" id="imageFile" class="form-control"
+                                                    <input name="imageFile" type="file" id="imageFile"
+                                                           class="form-control"
                                                            value="">
                                                 @endif
 
@@ -251,46 +255,52 @@
 
                 <!-- /.box -->
 
-                <div class="row">
-                    <div class="col-lg-12">
-                        <!-- form start -->
-                        <form id="cp-form" method="post" action="/admin/update-password" style="display: none;">
-                            {{ csrf_field() }}
-                            <div class="box-body">
+                @if(str_contains(request()->url(), '/profile'))
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- form start -->
 
-                                @php
-                                    $required = false;
-                                @endphp
 
-                                <div class="form-group {{$errors->has('old-password') ? 'has-error' : ''}}">
-                                    <label for="old-password">Old Password</label>
-                                    <input name="old-password" type="password" class="form-control" id="old-password"
-                                           value="{{ old('old-password') }}">
-                                    {!! $errors->first('old-password', '<p class="help-block">:message</p>') !!}
+                            <form id="cp-form" method="post" action="/admin/update-password" style="display: none;">
+                                {{ csrf_field() }}
+                                <div class="box-body">
+
+                                    @php
+                                        $required = false;
+                                    @endphp
+
+                                    <div class="form-group {{$errors->has('old-password') ? 'has-error' : ''}}">
+                                        <label for="old-password">Old Password</label>
+                                        <input name="old-password" type="password" class="form-control"
+                                               id="old-password"
+                                               value="{{ old('old-password') }}">
+                                        {!! $errors->first('old-password', '<p class="help-block">:message</p>') !!}
+                                    </div>
+
+                                    <div class="form-group {{$errors->has('new-password') ? 'has-error' : ''}}">
+                                        <label for="new-password">New Password</label>
+                                        <input name="new-password" type="password" class="form-control"
+                                               id="new-password"
+                                               value="{{ old('new-password') }}">
+                                        {!! $errors->first('new-password', '<p class="help-block">:message</p>') !!}
+                                    </div>
+
+                                    <div class="form-group {{$errors->has('re-password') ? 'has-error' : ''}}">
+                                        <label for="re-password">Re-enter Password</label>
+                                        <input name="re-password" type="password" class="form-control" id="re-password"
+                                               value="{{ old('re-password') }}">
+                                        {!! $errors->first('re-password', '<p class="help-block">:message</p>') !!}
+                                    </div>
                                 </div>
+                                <!-- /.box-body -->
 
-                                <div class="form-group {{$errors->has('new-password') ? 'has-error' : ''}}">
-                                    <label for="new-password">New Password</label>
-                                    <input name="new-password" type="password" class="form-control" id="new-password"
-                                           value="{{ old('new-password') }}">
-                                    {!! $errors->first('new-password', '<p class="help-block">:message</p>') !!}
+                                <div class="box-footer">
+                                    <button type="submit" class="pull-right btn btn-primary">Submit</button>
                                 </div>
-
-                                <div class="form-group {{$errors->has('re-password') ? 'has-error' : ''}}">
-                                    <label for="re-password">Re-enter Password</label>
-                                    <input name="re-password" type="password" class="form-control" id="re-password"
-                                           value="{{ old('re-password') }}">
-                                    {!! $errors->first('re-password', '<p class="help-block">:message</p>') !!}
-                                </div>
-                            </div>
-                            <!-- /.box-body -->
-
-                            <div class="box-footer">
-                                <button type="submit" class="pull-right btn btn-primary">Submit</button>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
-                </div>
+                @endif
             </div>
         </div>
     </div>
@@ -319,10 +329,10 @@
 
     <script>
         if ('{{$errors->any()}}') {
-            $("document").ready(function() {
-                setTimeout(function() {
+            $("document").ready(function () {
+                setTimeout(function () {
                     $("#cp-link").trigger('click');
-                },10);
+                }, 10);
             });
         }
     </script>

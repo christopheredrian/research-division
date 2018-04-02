@@ -187,13 +187,6 @@ class UsersController extends Controller
     /**
      * The get route for changing password
      */
-    public function changePassword()
-    {
-        Session::flash(
-            'flash_message',
-            "Password has been changed!");
-        return view('admin.users.edit');
-    }
 
     /**
      * The get route for changing password
@@ -215,7 +208,7 @@ class UsersController extends Controller
 
         Session::flash('flash_message', "Password has been changed!");
 
-        return redirect('/admin/profile/edit')->with('user', $user);
+        return back()->with('user', $user);
     }
 
     public function resetPassword($user_id)
