@@ -63,7 +63,9 @@
     $(function () {
         // Replace the <textarea id="editor1"> with a CKEditor
         // instance, using default configuration.
-        CKEDITOR.replace('editor1')
+        CKEDITOR.replace('editor1', {
+ filebrowserUploadUrl: '{{ route('upload',['_token' => csrf_token() ]) }}'
+ })
 
     })
 
