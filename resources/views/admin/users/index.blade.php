@@ -63,13 +63,14 @@
                                     Delete
                                 </button>
 
-                                <a href="/admin/reset-password/{{$user->id}}/"
-                                   class="btn btn-xs btn-info resetPasswordButton">Reset Password</a>
+                                <button class="btn btn-xs btn-info resetPasswordButton" data-toggle="modal" data-target="#exampleModal1">
+                                    Reset Password
+                                </button>
                             </td>
                         </tr>
                     @endif
                 @endforeach
-                
+
                 <!-- Modal -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
                      aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -98,6 +99,33 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
+                     aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title" id="exampleModalLabel">Reset Password</h3>
+                                <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Are you sure you want to reset {{ $user->name }}'s password?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    Cancel
+                                </button>
+                                <a href="/admin/reset-password/{{$user->id}}/"
+                                   class="btn btn btn-info resetPasswordButton">Reset Password</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 </tbody>
             </table>
         </div>
@@ -171,15 +199,15 @@
     {{--</div>--}}
 @endsection
 @section('scripts')
-    <script type="text/javascript">
-        $('.resetPasswordButton').click(function (e) {
-            var link = e.target;
-            console.log();
-            var name = $(link).parent().parent().children().first().text();
+    {{--<script type="text/javascript">--}}
+        {{--$('.resetPasswordButton').click(function (e) {--}}
+            {{--var link = e.target;--}}
+            {{--console.log();--}}
+            {{--var name = $(link).parent().parent().children().first().text();--}}
 
-            name.charAt(name.length - 1) == 's' ? name += "'" : name += "'s"
+            {{--name.charAt(name.length - 1) == 's' ? name += "'" : name += "'s"--}}
 
-            return confirm("Are you sure you want to reset " + name + " password?");
-        });
-    </script>
+            {{--return confirm("Are you sure you want to reset " + name + " password?");--}}
+        {{--});--}}
+    {{--</script>--}}
 @endsection
