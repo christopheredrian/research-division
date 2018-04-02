@@ -13,6 +13,13 @@ class UsersTableSeeder extends Seeder
     {
         $users = array(
             [
+                'name' => 'Almighty Admin',
+                'email' => 'aa@example.com',
+                'password' => bcrypt('passwordballs'),
+                'role' => 'superadmin',
+                'created_at' => \Carbon\Carbon::now()
+            ],
+            [
                 'name' => 'Dan Ricky Ong',
                 'email' => 'admin@example.com',
                 'password' => bcrypt('password'),
@@ -23,9 +30,9 @@ class UsersTableSeeder extends Seeder
                 'name' => 'Lina',
                 'email' => 'lina@example.com',
                 'password' => bcrypt('password'),
-                'role' => 'admin',
+                'role' => 'rr',
                 'created_at' => \Carbon\Carbon::now()
-            ]
+            ],
         );
         User::insert($users);
     }
