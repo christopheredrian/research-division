@@ -19,6 +19,7 @@ use App\UpdateReport;
 use App\Value;
 use App\Answer;
 use DB;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Storage;
 use Session;
 use Carbon\Carbon;
@@ -225,8 +226,18 @@ class PublicController extends Controller
         $resolutions = $resolutions->paginate($limit)->appends($request->all());
 
 //        dd($resolutions);
-        return view('public.MandE.monitoredResolution')
-            ->with('resolutions', $resolutions);
+        if($resolutions->count() > 0)
+        {
+            return view('public.MandE.monitoredResolution')
+                ->with('resolutions', $resolutions);
+        } else {
+            $currentPage = 1;
+            Paginator::currentPageResolver(function () use ($currentPage) {
+                return $currentPage;
+            });
+            return view('public.MandE.monitoredResolution')
+                ->with('resolutions', $resolutions);
+        }
     }
 
     // monitored Ordinances
@@ -276,8 +287,18 @@ class PublicController extends Controller
         // Paginate with filters
         $ordinances = $ordinances->paginate($limit)->appends($request->all());
 
-        return view('public.MandE.monitoredOrdinance')
-            ->with('ordinances', $ordinances);
+        if($ordinances->count() > 0)
+        {
+            return view('public.RandR.ordinance')
+                ->with('ordinances', $ordinances);
+        } else {
+            $currentPage = 1;
+            Paginator::currentPageResolver(function () use ($currentPage) {
+                return $currentPage;
+            });
+            return view('public.RandR.ordinance')
+                ->with('ordinances', $ordinances);
+        }
 
     }
 
@@ -335,9 +356,22 @@ class PublicController extends Controller
 
         $resolutions = null;
 
-        return view('public.MandE.monitorAndEval')
-            ->with('ordinances', $ordinances)
-            ->with('resolutions', $resolutions);
+        if($ordinances->count() > 0)
+        {
+            return view('public.MandE.monitorAndEval')
+                ->with('ordinances', $ordinances)
+                ->with('resolutions', $resolutions);
+        } else {
+            $currentPage = 1;
+            Paginator::currentPageResolver(function () use ($currentPage) {
+                return $currentPage;
+            });
+            return view('public.MandE.monitorAndEval')
+                ->with('ordinances', $ordinances)
+                ->with('resolutions', $resolutions);
+        }
+
+
     }
 
     public function monitorAndEvalResolutions(Request $request)
@@ -392,9 +426,20 @@ class PublicController extends Controller
         $resolutions = $resolutions->paginate($limit)->appends($request->all());
         $ordinances = null;
 
-        return view('public.MandE.monitorAndEval')
-            ->with('ordinances', $ordinances)
-            ->with('resolutions', $resolutions);
+        if($resolutions->count() > 0)
+        {
+            return view('public.MandE.monitorAndEval')
+                ->with('ordinances', $ordinances)
+                ->with('resolutions', $resolutions);
+        } else {
+            $currentPage = 1;
+            Paginator::currentPageResolver(function () use ($currentPage) {
+                return $currentPage;
+            });
+            return view('public.MandE.monitorAndEval')
+                ->with('ordinances', $ordinances)
+                ->with('resolutions', $resolutions);
+        }
     }
     //    Monitoring and Eval end
 
@@ -444,9 +489,21 @@ class PublicController extends Controller
 
         // Paginate with filters
         $ordinances = $ordinances->paginate($limit)->appends($request->all());
+//        dd($ordinances);
 
-        return view('public.RandR.ordinance')
-            ->with('ordinances', $ordinances);
+        if($ordinances->count() > 0)
+        {
+            return view('public.RandR.ordinance')
+                ->with('ordinances', $ordinances);
+        } else {
+            $currentPage = 1;
+            Paginator::currentPageResolver(function () use ($currentPage) {
+                return $currentPage;
+            });
+            //return to page 1
+            return view('public.RandR.ordinance')
+                ->with('ordinances', $ordinances);
+        }
     }
 
     public function researchAndRecordsResolution(Request $request)
@@ -479,7 +536,6 @@ class PublicController extends Controller
         } else {
             $resolutions = Resolution::where('is_monitoring', 0);
         }
-
         if ($request->has('col-number') || $request->has('col-series') || $request->has('col-title') || $request->has('col-keywords')) {
             $resolutions = $resolutions->where('number', 'LIKE', '%' . $request->input('col-number') . '%')
                 ->where('keywords', 'LIKE', '%' . $request->input('col-keywords') . '%')
@@ -493,8 +549,21 @@ class PublicController extends Controller
         // Paginate with filters
         $resolutions = $resolutions->paginate($limit)->appends($request->all());
 
-        return view('public.RandR.resolution')
-            ->with('resolutions', $resolutions);
+//        $test =$resolutions->currentPage(1);
+
+        if($resolutions->count() > 0)
+        {
+            return view('public.RandR.resolution')
+                ->with('resolutions', $resolutions);
+        } else {
+            $currentPage = 1;
+            Paginator::currentPageResolver(function () use ($currentPage) {
+                return $currentPage;
+            });
+            //return to page 1
+            return view('public.RandR.resolution')
+                ->with('resolutions', $resolutions);
+        }
     }
 
     //   Research and Record end

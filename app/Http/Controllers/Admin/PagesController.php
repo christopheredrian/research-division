@@ -6,6 +6,7 @@ use App\Http\GoogleDriveUtilities;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 use App\Page;
 
@@ -106,32 +107,23 @@ class PagesController extends Controller
 
         return redirect('/admin/pages');
     }
-    public function uploadImageContent()
-{
-    $this->validate(request(), [
-        'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    ]);
-
-    $file = request()->file('image');
-    $filename = $file->getClientOriginalName();
-
-    $year = Carbon::now()->year;
-    $imagePath = "/uploads/post_images/{$year}/";
-
-    if (file_exists(public_path($imagePath) . $filename)) {
-        $filename = Carbon::now()->timestamp . '.' . $filename;
-    }
-
-    $file->move(public_path() . $imagePath, $filename);
-
-    $url = $imagePath . $filename;
-
-    return "<script>window.parent.CKEDITOR.tools.callFunction(1,'{$url}','')</script>";
-}
-    
-     public function attachImage()
-    {
-        $this->uploadImageContent(request()->all());
+    public function uploadImage(Request $request) {
+     $CKEditor = $request->input('CKEditor');
+     $funcNum  = $request->input('CKEditorFuncNum');
+     $message  = $url = '';
+     if (Input::hasFile('upload')) {
+     $file = Input::file('upload');
+     if ($file->isValid()) {
+     $filename =$file->getClientOriginalName();
+     $file->move(public_path().'/pageimages/', $filename);
+     $url = url('pageimages/' . $filename);
+     } else {
+     $message = 'An error occurred while uploading the file.';
+     }
+     } else {
+     $message = 'No file uploaded.';
+     }
+     return '<script>window.parent.CKEDITOR.tools.callFunction('.$funcNum.', "'.$url.'", "'.$message.'")</script>';
     }
 
     /**

@@ -91,6 +91,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::post('/updateComment', 'Admin\\ResultController@updateComment');
         Route::delete('/deleteComment/{id}', 'Admin\\ResultController@deleteComment');
         Route::get('downloadComments/{id}/{flag}', 'Admin\\ResultController@downloadCommentsExcel');
+        Route::get('/notifications', 'Admin\\ResultController@notifications');
 
         /** Status and Update Reports */
         Route::get('/ordinances/{id}/upload-status-report', 'Admin\\OrdinancesController@statusReportCreate');
@@ -127,6 +128,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     // Routes ONLY for Admin and superadmin
     Route::group(['middleware' => 'role:superadmin,admin'], function () {
         Route::resource('pages', 'Admin\\PagesController');
+        Route::post('upload_image','Admin\\PagesController@uploadImage')->name('upload');
         Route::get('/reset-password/{user_id}/', 'Admin\\UsersController@resetPassword');
         Route::get('/logs', 'Admin\\LogsController@index');
     });

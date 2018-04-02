@@ -1,10 +1,14 @@
 @extends('layouts.public')
 @section('styles')
     <style>
+        @import url('https://fonts.googleapis.com/css?family=Lobster');
+        h2 {
+            font-family: "Lobster";
+        }
         .banner {
             height: 50vh;
             width: 100%;
-            background-image: url('/images/burnham.jpg');
+            background-image: url('./images/about/burnham.JPG');
             background-size: 100% 100%;
         }
 
@@ -22,6 +26,9 @@
         <div class="banner"></div>
         <br>
         <div class="row">
+            <div class="col-lg-5">
+                <img src="./images/about/lake.JPG">
+            </div>
             <div class="content col-lg-7">
                 <h2> Baguio City</h2>
                 <article>
@@ -42,9 +49,6 @@
                         Baguio is home of diverse and dynamic cultures, center for education, trade and tourism in harmony with nature managed by God-fearing steadfast leaders in partnership with responsible and peace-loving citizenry.
                     </p>
                 </article>
-            </div>
-            <div class="col-lg-5">
-                <img src="/images/lake.jpg">
             </div>
         </div>
 
@@ -72,7 +76,7 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-5">
+            <div class="col-lg-6">
                 <section>
                     <h2>Climate</h2>
                     <article>
@@ -83,7 +87,7 @@
                             Casual clothing is recommended worn with jackets or sweaters in the late afternoons or evenings.</p>
                     </article>
                 </section></div>
-            <div class="col-lg-7">
+            <div class="col-lg-6">
                 <section>
                     <h2>Geography</h2>
                     <article>
@@ -114,14 +118,15 @@
                         We also send out publications of approved ordinances and resolutions. We
                         also coordinate with other agencies for information collection.
                     </article>
+                </section>
             </div>
             <div class="col-lg-5">
-                <h3> Mission</h3>
+                <h2> Mission</h2>
                 <section>
                 <article>
                     "To enact oridnances, approve resolutions, and appropriate funds for the general welfare of the city and its inhabitants."
                 </article>
-                <h3> Vision</h3>
+                <h2 > Vision</h2>
                 <article>
                     "We envision quality legislation reflective of the aspirations of the people for a better quality of life in a clean and green environment."
                 </article>

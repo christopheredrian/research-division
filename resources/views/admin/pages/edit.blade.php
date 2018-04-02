@@ -12,7 +12,7 @@
 @section('content')
     <ol class="breadcrumb">
         <li><a href="/admin/pages"><i class="fa fa-file-code-o"></i> Pages</a></li>
-        <li><a href="/admin/pages/{{ $page->id }}">{{ $page->id }}</a></li>
+        <li><a href="/admin/pages/{{ $page->id }}">{{ $page->title }}</a></li>
         <li class="active">Edit</li>
     </ol>
 
@@ -73,7 +73,9 @@
     $(function () {
         // Replace the <textarea id="editor1"> with a CKEditor
         // instance, using default configuration.
-        CKEDITOR.replace('editor1')
+        CKEDITOR.replace('editor1', {
+ filebrowserUploadUrl: '{{ route('upload',['_token' => csrf_token() ]) }}'
+ })
 
     })
 
