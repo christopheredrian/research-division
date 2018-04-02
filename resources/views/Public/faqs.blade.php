@@ -75,7 +75,8 @@
                                         <div class="panel-body">
                                             <h5><span class="label label-primary">Answer</span></h5>
 
-                                            <p> Answer here. </p>
+                                            <p> The Research and Records Division of the Research Division is in charge of <em> disseminating
+                                                    and tracking </em> the local laws passed by the city government.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -90,7 +91,9 @@
                                     <div id="question3" class="panel-collapse collapse" style="height: 0px;">
                                         <div class="panel-body">
                                             <h5><span class="label label-primary">Answer</span></h5>
-                                            <p> Answer here </p>
+                                            <p> The Monitoring and Evaluation Division of the Research Division is in charge of the
+                                            determining the <em> effectiveness or non-effectiveness and implementation or non-implementation
+                                             </em> of the local laws in order that the amendments, if any, may be introduced.</p>
                                         </div>
                                     </div>
                                 </div>
