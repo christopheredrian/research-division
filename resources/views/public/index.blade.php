@@ -163,11 +163,12 @@
         <div class="row">
             <div class="col-md-12">
                 <h3>
-                    Do you want to help us?
+                    We need your help!
                 </h3>
                 <h4>
-                    We need your participation on making better legislations for our city! Simply select one of the monitored legislations
-                    and give us your recommendations/suggestions!
+                    We want to create a better city for you! We encourage you to answer our questionnaire, simply click
+                    on any of the legislation currently being monitored to answer. Your inputs are highly valuable for us
+                    to create better legislation for you!
                 </h4>
                 <br>
             </div>
