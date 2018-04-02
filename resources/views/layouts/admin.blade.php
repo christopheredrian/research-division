@@ -586,7 +586,7 @@ function skin($user)
 <script src="/js/parsley.min.js"></script>
 <script>
 $(document).ready(function() {
-    $("input, textarea.capitalize").keyup(function() {
+    $("textarea.capitalize").keyup(function() {
         var val = $(this).val()
         $(this).val(val.toUpperCase());
     });
