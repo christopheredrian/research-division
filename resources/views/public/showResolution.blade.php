@@ -85,11 +85,12 @@
                                                 <td>{{$updateReport->pdf_file_name}}</td>
                                                 <td>
                                                     <a href="/downloadPDF/updatereports/{{$updateReport->pdf_file_name}}"
-                                                       class="btn btn-xs btn-primary btn-equal-width">
+                                                       class="btn btn-xs btn-primary btn-equal-width pull-right">
                                                         Download
                                                     </a>
                                                 </td>
                                             </tr>
+                                            <br/>
                                         @endforeach
                                     </div>
                                 </div>
