@@ -46,6 +46,8 @@
                             <td>
                                 @if($user->role === 'admin')
                                     Administrator
+                                @elseif($user->role === 'superadmin')
+                                    Super Administrator
                                 @elseif($user->role === 'me')
                                     Monitoring & Evaluation
                                 @else
