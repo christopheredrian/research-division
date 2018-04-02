@@ -61,73 +61,72 @@
                             <td>{{ $user->updated_at }}</td>
                             <td>
                                 <a href="/admin/users/{{$user->id}}/edit" class="btn btn-xs btn-warning">Edit</a>
-                                <button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#exampleModal">
+                                <button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#exampleModal{{$user->id}}">
                                     Delete
                                 </button>
 
-                                <button class="btn btn-xs btn-info resetPasswordButton" data-toggle="modal" data-target="#exampleModal1">
+                                <button class="btn btn-xs btn-info resetPasswordButton" data-toggle="modal" data-target="#resetPasswordModal{{$user->id}}">
                                     Reset Password
                                 </button>
                             </td>
                         </tr>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal{{$user->id}}" tabindex="-1" role="dialog"
+                             aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title" id="exampleModalLabel">Confirm Delete</h3>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to delete user {{ $user->name }}?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                            Cancel
+                                        </button>
+                                        <form action="/admin/users/{{ $user->id }}" method="post">
+                                            {{ method_field('DELETE') }}
+                                            {{ csrf_field() }}
+                                            <button class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="resetPasswordModal{{$user->id}}" tabindex="-1" role="dialog"
+                             aria-labelledby="resetPasswordModal" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title" id="resetPasswordModal">Reset Password</h3>
+                                        <button type="button" class="close" data-dismiss="modal"
+                                                aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Are you sure you want to reset {{ $user->name }}'s password?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                            Cancel
+                                        </button>
+                                        <a href="/admin/reset-password/{{$user->id}}/"
+                                           class="btn btn btn-info resetPasswordButton">Reset Password</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @endif
                 @endforeach
-
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h3 class="modal-title" id="exampleModalLabel">Confirm Delete</h3>
-                                <button type="button" class="close" data-dismiss="modal"
-                                        aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                Are you sure you want to delete user {{ $user->name }}?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                    Cancel
-                                </button>
-                                <form action="/admin/users/{{ $user->id }}" method="post">
-                                    {{ method_field('DELETE') }}
-                                    {{ csrf_field() }}
-                                    <button class="btn btn-danger">Delete</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Modal -->
-                <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog"
-                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h3 class="modal-title" id="exampleModalLabel">Reset Password</h3>
-                                <button type="button" class="close" data-dismiss="modal"
-                                        aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                Are you sure you want to reset {{ $user->name }}'s password?
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
-                                    Cancel
-                                </button>
-                                <a href="/admin/reset-password/{{$user->id}}/"
-                                   class="btn btn btn-info resetPasswordButton">Reset Password</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 </tbody>
             </table>
         </div>

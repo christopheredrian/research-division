@@ -591,7 +591,6 @@ $(document).ready(function() {
         $(this).val(val.toUpperCase());
     });
 });
-shareim
 </script>
 
 {{-- Custom Scripts per page--}}
