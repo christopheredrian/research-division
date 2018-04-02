@@ -75,9 +75,13 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        return view('admin.users.show', [
-            'user' => User::findOrFail($id)
-        ]);
+        if($id == 1){
+            abort(404);
+        } else {
+            return view('admin.users.show', [
+                'user' => User::findOrFail($id)
+            ]);
+        }
     }
 
     public function profile()
@@ -110,9 +114,13 @@ class UsersController extends Controller
 
     public function edit($id)
     {
-        return view('admin.users.edit', [
-            'user' => User::findOrFail($id)
-        ]);
+        if($id == 1){
+            abort(404);
+        } else {
+            return view('admin.users.edit', [
+                'user' => User::findOrFail($id)
+            ]);
+        }
     }
 
     public function profEdit()

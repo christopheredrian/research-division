@@ -37,7 +37,7 @@
                 </thead>
                 <tbody>
                 @foreach($users as $user)
-                    @if($user->id == Auth::user()->id)
+                    @if($user->id == Auth::user()->id or $user->id === 1)
 
                     @else
                         <tr>
