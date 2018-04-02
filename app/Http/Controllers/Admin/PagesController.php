@@ -6,6 +6,7 @@ use App\Http\GoogleDriveUtilities;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\Controller;
 use App\Page;
 
@@ -105,6 +106,24 @@ class PagesController extends Controller
         
 
         return redirect('/admin/pages');
+    }
+    public function uploadImage(Request $request) {
+     $CKEditor = $request->input('CKEditor');
+     $funcNum  = $request->input('CKEditorFuncNum');
+     $message  = $url = '';
+     if (Input::hasFile('upload')) {
+     $file = Input::file('upload');
+     if ($file->isValid()) {
+     $filename =$file->getClientOriginalName();
+     $file->move(public_path().'/pageimages/', $filename);
+     $url = url('pageimages/' . $filename);
+     } else {
+     $message = 'An error occurred while uploading the file.';
+     }
+     } else {
+     $message = 'No file uploaded.';
+     }
+     return '<script>window.parent.CKEDITOR.tools.callFunction('.$funcNum.', "'.$url.'", "'.$message.'")</script>';
     }
 
     /**
