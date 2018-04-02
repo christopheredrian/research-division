@@ -137,7 +137,9 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     });
 
     // CONFIGURATIONS
-    Route::get('/configurations', 'Admin\\ConfigurationsController@index');
+    Route::group(['middleware' => 'role:superadmin,admin'], function () {
+        Route::get('/configurations', 'Admin\\ConfigurationsController@index');
+    });
 
     // LEGISLATION SOFT DELETE
     Route::get('/ordinances/delete/{id}', 'Admin\\OrdinancesController@softDelete');
