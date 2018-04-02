@@ -83,7 +83,7 @@
                                                 <table>
                                                 @foreach($ordinance->updateReport()->where('is_deleted', 0)->get() as $updateReport)
                                                     <tr>
-                                                        <td>{{$updateReport->pdf_file_name}}
+                                                        <td>{{$updateReport->pdf_file_name}}</td>
                                                         <td>
                                                             <a href="/downloadPDF/updatereports/{{$updateReport->pdf_file_name}}"
                                                                class="btn btn-xs btn-primary btn-equal-width pull-right">
