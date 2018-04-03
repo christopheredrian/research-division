@@ -256,7 +256,7 @@
                                                 <h3 class="modal-title" id="exampleModalLabel">Confirm Delete</h3>
                                             </div>
                                             <div class="modal-body">
-                                                Are you sure you want to delete Resolution {{ $resolution->id }} series
+                                                Are you sure you want to delete Resolution {{ $resolution->number }} series
                                                 of {{ $resolution->series }}?
                                             </div>
                                             <div class="modal-footer">

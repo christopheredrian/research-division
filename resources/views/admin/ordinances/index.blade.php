@@ -230,7 +230,7 @@
                                                             Delete</h3>
                                                     </div>
                                                     <div class="modal-body">
-                                                        Are you sure you want to delete Ordinance {{ $ordinance->id }}
+                                                        Are you sure you want to delete Ordinance {{ $ordinance->number }}
                                                         series of {{ $ordinance->series }}?
                                                     </div>
                                                     <div class="modal-footer">
