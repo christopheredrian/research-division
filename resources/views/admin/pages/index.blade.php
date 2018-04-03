@@ -38,12 +38,12 @@
                             <a href="/admin/pages/{{$page->id}}" class="btn btn-xs btn-info">Preview</a>
                             <a href="/admin/pages/{{$page->id}}/edit" class="btn btn-xs btn-warning">Edit</a>
 
-                            <button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#exampleModal">
+                            <button class="btn btn-xs btn-danger" data-toggle="modal" data-target="#exampleModal{{$page->id}}">
                                 Delete
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                            <div class="modal fade" id="exampleModal{{$page->id}}" tabindex="-1" role="dialog"
                                  aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
@@ -54,7 +54,7 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            Are you sure you want to delete this item?
+                                            Are you sure you want to delete {{$page->title}}?
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
