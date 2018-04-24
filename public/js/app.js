@@ -51001,6 +51001,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 var Questions = function Questions() {
@@ -51048,7 +51054,7 @@ var Questions = function Questions() {
             var _this = this;
 
             this.$validator.validateAll().then(function (result) {
-                $('#modal .modal-body').text('There were missing values. Please check input.');
+                $('#modal .modal-body').text('There were errors. Please check input.');
                 // Check if we have questions
                 if (!(_this.questionnaire.questions.length === 0)) {
                     // If validations passed
@@ -51159,10 +51165,21 @@ var render = function() {
                           rawName: "v-model",
                           value: _vm.questionnaire.description,
                           expression: "questionnaire.description"
+                        },
+                        {
+                          name: "validate",
+                          rawName: "v-validate",
+                          value: "min:1|max:10000",
+                          expression: "'min:1|max:10000'"
                         }
                       ],
                       staticClass: "form-control",
-                      attrs: { id: "", cols: "30", rows: "10" },
+                      attrs: {
+                        name: "description",
+                        id: "",
+                        cols: "30",
+                        rows: "10"
+                      },
                       domProps: { value: _vm.questionnaire.description },
                       on: {
                         input: function($event) {
@@ -51176,7 +51193,23 @@ var render = function() {
                           )
                         }
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.errors.has("description"),
+                            expression: "errors.has('description')"
+                          }
+                        ],
+                        staticClass: "help is-danger text-danger"
+                      },
+                      [_vm._v(_vm._s(_vm.errors.first("description")))]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("hr"),
@@ -51230,8 +51263,8 @@ var render = function() {
                                 {
                                   name: "validate",
                                   rawName: "v-validate",
-                                  value: "required",
-                                  expression: "'required'"
+                                  value: "required|min:5|max:100",
+                                  expression: "'required|min:5|max:100'"
                                 },
                                 {
                                   name: "model",
@@ -51554,9 +51587,10 @@ var render = function() {
                                                         {
                                                           name: "validate",
                                                           rawName: "v-validate",
-                                                          value: "required",
+                                                          value:
+                                                            "required|min:1|max:100",
                                                           expression:
-                                                            "'required'"
+                                                            "'required|min:1|max:100'"
                                                         },
                                                         {
                                                           name: "model",
@@ -51746,9 +51780,10 @@ var render = function() {
                                                         {
                                                           name: "validate",
                                                           rawName: "v-validate",
-                                                          value: "required",
+                                                          value:
+                                                            "required|min:1|max:100",
                                                           expression:
-                                                            "'required'"
+                                                            "'required|min:1|max:100'"
                                                         },
                                                         {
                                                           name: "model",
@@ -53235,6 +53270,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 var Questions = function Questions() {
@@ -53283,7 +53324,7 @@ var Questions = function Questions() {
             var _this = this;
 
             this.$validator.validateAll().then(function (result) {
-                $('#modal .modal-body').text('There were missing values. Please check input.');
+                $('#modal .modal-body').text('There were errors. Please check input.');
                 // Check if we have questions
                 if (!(_this.questionnaire.questions.length === 0)) {
                     // If validations passed
@@ -53382,10 +53423,21 @@ var render = function() {
                           rawName: "v-model",
                           value: _vm.questionnaire.description,
                           expression: "questionnaire.description"
+                        },
+                        {
+                          name: "validate",
+                          rawName: "v-validate",
+                          value: "min:1|max:10000",
+                          expression: "'min:1|max:10000'"
                         }
                       ],
                       staticClass: "form-control",
-                      attrs: { id: "", cols: "30", rows: "10" },
+                      attrs: {
+                        name: "description",
+                        id: "",
+                        cols: "30",
+                        rows: "10"
+                      },
                       domProps: { value: _vm.questionnaire.description },
                       on: {
                         input: function($event) {
@@ -53399,7 +53451,23 @@ var render = function() {
                           )
                         }
                       }
-                    })
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: _vm.errors.has("description"),
+                            expression: "errors.has('description')"
+                          }
+                        ],
+                        staticClass: "help is-danger text-danger"
+                      },
+                      [_vm._v(_vm._s(_vm.errors.first("description")))]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("hr"),
@@ -53453,8 +53521,8 @@ var render = function() {
                                 {
                                   name: "validate",
                                   rawName: "v-validate",
-                                  value: "required",
-                                  expression: "'required'"
+                                  value: "required|min:5|max:100",
+                                  expression: "'required|min:5|max:100'"
                                 },
                                 {
                                   name: "model",
@@ -53777,9 +53845,10 @@ var render = function() {
                                                         {
                                                           name: "validate",
                                                           rawName: "v-validate",
-                                                          value: "required",
+                                                          value:
+                                                            "required|min:1|max:100",
                                                           expression:
-                                                            "'required'"
+                                                            "'required|min:1|max:100'"
                                                         },
                                                         {
                                                           name: "model",
@@ -53969,9 +54038,10 @@ var render = function() {
                                                         {
                                                           name: "validate",
                                                           rawName: "v-validate",
-                                                          value: "required",
+                                                          value:
+                                                            "required|min:1|max:100",
                                                           expression:
-                                                            "'required'"
+                                                            "'required|min:1|max:100'"
                                                         },
                                                         {
                                                           name: "model",

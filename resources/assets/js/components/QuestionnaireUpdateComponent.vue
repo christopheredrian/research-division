@@ -91,8 +91,14 @@
                     </div>
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea class="form-control" v-model="questionnaire.description" id="" cols="30"
+                        <textarea class="form-control"
+                                  v-model="questionnaire.description"
+                                  :name="'description'"
+                                  v-validate="'min:1|max:10000'"
+                                  id="" cols="30"
                                   rows="10"></textarea>
+                        <span v-show="errors.has('description')"
+                              class="help is-danger text-danger">{{ errors.first('description') }}</span>
                     </div>
                     <hr>
                     <button v-on:click="addQuestion()" class="btn btn-success btn-md fixed-button-3"><span
@@ -110,7 +116,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Question Name</label>
-                                    <input v-validate="'required'"
+                                    <input v-validate="'required|min:5|max:100'"
                                            :name="'Question Name' + questionnaire.questions.indexOf(question)"
                                            class="form-control" type="text"
                                            v-model="question.question">
@@ -192,7 +198,7 @@
                                                 <div class="values-added-margin">
                                                     <div class="input-group animated fadeInUp">
                                                         <input placeholder="Enter value..." class="form-control"
-                                                               v-validate="'required'"
+                                                               v-validate="'required|min:1|max:100'"
                                                                :name="'Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val)"
                                                                type="text" v-model="val.value" required>
                                                         <!--<span v-show="errors.has(question.values.indexOf(val))" class="help is-danger text-danger">{{ errors.first(question.values.indexOf(val)) }}</span>-->
@@ -223,7 +229,7 @@
                                                 <div class="values-added-margin">
                                                     <div class="input-group animated fadeInUp">
                                                         <input placeholder="Enter value..." class="form-control"
-                                                               v-validate="'required'"
+                                                               v-validate="'required|min:1|max:100'"
                                                                :name="'Q' + questionnaire.questions.indexOf(question) + ' Value Name ' + question.values.indexOf(val)"
                                                                type="text" v-model="val.value" required>
                                                         <!--<span v-show="errors.has(question.values.indexOf(val))" class="help is-danger text-danger">{{ errors.first(question.values.indexOf(val)) }}</span>-->
@@ -403,7 +409,7 @@
             },
             validateBeforeSubmit() {
                 this.$validator.validateAll().then((result) => {
-                    $('#modal .modal-body').text('There were missing values. Please check input.')
+                    $('#modal .modal-body').text('There were errors. Please check input.');
                     // Check if we have questions
                     if (!(this.questionnaire.questions.length === 0)) {
                         // If validations passed
