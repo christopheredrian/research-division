@@ -98,7 +98,7 @@
 
 
         div.folded .box a{
-            color: #ffffff;
+            color: black;
         }
 
         div.folded .box a:hover{
