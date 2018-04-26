@@ -241,11 +241,14 @@
 
                                 <a href="/admin/resolutions/{{$resolution->id}}/edit?type={{$type}}"
                                    class="btn btn-xs btn-warning btn-equal-width ">Edit</a>
+                                
+                                @if(Auth::user()->hasRole('superadmin'))
+                                    <button class="btn btn-xs btn-danger btn-equal-width" data-toggle="modal"
+                                            data-target="#exampleModal{{$resolution->id}}">
+                                        Delete
+                                    </button>
+                                @endif
 
-                                <button class="btn btn-xs btn-danger btn-equal-width" data-toggle="modal"
-                                        data-target="#exampleModal{{$resolution->id}}">
-                                    Delete
-                                </button>
 
                                 <div class="modal fade" id="exampleModal{{$resolution->id}}" tabindex="-1" role="dialog"
                                      aria-labelledby="exampleModalLabel"
@@ -263,8 +266,9 @@
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">
                                                     Cancel
                                                 </button>
-                                                <a href="/admin/ordinances/delete/{{$resolution->id}}"
-                                                   class="btn btn-sm btn-danger btn-equal-width deleteButton">Delete</a>
+
+                                                    <a href="/admin/ordinances/delete/{{$resolution->id}}"
+                                                       class="btn btn-sm btn-danger btn-equal-width deleteButton">Delete</a>
                                             </div>
                                         </div>
                                     </div>

@@ -6,6 +6,8 @@ use App\Http\LogUtility;
 use App\Log;
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
+
 
 class LogRequest
 {
@@ -25,8 +27,10 @@ class LogRequest
         if(Auth::user()){
             $user = Auth::user()->email;
         }
+        $url = $request->fullUrl();
+        $ip = Request::ip();
         LogUtility::insertLog(
-            'Request on ' . $request->fullUrl(),
+            "User went to $url",
             $user
         );
         return $response;

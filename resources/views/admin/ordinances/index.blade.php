@@ -214,11 +214,12 @@
 
                                         <a href="/admin/ordinances/{{$ordinance->id}}/edit?type={{$type}}"
                                            class="btn btn-xs btn-warning btn-equal-width ">Edit</a>
-
-                                        <button class="btn btn-xs btn-danger btn-equal-width" data-toggle="modal"
-                                                data-target="#exampleModal{{$ordinance->id}}">
-                                            Delete
-                                        </button>
+                                        @if(Auth::user()->hasRole('superadmin'))
+                                            <button class="btn btn-xs btn-danger btn-equal-width" data-toggle="modal"
+                                                    data-target="#exampleModal{{$ordinance->id}}">
+                                                Delete
+                                            </button>
+                                        @endif
 
                                         <div class="modal fade" id="exampleModal{{$ordinance->id}}" tabindex="-1"
                                              role="dialog" aria-labelledby="exampleModalLabel"
@@ -238,7 +239,7 @@
                                                                 data-dismiss="modal">
                                                             Cancel
                                                         </button>
-                                                        <a href="/admin/ordinances/delete/{{$ordinance->id}}"
+                                                            <a href="/admin/ordinances/delete/{{$ordinance->id}}"
                                                            class="btn btn-sm btn-danger btn-equal-width deleteButton">Delete</a>
                                                     </div>
                                                 </div>

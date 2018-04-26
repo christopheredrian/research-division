@@ -314,41 +314,45 @@
         </div>
 
 
+        @if(Auth::user()->hasRole('superadmin'))
         <div class="row">
-            <div class="col-xs-12">
-                <div class="box">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Recent Logs</h3>
-                    </div>
-                    <!-- /.box-header -->
-                    <div class="box-body">
-                        <table class="table table-bordered">
-                            <tbody>
-                            <tr>
-                                <th style="width: 10px">User</th>
-                                <th>Message</th>
-                                <th>Ip</th>
-                                <th style="width: 40px">Timestamp</th>
-                            </tr>
-                            @foreach(\App\Log::orderBy('id', 'desc')->limit(5)->get() as $log)
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Recent Logs</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <div class="box-body">
+                            <table class="table table-bordered">
+                                <tbody>
                                 <tr>
-                                    <td>{{ $log->user }}</td>
-                                    <td>{{ $log->message }}</td>
-                                    <td>{{ $log->ip }}</td>
-                                    <td>{{ $log->created_at }}</td>
+                                    <th style="width: 10px">User</th>
+                                    <th>Message</th>
+                                    <th>Ip</th>
+                                    <th style="width: 40px">Timestamp</th>
                                 </tr>
-                            @endforeach
-                            </tbody>
-                        </table>
+                                @foreach(\App\Log::orderBy('id', 'desc')->limit(5)->get() as $log)
+                                    <tr>
+                                        <td>{{ $log->user }}</td>
+                                        <td>{{ $log->message }}</td>
+                                        <td>{{ $log->ip }}</td>
+                                        <td>{{ $log->created_at }}</td>
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
                     </div>
-                    <!-- /.box-body -->
                 </div>
-            </div>
-            <div class="col-xs-4">
+                <div class="col-xs-4">
 
 
+                </div>
+
             </div>
-        </div>
+
+        @endif
 
     </section>
 @endsection
