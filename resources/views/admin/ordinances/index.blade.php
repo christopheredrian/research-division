@@ -231,8 +231,13 @@
                                                             Delete</h3>
                                                     </div>
                                                     <div class="modal-body">
-                                                        Are you sure you want to delete Ordinance {{ $ordinance->number }}
-                                                        series of {{ $ordinance->series }}?
+                                                        <p> Are you sure you want to delete Ordinance {{ $ordinance->number }}
+                                                        series of {{ $ordinance->series }}?</p>
+                                                        <p class="text-danger"><strong> Warning: </strong>This action cannot be undone! Please:</p>
+                                                        <ol>
+                                                            <li>Go to the <a target="_blank" href="/reports" class="btn btn-warning btn-xs">Reports page</a> and download a backup of the series.</li>
+                                                            <li>Go to the <a target="_blank" class="btn btn-info btn-xs" href="/admin/showComments/{{ $ordinance->id }}/ordinances">comments page for this ordinance</a> and download a copy of the excel file</li>
+                                                        </ol>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"

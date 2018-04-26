@@ -496,7 +496,7 @@ function skin($user)
                     </a>
                 </li>
 
-                @if(Auth::user()->hasRole('superadmin') || Auth::user()->hasRole('admin'))
+                @if(Auth::user()->hasRole('superadmin'))
                     <li class="{{ Request::is('admin/logs*') ? 'active' : '' }}">
                         <a href="/admin/logs">
                             <i class="fa fa-wrench"></i>
