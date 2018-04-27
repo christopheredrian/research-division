@@ -143,13 +143,13 @@ class PublicController extends Controller
         $monitoringOrdinances = Ordinance::where('is_monitoring', 1)
             ->orWhere('is_accepting' , 1)
             ->orderby('created_at', 'asc')
-            ->limit(5)
+            ->limit(4)
             ->get();
 
         $monitoringResolutions = Resolution::where('is_monitoring', 1)
             ->orWhere('is_accepting' , 1)
             ->orderby('created_at', 'asc')
-            ->limit(5)
+            ->limit(4)
             ->get();
 
         $monitoredOrdinances = Ordinance::where('is_monitored', 1)
@@ -170,7 +170,7 @@ class PublicController extends Controller
         {
             $monitoredOrdinances = null;
         }
-        return view('public.index',
+        return view('public.index1',
             ['resolutions' => $resolutions],
             ['ordinances' => $ordinances])
             ->with('monitoredResolutions',$monitoredResolutions)

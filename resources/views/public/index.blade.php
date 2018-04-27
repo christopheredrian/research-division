@@ -136,9 +136,9 @@
                 </div>
                 <div class="box">
                     @foreach($ordinances as $ordinance)
-                            <a href="/public/showOrdinance/{{$ordinance->id}}">
-                                <p>{{ str_limit($ordinance->title, $limit = 80, $end = '...') }}</p>
-                            </a>
+                        <a href="/public/showOrdinance/{{$ordinance->id}}">
+                            <p>{{ str_limit($ordinance->title, $limit = 80, $end = '...') }}</p>
+                        </a>
                     @endforeach
                 </div>
             </div>
@@ -181,7 +181,8 @@
                     <h2>Ordinances Currently Being Monitored</h2>
                  </div>
                 <div class="box link-wrapper">
-                    <div class="wrapper-15">@foreach($monitoringOrd as $ordinance)
+                    <div class="wrapper-15">
+                        @foreach($monitoringOrd as $ordinance)
                             <a href="/public/showOrdinance/{{$ordinance->id}}" class="hover-15">
                                 <p>{{ str_limit($ordinance->title, $limit = 100, $end = '...') }}</p>
                             </a>
