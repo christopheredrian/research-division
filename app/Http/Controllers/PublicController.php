@@ -170,7 +170,7 @@ class PublicController extends Controller
         {
             $monitoredOrdinances = null;
         }
-        return view('public.index1',
+        return view('public.index',
             ['resolutions' => $resolutions],
             ['ordinances' => $ordinances])
             ->with('monitoredResolutions',$monitoredResolutions)
