@@ -3,7 +3,7 @@ author: Boostraptheme
 author URL: https://boostraptheme.com
 License: Creative Commons Attribution 4.0 Unported
 License URL: https://creativecommons.org/licenses/by/4.0/
-*/ 
+*/
 
 // ====================================================
                         // ANIMATION
@@ -28,7 +28,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 		    }, 1000, "easeInOutExpo");
 		    return false;
 		  }
-		}); 
+		});
 
 	    // Closes responsive menu when a scroll trigger link is clicked
 	    $('.js-scroll-trigger').click(function() {
@@ -51,10 +51,10 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 	    $('body').scrollspy({
 	      target: '#mainNav',
 	      offset: 62
-	    }); 
+	    });
 
 	    // $(".navbar-collapse ul li a").on("click touch", function(){
-	       
+
 	    //     $(".navbar-toggle").click();
 	    // });
 
@@ -73,10 +73,10 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 
       //fixed navbar
       var toggleAffix = function(affixElement, scrollElement, wrapper) {
-      
+
         var height = affixElement.outerHeight(),
             top = wrapper.offset().top;
-        
+
         if (scrollElement.scrollTop() >= top){
             wrapper.height(height);
             affixElement.addClass("affix");
@@ -85,24 +85,24 @@ License URL: https://creativecommons.org/licenses/by/4.0/
             affixElement.removeClass("affix");
             wrapper.height('auto');
         }
-          
+
       };
-      
+
 
       $('[data-toggle="affix"]').each(function() {
         var ele = $(this),
             wrapper = $('<div></div>');
-        
+
         ele.before(wrapper);
         $(window).on('scroll resize', function() {
             toggleAffix(ele, $(this), wrapper);
         });
-        
+
         // init
         toggleAffix(ele, $(window), wrapper);
       });
-      
-        // Hover dropdown 
+
+        // Hover dropdown
         $('ul.navbar-nav li.dropdown').hover(function() {
           $(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
         }, function() {
@@ -136,7 +136,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                         msgChange($('#div-login-msg'), $('#icon-login-msg'), $('#text-login-msg'), "success", "glyphicon-ok", "Login OK");
                     }
                     return false;
-                    break; 
+                    break;
                 case "register-form":
                     var $rg_username=$('#register_username').val();
                     var $rg_email=$('#register_email').val();
@@ -153,10 +153,10 @@ License URL: https://creativecommons.org/licenses/by/4.0/
             }
             return false;
         });
-        
-        $('#login_register_btn').click( function () { modalAnimate($formLogin, $formRegister) });
-        $('#register_login_btn').click( function () { modalAnimate($formRegister, $formLogin); }); 
-        
+
+        $('#login_register_btn').click( function () { modalAnimate($formLogin, $formRegister); });
+        $('#register_login_btn').click( function () { modalAnimate($formRegister, $formLogin); });
+
         function modalAnimate ($oldForm, $newForm) {
             var $oldH = $oldForm.height();
             var $newH = $newForm.height();
@@ -167,12 +167,12 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                 });
             });
         }
-        
+
         function msgFade ($msgId, $msgText) {
             $msgId.fadeOut($msgAnimateTime, function() {
                 $(this).text($msgText).fadeIn($msgAnimateTime);
             });
-        } 
+        }
     })(jQuery); // End of use strict
 
 // ====================================================
@@ -233,7 +233,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         css.type = "text/css";
         css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
         document.body.appendChild(css);
-    };  
+    };
 
 // ====================================================
                    // HOME TEXT SCROLL
@@ -247,7 +247,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                         // BLOG
 // ====================================================
         $( document ).ready(function() {
-         
+
             $('.thumbnail-blogs').hover(
                 function(){
                     $(this).find('.caption').slideDown(250)
@@ -255,7 +255,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                 function(){
                     $(this).find('.caption').slideUp(205)
                 }
-            );                                      
+            );
         });
 
 // ====================================================

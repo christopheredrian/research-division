@@ -9,8 +9,8 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                        ABOUT-P
 ======================================================*/
 
-#about-p1 {
-    margin: 100px 0;
+.about-p1{
+    padding:50px 0 100px 0;
 }
 
 .about-p1-cont {
@@ -62,7 +62,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 ======================================================*/
 
 .about-p2 {
-    padding: 100px;
+    padding: 30px;
 }
 
 .about-p2-heading {
@@ -125,7 +125,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 }
 
 .about-p3 .container{
-    padding-top:100px;
+    padding-top:10px;
 }
 
 .about-p3 .container .story-himg-middle-u{

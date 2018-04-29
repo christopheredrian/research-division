@@ -4,11 +4,6 @@
     <link rel="stylesheet" href="/pub2/css/contact.css">
 @endsection
 
-@section('scripts')
-    <script src="/pub2/js/jquery-easing/jquery.easing.min.js"></script>
-    <script src="/pub2/js/custom.js"></script>
-@endsection
-
 @section('content')
 
     <!--====================================================
@@ -47,8 +42,9 @@
                             Email: <a href="mailto:sanggunianrd@gmail.com">sanggunianrd@gmail.com</a>
                         </address>
                         <ul class="list-inline social-icon-f top-data">
-                            <li><a href="https://facebook.com/InfoSentiA" target="_empty"><i class="fa top-social fa-facebook"
-                                                               style="height: 35px; width:35px; line-height: 35px;"></i></a>
+                            <li><a href="https://facebook.com/InfoSentiA" target="_empty"><i
+                                            class="fa top-social fa-facebook"
+                                            style="height: 35px; width:35px; line-height: 35px;"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -62,6 +58,13 @@
     ======================================================-->
     <service class="contact-p2" id="contact-p2">
         <div class="container">
+
+            @if(Session('flash_message'))
+
+                <p class="alert alert-success">{{ Session('flash_message') }}</p>
+
+            @endif
+
             <form id="contact" action="/contact" method="post" role="form" class="form contactForm">
                 {{ csrf_field() }}
 
@@ -90,14 +93,16 @@
                     </div>
                     <div class="col-md-12">
                         <div class="form-group">
-                                                <textarea class="form-control" name="message" rows="5"
+                                                <textarea id="message" class="form-control" name="message" rows="5"
                                                           data-rule="required" data-msg="Please write something for us"
                                                           placeholder="Message" required></textarea>
                             <div class="validation"></div>
                         </div>
                     </div>
                     <div class="submit col-md-12 sub-but text-center">
-                        <button class="btn btn-general btn-white" type="submit" role="button">Send</button>
+                        <button id="send" class="btn btn-general btn-white" onclick="validateForm()" type="submit"
+                                value="submit">Send
+                        </button>
                     </div>
                 </div>
             </form>
@@ -116,4 +121,20 @@
         </div>
     </section>
 
+@endsection
+@section('scripts')
+    <script>
+        function validateForm(x) {
+            var name = document.forms["contact"]["name"].value;
+            var email = document.forms["contact"]["email"].value;
+            var subject = document.forms["contact"]["subject"].value;
+            var message = document.forms["contact"]["message"].value;
+            if (name == "" || email == "" || subject == "" || message == "") {
+
+            } else
+                document.getElementById('contact').submit();
+        }
+
+        $('#flash').delay(500).fadeIn(250).delay(5000).fadeOut(500);
+    </script>
 @endsection
