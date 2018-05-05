@@ -60,26 +60,39 @@
                                         <div class="heading-border-light"></div>
                                     </div>
                                     <div class="row">
-                                        @foreach($monitoringOrd as $ordinance)
-                                            <div class="col-md-3 col-sm-6 desc-comp-offer wow fadeInUp"
-                                                 data-wow-delay="0.8s">
-                                                <div class="desc-comp-offer-cont" style="text-align: center">
-                                                    <div class="thumbnail-blogs">
-                                                        <div class="caption">
-                                                            <i class="fa fa-chain"></i>
+
+                                        <div class="owl-carousel owl-theme col-12">
+
+                                            @foreach($monitoringOrd as $ordinance)
+
+                                                <div class="item">
+
+                                                    <div class="desc-comp-offer wow fadeInUp"
+                                                         data-wow-delay="0.8s">
+                                                        <div class="desc-comp-offer-cont" style="text-align: center">
+                                                            <div class="bg-starship" style="padding: 20px">
+                                                                <h5 style="color: white">Hello</h5>
+                                                            </div>
+                                                            {{--<div class="thumbnail-blogs">--}}
+                                                            {{--<div class="caption">--}}
+                                                            {{--<i class="fa fa-chain"></i>--}}
+                                                            {{--</div>--}}
+                                                            {{--<img src="/pub2/img/img/res.jpg" class="img-fluid" alt="...">--}}
+                                                            {{--</div>--}}
+                                                            {{--<h3>{{ str_limit($ordinance->title, $limit = 120, $end = '...') }}</h3>--}}
+                                                            <p class="desc" style="margin-top: 10px;">
+                                                                {{--{{ str_limit($ordinance->title, $limit = 120, $end = '...') }}--}}
+                                                                {!! Str::words($ordinance->title, 30,'...')  !!}
+                                                            </p>
+                                                            <a href="/public/showOrdinance/{{$ordinance->id}}"><i
+                                                                        class="fa fa-arrow-circle-o-right"></i> Read
+                                                                More</a>
                                                         </div>
-                                                        <img src="/pub2/img/img/res.jpg" class="img-fluid" alt="...">
                                                     </div>
-                                                    <h3>{{ str_limit($ordinance->title, $limit = 200, $end = '...') }}</h3>
-                                                    {{--<p class="desc">--}}
-                                                    {{----}}
-                                                    {{--</p>--}}
-                                                    <a href="/public/showOrdinance/{{$ordinance->id}}">
-                                                        <i class="fa fa-arrow-circle-o-right"></i> Read More
-                                                    </a>
+
                                                 </div>
-                                            </div>
-                                        @endforeach
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
 
@@ -92,45 +105,49 @@
                                 ======================================================-->
                                 <br/>
                                 <div class="container-fluid">
-                                    <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.1s">
+                                    <div class="desc-comp-offer">
                                         <h2>Resolutions Currently Being Monitored</h2>
                                         <div class="heading-border-light"></div>
                                     </div>
                                     <div class="row">
-                                        @foreach($monitoringRes as $resolution)
-                                            <div class="col-md-3 col-sm-6 desc-comp-offer wow fadeInUp"
-                                                 data-wow-delay="0.8s">
-                                                <div class="desc-comp-offer-cont" style="text-align: center">
-                                                    <div class="thumbnail-blogs">
-                                                        <div class="caption">
-                                                            <i class="fa fa-chain"></i>
+                                        <div class="owl-carousel owl-theme col-12">
+                                            @foreach($monitoringRes as $resolution)
+                                                <div class="item">
+
+                                                    <div class="desc-comp-offer">
+                                                        <div class="desc-comp-offer-cont" style="text-align: center">
+                                                            <div class="bg-starship" style="padding: 20px">
+                                                                <h5 style="color: white">Hello</h5>
+                                                            </div>
+                                                            {{--<div class="thumbnail-blogs">--}}
+                                                            {{--<div class="caption">--}}
+                                                            {{--<i class="fa fa-chain"></i>--}}
+                                                            {{--</div>--}}
+                                                            {{--<img src="/pub2/img/img/res.jpg" class="img-fluid" alt="...">--}}
+                                                            {{--</div>--}}
+                                                            {{--<h3>{{ str_limit($ordinance->title, $limit = 120, $end = '...') }}</h3>--}}
+                                                            <p class="desc" style="margin-top: 10px">
+                                                                {{--                                                        {{ str_limit($resolution->title, $limit = 200, $end = '...') }}--}}
+                                                                {!! Str::words($resolution->title, 30,'...')  !!}
+                                                            </p>
+                                                            <a href="/public/showResolution/{{$resolution->id}}">
+                                                                <i class="fa fa-arrow-circle-o-right"></i> Read More
+                                                            </a>
                                                         </div>
-                                                        <img src="/pub2/img/img/res.jpg" class="img-fluid" alt="...">
                                                     </div>
-                                                    <h3>{{ str_limit($resolution->title, $limit = 200, $end = '...') }}</h3>
-                                                    {{--<p class="desc">--}}
-                                                    {{----}}
-                                                    {{--</p>--}}
-                                                    <a href="/public/showResolution/{{$resolution->id}}">
-                                                        <i class="fa fa-arrow-circle-o-right"></i> Read More
-                                                    </a>
+
                                                 </div>
-                                            </div>
-                                        @endforeach
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
-
     </section>
-
-
 
     <!--====================================================
                          WHAT WE DO
@@ -216,13 +233,20 @@
 
                             <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.4s">
                                 <div class="desc-comp-offer-cont" style="text-align: center">
-                                    <div class="thumbnail-blogs">
-                                        <div class="caption">
-                                            <i class="fa fa-chain"></i>
-                                        </div>
-                                        <img src="/pub2/img/img/res.jpg" class="img-fluid" alt="...">
+                                    {{--<div class="thumbnail-blogs">--}}
+                                    {{--<div class="caption">--}}
+                                    {{--<i class="fa fa-chain"></i>--}}
+                                    {{--</div>--}}
+                                    {{--<img src="/pub2/img/img/res.jpg" class="img-fluid" alt="...">--}}
+                                    {{--</div>--}}
+                                    <div class="bg-chathams" style="padding: 30px">
+                                        <h5 style="color: white">Hello</h5>
                                     </div>
-                                    <h3>{{ str_limit($ordinance->title, $limit = 120, $end = '...') }}</h3>
+                                    {{--<h3>{{ str_limit($ordinance->title, $limit = 120, $end = '...') }}</h3>--}}
+                                    <p class="desc" style="margin-top: 10px;">
+                                        {{--{{ str_limit($ordinance->title, $limit = 120, $end = '...') }}--}}
+                                        {!! Str::words($ordinance->title, 30,'...')  !!}
+                                    </p>
                                     <a href="/public/showOrdinance/{{$ordinance->id}}"><i
                                                 class="fa fa-arrow-circle-o-right"></i> Read More</a>
                                 </div>
@@ -245,13 +269,20 @@
 
                             <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.4s">
                                 <div class="desc-comp-offer-cont" style="text-align: center">
-                                    <div class="thumbnail-blogs">
-                                        <div class="caption">
-                                            <i class="fa fa-chain"></i>
-                                        </div>
-                                        <img src="/pub2/img/img/res.jpg" class="img-fluid" alt="...">
+                                    {{--<div class="thumbnail-blogs">--}}
+                                    {{--<div class="caption">--}}
+                                    {{--<i class="fa fa-chain"></i>--}}
+                                    {{--</div>--}}
+                                    {{--<img src="/pub2/img/img/res.jpg" class="img-fluid" alt="...">--}}
+                                    {{--</div>--}}
+                                    <div class="bg-chathams" style="padding: 20px">
+                                        <h5 style="color: white">Hello</h5>
                                     </div>
-                                    <h3>{{ str_limit($resolution->title, $limit = 120, $end = '...') }}</h3>
+                                    {{--<h3>{{ str_limit($resolution->title, $limit = 120, $end = '...') }}</h3>--}}
+                                    <p class="desc" style="margin-top: 10px;">
+                                        {{--                                        {{ str_limit($resolution->title, $limit = 120, $end = '...') }}--}}
+                                        {!! Str::words($resolution->title, 30,'...')  !!}
+                                    </p>
                                     <a href="/public/showResolution/{{$resolution->id}}"><i
                                                 class="fa fa-arrow-circle-o-right"></i> Read More</a>
                                 </div>
@@ -276,9 +307,9 @@
     <script>
         var owl = $('.owl-carousel');
         owl.owlCarousel({
-            rtl:true,
-            margin:10,
-            nav:true
+            rtl: true,
+            margin: 10,
+            nav: true
         });
     </script>
 @endsection
