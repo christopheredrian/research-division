@@ -100,7 +100,8 @@
                         </div>
                     </div>
                     <div class="submit col-md-12 sub-but text-center">
-                        <button id="send" class="btn btn-general btn-white" onclick="submitform('contact')" type="submit"
+                        <button id="send" class="btn btn-general btn-white" onclick="submitform('contact')"
+                                type="submit"
                                 value="submit">Send
                         </button>
                     </div>
@@ -115,7 +116,9 @@
     <section id="contact-add">
         <div id="map">
             <div class="map-responsive">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d6030.418742494061!2d-111.34563870463673!3d26.01036670629853!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1471908546569"
+                {{--<iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d6030.418742494061!2d-111.34563870463673!3d26.01036670629853!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2smx!4v1471908546569"--}}
+                {{--width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>--}}
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5412.508393482443!2d120.58967725508535!3d16.413578918578363!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3391a1660714d85b%3A0xfc1420eb5a454b71!2sCity+Planning+%26+Dev&#39;t+Officer!5e0!3m2!1sen!2sph!4v1525562208424"
                         width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
             </div>
         </div>
