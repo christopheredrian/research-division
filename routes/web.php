@@ -53,7 +53,7 @@ Route::get('/search', 'SearchController@index');
 
 /* Admin routes */
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
-
+    Route::resource('messages', 'Admin\\MessageController');
     Route::get('/messages', 'Admin\\MessageController@index');
     Route::get('/messages/{id}', 'Admin\\MessageController@show');
 

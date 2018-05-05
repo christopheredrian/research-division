@@ -69,7 +69,37 @@
                             <td>{{ $message->subject  }}</td>
                             <td>{{ str_limit($message->message, $limit = 150, $end = '...') }}</td>
                             <td>{{ $message->created_at }}</td>
-                            <td><a class="btn btn-info" href="/admin/messages/{{ $message->id }}">Full Message</a></td>
+                            <td><a class="btn btn-info" href="/admin/messages/{{ $message->id }}">Full Message</a>
+                                <a class="btn btn-danger" data-toggle="modal" data-target="#exampleModal{{$message->id}}">
+                                Delete
+                                </a></td>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModal{{$message->id}}" tabindex="-1" role="dialog"
+                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h3 class="modal-title" id="exampleModalLabel">Confirm Delete</h3>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            Are you sure you want to delete {{$message->subject}}?
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close
+                                            </button>
+                                            <form action="/admin/messages/{{ $message->id }}" method="post">
+                                                {{ method_field('DELETE') }}
+                                                {{ csrf_field() }}
+                                                <button class="btn btn-danger">Delete</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </tr>
                     @endforeach
                     </tbody>

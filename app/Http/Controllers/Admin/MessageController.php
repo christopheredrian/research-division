@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Message;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class MessageController extends Controller
 {
@@ -44,6 +45,13 @@ class MessageController extends Controller
         return view('admin.contact.show', [
             'message' => Message::findOrFail($id)
         ]);
+    }
+    public function destroy($id)
+    {
+        Message::destroy($id);
+        Session::flash('flash_message', "Delete Successful!");
+
+        return redirect('/admin/messages');
     }
 
 }
