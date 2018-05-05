@@ -151,7 +151,7 @@
                                                    value="{{ request()->input('col-keywords') }}"></td>
                                         <td><input class="btn btn-primary col-12" type="submit" value="Filter"></td>
 
-                                        <button type="submit" onclick="form_submit('ordinance_form')"
+                                        <button type="submit" onclick="submit()"
                                                 class="btn btn-general btn-blue mr-2" style="display: none">Go
                                         </button>
                                     </form>

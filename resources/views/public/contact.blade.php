@@ -100,7 +100,7 @@
                         </div>
                     </div>
                     <div class="submit col-md-12 sub-but text-center">
-                        <button id="send" class="btn btn-general btn-white" onclick="validateForm()" type="submit"
+                        <button id="send" class="btn btn-general btn-white" onclick="submitform('contact')" type="submit"
                                 value="submit">Send
                         </button>
                     </div>

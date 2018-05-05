@@ -4,8 +4,9 @@
     <!--====================================================
                           BUSINESS-GROWTH-P1
     ======================================================-->
-    <section id="business-growth-p1" class="business-growth-p1 bg-white">
-        <div class="container">
+
+    <section id="business-growth-p1" class="business-growth-p1 bg-gradiant">
+        <div class="container bg-white">
             <div class="row title-bar">
                 <div class="col-md-12">
                     <h1 class="wow fadeInUp">Ordinance {{ $ordinance->number }}</h1>
@@ -15,17 +16,19 @@
                     </p>
                 </div>
                 <div class="col-md-7">
-                    <div class="panel panel-info">
-                        <div class="panel-body">
-                            @if($ordinance->pdf_link)
-                                <iframe src="{{$ordinance->pdf_link}}"
-                                        width='100%' height='350' allowfullscreen="" webkitallowfullscreen
-                                        frameborder="0"></iframe>
-                            @else
-                                <h3 class="text-center">PDF not available.</h3>
-                            @endif
+
+                    @if($ordinance->pdf_link)
+                        <div class="service-himg">
+                            <iframe src="{{$ordinance->pdf_link}}"
+                                    width='100%' height='350' allowfullscreen="" webkitallowfullscreen
+                                    frameborder="1"></iframe>
                         </div>
-                    </div>
+                    @else
+                        <div style="padding: 10px; border: dashed #60b4e8">
+                            <h3 class="text-center">PDF not available.</h3>
+                        </div>
+                    @endif
+
                 </div>
                 <div class="col-md-5">
                     <div class="panel panel-info">
@@ -56,7 +59,7 @@
 
                             @endif
 
-                            <table class="table table-striped table-bordered">
+                            <table class="table table-bordered">
                                 <thead>
                                 <tr>
                                     <th>Ordinance Number</th>
@@ -106,43 +109,65 @@
                     </div>
                 @endif
             </div>
-        </div>
-        @if($ordinance->is_accepting == 1)
-            <div class="container pb-cmnt-container" style="border-top: dotted lightseagreen; padding-top: 20px">
-                <div class="row">
-                    <div class="col-md-6 col-md-offset-3">
-                        <div class="panel panel-info">
-                            <div class="panel-body">
-                                <form method="post" action="{{ url("/suggestions/{$ordinance->id }/") }}">
-                                    {{ csrf_field() }}
+            @if($ordinance->is_accepting == 1)
+                <div class="container"
+                     style="border-top: dashed lightseagreen; padding-top: 20px">
+                    @if(Session('flash_message'))
+
+                        <p class="alert alert-success">{{ Session('flash_message') }}</p>
+
+                    @endif
+                    <div class="row">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6 col-md-offset-3">
+                            <div class="container bg-gray" style="padding: 20px 20px 10px 20px">
+                            <form id="comment-ordinance" method="post" action="{{ url("/suggestions/{$ordinance->id }/") }}"
+                                  class="form">
+                                {{ csrf_field() }}
+                                <div class="form-group">
                                     <input class="form-control" type="text" name="first_name"
                                            placeholder="First Name" value="{{ old('first_name') }}">
+                                </div>
+                                <div class="form-group">
                                     <input class="form-control" type="text" name="last_name"
                                            placeholder="Last Name" value="{{ old('last_name') }}">
+                                </div>
+                                <div class="form-group">
                                     <input class="form-control" type="hidden" name="type" value="ordinance">
+                                </div>
+                                <div class="form-group">
                                     <input class="form-control" type="email" name="email" placeholder="Email"
                                            value="{{ old('email') }}">
-                                    <textarea required class="form-control" name="suggestion" rows="5"
-                                              placeholder="Please give us your suggestion on this ordinance">{{ old('suggestion') }}</textarea>
+                                </div>
+                                <div class="form-group">
+                                <textarea id="message" required class="form-control" name="suggestion" rows="5"
+                                          placeholder="Please give us your suggestion on this ordinance"
+                                          required>{{ old('suggestion') }}</textarea>
+                                </div>
 
-                                    {!! NoCaptcha::display() !!}
-                                    @if ($errors->has('g-recaptcha-response'))
-                                        <span class="help-block">
+
+                                {!! NoCaptcha::display() !!}
+                                @if ($errors->has('g-recaptcha-response'))
+                                    <span class="help-block">
                                             <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
                                         </span>
-                                    @endif
+                                @endif
 
-                                    <div class="form-inline">
-                                        <button class="btn btn-success pull-right" type="submit"><i
+
+                                <div class="form-group">
+                                    <div class="submit col-md-12 sub-but text-center">
+                                        <button class="btn btn-success" type="submit" onclick="submitform('comment-ordinance')">
+                                            <i
                                                     class="fa fa-paper-plane"></i> Send Now
                                         </button>
                                     </div>
-                                </form>
+                                </div>
+                            </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                @endif
-            </div>
+            @endif
+        </div>
     </section>
 @endsection

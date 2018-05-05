@@ -186,9 +186,14 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 <!-- Plugin JavaScript -->
 <script src="/pub2/js/jquery-easing/jquery.easing.min.js"></script>
 <script src="/pub2/js/custom.js"></script>
-<script type="text/javascript">
-    function form_submit(x) {
-        document.getElementById(x).submit();
+<script>
+    function submitform(x) {
+        var f = document.getElementById(x);
+        if (f.checkValidity()) {
+            f.submit();
+        } else {
+
+        }
     }
 </script>
 @yield('scripts')

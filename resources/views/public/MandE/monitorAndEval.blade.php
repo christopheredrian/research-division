@@ -50,7 +50,7 @@
                                     <input name="q" value="{{ request()->q }}"
                                            class="form-control" type="search"
                                            placeholder="Search...">
-                                    <button type="submit" onclick="form_submit('search2')"
+                                    <button type="submit" onclick="submit()"
                                             class="btn btn-general btn-blue mr-2" style="display: none">Go
                                     </button>
                                 </form>
