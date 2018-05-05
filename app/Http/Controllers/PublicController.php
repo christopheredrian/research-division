@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\Storage;
 use Session;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Str;
 
 
 class PublicController extends Controller
@@ -143,13 +144,13 @@ class PublicController extends Controller
         $monitoringOrdinances = Ordinance::where('is_monitoring', 1)
             ->orWhere('is_accepting' , 1)
             ->orderby('created_at', 'asc')
-            ->limit(5)
+//            ->limit(4)
             ->get();
 
         $monitoringResolutions = Resolution::where('is_monitoring', 1)
             ->orWhere('is_accepting' , 1)
             ->orderby('created_at', 'asc')
-            ->limit(5)
+//            ->limit(4)
             ->get();
 
         $monitoredOrdinances = Ordinance::where('is_monitored', 1)
