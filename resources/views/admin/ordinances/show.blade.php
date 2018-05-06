@@ -196,7 +196,7 @@
                             <a href="{{($ordinance->pdf_file_path === "" or $ordinance->pdf_file_path == null) ? '#' : ("/downloadPDF/ordinances/".$ordinance->pdf_file_name)}}"
                                class="btn btn-success {{($ordinance->pdf_file_path === "" or $ordinance->pdf_file_path == null)? 'disabled' : ''}}">
                                 <i class="fa fa-download"></i>
-                                 Download Ordinance
+                                Download Ordinance
                             </a>
                         </div>
                     </div>
@@ -385,9 +385,9 @@
         </div>
     @endif
     <div class="row">
-        @if(isset($isNLPEnabled) and $ordinance->facebook_post_id !== null)
+        @if(isset($isNLPEnabled))
             <div class="col-md-3 text-center">
-                <h4><strong>Ordinance Pulse (Facebook)</strong></h4>
+                <h4><strong>Ordinance Pulse</strong></h4>
                 @if($facebook_comments)
                     <canvas id="pulseChart" width="220" height="240"></canvas>
                 @else
@@ -396,7 +396,7 @@
 
             </div>
         @endif
-        <div class="col-md-{{ (isset($isNLPEnabled) and $ordinance->facebook_post_id !== null) ? '9' : '12'}}">
+        <div class="col-md-{{ (isset($isNLPEnabled)) ? '9' : '12'}}">
             {{--<div class="row">--}}
             <div class="box box-danger color-palette-box">
                 <div class="box-header with-border">
@@ -437,37 +437,51 @@
 
                     <div class="tab-content">
                         <div id="comments" class="tab-pane fade in active">
-                            <div class="box-body box-comments">
-                                @php
-                                    $counter=0;
-                                @endphp
-                                @foreach($ordinance->suggestions as $suggestion)
-                                    @if($counter == 3)
-                                        @php
-                                            break;
-                                        @endphp
-                                    @endif
-
-                                    <div class="box-comment">
-                                        <!-- User image -->
-                                        {{--<img class="img-circle img-sm" src="/dist/img/user3-128x128.jpg" alt="User Image">--}}
-
-                                        <div class="comment-text">
-                                                  <span class="username">
-                                                    {{ $suggestion->first_name }} {{ $suggestion->last_name }}
-                                                      <span class="text-muted pull-right">{{ $suggestion->created_at }}</span>
-                                                  </span><!-- /.username -->
-                                            {{ $suggestion->suggestion }}
-                                        </div>
-                                        <!-- /.comment-text -->
-                                    </div>
+                            @if(empty($suggestions))
+                                <h4 class="text-center">No comments as of yet.</h4>
+                            @else
+                                <div class="box-body box-comments">
                                     @php
-                                        $counter=$counter+1;
+                                        $counter=0;
                                     @endphp
-                                @endforeach
-                                <a href="/admin/showComments/{{$ordinance->id}}/ordinances" class="pull-right">View
-                                    all</a>
-                            </div>
+                                    @foreach($suggestions as $suggestion)
+                                        @if($counter == 3)
+                                            @php
+                                                break;
+                                            @endphp
+                                        @endif
+
+                                        <div class="box-comment">
+                                            <!-- User image -->
+                                            @if($suggestion['sentiment'] === 'positive')
+                                                <i class="pull-left fa fa-smile-o text-success"></i>
+                                                Positive
+                                            @elseif($suggestion['sentiment'] === 'negative')
+                                                <i class="pull-left fa fa-minus text-danger"></i> Negative
+                                            @elseif($suggestion['sentiment'] === 'neutral')
+                                                <i class="pull-left fa fa-warning text-warning"></i> Neutral
+                                            @else
+                                                N/A
+                                            @endif
+
+                                            <div class="comment-text">
+                                                  <span class="username">
+                                                    {{ $suggestion['first_name'] }} {{ $suggestion['last_name'] }}
+                                                      <span class="text-muted pull-right">{{ $suggestion['created_at'] }}</span>
+                                                  </span><!-- /.username -->
+                                                {{ $suggestion['suggestion'] }}
+                                            </div>
+                                            <!-- /.comment-text -->
+                                        </div>
+                                        @php
+                                            $counter=$counter+1;
+                                        @endphp
+                                    @endforeach
+                                    <a href="/admin/showComments/{{$ordinance->id}}/ordinances" class="pull-right">View
+                                        all</a>
+                                </div>
+                            @endif
+
                         </div>
 
                         @if(isset($isNLPEnabled) and $ordinance->facebook_post_id !== null)
@@ -543,41 +557,41 @@
             }, true);
         }
     </script>
-    @if($facebook_comments)
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
-        <script async="false">
-            var config = {
-                type: 'doughnut',
-                data: {
-                    datasets: [{
-                        data: [
-                            {{isset($positive_count) ? $positive_count : 0}},
-                            {{isset($negative_count) ? $negative_count : 0}},
-                            {{isset($neutral_count) ? $neutral_count : 0}}
-                        ],
-                        backgroundColor: [
-                            "#46BFBD",
-                            "#F7464A",
-                            "#FDB45C"
-                        ],
-                    }],
-                    labels: [
-                        "Positive Sentiments",
-                        "Negative Sentiments",
-                        "Neutral Sentiments"
-                    ]
-                },
-                options: {
-                    responsive: true
-                }
-            };
 
-            window.onload = function () {
-                var ctx = document.getElementById("pulseChart").getContext("2d");
-                window.myPie = new Chart(ctx, config);
-            };
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+    <script async="false">
+        var config = {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [
+                        {{isset($positive_count) ? $positive_count : 0}},
+                        {{isset($negative_count) ? $negative_count : 0}},
+                        {{isset($neutral_count) ? $neutral_count : 0}}
+                    ],
+                    backgroundColor: [
+                        "#46BFBD",
+                        "#F7464A",
+                        "#FDB45C"
+                    ],
+                }],
+                labels: [
+                    "Positive Sentiments",
+                    "Negative Sentiments",
+                    "Neutral Sentiments"
+                ]
+            },
+            options: {
+                responsive: true
+            }
+        };
 
-        </script>
-    @endif
+        window.onload = function () {
+            var ctx = document.getElementById("pulseChart").getContext("2d");
+            window.myPie = new Chart(ctx, config);
+        };
+
+    </script>
+
 @endsection

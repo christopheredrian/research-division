@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\NLPUtilities;
 use App\Ordinance;
 use App\Questionnaire;
 use App\Resolution;
@@ -10,6 +11,7 @@ use App\Response;
 use DB;
 use App\Answer;
 use App\Question;
+use Facebook\Exceptions\FacebookResponseException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
@@ -177,34 +179,63 @@ class ResultController extends Controller
     }
 
     public function showComments($id, $flag, Request $request){
-
-//        if ($request->from && $request->to){
-////            dd(date($request->to));
-//            $from = new Carbon($request->from);
-//            $to = new Carbon($request->to);
-//            $to->addDay();
-//
-//            $logs = $suggestions->where('created_at', '<=', $to->toDateString())
-//                ->where('created_at', '>', $from->toDateString())
-//                ->orderBy('id','desc')
-//                ->paginate(15);
-//        } else{
-//            $logs=$suggestions->orderBy('id', 'desc')->paginate(15);
-//        }
         if($flag=='ordinances'){
             $ordinance = Ordinance::find($id);
+            $legislation_number = $ordinance->number;
+            $series = $ordinance->series;
             $suggestions = $ordinance->suggestions;
-
-
         }else{
             $resolution = Resolution::find($id);
+            $legislation_number = $resolution->number;
+            $series = $resolution->series;
             $suggestions = $resolution->suggestions;
         }
 
+        // Get sentiments of system comments
+        foreach ($suggestions as $suggestion) {
+            $temp_sentences[] = $suggestion->suggestion;
+        }
+
+        $sentiments = NLPUtilities::getSentiments($temp_sentences);
+        $suggestions_with_sentiments = $suggestions->toArray();
+
+        for($i = 0; $i < count($suggestions_with_sentiments); $i++) {
+            $suggestions_with_sentiments[$i]['sentiment'] = $sentiments[$i]->sentiment;
+        }
+
+        $suggestions_with_sentiments = collect($suggestions_with_sentiments);
+
+        // Get sentiments of Facebook comments
+        if (NLPUtilities::isNLPEnabled()) {
+            try{
+                if($flag=='ordinances'){
+                    $facebook_comments = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($ordinance);
+                } else {
+                    $facebook_comments = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($resolution);
+                }
+            } catch(FacebookResponseException $e) {
+                if($flag=='ordinances'){
+                    $ordinance->facebook_post_id = null;
+                    $ordinance->save();
+                } else {
+                    $resolution->facebook_post_id = null;
+                    $resolution->save();
+                }
+
+                $facebook_comments = [];
+            }
+
+            $isNLPEnabled = 1;
+        }
+
         return view('admin.result.showComments', [
-            'suggestions' => $suggestions,
+            'suggestions' => $suggestions_with_sentiments,
+            'facebook_comments' => $facebook_comments,
+            'isNLPEnabled'=> $isNLPEnabled,
             'pass_id' => $id,
-            'flag' => $flag
+            'flag' => $flag,
+            'series' => $series,
+            'legislation_number' => $legislation_number,
         ]);
 
     }
