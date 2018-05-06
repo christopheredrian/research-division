@@ -181,6 +181,37 @@ class OrdinancesController extends Controller
             'flag' => FormsController::ORDINANCES,
         ];
 
+        $variables['positive_count'] = 0;
+        $variables['negative_count'] = 0;
+        $variables['neutral_count'] = 0;
+
+        // Get sentiments of system comments
+        $temp_sentences = [];
+        $suggestions = $ordinance->suggestions;
+        foreach ($suggestions as $suggestion) {
+            $temp_sentences[] = $suggestion->suggestion;
+        }
+
+        if(!@empty($temp_sentences)){
+            $sentiments = NLPUtilities::getSentiments($temp_sentences);
+            $suggestions_with_sentiments = $suggestions->toArray();
+
+            for($i = 0; $i < count($suggestions_with_sentiments); $i++) {
+                $suggestions_with_sentiments[$i]['sentiment'] = $sentiments[$i]->sentiment;
+                if($suggestions_with_sentiments[$i]['sentiment'] === 'positive'){
+                    $variables['positive_count']++;
+                } elseif ($suggestions_with_sentiments[$i]['sentiment'] === 'negative') {
+                    $variables['negative_count']++;
+                } else {
+                    $variables['neutral_count']++;
+                }
+                $variables['suggestions'] = $suggestions_with_sentiments;
+            }
+        }else {
+            $variables['suggestions'] = [];
+        }
+        // End of getting sentiments of system comments
+
         if (NLPUtilities::isNLPEnabled()) {
             try{
                 $variables['facebook_comments'] = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($ordinance);
@@ -192,10 +223,6 @@ class OrdinancesController extends Controller
             $variables['isNLPEnabled'] = 1;
 
             if($ordinance->facebook_post_id !== null){
-                $variables['positive_count'] = 0;
-                $variables['negative_count'] = 0;
-                $variables['neutral_count'] = 0;
-
                 foreach ($variables['facebook_comments'] as $facebook_comment) {
                     if($facebook_comment['result']->sentiment === 'positive'){
                         $variables['positive_count']++;

@@ -1,6 +1,8 @@
 @extends('layouts.admin')
 
 @section('styles')
+    <link rel="stylesheet" type="text/css" href="/DataTables/datatables.min.css"/>
+
     <style>
         .box-comment > i {
             height: 100%;
@@ -120,7 +122,9 @@
                                     Public Link: <a
                                             href="/answer.r/{{$resolution->id}}">{{env("APP_URL", " ").'answer.r/'.$resolution->id}}</a>
                                     <br>
-                                    Required Link: <a href="/answer.r/{{$resolution->id}}/required">{{env("APP_URL", " ").'answer.r/'.$resolution->id}}/required</a>
+                                    Required Link: <a
+                                            href="/answer.r/{{$resolution->id}}/required">{{env("APP_URL", " ").'answer.r/'.$resolution->id}}
+                                        /required</a>
                                 @endif
                             @endif
                         </p>
@@ -244,119 +248,120 @@
     </div>
 
     @if($resolution->is_monitoring)
-    <div class="row">
-        @if($resolution->is_monitoring)
-            <div class="col-md-7">
-                <div class="panel panel-info">
-                    <div class="panel-body">
-                        @if($resolution->pdf_link)
-                            <iframe src="{{$resolution->pdf_link}}"
-                                    width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
-                        @else
-                            <h3 class="text-center">PDF not available.</h3>
-                        @endif
+        <div class="row">
+            @if($resolution->is_monitoring)
+                <div class="col-md-7">
+                    <div class="panel panel-info">
+                        <div class="panel-body">
+                            @if($resolution->pdf_link)
+                                <iframe src="{{$resolution->pdf_link}}"
+                                        width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
+                            @else
+                                <h3 class="text-center">PDF not available.</h3>
+                            @endif
+                        </div>
                     </div>
                 </div>
-            </div>
-        @endif
+            @endif
 
-        <div class="col-md-5">
-            <div class="box box-success color-palette-box">
-                <div class="box-header with-border">
-                    <ul class="nav nav-tabs">
-                        <li class="active"><a data-toggle="tab" href="#status">Status Report</a></li>
-                        <li {{($resolution->statusReport === null or $resolution->statusReport->pdf_file_path === " ") ? "class=disabled" : ' '}}>
-                            <a {{($resolution->statusReport === null or $resolution->statusReport->pdf_file_path === " ") ? ' ' : "data-toggle=tab" }} href="#update">
-                                Update Reports
-                            </a>
-                        </li>
-                    </ul>
+            <div class="col-md-5">
+                <div class="box box-success color-palette-box">
+                    <div class="box-header with-border">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a data-toggle="tab" href="#status">Status Report</a></li>
+                            <li {{($resolution->statusReport === null or $resolution->statusReport->pdf_file_path === " ") ? "class=disabled" : ' '}}>
+                                <a {{($resolution->statusReport === null or $resolution->statusReport->pdf_file_path === " ") ? ' ' : "data-toggle=tab" }} href="#update">
+                                    Update Reports
+                                </a>
+                            </li>
+                        </ul>
 
-                </div>
-                <div class="box-body">
-                    <div class="tab-content">
-                        <div id="status" class="tab-pane fade in active">
-                            <div class="row" style="margin-bottom: 5px;">
-                                <div class="col-md-12">
-                                    <a href="/admin/resolutions/{{$resolution->id}}/upload-status-report"
-                                       class="btn btn-sm btn-group btn-soundcloud {{ $resolution->questionnaire === null  ? 'disabled' : ''}}">
-                                        <i class="fa fa-file-text"></i>
-                                        {{($resolution->statusReport === null or  $resolution->statusReport->pdf_file_path === " ") ? 'Upload' : 'Reupload'}}
-                                        Status Report
-                                    </a>
+                    </div>
+                    <div class="box-body">
+                        <div class="tab-content">
+                            <div id="status" class="tab-pane fade in active">
+                                <div class="row" style="margin-bottom: 5px;">
+                                    <div class="col-md-12">
+                                        <a href="/admin/resolutions/{{$resolution->id}}/upload-status-report"
+                                           class="btn btn-sm btn-group btn-soundcloud {{ $resolution->questionnaire === null  ? 'disabled' : ''}}">
+                                            <i class="fa fa-file-text"></i>
+                                            {{($resolution->statusReport === null or  $resolution->statusReport->pdf_file_path === " ") ? 'Upload' : 'Reupload'}}
+                                            Status Report
+                                        </a>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    @if($resolution->statusReport !== null and $resolution->statusReport->pdf_file_path !== " ")
-                                        <table class="table table-striped table-bordered">
-                                            <tr class="text-center">
-                                                <th>Status Report Name</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                            <tr>
-                                                <td>{{$resolution->statusReport->pdf_file_name}}</td>
-                                                <td>
-                                                    <a href="/downloadPDF/statusreports/{{$resolution->statusReport->pdf_file_name}}"
-                                                       class="btn btn-sm btn-primary">
-                                                        Download
-                                                    </a>
-                                                    <a href="/deletePDF/statusreports/{{$resolution->statusReport->pdf_file_name}}"
-                                                       class="btn btn-sm btn-danger deletePDFButton">
-                                                        Delete
-                                                    </a>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    @else
-                                        <div class="row text-center">
-                                            <h4>No uploaded status report.</h4>
-                                        </div>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="update" class="tab-pane fade">
-                            <div class="row" style="margin-bottom: 5px;">
-                                <div class="col-md-12">
-                                    <a href="/admin/resolutions/{{$resolution->id}}/upload-update-report"
-                                       class="btn btn-sm btn-group btn-primary ">
-                                        <i class="fa fa-file-text"></i>
-                                        Upload Update Report
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    @if($resolution->updateReport()->where('is_deleted', 0)->first())
-                                        <table class="table table-striped table-bordered">
-                                            <tr class="text-center">
-                                                <th>Update Report Name</th>
-                                                <th>Actions</th>
-                                            </tr>
-                                            @foreach($resolution->updateReport()->where('is_deleted', 0)->get() as $updateReport)
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @if($resolution->statusReport !== null and $resolution->statusReport->pdf_file_path !== " ")
+                                            <table class="table table-striped table-bordered">
+                                                <tr class="text-center">
+                                                    <th>Status Report Name</th>
+                                                    <th>Actions</th>
+                                                </tr>
                                                 <tr>
-                                                    <td>{{$updateReport->pdf_file_name}}</td>
+                                                    <td>{{$resolution->statusReport->pdf_file_name}}</td>
                                                     <td>
-                                                        <a href="/downloadPDF/updatereports/{{$updateReport->pdf_file_name}}"
-                                                           class="btn btn-xs btn-primary">
+                                                        <a href="/downloadPDF/statusreports/{{$resolution->statusReport->pdf_file_name}}"
+                                                           class="btn btn-sm btn-primary">
                                                             Download
                                                         </a>
-                                                        <a href="/deletePDF/updatereports/{{$updateReport->pdf_file_name}}"
-                                                           class="btn btn-xs btn-danger deletePDFButton">
+                                                        <a href="/deletePDF/statusreports/{{$resolution->statusReport->pdf_file_name}}"
+                                                           class="btn btn-sm btn-danger deletePDFButton">
                                                             Delete
                                                         </a>
                                                     </td>
                                                 </tr>
-                                            @endforeach
-                                        </table>
-                                    @else
-                                        <div class="row text-center">
-                                            <h4>No uploaded update reports.</h4>
-                                        </div>
-                                    @endif
+                                            </table>
+                                        @else
+                                            <div class="row text-center">
+                                                <h4>No uploaded status report.</h4>
+                                            </div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="update" class="tab-pane fade">
+                                <div class="row" style="margin-bottom: 5px;">
+                                    <div class="col-md-12">
+                                        <a href="/admin/resolutions/{{$resolution->id}}/upload-update-report"
+                                           class="btn btn-sm btn-group btn-primary ">
+                                            <i class="fa fa-file-text"></i>
+                                            Upload Update Report
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @if($resolution->updateReport()->where('is_deleted', 0)->first())
+                                            <table class="table table-striped table-bordered">
+                                                <tr class="text-center">
+                                                    <th>Update Report Name</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                                @foreach($resolution->updateReport()->where('is_deleted', 0)->get() as $updateReport)
+                                                    <tr>
+                                                        <td>{{$updateReport->pdf_file_name}}</td>
+                                                        <td>
+                                                            <a href="/downloadPDF/updatereports/{{$updateReport->pdf_file_name}}"
+                                                               class="btn btn-xs btn-primary">
+                                                                Download
+                                                            </a>
+                                                            <a href="/deletePDF/updatereports/{{$updateReport->pdf_file_name}}"
+                                                               class="btn btn-xs btn-danger deletePDFButton">
+                                                                Delete
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </table>
+                                        @else
+                                            <div class="row text-center">
+                                                <h4>No uploaded update reports.</h4>
+                                            </div>
+                                        @endif
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -364,20 +369,20 @@
                 </div>
             </div>
         </div>
-    </div>
     @endif
     <div class="row">
-        @if(isset($isNLPEnabled) and $resolution->facebook_post_id !== null)
+        @if(isset($isNLPEnabled))
             <div class="col-md-3 text-center">
-                <h3>Resolution Pulse (Facebook)</h3>
-                @if($facebook_comments)
-                    <canvas id="pulseChart" width="220" height="240"></canvas>
-                @else
+                <h3>Resolution Pulse </h3>
+                @if(!$facebook_comments and empty($suggestions))
                     <h5><i>No comments as of yet.</i></h5>
+                @else
+                    <canvas id="pulseChart" width="220" height="240"></canvas>
                 @endif
             </div>
         @endif
-        <div class="col-md-{{ (isset($isNLPEnabled) and $resolution->facebook_post_id !== null) ? '9' : '12'}}">
+
+        <div class="col-md-{{ (isset($isNLPEnabled)) ? '9' : '12'}}">
             {{--<div class="row">--}}
             <div class="box box-danger color-palette-box">
                 <div class="box-header with-border">
@@ -418,37 +423,50 @@
 
                     <div class="tab-content">
                         <div id="comments" class="tab-pane fade in active">
-                            <div class="box-body box-comments">
-                                @php
-                                    $counter=0;
-                                @endphp
-                                @foreach($resolution->suggestions as $suggestion)
-                                    @if($counter == 3)
-                                        @php
-                                            break;
-                                        @endphp
-                                    @endif
-
-                                    <div class="box-comment">
-                                        <!-- User image -->
-                                        {{--<img class="img-circle img-sm" src="/dist/img/user3-128x128.jpg" alt="User Image">--}}
-
-                                        <div class="comment-text">
-                                                  <span class="username">
-                                                    {{ $suggestion->first_name }} {{ $suggestion->last_name }}
-                                                      <span class="text-muted pull-right">{{ $suggestion->created_at }}</span>
-                                                  </span><!-- /.username -->
-                                            {{ $suggestion->suggestion }}
-                                        </div>
-                                        <!-- /.comment-text -->
-                                    </div>
+                            @if(empty($suggestions))
+                                <h4 class="text-center">No comments as of yet.</h4>
+                            @else
+                                <div class="box-body box-comments">
                                     @php
-                                        $counter=$counter+1;
+                                        $counter=0;
                                     @endphp
-                                @endforeach
-                                <a href="/admin/showComments/{{$resolution->id}}/resolutions" class="pull-right">View
-                                    all</a>
-                            </div>
+                                    @foreach($suggestions as $suggestion)
+                                        @if($counter == 3)
+                                            @php
+                                                break;
+                                            @endphp
+                                        @endif
+
+                                        <div class="box-comment">
+                                            <!-- User image -->
+                                            @if($suggestion['sentiment'] === 'positive')
+                                                <i class="pull-left fa fa-smile-o text-success"></i>
+                                                Positive
+                                            @elseif($suggestion['sentiment'] === 'negative')
+                                                <i class="pull-left fa fa-minus text-danger"></i> Negative
+                                            @elseif($suggestion['sentiment'] === 'neutral')
+                                                <i class="pull-left fa fa-warning text-warning"></i> Neutral
+                                            @else
+                                                N/A
+                                            @endif
+
+                                            <div class="comment-text">
+                                                  <span class="username">
+                                                    {{ $suggestion['first_name'] }} {{ $suggestion['last_name'] }}
+                                                      <span class="text-muted pull-right">{{ $suggestion['created_at'] }}</span>
+                                                  </span><!-- /.username -->
+                                                {{ $suggestion['suggestion'] }}
+                                            </div>
+                                            <!-- /.comment-text -->
+                                        </div>
+                                        @php
+                                            $counter=$counter+1;
+                                        @endphp
+                                    @endforeach
+                                    <a href="/admin/showComments/{{$resolution->id}}/resolutions" class="pull-right">View
+                                        all</a>
+                                </div>
+                            @endif
                         </div>
 
                         @if(isset($isNLPEnabled) and $resolution->facebook_post_id !== null)
@@ -510,44 +528,42 @@
         $('#postToFacebookButton').click(function (e) {
             var link = e.target;
             return confirm("Are you sure you want to post Resolution " + "{{$resolution->number . ' series of ' . $resolution->series}}" + " to Facebook?");
-        });git
+        });
     </script>
 
-    @if($facebook_comments)
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
-        <script async="false">
-            var config = {
-                type: 'doughnut',
-                data: {
-                    datasets: [{
-                        data: [
-                            {{isset($positive_count) ? $positive_count : 0}},
-                            {{isset($negative_count) ? $negative_count : 0}},
-                            {{isset($neutral_count) ? $neutral_count : 0}}
-                        ],
-                        backgroundColor: [
-                            "#46BFBD",
-                            "#F7464A",
-                            "#FDB45C"
-                        ],
-                    }],
-                    labels: [
-                        "Positive Sentiments",
-                        "Negative Sentiments",
-                        "Neutral Sentiments"
-                    ]
-                },
-                options: {
-                    responsive: true
-                }
-            };
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+    <script async="false">
+        var config = {
+            type: 'doughnut',
+            data: {
+                datasets: [{
+                    data: [
+                        {{isset($positive_count) ? $positive_count : 0}},
+                        {{isset($negative_count) ? $negative_count : 0}},
+                        {{isset($neutral_count) ? $neutral_count : 0}}
+                    ],
+                    backgroundColor: [
+                        "#46BFBD",
+                        "#F7464A",
+                        "#FDB45C"
+                    ],
+                }],
+                labels: [
+                    "Positive Sentiments",
+                    "Negative Sentiments",
+                    "Neutral Sentiments"
+                ]
+            },
+            options: {
+                responsive: true
+            }
+        };
 
-            window.onload = function () {
-                var ctx = document.getElementById("pulseChart").getContext("2d");
-                window.myPie = new Chart(ctx, config);
-            };
+        window.onload = function () {
+            var ctx = document.getElementById("pulseChart").getContext("2d");
+            window.myPie = new Chart(ctx, config);
+        };
 
-        </script>
-    @endif
+    </script>
 @endsection

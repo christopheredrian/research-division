@@ -105,6 +105,8 @@ class FacebookPostsController extends Controller
 
                 $sentiments = NLPUtilities::getSentiments($temp_sentences);
 
+//                dd($sentiments);
+
                 foreach ($sentiments as $k => $v) {
                     $results[$k]['result'] = $v;
                 }
