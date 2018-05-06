@@ -19,25 +19,25 @@
                             <input type="hidden" name="is_monitoring" value={{ request()->type === 'ME' ? 1 : 0 }}>
                             <div class="form-group {{$errors->has('number') ? 'has-error' : ''}}">
                                 <label for="number">Number</label>
-                                <input name="number" type="text" class="form-control" id="number" value="{{ old('number') }}">
+                                <input name="number" maxlength="5" minlength="1" type="text" class="form-control" id="number" value="{{ old('number') }}">
                                 {!! $errors->first('number', '<p class="help-block">:message</p>') !!}
                             </div>
 
                             <div class="form-group {{$errors->has('series') ? 'has-error' : ''}}">
                                 <label for="series">Series</label>
-                                <input name="series" type="text" class="form-control" id="series" value="{{ old('series')}}">
+                                <input name="series" type="text" maxlength="4" minlength="4" class="form-control" id="series" value="{{ old('series')}}">
                                 {!! $errors->first('series', '<p class="help-block">:message</p>') !!}
                             </div>
 
                             <div class="form-group {{$errors->has('title') ? 'has-error' : ''}}">
                                 <label for="title">Title</label>
-                                <textarea class="form-control capitalize" rows="5" name="title" id="title" form="ordinancesForm">{{old('title')}}</textarea>
+                                <textarea class="form-control capitalize" minlength="1" rows="5" name="title" id="title" form="ordinancesForm">{{old('title')}}</textarea>
                                 {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
                             </div>
 
                             <div class="form-group {{$errors->has('keywords') ? 'has-error' : ''}}">
                                 <label for="keywords">Keywords</label>
-                                <textarea class="form-control" rows="5" name="keywords" id="keywords" form="ordinancesForm">{{old('keywords')}}</textarea>
+                                <textarea class="form-control" maxlength="1000000" minlength="4" rows="5" name="keywords" id="keywords" form="ordinancesForm">{{old('keywords')}}</textarea>
                                 {!! $errors->first('keywords', '<p class="help-block">:message</p>') !!}
                             </div>
 

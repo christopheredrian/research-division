@@ -23,8 +23,8 @@ Route::get('/faqs', 'PublicController@faqs');
 /* M and E */
 Route::get('/ordinances', 'PublicController@monitorAndEvalOrdinances'); /* used in monitoring and evaluation of ordinances */
 Route::get('/resolutions', 'PublicController@monitorAndEvalResolutions'); /* used in monitoring and evaluation of resolutions */
-Route::get('/monitorAndEval/ordinances', 'PublicController@ordinance'); /* used in monitored ordinance */
-Route::get('/monitorAndEval/resolutions', 'PublicController@resolutions'); /* used in monitored resolutions */
+//Route::get('/monitorAndEval/ordinances', 'PublicController@ordinance'); /* used in monitored ordinance */
+//Route::get('/monitorAndEval/resolutions', 'PublicController@resolutions'); /* used in monitored resolutions */
 /* End M and E*/
 
 /* R and R */

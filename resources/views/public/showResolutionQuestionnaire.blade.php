@@ -1,10 +1,25 @@
-@extends('layouts.pub2')
+@if($admin==null)
+    @php
+        $layout="pub2";
+    @endphp
+@else
+    @php
+        $layout="admin";
+    @endphp
+@endif
+@extends('layouts.'.$layout)
 @section('content')
     <section id="business-growth-p1" class="business-growth-p1 bg-chathams">
         <div class="container" style="padding-top: 30px">
             <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6 col-md-offset-3 bg-white">
+                @if($admin!=null)
+                    <div class="box box-primary">
+
+                        <div class="box-body">
+                            @else
+                                <div class="col-md-3"></div>
+                                <div class="col-md-6 col-md-offset-3 bg-white">
+                                    @endif
                     @if(Session::has('flash_message'))
                         <div class="alert alert-danger">
                             {{ Session::get('flash_message') }}
@@ -141,6 +156,10 @@
                         </form>
                     </div>
                 </div>
+                                @if($admin!=null)
+                        </div>
+
+                                                    @endif
             </div>
         </div>
     </section>

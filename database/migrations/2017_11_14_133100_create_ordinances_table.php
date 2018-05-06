@@ -15,7 +15,7 @@ class CreateOrdinancesTable extends Migration
     {
         Schema::create('ordinances', function (Blueprint $table) {
             $table->increments('id');
-            $table->tinyInteger('number');
+            $table->text('number');
             $table->unsignedInteger('series');
             $table->longText('title');
             $table->longText('keywords');

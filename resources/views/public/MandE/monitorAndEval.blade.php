@@ -47,6 +47,9 @@
                             <div class=" col-md-7"></div>
                             <div class=" col-md-3">
                                 <form id="search2" method="get" action="#" class="form-inline pull-right">
+                                    @if( app('request')->input('status') === 'monitored')
+                                        <input name="status" value="monitored" type="hidden">
+                                    @endif
                                     <input name="q" value="{{ request()->q }}"
                                            class="form-control" type="search"
                                            placeholder="Search...">
