@@ -4,19 +4,24 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\GoogleDriveUtilities;
 use App\Http\NLPUtilities;
+use App\Resolution;
 use App\Questionnaire;
 use App\Question;
 use App\Value;
-use App\Resolution;
 use App\StatusReport;
 use App\UpdateReport;
 use Carbon\Carbon;
 use Facebook\Exceptions\FacebookResponseException;
 use Facebook\Facebook;
+use GuzzleHttp\Promise\all;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
+use App\File;
+use Mockery\Exception;
 
 class ResolutionsController extends Controller
 {
@@ -101,7 +106,10 @@ class ResolutionsController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request);
         $validatedData = app('App\Http\Controllers\Admin\OrdinancesController')->validateData($request);
+        dd($validatedData);
+
         $file = $request->file('pdf');
 
         $resolution = new Resolution();

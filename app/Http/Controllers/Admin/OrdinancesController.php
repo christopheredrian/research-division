@@ -37,10 +37,10 @@ class OrdinancesController extends Controller
     {
         if ($request->has('is_accepting')) {
             $validatedData = $request->validate([
-                'number' => 'required|numeric',
+                'number' => 'required|max:5|min:1',
                 'series' => 'required|numeric|digits:4',
                 'title' => 'required|string',
-                'keywords' => 'required|string',
+                'keywords' => 'required|string|max:1000000',
                 'is_monitoring' => '',
                 'is_accepting' => '',
                 'pdf' => '',
@@ -52,10 +52,10 @@ class OrdinancesController extends Controller
             ]);
         } else {
             $validatedData = $request->validate([
-                'number' => 'required|numeric',
+                'number' => 'required|max:5|min:1',
                 'series' => 'required|numeric|digits:4',
                 'title' => 'required|string',
-                'keywords' => 'required|string',
+                'keywords' => 'required|string|max:1000000',
                 'is_monitoring' => '',
                 'pdf' => '',
                 'status_report_date' => '',
@@ -65,7 +65,6 @@ class OrdinancesController extends Controller
                 'updates' => '',
             ]);
         }
-
         return $validatedData;
     }
 
