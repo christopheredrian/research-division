@@ -388,12 +388,11 @@
         @if(isset($isNLPEnabled))
             <div class="col-md-3 text-center">
                 <h4><strong>Ordinance Pulse</strong></h4>
-                @if($facebook_comments)
-                    <canvas id="pulseChart" width="220" height="240"></canvas>
-                @else
+                @if(!$facebook_comments and empty($suggestions))
                     <h5><i>No comments as of yet.</i></h5>
+                @else
+                    <canvas id="pulseChart" width="220" height="240"></canvas>
                 @endif
-
             </div>
         @endif
         <div class="col-md-{{ (isset($isNLPEnabled)) ? '9' : '12'}}">
