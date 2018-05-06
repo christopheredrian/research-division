@@ -66,6 +66,9 @@
                                                class="btn btn-warning"><span class="fa fa-edit"></span> Edit</a>
                                         @endif
                                     @else
+                                        <a href="/answer.o/{{$ordinance->id}}/required?admin=1"
+                                           class="btn  btn-success">
+                                            Answer Questionnaire </a>
                                         <form style="display: inline;" method="post"
                                               action="{{ url('/admin/declineResponses/' . $questionnaire->id) }}">
                                             {{ csrf_field() }}
@@ -74,6 +77,7 @@
                                                 <span class="fa fa-times"></span> Decline Responses
                                             </button>
                                         </form>
+
                                     @endif
                                 @endif
                                 <a href="{{"/admin/result/{$questionnaire->id}"}}"
@@ -136,10 +140,10 @@
                             <p>
                                 @if($questionnaire->isAccepting == 1)
                                     Public Link: <a
-                                            href="/answer.o/{{$ordinance->id}}">{{env("APP_URL", " ").'/answer.o/'.$ordinance->id}}</a>
+                                            href="/answer.o/{{$ordinance->id}}">{{env("APP_URL", " ").'answer.o/'.$ordinance->id}}</a>
                                     <br>
                                     Required Link: <a
-                                            href="/answer.o/{{$ordinance->id}}/required">{{env("APP_URL", " ").'/answer.o/'.$ordinance->id}}
+                                            href="/answer.o/{{$ordinance->id}}/required">{{env("APP_URL", " ").'answer.o/'.$ordinance->id}}
                                         /required</a>
                                 @endif
                             </p>

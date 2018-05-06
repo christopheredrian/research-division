@@ -55,6 +55,9 @@
                                            class="btn btn-warning"><span class="fa fa-edit"></span> Edit</a>
                                     @endif
                                 @else
+                                    <a href="/answer.r/{{$resolution->id}}/required?admin=1"
+                                       class="btn  btn-success">
+                                        Answer Questionnaire </a>
                                     <form style="display: inline;" method="post"
                                           action="{{ url('/admin/declineResponses/' . $questionnaire->id) }}">
                                         {{ csrf_field() }}
@@ -392,6 +395,7 @@
                                 </button>
                             </form>
                         @else
+
                             <form style="display: inline;" method="post"
                                   action="{{ url('/admin/declineSuggestions/' . $resolution->id.'/'.$flag) }}">
                                 {{ csrf_field() }}
