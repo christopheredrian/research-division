@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\NLPUtilities;
 use App\Ordinance;
 use App\Questionnaire;
 use App\Resolution;
@@ -10,6 +11,7 @@ use App\Response;
 use DB;
 use App\Answer;
 use App\Question;
+use Facebook\Exceptions\FacebookResponseException;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
@@ -53,7 +55,7 @@ class ResultController extends Controller
                 $ordinance = Ordinance::find($questionnaire->ordinance_id);
 //                $file_name = str_replace('.', '', $ordinance->title);
 //                $file_name = str_replace(' ','_', $file_name);
-                $file_name = "Sanguniang Panlungsod Ordinance number " .$ordinance->number . " of series " . $ordinance->series;
+                $file_name = "Sanguniang Panlungsod Ordinance number " . $ordinance->number . " of series " . $ordinance->series;
             } else {
                 $resolution = Resolution::find($questionnaire->resolution_id);
                 $file_name = "Sanguniang Panlungsod Resolution number " . $resolution->number . " of series " . $resolution->series;
@@ -79,7 +81,7 @@ class ResultController extends Controller
 
                     if ($questionnaire->ordinance_id !== null) {
                         $ordinance = Ordinance::find($questionnaire->ordinance_id);
-                        $heading = "Answers to Ordinance number " .$ordinance->number . " of series " . $ordinance->series . " Questionnaire ";
+                        $heading = "Answers to Ordinance number " . $ordinance->number . " of series " . $ordinance->series . " Questionnaire ";
                     } else {
                         $resolution = Resolution::find($questionnaire->resolution_id);
                         $heading = "Answers to Resolution number " . $resolution->number . " of series " . $resolution->series . " Questionnaire ";
@@ -102,10 +104,9 @@ class ResultController extends Controller
                     }
 
                     foreach ($rows as $row) {
-                        $sheet->appendRow($skip,$row);
+                        $sheet->appendRow($skip, $row);
                         $skip++;
                     }
-
 
 
                     $sheet->mergeCells('A1:B1');
@@ -113,26 +114,25 @@ class ResultController extends Controller
                     $sheet->mergeCells('A3:B3');
                     $sheet->mergeCells('A4:B4');
 
-                    $sheet->cells('A1:B1', function($cells) {
+                    $sheet->cells('A1:B1', function ($cells) {
                         $cells->setAlignment('center');
                         $cells->setValignment('center');
                     });
 
-                    $sheet->cells('A2:B2', function($cells) {
+                    $sheet->cells('A2:B2', function ($cells) {
                         $cells->setAlignment('center');
                         $cells->setValignment('center');
                     });
 
-                    $sheet->cells('A3:B3', function($cells) {
+                    $sheet->cells('A3:B3', function ($cells) {
                         $cells->setAlignment('center');
                         $cells->setValignment('center');
                     });
 
-                    $sheet->cells('A4:B4', function($cells) {
+                    $sheet->cells('A4:B4', function ($cells) {
                         $cells->setAlignment('center');
                         $cells->setValignment('center');
                     });
-
 
 
 //                    $sheet->setHeight(array(
@@ -152,14 +152,14 @@ class ResultController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $question = Question::Where('id','=',Answer::find($id)->question_id)->first();
+        $question = Question::Where('id', '=', Answer::find($id)->question_id)->first();
         Answer::destroy($id);
-        return response()->json(['id'=>$id]);
+        return response()->json(['id' => $id]);
 //        return redirect('/admin/result/'.$question->questionnaire_id);
     }
 
@@ -172,39 +172,68 @@ class ResultController extends Controller
         $answer->answer = $request->value;
         $answer->save();
 
-        return response()->json(['success'=>'done']);
+        return response()->json(['success' => 'done']);
 
     }
 
-    public function showComments($id, $flag, Request $request){
-
-//        if ($request->from && $request->to){
-////            dd(date($request->to));
-//            $from = new Carbon($request->from);
-//            $to = new Carbon($request->to);
-//            $to->addDay();
-//
-//            $logs = $suggestions->where('created_at', '<=', $to->toDateString())
-//                ->where('created_at', '>', $from->toDateString())
-//                ->orderBy('id','desc')
-//                ->paginate(15);
-//        } else{
-//            $logs=$suggestions->orderBy('id', 'desc')->paginate(15);
-//        }
-        if($flag=='ordinances'){
+    public function showComments($id, $flag, Request $request)
+    {
+        if ($flag == 'ordinances') {
             $ordinance = Ordinance::find($id);
+            $legislation_number = $ordinance->number;
+            $series = $ordinance->series;
             $suggestions = $ordinance->suggestions;
-
-
-        }else{
+        } else {
             $resolution = Resolution::find($id);
+            $legislation_number = $resolution->number;
+            $series = $resolution->series;
             $suggestions = $resolution->suggestions;
         }
 
+        // Get sentiments of system comments
+        foreach ($suggestions as $suggestion) {
+            $temp_sentences[] = $suggestion->suggestion;
+        }
+
+        $sentiments = NLPUtilities::getSentiments($temp_sentences);
+        $suggestions_with_sentiments = $suggestions->toArray();
+
+        for ($i = 0; $i < count($suggestions_with_sentiments); $i++) {
+            $suggestions_with_sentiments[$i]['sentiment'] = $sentiments[$i]->sentiment;
+        }
+
+        $suggestions_with_sentiments = collect($suggestions_with_sentiments);
+        // Get sentiments of Facebook comments
+        if (NLPUtilities::isNLPEnabled()) {
+            try {
+                if ($flag == 'ordinances') {
+                    $facebook_comments = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($ordinance);
+                } else {
+                    $facebook_comments = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($resolution);
+                }
+            } catch (FacebookResponseException $e) {
+                if ($flag == 'ordinances') {
+                    $ordinance->facebook_post_id = null;
+                    $ordinance->save();
+                } else {
+                    $resolution->facebook_post_id = null;
+                    $resolution->save();
+                }
+
+                $facebook_comments = [];
+            }
+
+            $isNLPEnabled = 1;
+        }
+
         return view('admin.result.showComments', [
-            'suggestions' => $suggestions,
+            'suggestions' => $suggestions_with_sentiments,
+            'facebook_comments' => $facebook_comments,
+            'isNLPEnabled' => $isNLPEnabled,
             'pass_id' => $id,
-            'flag' => $flag
+            'flag' => $flag,
+            'series' => $series,
+            'legislation_number' => $legislation_number,
         ]);
 
     }
@@ -218,67 +247,69 @@ class ResultController extends Controller
         $suggestion->suggestion = $request->value;
         $suggestion->save();
 
-        return response()->json(['success'=>'done']);
+        return response()->json(['success' => 'done']);
 
     }
 
     public function deleteComment($id)
     {
 
-        if(DB::table('ordinance_suggestion')->where('suggestion_id', '=', $id)->first() != null){
+        if (DB::table('ordinance_suggestion')->where('suggestion_id', '=', $id)->first() != null) {
             DB::table('ordinance_suggestion')->where('suggestion_id', '=', $id)->delete();
-        }else{
+        } else {
             DB::table('resolution_suggestion')->where('suggestion_id', '=', $id)->delete();
         }
 
         Suggestion::destroy($id);
-        return response()->json(['id'=>$id]);
+        return response()->json(['id' => $id]);
     }
 
-    public function downloadCommentsExcel($id,$flag)
+    public function downloadCommentsExcel($id, $flag)
     {
         // file name to ordinance num
 
         try {
-            if($flag ==='ordinances'){
+            if ($flag === 'ordinances') {
                 $ordinance = Ordinance::find($id);
-                $file_name = 'ordinance no.'.$ordinance->number.', '.$ordinance->series.' - comments';
-            }else{
+                $file_name = 'Ordinance ' . $ordinance->number . ', ' . $ordinance->series . ' - Comments';
+                $fb_post_flag = $ordinance->facebook_post_id;
+            } else {
                 $resolution = Resolution::find($id);
-                $file_name = 'resolution no.'.$resolution->number.', '.$resolution->series.' - comments';
+                $file_name = 'Resolution ' . $resolution->number . ', ' . $resolution->series . ' - Comments';
+                $fb_post_flag = $resolution->facebook_post_id;
             }
 
-            Excel::create($file_name, function ($excel) use ($id,$flag) {
-                $excel->sheet('Excel sheet', function ($sheet) use ($id,$flag) {
-                    if($flag==='ordinances'){
+            Excel::create($file_name, function ($excel) use ($id, $flag, $fb_post_flag) {
+                $excel->sheet('System Comments', function ($sheet) use ($id, $flag) {
+                    if ($flag === 'ordinances') {
                         $ordinance = Ordinance::find($id);
                         $suggestions = $ordinance->suggestions;
-                    }else{
+                    } else {
                         $resolution = Resolution::find($id);
                         $suggestions = $resolution->suggestions;
                     }
-                    $header_arr=['name','email','suggestion'];
+                    $header_arr = ['Name', 'Email', 'Comment'];
                     $name_arr = [];
                     $email_arr = [];
                     $suggestion_arr = [];
                     $count = 0;
                     $space = 5; // will appear first on A[number], will appear on A4
                     $skip = $space + 1; //answers will append after the question
-                    foreach ( $suggestions as $suggestion) {
-                        $name_arr[$count] = $suggestion->first_name.' '.$suggestion->last_name;
-                        $email_arr[] = $suggestion->email ;
+                    foreach ($suggestions as $suggestion) {
+                        $name_arr[$count] = $suggestion->first_name . ' ' . $suggestion->last_name;
+                        $email_arr[] = $suggestion->email;
                         $suggestion_arr[] = $suggestion->suggestion;
                         $count += 1;
                     }
 
                     $sheet->setOrientation('landscape');
 
-                    if ($flag==='ordinances') {
+                    if ($flag === 'ordinances') {
                         $ordinance = Ordinance::find($id);
-                        $heading = "Comments on Ordinance number " . $ordinance->number . " of series " . $ordinance->series;
+                        $heading = "System Comments on Ordinance number " . $ordinance->number . " of series " . $ordinance->series;
                     } else {
                         $resolution = Resolution::find($id);
-                        $heading = "Comments on Resolution number " . $resolution->number . " of series " . $resolution->series;
+                        $heading = "System Comments on Resolution number " . $resolution->number . " of series " . $resolution->series;
                     }
 
                     $sheet->rows(array(
@@ -294,22 +325,22 @@ class ResultController extends Controller
                     $sheet->mergeCells('A3:C3');
                     $sheet->mergeCells('A4:C4');
 
-                    $sheet->cells('A1:C1', function($cells) {
+                    $sheet->cells('A1:C1', function ($cells) {
                         $cells->setAlignment('center');
                         $cells->setValignment('center');
                     });
 
-                    $sheet->cells('A2:C2', function($cells) {
+                    $sheet->cells('A2:C2', function ($cells) {
                         $cells->setAlignment('center');
                         $cells->setValignment('center');
                     });
 
-                    $sheet->cells('A3:C3', function($cells) {
+                    $sheet->cells('A3:C3', function ($cells) {
                         $cells->setAlignment('center');
                         $cells->setValignment('center');
                     });
 
-                    $sheet->cells('A4:C4', function($cells) {
+                    $sheet->cells('A4:C4', function ($cells) {
                         $cells->setAlignment('center');
                         $cells->setValignment('center');
                     });
@@ -319,14 +350,110 @@ class ResultController extends Controller
                     $sheet->appendRow($space, $header_arr);
 //                    $rows = [];
                     for ($x = 0; $x < $count; $x++) {
-                        $sheet->appendRow([$name_arr[$x],$email_arr[$x],$suggestion_arr[$x]]);
+                        $sheet->appendRow([$name_arr[$x], $email_arr[$x], $suggestion_arr[$x]]);
                     }
 
 //                    foreach ($rows as $row) {
 //                        $sheet->appendRow($row);
 //                    }
 
-                });
+                }
+
+                );
+
+                $excel->sheet('Facebook Comments', function ($sheet) use ($id, $flag, $fb_post_flag) {
+                    if ($flag === 'ordinances') {
+                        $ordinance = Ordinance::find($id);
+                        $suggestions = $ordinance->suggestions;
+                    } else {
+                        $resolution = Resolution::find($id);
+                        $suggestions = $resolution->suggestions;
+                    }
+
+                    if ($fb_post_flag) {
+                        try {
+                            if ($flag == 'ordinances') {
+                                $facebook_comments = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($ordinance);
+                            } else {
+                                $facebook_comments = app('App\Http\Controllers\Admin\FacebookPostsController')->getComments($resolution);
+                            }
+                        } catch (FacebookResponseException $e) {
+                            if ($flag == 'ordinances') {
+                                $ordinance->facebook_post_id = null;
+                                $ordinance->save();
+                            } else {
+                                $resolution->facebook_post_id = null;
+                                $resolution->save();
+                            }
+                        }
+
+                        $header_arr = ['Facebook User', 'Comment'];
+                        $name_arr = [];
+                        $suggestion_arr = [];
+                        $count = 0;
+                        $space = 5; // will appear first on A[number], will appear on A4
+                        $skip = $space + 1; //answers will append after the question
+                        foreach ($facebook_comments as $facebook_comment) {
+                            $name_arr[$count] = $facebook_comment['name'];
+                            $suggestion_arr[] = $facebook_comment['result']->sentence;
+                            $count += 1;
+                        }
+
+                        $sheet->setOrientation('landscape');
+
+                        if ($flag === 'ordinances') {
+                            $ordinance = Ordinance::find($id);
+                            $heading = "Facebook Comments on Ordinance number " . $ordinance->number . " of series " . $ordinance->series;
+                        } else {
+                            $resolution = Resolution::find($id);
+                            $heading = "Facebook Comments on Resolution number " . $resolution->number . " of series " . $resolution->series;
+                        }
+
+                        $sheet->rows(array(
+                            array('Republic of the Philippines', 'Republic of the Philippines'),
+                            array('Sangguniang Panglungsod ng Baguio', 'Sangguniang Panglungsod ng Baguio'),
+                            array('Research Division ', 'Research Division'),
+                            array($heading, $heading),
+                        ));
+
+
+                        $sheet->mergeCells('A1:C1');
+                        $sheet->mergeCells('A2:C2');
+                        $sheet->mergeCells('A3:C3');
+                        $sheet->mergeCells('A4:C4');
+
+                        $sheet->cells('A1:C1', function ($cells) {
+                            $cells->setAlignment('center');
+                            $cells->setValignment('center');
+                        });
+
+                        $sheet->cells('A2:C2', function ($cells) {
+                            $cells->setAlignment('center');
+                            $cells->setValignment('center');
+                        });
+
+                        $sheet->cells('A3:C3', function ($cells) {
+                            $cells->setAlignment('center');
+                            $cells->setValignment('center');
+                        });
+
+                        $sheet->cells('A4:C4', function ($cells) {
+                            $cells->setAlignment('center');
+                            $cells->setValignment('center');
+                        });
+
+
+                        // filling arrays with data ^
+                        $sheet->appendRow($space, $header_arr);
+//                    $rows = [];
+                        for ($x = 0; $x < $count; $x++) {
+                            $sheet->appendRow([$name_arr[$x], $suggestion_arr[$x]]);
+                        }
+                    }
+
+                }
+
+                );
             })->export('xls');
         } catch (\Exception $e) {
             dd('Invalid query....');
@@ -336,8 +463,8 @@ class ResultController extends Controller
 
     public function notifications()
     {
-        $suggestions = Suggestion::Where('created_at','>', Carbon::now()->subDays(4))->OrderByDesc('created_at')->get();
-        $responses = Response::Where('created_at','>', Carbon::now()->subDays(4))->OrderByDesc('created_at')->get();
+        $suggestions = Suggestion::Where('created_at', '>', Carbon::now()->subDays(4))->OrderByDesc('created_at')->get();
+        $responses = Response::Where('created_at', '>', Carbon::now()->subDays(4))->OrderByDesc('created_at')->get();
 
         $data = [
             'suggestions' => $suggestions,

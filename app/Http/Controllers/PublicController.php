@@ -344,6 +344,7 @@ class PublicController extends Controller
 
         if ($request->status == 'monitored') {
             $ordinances = $ordinances->where('is_monitored', '=', 1);
+
         } else {
             $ordinances = $ordinances->where('is_monitored', '=', 0);
         }
