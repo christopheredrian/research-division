@@ -11,7 +11,7 @@
                 <div class="carousel-item active slides">
                     <div class="overlay"></div>
                     <div class="slide-1"></div>
-                    <div class="hero ">
+                    <div id="hero" class="hero">
                         <hgroup class="wow fadeInUp">
                             <h1>Let's Work together!</h1>
                             <h1>We need your <span><a href="" class="typewrite" data-period="2000"
@@ -25,6 +25,7 @@
             </div>
         </div>
     </section>
+
 
     <!--====================================================
                             ABOUT
@@ -40,6 +41,7 @@
                     </p>
 
                     <div class="service-h-tab">
+
                         <nav class="nav nav-tabs" id="myTab" role="tablist">
                             <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
                                role="tab" aria-controls="nav-home" aria-expanded="true">Ordinance</a>
@@ -49,7 +51,6 @@
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
                                  aria-labelledby="nav-home-tab">
-
                                 <!--====================================================
                                     OFFER
                                 ======================================================-->
@@ -61,7 +62,7 @@
                                     </div>
                                     <div class="row">
 
-                                        <div class="owl-carousel owl-theme col-12">
+                                        <div class="owl-carousel owl-theme">
 
                                             @foreach($monitoringOrd as $ordinance)
 
@@ -69,9 +70,10 @@
 
                                                     <div class="desc-comp-offer wow fadeInUp"
                                                          data-wow-delay="0.8s">
-                                                        <div class="desc-comp-offer-cont" style="text-align: center">
+                                                        <div class="desc-comp-offer-cont"
+                                                             style="text-align: center">
                                                             <div class="bg-starship" style="padding: 20px">
-                                                                <h5 style="color: white">Hello</h5>
+                                                                <h5 style="color: white">Ordinance No. {{$ordinance->number}}</h5>
                                                             </div>
                                                             {{--<div class="thumbnail-blogs">--}}
                                                             {{--<div class="caption">--}}
@@ -95,29 +97,29 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </div>
+
                             <div class="tab-pane fade" id="nav-profile" role="tabpanel"
                                  aria-labelledby="nav-profile-tab">
-
                                 <!--====================================================
                                     OFFER
                                 ======================================================-->
                                 <br/>
-                                <div class="container-fluid">
+                                <div id='hi' class="container-fluid">
                                     <div class="desc-comp-offer">
                                         <h2>Resolutions Currently Being Monitored</h2>
                                         <div class="heading-border-light"></div>
                                     </div>
                                     <div class="row">
-                                        <div class="owl-carousel owl-theme col-12">
+                                        <div class="owl-carousel owl-theme">
                                             @foreach($monitoringRes as $resolution)
                                                 <div class="item">
 
                                                     <div class="desc-comp-offer">
-                                                        <div class="desc-comp-offer-cont" style="text-align: center">
+                                                        <div class="desc-comp-offer-cont"
+                                                             style="text-align: center">
                                                             <div class="bg-starship" style="padding: 20px">
-                                                                <h5 style="color: white">Hello</h5>
+                                                                <h5 style="color: white">Resolution No. {{$resolution->number}}</h5>
                                                             </div>
                                                             {{--<div class="thumbnail-blogs">--}}
                                                             {{--<div class="caption">--}}
@@ -215,7 +217,7 @@
                            NEWS
     ======================================================-->
     <section id="comp-offer">
-        <div class="container-fluid">
+        <div id="hello" class="container-fluid">
 
             <div class="row">
 
@@ -239,8 +241,8 @@
                                     {{--</div>--}}
                                     {{--<img src="/pub2/img/img/res.jpg" class="img-fluid" alt="...">--}}
                                     {{--</div>--}}
-                                    <div class="bg-chathams" style="padding: 30px">
-                                        <h5 style="color: white">Hello</h5>
+                                    <div class="bg-chathams" style="padding: 20px">
+                                        <h5 style="color: white">Ordinance No. {{$ordinance->number}}</h5>
                                     </div>
                                     {{--<h3>{{ str_limit($ordinance->title, $limit = 120, $end = '...') }}</h3>--}}
                                     <p class="desc" style="margin-top: 10px;">
@@ -276,7 +278,7 @@
                                     {{--<img src="/pub2/img/img/res.jpg" class="img-fluid" alt="...">--}}
                                     {{--</div>--}}
                                     <div class="bg-chathams" style="padding: 20px">
-                                        <h5 style="color: white">Hello</h5>
+                                        <h5 style="color: white">Resolution No. {{$resolution->number}}</h5>
                                     </div>
                                     {{--<h3>{{ str_limit($resolution->title, $limit = 120, $end = '...') }}</h3>--}}
                                     <p class="desc" style="margin-top: 10px;">
@@ -311,5 +313,19 @@
             margin: 10,
             nav: true
         });
+    </script>
+    <script>
+        function closeit() {
+            document.getElementById('hero').setAttribute("style", "display:none");
+        }
+        setTimeout(closeit, 9000);
+    </script>
+    <script>
+        document.getElementById('nav-home-tab').onclick = function(){
+            document.getElementById('hi').setAttribute("style", "display:none");
+        };
+        document.getElementById('nav-profile-tab').onclick = function(){
+            document.getElementById('hi').setAttribute("style", "display:block");
+        };
     </script>
 @endsection

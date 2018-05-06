@@ -151,7 +151,7 @@
 
                                     <div class="form-group">
                                         <div class="submit col-md-12 sub-but text-center">
-                                            <button class="btn btn-success" type="submit" onclick="submitform('comment-resolution')">
+                                            <button class="btn btn-success" type="submit">
                                                 <i
                                                         class="fa fa-paper-plane"></i> Send Now
                                             </button>

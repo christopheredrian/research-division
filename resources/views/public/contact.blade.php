@@ -23,23 +23,22 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="contact-p1-cont">
-                        <h3>Contact our experienced team</h3>
+                        <h3>Contact us, we'll be at your service!</h3>
                         <div class="heading-border-light"></div>
-                        <p>It is a long established fact that a reader will be distracted by the readable content of a
-                            page when looking at its layout. The point of using Lorem Ipsum is that it has a
-                            more-or-less normal distribution of letters, as opposed to using 'Content here, content
-                            here', making it look like readable English. Many desktop publishing packages and web page
-                            editors now use Lorem Ipsum as their default model texty.</p>
+                        <p>
+                            Research Division is open
+                        </p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="contact-p1-cont2">
                         <address class="address-details-f">
-                            25, Dist town Street, Logn <br>
-                            California, US <br>
-                            Phone: 800 123 3456 <br>
-                            Fax: 800 123 3456 <br>
-                            Email: <a href="mailto:sanggunianrd@gmail.com">sanggunianrd@gmail.com</a>
+                            Baguio City Hall, City Hall Dr, <br>
+                            Baguio, 2600 Benguet<br>
+                            Phone: <br>
+                            Fax: <br>
+                            Email: <a href="mailto:sanggunianrd@gmail.com">sanggunianrd@gmail.com</a><br>
+                            Workdays: Monday (7:30-5:00), Tuesday to Thursday (8:00-5:00), Friday (8:00-4:30)
                         </address>
                         <ul class="list-inline social-icon-f top-data">
                             <li><a href="https://facebook.com/InfoSentiA" target="_empty"><i
@@ -100,9 +99,8 @@
                         </div>
                     </div>
                     <div class="submit col-md-12 sub-but text-center">
-                        <button id="send" class="btn btn-general btn-white" onclick="submitform('contact')"
-                                type="submit"
-                                value="submit">Send
+                        <button id="send" class="btn btn-general btn-white" type="submit" value="submit">
+                            Send
                         </button>
                     </div>
                 </div>
