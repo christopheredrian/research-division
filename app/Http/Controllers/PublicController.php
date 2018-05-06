@@ -644,14 +644,16 @@ class PublicController extends Controller
             ['questions' => $questions])->with('values', $values)->with('required', $required);
     }
 
-    public function showRequiredOrdinanceQuestionnaire($id)
+    public function showRequiredOrdinanceQuestionnaire($id, Request $request)
     {
+
         LogUtility::insertLog("HttpRequest on /public/showOrdinance/{id}", 'public');
         $questionnaire = Questionnaire::Where('ordinance_id', '=', $id)->first();
         $questions = Question::Where('questionnaire_id', '=', $questionnaire->id)->get();
         $values = Value::WhereIn('question_id', $questions->pluck('id'))->get();
         $required = true;
-        return view('public.showOrdinanceQuestionnaire', ['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values)->with('required', $required);
+
+        return view('public.showOrdinanceQuestionnaire', ['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values)->with('required', $required)->with('admin', $request->admin);
     }
 
     public function submitOrdinanceAnswers(Request $request)
@@ -697,9 +699,18 @@ class PublicController extends Controller
         }
         Session::flash('flash_message', 'Thank you for answering the questionnaire for ' . $document->title);
         if ($request->type === 'ordinance') {
-            return redirect('/public/showOrdinance/' . $request->id);
+            if($request->admin==1){
+                return redirect('/admin/ordinances/' . $request->id);
+            }else {
+                return redirect('/public/showOrdinance/' . $request->id);
+            }
         } else {
-            return redirect('/public/showResolution/' . $request->id);
+            if($request->admin==1){
+                return redirect('/admin/resolutions/' . $request->id);
+            }else {
+                return redirect('/public/showResolution/' . $request->id);
+            }
+
         }
 
     }
@@ -768,7 +779,7 @@ class PublicController extends Controller
         return view('public.showOrdinanceQuestionnaire', ['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values)->with('required', $required);
     }
 
-    public function showRequiredResolutionQuestionnaire($id)
+    public function showRequiredResolutionQuestionnaire($id, Request $request)
     {
         LogUtility::insertLog("HttpRequest on /public/showResolutionQuestionnaire/{id}", 'public');
 
@@ -776,6 +787,6 @@ class PublicController extends Controller
         $questions = Question::Where('questionnaire_id', '=', $questionnaire->id)->get();
         $values = Value::WhereIn('question_id', $questions->pluck('id'))->get();
         $required = true;
-        return view('public.showOrdinanceQuestionnaire', ['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values)->with('required', $required);
+        return view('public.showOrdinanceQuestionnaire', ['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values)->with('required', $required)->with('admin', $request->admin);
     }
 }
