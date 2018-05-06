@@ -103,7 +103,7 @@
                     <a data-toggle="tab" href="#facebook"><i class="fa fa-facebook-f"></i> Facebook Comments</a>
                 </li>
                 <a href="/admin/downloadComments/{{$pass_id}}/{{$flag}}" class="btn btn-success btn-md pull-right">
-                    <span class="fa fa fa-file-excel-o"> </span> Download Excel
+                    <span class="fa fa fa-file-excel-o"> </span> Download Comments
                 </a>
             </ul>
         </div>
