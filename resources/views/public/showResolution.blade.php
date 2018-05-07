@@ -19,6 +19,12 @@
                                     width='100%' height='400' allowfullscreen
                                     webkitallowfullscreen></iframe>
                         </div>
+                    @elseif($resolution->pdf_file_name)
+                        <div class="service-himg">
+                            <iframe src="/storage/resolutions/{{$resolution->pdf_file_name}}"
+                                    width='100%' height='400' allowfullscreen
+                                    webkitallowfullscreen></iframe>
+                        </div>
                     @else
                         <div style="padding: 10px; border: dashed #60b4e8">
                             <h3 class="text-center">PDF not available.</h3>

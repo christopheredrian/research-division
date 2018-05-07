@@ -155,6 +155,9 @@
                         @if($resolution->pdf_link)
                             <iframe src="{{$resolution->pdf_link}}"
                                     width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
+                        @elseif($resolution->pdf_file_name)
+                            <iframe src="/storage/resolutions/{{$resolution->pdf_file_name}}"
+                                    width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
                         @else
                             <h3 class="text-center">PDF not available.</h3>
                         @endif
@@ -259,6 +262,9 @@
                             @if($resolution->pdf_link)
                                 <iframe src="{{$resolution->pdf_link}}"
                                         width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
+                            @elseif($resolution->pdf_file_name)
+                                <iframe src="/storage/resolutions/{{$resolution->pdf_file_name}}"
+                                        width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
                             @else
                                 <h3 class="text-center">PDF not available.</h3>
                             @endif
@@ -305,6 +311,7 @@
                                                 <tr>
                                                     <td>{{$resolution->statusReport->pdf_file_name}}</td>
                                                     <td>
+
                                                         <a href="/downloadPDF/statusreports/{{$resolution->statusReport->pdf_file_name}}"
                                                            class="btn btn-sm btn-primary">
                                                             Download
