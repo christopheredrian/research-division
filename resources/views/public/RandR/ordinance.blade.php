@@ -5,8 +5,8 @@
     ======================================================-->
     <div id="home-p" class="home-p pages-head2 text-center">
         <div class="container">
-            <h1 class="wow fadeInUp" data-wow-delay="0.1s">Businessbox is fully responsive and Clean</h1>
-            <p>Our Services</p>
+            <h1 class="wow fadeInUp" data-wow-delay="0.1s">Legislations</h1>
+            {{--<p>Our Services</p>--}}
         </div><!--/end container-->
     </div>
 
@@ -19,9 +19,9 @@
                 <div class="col-md-12">
                     <h1 class="wow fadeInUp">Ordinances</h1>
                     <div class="heading-border"></div>
-                    <p class="wow fadeInUp" data-wow-delay="0.4s">We committed to helping you maintain your oral
-                        healthTooth.We are an innovative company. We develop and design websites for costumers around
-                        the world. Our clients are some of the most forward-looking companies in the world.</p>
+                    <p class="wow fadeInUp" data-wow-delay="0.4s">An ordinance is a local law that prescribes rules of
+                        conduct of a general, permanent character. It continues to be in force until repealed or
+                        superseded by a subsequent enactment of the local legislative body.</p>
 
                     <div class="col-md-12" style="margin-bottom: 30px">
                         <div class="pull-right">

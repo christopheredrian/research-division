@@ -9,7 +9,7 @@
     <!--====================================================
                        HOME-P
 ======================================================-->
-    <div id="home-p" class="home-p pages-head4 text-center">
+    <div id="home-p" class="home-p pages-head1 text-center">
         <div class="container">
             <h1 class="wow fadeInUp" data-wow-delay="0.1s">Contact Us</h1>
         </div><!--/end container-->
@@ -22,13 +22,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <div class="contact-p1-cont">
-                        <h3>Contact us, we'll be at your service!</h3>
-                        <div class="heading-border-light"></div>
-                        <p>
-                            Research Division is open
-                        </p>
-                    </div>
+
+                    <section class="what-we-do bg-gradiant">
+                        <div class="container-fluid">
+                            <h3>Contact us, we'll be at your service!</h3>
+                        </div>
+                    </section>
                 </div>
                 <div class="col-md-4">
                     <div class="contact-p1-cont2">

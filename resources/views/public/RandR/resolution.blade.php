@@ -5,8 +5,8 @@
     ======================================================-->
     <div id="home-p" class="home-p pages-head2 text-center">
         <div class="container">
-            <h1 class="wow fadeInUp" data-wow-delay="0.1s">Businessbox is fully responsive and Clean</h1>
-            <p>Our Services</p>
+            <h1 class="wow fadeInUp" data-wow-delay="0.1s">Legislations</h1>
+            {{--<p>Our Services</p>--}}
         </div><!--/end container-->
     </div>
 
@@ -21,7 +21,9 @@
                     <div class="heading-border"></div>
                     <p class="wow fadeInUp" data-wow-delay="0.4s">
 
-                        *CAPTION*
+                        A resolution, on the other hand, is a mere expression of the opinion or sentiment of the local
+                        legislative body on matters relating to proprietary function and to private concerns. It is
+                        temporary in character.
 
                     </p>
 

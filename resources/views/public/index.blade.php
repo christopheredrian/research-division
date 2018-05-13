@@ -11,6 +11,7 @@
                 <div class="carousel-item active slides">
                     <div class="overlay"></div>
                     <div class="slide-1"></div>
+                    <iframe width="1366" height="662" src="https://www.youtube.com/embed/IeyB--0Ff4k?autoplay=1&playlist=IeyB--0Ff4k&autohide=0&controls=1&modestbranding=1&rel=0&showinfo=0&disablekb=1&loop=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     <div id="hero" class="hero">
                         <hgroup class="wow fadeInUp">
                             <h1>Let's Work together!</h1>
@@ -30,7 +31,7 @@
     <!--====================================================
                             ABOUT
     ======================================================-->
-    <section id="about" class="about">
+    <section id="about" class="about" style="padding-top: 50px">
         <div class="container">
             <div class="row title-bar">
                 <div class="col-md-12">
@@ -73,7 +74,8 @@
                                                         <div class="desc-comp-offer-cont"
                                                              style="text-align: center">
                                                             <div class="bg-starship" style="padding: 20px">
-                                                                <h5 style="color: white">Ordinance No. {{$ordinance->number}}</h5>
+                                                                <h5 style="color: white">Ordinance
+                                                                    No. {{$ordinance->number}}</h5>
                                                             </div>
                                                             {{--<div class="thumbnail-blogs">--}}
                                                             {{--<div class="caption">--}}
@@ -119,7 +121,8 @@
                                                         <div class="desc-comp-offer-cont"
                                                              style="text-align: center">
                                                             <div class="bg-starship" style="padding: 20px">
-                                                                <h5 style="color: white">Resolution No. {{$resolution->number}}</h5>
+                                                                <h5 style="color: white">Resolution
+                                                                    No. {{$resolution->number}}</h5>
                                                             </div>
                                                             {{--<div class="thumbnail-blogs">--}}
                                                             {{--<div class="caption">--}}
@@ -321,10 +324,10 @@
         setTimeout(closeit, 9000);
     </script>
     <script>
-        document.getElementById('nav-home-tab').onclick = function(){
+        document.getElementById('nav-home-tab').onclick = function () {
             document.getElementById('hi').setAttribute("style", "display:none");
         };
-        document.getElementById('nav-profile-tab').onclick = function(){
+        document.getElementById('nav-profile-tab').onclick = function () {
             document.getElementById('hi').setAttribute("style", "display:block");
         };
     </script>
