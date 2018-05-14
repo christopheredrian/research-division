@@ -11,7 +11,9 @@
                 <div class="carousel-item active slides">
                     <div class="overlay"></div>
                     <div class="slide-1"></div>
-                    <iframe width="1366" height="662" src="https://www.youtube.com/embed/IeyB--0Ff4k?autoplay=1&playlist=IeyB--0Ff4k&autohide=0&controls=1&modestbranding=1&rel=0&showinfo=0&disablekb=1&loop=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    <iframe width="1366" height="662"
+                            src="https://www.youtube.com/embed/IeyB--0Ff4k?autoplay=1&playlist=IeyB--0Ff4k&autohide=0&loop=1&controls=1&modestbranding=1&rel=0&showinfo=0&disablekb=1"
+                            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                     <div id="hero" class="hero">
                         <hgroup class="wow fadeInUp">
                             <h1>Let's Work together!</h1>
@@ -160,55 +162,55 @@
     <section class="what-we-do bg-gradiant">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-3">
-                    <h3>What we Do</h3>
-                    <div class="heading-border-light"></div>
-                    <p class="desc">We partner with clients to put recommendations into practice. </p>
-                </div>
-                <div class="col-md-9">
-                    <div class="row">
-                        <div class="col-md-4  col-sm-6">
-                            <div class="what-we-desc">
-                                <i class="fa fa-briefcase"></i>
-                                <h6>Workspace</h6>
-                                <p class="desc">Contrary to popular belief, Lorem Ipsum is not simply random text. </p>
-                            </div>
-                        </div>
-                        <div class="col-md-4  col-sm-6">
-                            <div class="what-we-desc">
-                                <i class="fa fa-shopping-bag"></i>
-                                <h6>Storefront</h6>
-                                <p class="desc">Contrary to popular belief, Lorem Ipsum is not simply random text. </p>
-                            </div>
-                        </div>
-                        <div class="col-md-4  col-sm-6">
-                            <div class="what-we-desc">
-                                <i class="fa fa-building-o"></i>
-                                <h6>Apartments</h6>
-                                <p class="desc">Contrary to popular belief, Lorem Ipsum is not simply random text. </p>
-                            </div>
-                        </div>
-                        <div class="col-md-4  col-sm-6">
-                            <div class="what-we-desc">
-                                <i class="fa fa-bed"></i>
-                                <h6>Hotels</h6>
-                                <p class="desc">Contrary to popular belief, Lorem Ipsum is not simply random text. </p>
-                            </div>
-                        </div>
-                        <div class="col-md-4  col-sm-6">
-                            <div class="what-we-desc">
-                                <i class="fa fa-hourglass-2"></i>
-                                <h6>Concept</h6>
-                                <p class="desc">Contrary to popular belief, Lorem Ipsum is not simply random text. </p>
-                            </div>
-                        </div>
-                        <div class="col-md-4  col-sm-6">
-                            <div class="what-we-desc">
-                                <i class="fa fa-cutlery"></i>
-                                <h6>Restaurant</h6>
-                                <p class="desc">Contrary to popular belief, Lorem Ipsum is not simply random text. </p>
-                            </div>
-                        </div>
+                {{--<div class="col-md-3">--}}
+                    {{--<h3>What we Do</h3>--}}
+                    {{--<div class="heading-border-light"></div>--}}
+                    {{--<p class="desc">We partner with clients to put recommendations into practice. </p>--}}
+                {{--</div>--}}
+                {{--<div class="col-md-9">--}}
+                    {{--<div class="row">--}}
+                        {{--<div class="col-md-4  col-sm-6">--}}
+                            {{--<div class="what-we-desc">--}}
+                                {{--<i class="fa fa-briefcase"></i>--}}
+                                {{--<h6>Workspace</h6>--}}
+                                {{--<p class="desc">Contrary to popular belief, Lorem Ipsum is not simply random text. </p>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-md-4  col-sm-6">--}}
+                            {{--<div class="what-we-desc">--}}
+                                {{--<i class="fa fa-shopping-bag"></i>--}}
+                                {{--<h6>Storefront</h6>--}}
+                                {{--<p class="desc">Contrary to popular belief, Lorem Ipsum is not simply random text. </p>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-md-4  col-sm-6">--}}
+                            {{--<div class="what-we-desc">--}}
+                                {{--<i class="fa fa-building-o"></i>--}}
+                                {{--<h6>Apartments</h6>--}}
+                                {{--<p class="desc">Contrary to popular belief, Lorem Ipsum is not simply random text. </p>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-md-4  col-sm-6">--}}
+                            {{--<div class="what-we-desc">--}}
+                                {{--<i class="fa fa-bed"></i>--}}
+                                {{--<h6>Hotels</h6>--}}
+                                {{--<p class="desc">Contrary to popular belief, Lorem Ipsum is not simply random text. </p>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-md-4  col-sm-6">--}}
+                            {{--<div class="what-we-desc">--}}
+                                {{--<i class="fa fa-hourglass-2"></i>--}}
+                                {{--<h6>Concept</h6>--}}
+                                {{--<p class="desc">Contrary to popular belief, Lorem Ipsum is not simply random text. </p>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                        {{--<div class="col-md-4  col-sm-6">--}}
+                            {{--<div class="what-we-desc">--}}
+                                {{--<i class="fa fa-cutlery"></i>--}}
+                                {{--<h6>Restaurant</h6>--}}
+                                {{--<p class="desc">Contrary to popular belief, Lorem Ipsum is not simply random text. </p>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
                     </div>
                 </div>
             </div>
