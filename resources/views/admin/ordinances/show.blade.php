@@ -66,6 +66,9 @@
                                                class="btn btn-warning"><span class="fa fa-edit"></span> Edit</a>
                                         @endif
                                     @else
+                                        <a href="/answer.o/{{$ordinance->id}}/required?admin=1"
+                                           class="btn  btn-success">
+                                            Answer Questionnaire </a>
                                         <form style="display: inline;" method="post"
                                               action="{{ url('/admin/declineResponses/' . $questionnaire->id) }}">
                                             {{ csrf_field() }}
@@ -74,6 +77,7 @@
                                                 <span class="fa fa-times"></span> Decline Responses
                                             </button>
                                         </form>
+
                                     @endif
                                 @endif
                                 <a href="{{"/admin/result/{$questionnaire->id}"}}"
@@ -136,10 +140,10 @@
                             <p>
                                 @if($questionnaire->isAccepting == 1)
                                     Public Link: <a
-                                            href="/answer.o/{{$ordinance->id}}">{{env("APP_URL", " ").'/answer.o/'.$ordinance->id}}</a>
+                                            href="/answer.o/{{$ordinance->id}}">{{env("APP_URL", " ").'answer.o/'.$ordinance->id}}</a>
                                     <br>
                                     Required Link: <a
-                                            href="/answer.o/{{$ordinance->id}}/required">{{env("APP_URL", " ").'/answer.o/'.$ordinance->id}}
+                                            href="/answer.o/{{$ordinance->id}}/required">{{env("APP_URL", " ").'answer.o/'.$ordinance->id}}
                                         /required</a>
                                 @endif
                             </p>
@@ -165,6 +169,9 @@
                     <div class="panel-body">
                         @if($ordinance->pdf_link)
                             <iframe src="{{$ordinance->pdf_link}}"
+                                    width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
+                        @elseif($ordinance->pdf_file_name)
+                            <iframe src="/storage/ordinances/{{$ordinance->pdf_file_name}}"
                                     width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
                         @else
                             <h3 class="text-center">PDF not available.</h3>
@@ -269,6 +276,9 @@
                         <div class="panel-body">
                             @if($ordinance->pdf_link)
                                 <iframe src="{{$ordinance->pdf_link}}"
+                                        width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
+                            @elseif($ordinance->pdf_file_name)
+                                <iframe src="/storage/ordinances/{{$ordinance->pdf_file_name}}"
                                         width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
                             @else
                                 <h3 class="text-center">PDF not available.</h3>
@@ -388,12 +398,11 @@
         @if(isset($isNLPEnabled))
             <div class="col-md-3 text-center">
                 <h4><strong>Ordinance Pulse</strong></h4>
-                @if($facebook_comments)
-                    <canvas id="pulseChart" width="220" height="240"></canvas>
-                @else
+                @if(!$facebook_comments and empty($suggestions))
                     <h5><i>No comments as of yet.</i></h5>
+                @else
+                    <canvas id="pulseChart" width="220" height="240"></canvas>
                 @endif
-
             </div>
         @endif
         <div class="col-md-{{ (isset($isNLPEnabled)) ? '9' : '12'}}">

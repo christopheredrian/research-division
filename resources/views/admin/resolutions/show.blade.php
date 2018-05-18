@@ -57,6 +57,9 @@
                                            class="btn btn-warning"><span class="fa fa-edit"></span> Edit</a>
                                     @endif
                                 @else
+                                    <a href="/answer.r/{{$resolution->id}}/required?admin=1"
+                                       class="btn  btn-success">
+                                        Answer Questionnaire </a>
                                     <form style="display: inline;" method="post"
                                           action="{{ url('/admin/declineResponses/' . $questionnaire->id) }}">
                                         {{ csrf_field() }}
@@ -151,6 +154,9 @@
                     <div class="panel-body">
                         @if($resolution->pdf_link)
                             <iframe src="{{$resolution->pdf_link}}"
+                                    width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
+                        @elseif($resolution->pdf_file_name)
+                            <iframe src="/storage/resolutions/{{$resolution->pdf_file_name}}"
                                     width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
                         @else
                             <h3 class="text-center">PDF not available.</h3>
@@ -256,6 +262,9 @@
                             @if($resolution->pdf_link)
                                 <iframe src="{{$resolution->pdf_link}}"
                                         width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
+                            @elseif($resolution->pdf_file_name)
+                                <iframe src="/storage/resolutions/{{$resolution->pdf_file_name}}"
+                                        width='100%' height='350' allowfullscreen webkitallowfullscreen></iframe>
                             @else
                                 <h3 class="text-center">PDF not available.</h3>
                             @endif
@@ -302,6 +311,7 @@
                                                 <tr>
                                                     <td>{{$resolution->statusReport->pdf_file_name}}</td>
                                                     <td>
+
                                                         <a href="/downloadPDF/statusreports/{{$resolution->statusReport->pdf_file_name}}"
                                                            class="btn btn-sm btn-primary">
                                                             Download
@@ -397,6 +407,7 @@
                                 </button>
                             </form>
                         @else
+
                             <form style="display: inline;" method="post"
                                   action="{{ url('/admin/declineSuggestions/' . $resolution->id.'/'.$flag) }}">
                                 {{ csrf_field() }}
