@@ -17,9 +17,6 @@
                 <div class="carousel-item active slides">
                     <div class="overlay"></div>
                     <div class="slide-1"></div>
-                    {{--<iframe width="1366" height="662"--}}
-                    {{--src="https://www.youtube.com/embed/IeyB--0Ff4k?autoplay=1&playlist=IeyB--0Ff4k&autohide=0&loop=1&controls=1&modestbranding=1&rel=0&showinfo=0&disablekb=1"--}}
-                    {{--frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>--}}
                     <div id="hero" class="hero">
                         <hgroup class="wow fadeInUp">
                             <h1>Let's Work together!</h1>
@@ -29,7 +26,15 @@
                         <span class="wrap"></span></a></span></h1>
                             <h3>To enhance and improve local legislations</h3>
                         </hgroup>
-                        {{--<button class="btn btn-general btn-green wow fadeInUp" role="button">Contact Now</button>--}}
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-3">
+                                <a href="/ordinances" class="btn btn-general btn-green" role="button">Ordinance</a>
+                            </div>
+                            <div class="col-md-3">
+                                <a href="/resolutions" href="" class="btn btn-general btn-green" role="button">Resolutions</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -45,7 +50,7 @@
             <div class="row">
                 <div class="col-md-6">
                     <div class="service-himg">
-                        <iframe src="https://www.youtube.com/embed/IeyB--0Ff4k?rel=0&amp;controls=0&amp;showinfo=0"
+                        <iframe src="https://www.youtube.com/embed/IeyB--0Ff4k?rel=0&amp;controls=1&amp;showinfo=0"
                                 frameborder="0" allowfullscreen></iframe>
                     </div>
                 </div>
@@ -80,7 +85,7 @@
                     ABOUT MAIN CONTENT
     ======================================================-->
     <section id="about" class="about">
-        <div class="container" >
+        <div class="container">
             <div class="row title-bar">
                 <div class="col-md-12" style="border: dashed #37c8d6">
                     <h1 class="wow fadeInUp">Hello there!</h1>

@@ -6,7 +6,7 @@
     ======================================================-->
     <div id="home-p" class="home-p pages-head3 text-center">
         <div class="container">
-            <h1 class="wow fadeInUp" data-wow-delay="0.1s">Monitoring and Evaluation</h1>
+            <h1 class="" data-wow-delay="0.1s">Monitoring and Evaluation</h1>
             {{--<p>--}}
                 {{----}}
             {{--</p>--}}
@@ -25,25 +25,43 @@
                         <div class="ordinance-heading">
                             @if( app('request')->input('status') === 'monitored')
                                 <h1 class="wow fadeInUp">Monitored Ordinances</h1>
+                                <div class="heading-border"></div>
+                                <p class="" data-wow-delay="0.4s">
+                                    These are ordinances that has already been monitored.
+                                </p>
                             @else
                                 <h1 class="wow fadeInUp">Ordinances Being Monitored</h1>
+                                <div class="heading-border"></div>
+                                <p class="" data-wow-delay="0.4s">
+                                    The Sanggunian is pursuing its monitoring of the implementation or enforcement of ordinances and
+                                    resolutions enacted by the body. This is being conducted because the legislative body is not only tasked
+                                    to enact new legislations, but it also has a duty to ensure that existing legislations are implemented
+                                    and administered efficiently, effectively, and in a manner consistent with its legislative intent.
+                                </p>
                             @endif
                         </div>
                     @elseif ($resolutions !== null)
                         <div class="ordinance-heading">
                             @if( app('request')->input('status') === 'monitored')
                                 <h1 class="wow fadeInUp">Monitored Resolutions</h1>
+                                <div class="heading-border"></div>
+                                <p class="" data-wow-delay="0.4s">
+                                    These are resolutions that has already been monitored.
+                                </p>
                             @else
                                 <h1 class="wow fadeInUp">Resolutions Being Monitored</h1>
+                                <div class="heading-border"></div>
+                                <p class="" data-wow-delay="0.4s">
+                                    The Sanggunian is pursuing its monitoring of the implementation or enforcement of ordinances and
+                                    resolutions enacted by the body. This is being conducted because the legislative body is not only tasked
+                                    to enact new legislations, but it also has a duty to ensure that existing legislations are implemented
+                                    and administered efficiently, effectively, and in a manner consistent with its legislative intent.
+                                </p>
                             @endif
                         </div>
                     @endif
 
-                    <div class="heading-border"></div>
-                    <p class="wow fadeInUp" data-wow-delay="0.4s">The Sanggunian is pursuing its monitoring of the implementation or enforcement of ordinances and
-                        resolutions enacted by the body. This is being conducted because the legislative body is not only tasked
-                        to enact new legislations, but it also has a duty to ensure that existing legislations are implemented
-                        and administered efficiently, effectively, and in a manner consistent with its legislative intent.</p>
+
 
                     <div class=" col-md-12" style="margin-bottom: 10px">
                         <div class="row">
