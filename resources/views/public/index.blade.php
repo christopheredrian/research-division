@@ -235,7 +235,6 @@
                 <div class="owl-carousel owl-theme col-9">
 
                     @foreach($ordinances as $ordinance)
-
                         <div class="item">
                             <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.4s">
                                 <div class="desc-comp-offer-cont" style="text-align: center">
@@ -248,9 +247,7 @@
                                     <div class="bg-chathams" style="padding: 20px">
                                         <h5 style="color: white">Ordinance No. {{$ordinance->number}}</h5>
                                     </div>
-                                    {{--<h3>{{ str_limit($ordinance->title, $limit = 120, $end = '...') }}</h3>--}}
                                     <p class="desc" style="margin-top: 10px;">
-                                        {{--{{ str_limit($ordinance->title, $limit = 120, $end = '...') }}--}}
                                         {!! Str::words($ordinance->title, 30,'...')  !!}
                                     </p>
                                     <a href="/public/showOrdinance/{{$ordinance->id}}"><i
@@ -313,7 +310,8 @@
         owl.owlCarousel({
             rtl: true,
             margin: 10,
-            nav: true
+            nav: true,
+            dots: false
         });
     </script>
     {{-- removed time out of hero box --}}
