@@ -5,7 +5,7 @@
     ======================================================-->
     <div id="home-p" class="home-p pages-head2 text-center">
         <div class="container">
-            <h1 class="wow fadeInUp" data-wow-delay="0.1s">Legislations</h1>
+            <h1 class="" data-wow-delay="0.1s">Legislations</h1>
             <p>
                 Local legislation is important because it is a powerful, vital tool for: (1) addressing the
                 <b>problems</b> of the citizens of the LGU, (2) promoting the <b>general welfare and development</b> of

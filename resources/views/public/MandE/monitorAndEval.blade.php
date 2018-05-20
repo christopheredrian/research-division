@@ -35,8 +35,12 @@
                                 <p class="" data-wow-delay="0.4s">
                                     These are the Ordinances currently being monitored. The Sangguniang Panlungsod ng
                                     Baguio is conducting a legislative monitoring and evaluation of the following
-                                    ordinances. In this regard, may we solicit your comments and
-                                    suggestions or recommendations in relation to the following ordinances.
+                                    ordinances. In this regard, may we solicit your comments and suggestions or
+                                    recommendations in relation to the following ordinances.</p>
+                                <p>If you click "Read More",
+                                    you will be able to view the entirety of the ordinance being monitored
+                                    and the comment section wherein you will input your comments and
+                                    suggestions or recommendations about the ordinance.
                                 </p>
                             @endif
                         </div>
@@ -56,6 +60,12 @@
                                     Baguio is conducting a legislative monitoring and evaluation of the following
                                     resolutions. In this regard, may we solicit your comments and
                                     suggestions or recommendations in relation to the following resolutions.
+                                </p>
+
+                                <p>If you click "Read More",
+                                    you will be able to view the entirety of the resolution being monitored
+                                    and the comment section wherein you will input your comments and
+                                    suggestions or recommendations about the resolution.
                                 </p>
                             @endif
                         </div>
