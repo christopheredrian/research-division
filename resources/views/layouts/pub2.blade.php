@@ -308,6 +308,21 @@ License URL: https://creativecommons.org/licenses/by/4.0/
             $this.countTo(options);
         }
     });
+
+    /**
+    * Quick Fix for all pagination links
+    * This will convert the classes from bootstrap 3 to bootstrap 4 compatible classes
+    */
+    $(document).ready(function(){
+        
+        $.each($('ul.pagination li span'), function(i, val){
+            var temp = $(val).text();
+            $(val).html('<a>' + temp + '</a>');
+        });
+        
+        $('ul.pagination li').addClass('page-item');
+        $('ul.pagination li a').addClass('page-link');
+    });
 </script>
 </body>
 
