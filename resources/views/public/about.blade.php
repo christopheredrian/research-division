@@ -44,7 +44,7 @@
                                                     <div class="story-desc">
                                                         <h3>Sangguniang Panlungsod ng Baguio</h3>
                                                         <div class="heading-border-light"></div>
-                                                        <p>
+                                                        <p style="text-align: justify">
                                                             The Sangguniang Panlungsod, as the legislative body of the
                                                             city, shall enact ordinances, approve resolutions and
                                                             appropriate funds for the general welfare of the city and
@@ -86,7 +86,7 @@
                                                     <div class="about-p2-cont cl-white wow fadeInUp"
                                                          data-wow-delay="0.3s">
                                                         <h5>Mission</h5>
-                                                        <p class="cl-white">To enact oridnances, approve resolutions,
+                                                        <p class="cl-white" style="text-align: justify">To enact oridnances, approve resolutions,
                                                             and appropriate funds for the general welfare of the
                                                             city and its inhabitants.</p>
                                                     </div>
@@ -95,7 +95,7 @@
                                                     <div class="about-p2-cont cl-white wow fadeInUp"
                                                          data-wow-delay="0.5s">
                                                         <h5>Vision</h5>
-                                                        <p class="cl-white">We envision quality legislation reflective
+                                                        <p class="cl-white" style="text-align: justify">We envision quality legislation reflective
                                                             of the aspirations of the people for a better
                                                             quality of life in a clean and green environment.</p>
                                                     </div>
@@ -118,7 +118,7 @@
                                                     <div class="story-desc">
                                                         <h3>Research Division of the Sangguniang Panlungsod</h3>
                                                         <div class="heading-border-light"></div>
-                                                        <p>
+                                                        <p style="text-align: justify">
                                                             The Research Division is under the Sangguniang Panlungsod
                                                             and have the following functions:
                                                         <ol>

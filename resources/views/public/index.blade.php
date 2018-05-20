@@ -58,7 +58,7 @@
                     <div class="service-h-desc">
                         <h3>Monitoring and Evaluation</h3>
                         <div class="heading-border-light"></div>
-                        <p>
+                        <p style="text-align: justify">
                             The Sanggunian is pursuing its monitoring of the implementation or enforcement of ordinances
                             and resolutions enacted by the body. This is being conducted because the legislative body is
                             not only tasked to enact new legislations, but it also has a duty to ensure that existing
@@ -195,55 +195,6 @@
     <section class="what-we-do bg-gradiant">
         <div class="container-fluid">
             <div class="row">
-                {{--<div class="col-md-3">--}}
-                {{--<h3>What we Do</h3>--}}
-                {{--<div class="heading-border-light"></div>--}}
-                {{--<p class="desc">We partner with clients to put recommendations into practice. </p>--}}
-                {{--</div>--}}
-                {{--<div class="col-md-9">--}}
-                {{--<div class="row">--}}
-                {{--<div class="col-md-4  col-sm-6">--}}
-                {{--<div class="what-we-desc">--}}
-                {{--<i class="fa fa-briefcase"></i>--}}
-                {{--<h6>Workspace</h6>--}}
-                {{--<p class="desc">Contrary to popular belief, Lorem Ipsum is not simply random text. </p>--}}
-                {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="col-md-4  col-sm-6">--}}
-                {{--<div class="what-we-desc">--}}
-                {{--<i class="fa fa-shopping-bag"></i>--}}
-                {{--<h6>Storefront</h6>--}}
-                {{--<p class="desc">Contrary to popular belief, Lorem Ipsum is not simply random text. </p>--}}
-                {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="col-md-4  col-sm-6">--}}
-                {{--<div class="what-we-desc">--}}
-                {{--<i class="fa fa-building-o"></i>--}}
-                {{--<h6>Apartments</h6>--}}
-                {{--<p class="desc">Contrary to popular belief, Lorem Ipsum is not simply random text. </p>--}}
-                {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="col-md-4  col-sm-6">--}}
-                {{--<div class="what-we-desc">--}}
-                {{--<i class="fa fa-bed"></i>--}}
-                {{--<h6>Hotels</h6>--}}
-                {{--<p class="desc">Contrary to popular belief, Lorem Ipsum is not simply random text. </p>--}}
-                {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="col-md-4  col-sm-6">--}}
-                {{--<div class="what-we-desc">--}}
-                {{--<i class="fa fa-hourglass-2"></i>--}}
-                {{--<h6>Concept</h6>--}}
-                {{--<p class="desc">Contrary to popular belief, Lorem Ipsum is not simply random text. </p>--}}
-                {{--</div>--}}
-                {{--</div>--}}
-                {{--<div class="col-md-4  col-sm-6">--}}
-                {{--<div class="what-we-desc">--}}
-                {{--<i class="fa fa-cutlery"></i>--}}
-                {{--<h6>Restaurant</h6>--}}
-                {{--<p class="desc">Contrary to popular belief, Lorem Ipsum is not simply random text. </p>--}}
-                {{--</div>--}}
-                {{--</div>--}}
             </div>
         </div>
     </section>
