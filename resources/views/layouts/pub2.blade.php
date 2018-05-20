@@ -82,7 +82,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                             </div>
                         </li>
                     @endif
-
+                    <li class="nav-item"><a class="nav-link smooth-scroll" href="/faqs">FAQs</a></li>
                     <li class="nav-item"><a class="nav-link smooth-scroll" href="/contact">Contact Us</a></li>
                     <li class="nav-item"><a class="nav-link smooth-scroll" href="/about">About Us</a></li>
 
@@ -116,10 +116,8 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                 <div class="row">
                     <!-- About Us -->
                     <div class="col-md-4 col-sm-6 ">
-                        <div><img src="/pub2/img/logo-w.png" alt="" class="img-fluid"></div>
                         <ul class="list-unstyled comp-desc-f">
-                            <li><p>Research Division is a corporate business theme. You can customize what ever you think to
-                                    make your website much better from your great ideas. </p></li>
+                            <li><p>Research Division ng Sangguniang Panlungsod is **tbc. </p></li>
                         </ul>
                         <br>
                     </div>

@@ -11,9 +11,9 @@
                 <div class="carousel-item active slides">
                     <div class="overlay"></div>
                     <div class="slide-1"></div>
-                    <iframe width="1366" height="662"
-                            src="https://www.youtube.com/embed/IeyB--0Ff4k?autoplay=1&playlist=IeyB--0Ff4k&autohide=0&loop=1&controls=1&modestbranding=1&rel=0&showinfo=0&disablekb=1"
-                            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    {{--<iframe width="1366" height="662"--}}
+                            {{--src="https://www.youtube.com/embed/IeyB--0Ff4k?autoplay=1&playlist=IeyB--0Ff4k&autohide=0&loop=1&controls=1&modestbranding=1&rel=0&showinfo=0&disablekb=1"--}}
+                            {{--frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>--}}
                     <div id="hero" class="hero">
                         <hgroup class="wow fadeInUp">
                             <h1>Let's Work together!</h1>
@@ -237,7 +237,6 @@
                     @foreach($ordinances as $ordinance)
 
                         <div class="item">
-
                             <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.4s">
                                 <div class="desc-comp-offer-cont" style="text-align: center">
                                     {{--<div class="thumbnail-blogs">--}}
@@ -258,7 +257,6 @@
                                                 class="fa fa-arrow-circle-o-right"></i> Read More</a>
                                 </div>
                             </div>
-
                         </div>
                     @endforeach
                 </div>
@@ -307,7 +305,6 @@
             </div>
         </div>
     </section>
-
 @endsection
 
 @section('scripts')
@@ -319,11 +316,12 @@
             nav: true
         });
     </script>
+    {{-- removed time out of hero box --}}
     <script>
-        function closeit() {
-            document.getElementById('hero').setAttribute("style", "display:none");
-        }
-        setTimeout(closeit, 9000);
+//        function closeit() {
+//            document.getElementById('hero').setAttribute("style", "display:none");
+//        }
+//        setTimeout(closeit, 9000);
     </script>
     <script>
         document.getElementById('nav-home-tab').onclick = function () {
