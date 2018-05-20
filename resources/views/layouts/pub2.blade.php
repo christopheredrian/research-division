@@ -42,7 +42,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
     <nav class="navbar navbar-expand-lg navbar-light" id="mainNav" data-toggle="affix">
         <div class="container">
             <a class="navbar-brand smooth-scroll" href="/">
-
+            Research Division
             </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                     data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
@@ -82,7 +82,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                             </div>
                         </li>
                     @endif
-                    <li class="nav-item"><a class="nav-link smooth-scroll" href="/faqs">FAQs</a></li>
+                    {{--<li class="nav-item"><a class="nav-link smooth-scroll" href="/faqs">FAQs</a></li>--}}
                     <li class="nav-item"><a class="nav-link smooth-scroll" href="/contact">Contact Us</a></li>
                     <li class="nav-item"><a class="nav-link smooth-scroll" href="/about">About Us</a></li>
 

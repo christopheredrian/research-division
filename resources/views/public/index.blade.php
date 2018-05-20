@@ -1,4 +1,12 @@
 @extends('layouts.pub2')
+@section('styles')
+    <style type="text/css">
+        #about {
+            padding-top: 10%;
+        }
+    </style>
+@endsection
+
 @section('content')
 
     <!--====================================================
@@ -17,8 +25,9 @@
                     <div id="hero" class="hero">
                         <hgroup class="wow fadeInUp">
                             <h1>Let's Work together!</h1>
-                            <h1>We need your <span><a href="" class="typewrite" data-period="2000"
-                                                      data-type='[ " Participation", " Opinion"]'>
+                            <h1>We need your <span>
+                                    <a href="" class="typewrite" data-period="2000"
+                                    data-type='[ " Participation", " Opinion"]'>
                         <span class="wrap"></span></a></span></h1>
                             <h3>To enhance and improve local legislations</h3>
                         </hgroup>
@@ -30,55 +39,74 @@
     </section>
 
 
+    <section id="about">
+        <div class="container">
+            <div class="col-lg-12">
+                <h1 class="col-sm-9">
+                 The Research Division ng Sangguniang Panlungsod
+                </h1>
+                <div class="heading-border-light"></div>
+                <p>Attends meetings, public hearings, and any other kind of meeting of the
+                    Sanggunian to help and do research work and gather information
+                    for the Sanggunian. Research work are on approved ordinances and
+                    resolutions. We also maintain original copies of ordinances, resolutions and
+                    other related documents. Sends out copies of ordinances and resolutions to
+                    concerned offices/persons for implementaion or information,
+                    We also send out publications of approved ordinances and resolutions. We
+                    also coordinate with other agencies for information collection.</p>
+            </div>
+        </div>
+    </section>
+
+
     <!--====================================================
-                            ABOUT
+                            ABOUT MAIN CONTENT
     ======================================================-->
     <section id="about" class="about" style="padding-top: 50px">
         <div class="container">
             <div class="row title-bar">
                 <div class="col-md-12">
-                    <h1 class="wow fadeInUp">We committed to helping</h1>
+                    <h1 class="wow fadeInUp">We are committed to helping</h1>
                     <div class="heading-border"></div>
                     <p class="wow fadeInUp" data-wow-delay="0.4s">
                         *Caption*
                     </p>
 
-                    <div class="service-h-tab">
+                    {{--<div class="service-h-tab">--}}
+                        {{--<nav class="nav nav-tabs" id="myTab" role="tablist">--}}
+                            {{--<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"--}}
+                               {{--role="tab" aria-controls="nav-home" aria-expanded="true">Ordinance</a>--}}
+                            {{--<a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"--}}
+                               {{--role="tab" aria-controls="nav-profile">Resolutions</a>--}}
+                        {{--</nav>--}}
+                        {{--<div class="tab-content" id="nav-tabContent">--}}
+                            {{--<div class="tab-pane fade show active" id="nav-home" role="tabpanel"--}}
+                                 {{--aria-labelledby="nav-home-tab">--}}
+                                {{--<!--====================================================--}}
+                                    {{--OFFER--}}
+                                {{--======================================================-->--}}
+                                {{--<br/>--}}
+                                {{--<div class="container-fluid ">--}}
+                                    {{--<div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.1s">--}}
+                                        {{--<h2>Ordinances Currently Being Monitored</h2>--}}
+                                        {{--<div class="heading-border-light"></div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="row">--}}
 
-                        <nav class="nav nav-tabs" id="myTab" role="tablist">
-                            <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
-                               role="tab" aria-controls="nav-home" aria-expanded="true">Ordinance</a>
-                            <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
-                               role="tab" aria-controls="nav-profile">Resolutions</a>
-                        </nav>
-                        <div class="tab-content" id="nav-tabContent">
-                            <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
-                                 aria-labelledby="nav-home-tab">
-                                <!--====================================================
-                                    OFFER
-                                ======================================================-->
-                                <br/>
-                                <div class="container-fluid ">
-                                    <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.1s">
-                                        <h2>Ordinances Currently Being Monitored</h2>
-                                        <div class="heading-border-light"></div>
-                                    </div>
-                                    <div class="row">
+                                        {{--<div class="owl-carousel owl-theme">--}}
 
-                                        <div class="owl-carousel owl-theme">
+                                            {{--@foreach($monitoringOrd as $ordinance)--}}
 
-                                            @foreach($monitoringOrd as $ordinance)
+                                                {{--<div class="item">--}}
 
-                                                <div class="item">
-
-                                                    <div class="desc-comp-offer wow fadeInUp"
-                                                         data-wow-delay="0.8s">
-                                                        <div class="desc-comp-offer-cont"
-                                                             style="text-align: center">
-                                                            <div class="bg-starship" style="padding: 20px">
-                                                                <h5 style="color: white">Ordinance
-                                                                    No. {{$ordinance->number}}</h5>
-                                                            </div>
+                                                    {{--<div class="desc-comp-offer wow fadeInUp"--}}
+                                                         {{--data-wow-delay="0.8s">--}}
+                                                        {{--<div class="desc-comp-offer-cont"--}}
+                                                             {{--style="text-align: center">--}}
+                                                            {{--<div class="bg-starship" style="padding: 20px">--}}
+                                                                {{--<h5 style="color: white">Ordinance--}}
+                                                                    {{--No. {{$ordinance->number}}</h5>--}}
+                                                            {{--</div>--}}
                                                             {{--<div class="thumbnail-blogs">--}}
                                                             {{--<div class="caption">--}}
                                                             {{--<i class="fa fa-chain"></i>--}}
@@ -86,68 +114,137 @@
                                                             {{--<img src="/pub2/img/img/res.jpg" class="img-fluid" alt="...">--}}
                                                             {{--</div>--}}
                                                             {{--<h3>{{ str_limit($ordinance->title, $limit = 120, $end = '...') }}</h3>--}}
-                                                            <p class="desc" style="margin-top: 10px;">
+                                                            {{--<p class="desc" style="margin-top: 10px;">--}}
                                                                 {{--{{ str_limit($ordinance->title, $limit = 120, $end = '...') }}--}}
-                                                                {!! Str::words($ordinance->title, 30,'...')  !!}
-                                                            </p>
-                                                            <a href="/public/showOrdinance/{{$ordinance->id}}"><i
-                                                                        class="fa fa-arrow-circle-o-right"></i> Read
-                                                                More</a>
-                                                        </div>
-                                                    </div>
+                                                                {{--{!! Str::words($ordinance->title, 30,'...')  !!}--}}
+                                                            {{--</p>--}}
+                                                            {{--<a href="/public/showOrdinance/{{$ordinance->id}}"><i--}}
+                                                                        {{--class="fa fa-arrow-circle-o-right"></i> Read--}}
+                                                                {{--More</a>--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
 
+                                                {{--</div>--}}
+                                            {{--@endforeach--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+
+                            {{--<div class="tab-pane fade" id="nav-profile" role="tabpanel"--}}
+                                 {{--aria-labelledby="nav-profile-tab">--}}
+                                {{--<!--====================================================--}}
+                                    {{--OFFER--}}
+                                {{--======================================================-->--}}
+                                {{--<br/>--}}
+                                {{--<div id='hi' class="container-fluid">--}}
+                                    {{--<div class="desc-comp-offer">--}}
+                                        {{--<h2>Resolutions Currently Being Monitored</h2>--}}
+                                        {{--<div class="heading-border-light"></div>--}}
+                                    {{--</div>--}}
+                                    {{--<div class="row">--}}
+                                        {{--<div class="owl-carousel owl-theme">--}}
+                                            {{--@foreach($monitoringRes as $resolution)--}}
+                                                {{--<div class="item">--}}
+
+                                                    {{--<div class="desc-comp-offer">--}}
+                                                        {{--<div class="desc-comp-offer-cont"--}}
+                                                             {{--style="text-align: center">--}}
+                                                            {{--<div class="bg-starship" style="padding: 20px">--}}
+                                                                {{--<h5 style="color: white">Resolution--}}
+                                                                    {{--No. {{$resolution->number}}</h5>--}}
+                                                            {{--</div>--}}
+                                                            {{--<div class="thumbnail-blogs">--}}
+                                                            {{--<div class="caption">--}}
+                                                            {{--<i class="fa fa-chain"></i>--}}
+                                                            {{--</div>--}}
+                                                            {{--<img src="/pub2/img/img/res.jpg" class="img-fluid" alt="...">--}}
+                                                            {{--</div>--}}
+                                                            {{--<h3>{{ str_limit($ordinance->title, $limit = 120, $end = '...') }}</h3>--}}
+                                                            {{--<p class="desc" style="margin-top: 10px">--}}
+                                                                {{--                                                        {{ str_limit($resolution->title, $limit = 200, $end = '...') }}--}}
+                                                                {{--{!! Str::words($resolution->title, 30,'...')  !!}--}}
+                                                            {{--</p>--}}
+                                                            {{--<a href="/public/showResolution/{{$resolution->id}}">--}}
+                                                                {{--<i class="fa fa-arrow-circle-o-right"></i> Read More--}}
+                                                            {{--</a>--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
+
+                                                {{--</div>--}}
+                                            {{--@endforeach--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                    {{--new --}}
+                    <div>
+                        <div class="container-fluid ">
+                            <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.1s">
+                                <h2>Ordinances Currently Being Monitored</h2>
+                                <div class="heading-border-light"></div>
+                            </div>
+                            <div class="row">
+                                <div class="owl-carousel owl-theme">
+                                    @foreach($monitoringOrd as $ordinance)
+                                        <div class="item">
+                                            <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.8s">
+                                                <div class="desc-comp-offer-cont"
+                                                     style="text-align: center">
+                                                    <div class="bg-starship" style="padding: 20px">
+                                                        <h5 style="color: white">
+                                                            Ordinance No.
+                                                            {{$ordinance->number}}
+                                                        </h5>
+                                                    </div>
+                                                    <p class="desc" style="margin-top: 10px;">
+                                                        {!! Str::words($ordinance->title, 30,'...')  !!}
+                                                    </p>
+                                                    <a href="/public/showOrdinance/{{$ordinance->id}}">
+                                                        <i class="fa fa-arrow-circle-o-right"></i>
+                                                        Read More
+                                                    </a>
                                                 </div>
-                                            @endforeach
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endforeach
                                 </div>
                             </div>
+                        </div>
+                    </div>
 
-                            <div class="tab-pane fade" id="nav-profile" role="tabpanel"
-                                 aria-labelledby="nav-profile-tab">
-                                <!--====================================================
-                                    OFFER
-                                ======================================================-->
-                                <br/>
-                                <div id='hi' class="container-fluid">
-                                    <div class="desc-comp-offer">
-                                        <h2>Resolutions Currently Being Monitored</h2>
-                                        <div class="heading-border-light"></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="owl-carousel owl-theme">
-                                            @foreach($monitoringRes as $resolution)
-                                                <div class="item">
-
-                                                    <div class="desc-comp-offer">
-                                                        <div class="desc-comp-offer-cont"
-                                                             style="text-align: center">
-                                                            <div class="bg-starship" style="padding: 20px">
-                                                                <h5 style="color: white">Resolution
-                                                                    No. {{$resolution->number}}</h5>
-                                                            </div>
-                                                            {{--<div class="thumbnail-blogs">--}}
-                                                            {{--<div class="caption">--}}
-                                                            {{--<i class="fa fa-chain"></i>--}}
-                                                            {{--</div>--}}
-                                                            {{--<img src="/pub2/img/img/res.jpg" class="img-fluid" alt="...">--}}
-                                                            {{--</div>--}}
-                                                            {{--<h3>{{ str_limit($ordinance->title, $limit = 120, $end = '...') }}</h3>--}}
-                                                            <p class="desc" style="margin-top: 10px">
-                                                                {{--                                                        {{ str_limit($resolution->title, $limit = 200, $end = '...') }}--}}
-                                                                {!! Str::words($resolution->title, 30,'...')  !!}
-                                                            </p>
-                                                            <a href="/public/showResolution/{{$resolution->id}}">
-                                                                <i class="fa fa-arrow-circle-o-right"></i> Read More
-                                                            </a>
-                                                        </div>
-                                                    </div>
-
+                    <div class="container-fluid">
+                        <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.1s">
+                            <h2>Resolutions Currently Being Monitored</h2>
+                            <div class="heading-border-light"></div>
+                        </div>
+                        <div class="row">
+                            <div class="owl-carousel owl-theme">
+                                @foreach($monitoringRes as $resolution)
+                                    <div class="item">
+                                        <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.8s">
+                                            <div class="desc-comp-offer-cont"
+                                                 style="text-align: center">
+                                                <div class="bg-starship" style="padding: 20px">
+                                                    <h5 style="color: white">
+                                                        Resolution No.
+                                                        {{$resolution->number}}
+                                                    </h5>
                                                 </div>
-                                            @endforeach
+                                                <p class="desc" style="margin-top: 10px">
+                                                    {!! Str::words($resolution->title, 30,'...')  !!}
+                                                </p>
+                                                <a href="/public/showResolution/{{$resolution->id}}">
+                                                    <i class="fa fa-arrow-circle-o-right"></i>
+                                                    Read More
+                                                </a>
+                                            </div>
                                         </div>
+
                                     </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -159,6 +256,8 @@
     <!--====================================================
                          WHAT WE DO
     ======================================================-->
+
+    {{--HORIZONTAL BAR--}}
     <section class="what-we-do bg-gradiant">
         <div class="container-fluid">
             <div class="row">
@@ -218,6 +317,7 @@
     </section>
 
 
+    {{-- carousel for the legislation --}}
     <!--====================================================
                            NEWS
     ======================================================-->

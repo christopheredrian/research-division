@@ -172,12 +172,13 @@
                                 </table>
                             </div>
 
-                            <div class="row text-center">
-                                {{$ordinances->links()}}
-                            </div>
+
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="">
+                {{$ordinances->links()}}
             </div>
         </div>
     </section>
