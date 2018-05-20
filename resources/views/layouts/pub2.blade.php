@@ -160,7 +160,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                         <div class="heading-footer"><h2>Visitor Counter</h2></div>
                         <div class="wrapper">
                             <div class="counter col_fourth">
-                                <h2 class="timer count-title count-number" data-to="300" data-speed="1500"></h2>
+                                <h2 class="timer count-title count-number" data-to="{{ \App\Log::where('user','public')->distinct()->count('ip')}}" data-speed="1500"></h2>
                                 <p class="count-text ">and still counting!</p>
                             </div>
                         </div>
@@ -313,6 +313,21 @@ License URL: https://creativecommons.org/licenses/by/4.0/
             options = $.extend({}, options || {}, $this.data('countToOptions') || {});
             $this.countTo(options);
         }
+    });
+
+    /**
+    * Quick Fix for all pagination links
+    * This will convert the classes from bootstrap 3 to bootstrap 4 compatible classes
+    */
+    $(document).ready(function(){
+        
+        $.each($('ul.pagination li span'), function(i, val){
+            var temp = $(val).text();
+            $(val).html('<a>' + temp + '</a>');
+        });
+        
+        $('ul.pagination li').addClass('page-item');
+        $('ul.pagination li a').addClass('page-link');
     });
 </script>
 </body>
