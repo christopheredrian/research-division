@@ -29,7 +29,7 @@
                         <div class="row">
                             <div class="col-md-3"></div>
                             <div class="col-md-3">
-                                <a href="/ordinances" class="btn btn-general btn-green" role="button">Ordinance</a>
+                                <a href="/ordinances" class="btn btn-general btn-green" role="button">Ordinances</a>
                             </div>
                             <div class="col-md-3">
                                 <a href="/resolutions" href="" class="btn btn-general btn-green" role="button">Resolutions</a>
