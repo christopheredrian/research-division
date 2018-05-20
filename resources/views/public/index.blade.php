@@ -58,21 +58,33 @@
         </div>
     </section>
 
-
-    <!--====================================================
-                            ABOUT MAIN CONTENT
-    ======================================================-->
-    <section id="about" class="about" style="padding-top: 50px">
+    <section id="video">
         <div class="container">
-            <div class="row title-bar">
-                <div class="col-md-12">
-                    <h1 class="wow fadeInUp">We are committed to helping</h1>
-                    <div class="heading-border"></div>
-                    <p class="wow fadeInUp" data-wow-delay="0.4s">
-                        *Caption*
-                    </p>
+            <div class="col-lg-12">
+                <iframe width="1136" height="640"
+                src="https://www.youtube.com/embed/IeyB--0Ff4k?"
+                frameborder="0" allow="autoplay; encrypted-media" >
 
-                    {{--<div class="service-h-tab">--}}
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+
+<!--====================================================
+                ABOUT MAIN CONTENT
+======================================================-->
+<section id="about" class="about" style="padding-top: 50px">
+<div class="container">
+<div class="row title-bar">
+    <div class="col-md-12">
+        <h1 class="wow fadeInUp">We are committed to helping</h1>
+        <div class="heading-border"></div>
+        <p class="wow fadeInUp" data-wow-delay="0.4s">
+            *Caption*
+        </p>
+
+        {{--<div class="service-h-tab">--}}
                         {{--<nav class="nav nav-tabs" id="myTab" role="tablist">--}}
                             {{--<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"--}}
                                {{--role="tab" aria-controls="nav-home" aria-expanded="true">Ordinance</a>--}}
