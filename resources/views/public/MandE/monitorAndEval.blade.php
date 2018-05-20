@@ -8,7 +8,7 @@
         <div class="container">
             <h1 class="" data-wow-delay="0.1s">Monitoring and Evaluation</h1>
             {{--<p>--}}
-                {{----}}
+            {{----}}
             {{--</p>--}}
         </div><!--/end container-->
     </div>
@@ -33,10 +33,10 @@
                                 <h1 class="wow fadeInUp">Ordinances Being Monitored</h1>
                                 <div class="heading-border"></div>
                                 <p class="" data-wow-delay="0.4s">
-                                    The Sanggunian is pursuing its monitoring of the implementation or enforcement of ordinances and
-                                    resolutions enacted by the body. This is being conducted because the legislative body is not only tasked
-                                    to enact new legislations, but it also has a duty to ensure that existing legislations are implemented
-                                    and administered efficiently, effectively, and in a manner consistent with its legislative intent.
+                                    These are the Ordinances currently being monitored. The Sangguniang Panlungsod ng
+                                    Baguio is conducting a legislative monitoring and evaluation of the following
+                                    ordinances. In this regard, may we solicit your comments and
+                                    suggestions or recommendations in relation to the following ordinances.
                                 </p>
                             @endif
                         </div>
@@ -52,15 +52,14 @@
                                 <h1 class="wow fadeInUp">Resolutions Being Monitored</h1>
                                 <div class="heading-border"></div>
                                 <p class="" data-wow-delay="0.4s">
-                                    The Sanggunian is pursuing its monitoring of the implementation or enforcement of ordinances and
-                                    resolutions enacted by the body. This is being conducted because the legislative body is not only tasked
-                                    to enact new legislations, but it also has a duty to ensure that existing legislations are implemented
-                                    and administered efficiently, effectively, and in a manner consistent with its legislative intent.
+                                    These are the Resolutions currently being monitored. The Sangguniang Panlungsod ng
+                                    Baguio is conducting a legislative monitoring and evaluation of the following
+                                    resolutions. In this regard, may we solicit your comments and
+                                    suggestions or recommendations in relation to the following resolutions.
                                 </p>
                             @endif
                         </div>
                     @endif
-
 
 
                     <div class=" col-md-12" style="margin-bottom: 10px">

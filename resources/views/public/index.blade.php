@@ -56,16 +56,15 @@
                 </div>
                 <div class="col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-h-desc">
-                        <h3>The Research Division ng Sangguniang Panlungsod</h3>
+                        <h3>Monitoring and Evaluation</h3>
                         <div class="heading-border-light"></div>
-                        <p>Attends meetings, public hearings, and any other kind of meeting of the
-                            Sanggunian to help and do research work and gather information
-                            for the Sanggunian. Research work are on approved ordinances and
-                            resolutions. We also maintain original copies of ordinances, resolutions and
-                            other related documents. Sends out copies of ordinances and resolutions to
-                            concerned offices/persons for implementaion or information,
-                            We also send out publications of approved ordinances and resolutions. We
-                            also coordinate with other agencies for information collection.</p>
+                        <p>
+                            The Sanggunian is pursuing its monitoring of the implementation or enforcement of ordinances
+                            and resolutions enacted by the body. This is being conducted because the legislative body is
+                            not only tasked to enact new legislations, but it also has a duty to ensure that existing
+                            legislations are implemented and administered efficiently, effectively, and in a manner
+                            consistent with its legislative intent.
+                        </p>
                     </div>
                 </div>
             </div>

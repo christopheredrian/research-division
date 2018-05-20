@@ -154,7 +154,6 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                         <div class="heading-footer"><h2>Visitor Counter</h2></div>
                         <div class="wrapper">
                             <div class="counter col_fourth">
-
                                 <h2 class="timer count-title count-number" data-to="300" data-speed="1500"></h2>
                                 <p class="count-text ">and still counting!</p>
                             </div>
