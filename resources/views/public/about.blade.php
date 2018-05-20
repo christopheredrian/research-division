@@ -60,7 +60,7 @@
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="story-himg">
-                                                        <img src="/pub2/img/img/burnham.jpg"
+                                                        <img src="/pub2/img/img/burnham-park.jpg"
                                                              class="img-fluid wow fadeInUp" data-wow-delay="0.1s"
                                                              alt="">
                                                     </div>
