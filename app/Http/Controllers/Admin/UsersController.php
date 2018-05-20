@@ -203,6 +203,7 @@ class UsersController extends Controller
 
         $user = Auth::user();
         $user->password = bcrypt($new);
+        $user->is_password_reset = 0;
         $user->save();
         // TODO: Add flash message here
 
@@ -217,6 +218,7 @@ class UsersController extends Controller
         $temporaryPassword = $this->generateRandomString(5);
 
         $user->password = bcrypt($temporaryPassword);
+        $user->is_password_reset = 1;
         $user->save();
 
         Session::flash(

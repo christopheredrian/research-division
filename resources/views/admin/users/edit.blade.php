@@ -328,7 +328,7 @@
     </script>
 
     <script>
-        if ('{{$errors->any()}}') {
+        if ('{{$errors->any()}}' || '{{app('request')->input('p')}}') {
             $("document").ready(function () {
                 setTimeout(function () {
                     $("#cp-link").trigger('click');

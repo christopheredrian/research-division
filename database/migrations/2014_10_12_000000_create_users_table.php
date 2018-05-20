@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->enum('role', ['superadmin', 'admin', 'me', 'rr']);
             $table->enum('status', ['active', 'disabled']);
+            $table->boolean('is_password_reset')->default(false);
             $table->rememberToken();
             $table->timestamps();
 

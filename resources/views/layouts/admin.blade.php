@@ -534,6 +534,13 @@ function skin($user)
                         {!! Session::get('flash_message') !!}
                     </div>
                 @endif
+
+                @if(Auth::user()->is_password_reset)
+                    <div class="alert alert-warning text-center">
+                        You have recently reset your password for this account through the Administrator.
+                        Click <a href="/admin/profile/edit?p=cp">here</a> to change your password.
+                    </div>
+                @endif
                 <div class="row">
                     @yield('content')
                 </div>
