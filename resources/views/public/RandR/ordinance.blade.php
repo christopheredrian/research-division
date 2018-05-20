@@ -1,4 +1,7 @@
 @extends('layouts.pub2')
+@section('styles')
+
+@endsection
 @section('content')
     <!--====================================================
                        HOME-P
@@ -26,7 +29,7 @@
                     <p class="wow fadeInUp" data-wow-delay="0.4s">An ordinance is a local law that prescribes rules of
                         conduct of a general, permanent character. It continues to be in force until repealed or
                         superseded by a subsequent enactment of the local legislative body.</p>
-
+                </div>
                     <div class="col-md-12" style="margin-bottom: 30px">
                         <div class="pull-right">
                             <a style="min-width: 150px" href="{{ url()->current() }}" class="btn btn-primary">
@@ -34,6 +37,7 @@
                             </a>
                         </div>
                     </div>
+                </div>
                     <br>
                     <div class="ordinance-right">
                         <div class="col-md-12">
@@ -174,14 +178,10 @@
                                     @endforeach
                                     </tbody>
                                 </table>
-                            </div>
-
-
-                        </div>
                     </div>
                 </div>
             </div>
-            <div class="">
+            <div class="col-md-12 ">
                 {{$ordinances->links()}}
             </div>
         </div>
