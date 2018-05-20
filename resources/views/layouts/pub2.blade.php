@@ -64,6 +64,12 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         .count-text { font-size: 13px; font-weight: normal;  margin-top: 10px; margin-bottom: 0; text-align: center; }
         .fa-2x { margin: 0 auto; float: none; display: table; color: #4ad1e5; }
 
+        .pagination li {
+            padding: 5px;
+        }
+        .pagination {
+            margin-left: 50%;
+        }
     </style>
 </head>
 

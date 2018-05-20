@@ -1,9 +1,4 @@
 @extends('layouts.pub2')
-@section('styles')
-    <style type="text/css">
-
-    </style>
-@endsection
 
 @section('content')
 
