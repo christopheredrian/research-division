@@ -4,8 +4,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <h1>
-            InfoSentiA
-            <small>2018</small>
+            Prototype
+            <small>Version 0.1</small>
         </h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -122,7 +122,7 @@
                 <!-- small box -->
                 <div class="small-box bg-light-blue">
                     <div class="inner">
-                        <h3> {{ \App\Log::count() }}</h3>
+                        <h3> {{ \App\Log::where('user','public')->distinct()->count('ip') }}</h3>
 
                         <p>Total Visitors</p>
                     </div>
