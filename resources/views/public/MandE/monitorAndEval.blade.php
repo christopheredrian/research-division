@@ -7,7 +7,9 @@
     <div id="home-p" class="home-p pages-head3 text-center">
         <div class="container">
             <h1 class="wow fadeInUp" data-wow-delay="0.1s">Monitoring and Evaluation</h1>
-            {{--<p>Our Services</p>--}}
+            {{--<p>--}}
+                {{----}}
+            {{--</p>--}}
         </div><!--/end container-->
     </div>
 
@@ -38,9 +40,10 @@
                     @endif
 
                     <div class="heading-border"></div>
-                    <p class="wow fadeInUp" data-wow-delay="0.4s">We committed to helping you maintain your oral
-                        healthTooth.We are an innovative company. We develop and design websites for costumers around
-                        the world. Our clients are some of the most forward-looking companies in the world.</p>
+                    <p class="wow fadeInUp" data-wow-delay="0.4s">The Sanggunian is pursuing its monitoring of the implementation or enforcement of ordinances and
+                        resolutions enacted by the body. This is being conducted because the legislative body is not only tasked
+                        to enact new legislations, but it also has a duty to ensure that existing legislations are implemented
+                        and administered efficiently, effectively, and in a manner consistent with its legislative intent.</p>
 
                     <div class=" col-md-12" style="margin-bottom: 10px">
                         <div class="row">

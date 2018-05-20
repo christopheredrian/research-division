@@ -279,27 +279,7 @@ function skin($user)
                 </div>
             </form>
             <!-- /.search form -->
-            <!-- sidebar menu: : style can be found in sidebar.less -->
-            @if(Auth::user()->hasRole('superadmin'))
-                <ul class="sidebar-menu" data-widget="tree">
-                    <li class="header">MANAGEMENT</li>
-                    <li class="{{ Request::is('admin/users*') ? 'active' : '' }}">
-                        <a href="/admin/users">
-                            <i class="fa fa-users"></i>
-                            <span>Users</span>
-                        </a>
 
-                    </li>
-
-                    <li class="{{ Request::is('admin/configurations*') ? 'active' : '' }}">
-                        <a href="/admin/configurations">
-                            <i class="fa fa-gears"></i>
-                            <span>Configuration</span>
-                        </a>
-
-                    </li>
-                </ul>
-            @endif
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">MAIN NAVIGATION</li>
 
@@ -518,6 +498,28 @@ function skin($user)
                 {{--</a>--}}
                 {{--</li>--}}
             </ul>
+
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            @if(Auth::user()->hasRole('superadmin'))
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="header">MANAGEMENT</li>
+                    <li class="{{ Request::is('admin/users*') ? 'active' : '' }}">
+                        <a href="/admin/users">
+                            <i class="fa fa-users"></i>
+                            <span>Users</span>
+                        </a>
+
+                    </li>
+
+                    <li class="{{ Request::is('admin/configurations*') ? 'active' : '' }}">
+                        <a href="/admin/configurations">
+                            <i class="fa fa-gears"></i>
+                            <span>Configuration</span>
+                        </a>
+
+                    </li>
+                </ul>
+            @endif
         </section>
         <!-- /.sidebar -->
     </aside>

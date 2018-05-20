@@ -127,12 +127,9 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                     <div class="col-md-4 col-sm-6">
                         <div class="heading-footer"><h2>Get In Touch</h2></div>
                         <address class="address-details-f">
-                            Baguio City Hall, City Hall Dr, <br>
-                            Baguio, 2600 Benguet<br>
-                            Phone: <br>
-                            Fax: <br>
+                            Address: 2nd floor, City Hall, Baguio City<br>
                             Email: <a href="mailto:sanggunianrd@gmail.com">sanggunianrd@gmail.com</a><br>
-                            Workdays: Monday (7:30-5:00), Tuesday to Thursday (8:00-5:00), Friday (8:00-4:30)
+                            Workdays: Monday-Friday (8:00am - 5:00pm)
                         </address>
                         <ul class="list-inline social-icon-f top-data">
                             <li><a href="#" target="_empty"><i class="fa top-social fa-facebook"></i></a></li>

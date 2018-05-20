@@ -44,27 +44,35 @@
                                                     <div class="story-desc">
                                                         <h3>Baguio City</h3>
                                                         <div class="heading-border-light"></div>
-                                                        <p>The name Baguio conjures, for both the international and domestic traveler, a highland
+                                                        <p>The name Baguio conjures, for both the international and
+                                                            domestic traveler, a highland
                                                             retreat in
                                                             the Grand Cordillera in Northern Luzon,
-                                                            with pine trees, crisp cold breezes and low verdant knolls and hillocks.
-                                                            Through the numerous decades Baguio has morphed from what was once a grassy marshland into
+                                                            with pine trees, crisp cold breezes and low verdant knolls
+                                                            and hillocks.
+                                                            Through the numerous decades Baguio has morphed from what
+                                                            was once a grassy marshland into
                                                             one
                                                             of the cleanest and greenest,
-                                                            most highly urbanized cities in the country. It has made its mark as a premiere tourist
-                                                            destination in the Northern part of the Philippines with its cool climate,
+                                                            most highly urbanized cities in the country. It has made its
+                                                            mark as a premiere tourist
+                                                            destination in the Northern part of the Philippines with its
+                                                            cool climate,
                                                             foggy hills, panoramic views and lovely flowers. </p>
                                                         <p> Being the ideal convergence zone of neighboring
                                                             highland places,
-                                                            Baguio is the melting pot of different peoples and cultures and has boosted its ability to
+                                                            Baguio is the melting pot of different peoples and cultures
+                                                            and has boosted its ability to
                                                             provide a center for education for its neighbors.
-                                                            Its rich culture and countless resources have lured numerous investments and business
+                                                            Its rich culture and countless resources have lured numerous
+                                                            investments and business
                                                             opportunities to the city.</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="story-himg">
-                                                        <img src="/pub2/img/img/burnham.jpg" class="img-fluid wow fadeInUp" data-wow-delay="0.1s"
+                                                        <img src="/pub2/img/img/burnham.jpg"
+                                                             class="img-fluid wow fadeInUp" data-wow-delay="0.1s"
                                                              alt="">
                                                     </div>
                                                 </div>
@@ -72,21 +80,28 @@
                                                     <div class="story-desc">
                                                         <h3>History</h3>
                                                         <div class="heading-border-light"></div>
-                                                        <p>The name Baguio conjures, for both the international and domestic traveler, a highland
+                                                        <p>The name Baguio conjures, for both the international and
+                                                            domestic traveler, a highland
                                                             retreat in
                                                             the Grand Cordillera in Northern Luzon,
-                                                            with pine trees, crisp cold breezes and low verdant knolls and hillocks.
-                                                            Through the numerous decades Baguio has morphed from what was once a grassy marshland into
+                                                            with pine trees, crisp cold breezes and low verdant knolls
+                                                            and hillocks.
+                                                            Through the numerous decades Baguio has morphed from what
+                                                            was once a grassy marshland into
                                                             one
                                                             of the cleanest and greenest,
-                                                            most highly urbanized cities in the country. It has made its mark as a premiere tourist
-                                                            destination in the Northern part of the Philippines with its cool climate,
+                                                            most highly urbanized cities in the country. It has made its
+                                                            mark as a premiere tourist
+                                                            destination in the Northern part of the Philippines with its
+                                                            cool climate,
                                                             foggy hills, panoramic views and lovely flowers. </p>
                                                         <p> Being the ideal convergence zone of neighboring
                                                             highland places,
-                                                            Baguio is the melting pot of different peoples and cultures and has boosted its ability to
+                                                            Baguio is the melting pot of different peoples and cultures
+                                                            and has boosted its ability to
                                                             provide a center for education for its neighbors.
-                                                            Its rich culture and countless resources have lured numerous investments and business
+                                                            Its rich culture and countless resources have lured numerous
+                                                            investments and business
                                                             opportunities to the city.</p>
                                                     </div>
                                                 </div>
@@ -102,24 +117,30 @@
                                             <div class="row">
                                                 <div class="col-md-4 col-sm-12">
                                                     <div class="about-p2-cont cl-white">
-                                                        <img src="/pub2/img/img/lake.jpg" class="img-fluid wow fadeInUp" data-wow-delay="0.1s"
+                                                        <img src="/pub2/img/img/lake.jpg" class="img-fluid wow fadeInUp"
+                                                             data-wow-delay="0.1s"
                                                              alt="...">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <div class="about-p2-cont cl-white wow fadeInUp" data-wow-delay="0.3s">
+                                                    <div class="about-p2-cont cl-white wow fadeInUp"
+                                                         data-wow-delay="0.3s">
                                                         <h5>Mission</h5>
-                                                        <p class="cl-white">We shall create a sustainable and enabling environment that will promote
+                                                        <p class="cl-white">We shall create a sustainable and enabling
+                                                            environment that will promote
                                                             economic stability and
                                                             ensure the general well being of our citizenry</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <div class="about-p2-cont cl-white wow fadeInUp" data-wow-delay="0.5s">
+                                                    <div class="about-p2-cont cl-white wow fadeInUp"
+                                                         data-wow-delay="0.5s">
                                                         <h5>Vision</h5>
-                                                        <p class="cl-white">Baguio is home of diverse and dynamic cultures, center for education, trade
+                                                        <p class="cl-white">Baguio is home of diverse and dynamic
+                                                            cultures, center for education, trade
                                                             and tourism in
-                                                            harmony with nature managed by God-fearing steadfast leaders in partnership with responsible
+                                                            harmony with nature managed by God-fearing steadfast leaders
+                                                            in partnership with responsible
                                                             and
                                                             peace-loving citizenry.</p>
                                                     </div>
@@ -140,21 +161,50 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="story-desc">
-                                                        <h3>The Research Division ng Sangguniang Panlungsod</h3>
+                                                        <h3>Research Division of the Sangguniang Panlungsod</h3>
                                                         <div class="heading-border-light"></div>
-                                                        <p>Attends meetings, public hearings, and any other kind of meeting of the
-                                                            Sanggunian to help and do research work and gather information
-                                                            for the Sanggunian. Research work are on approved ordinances and
-                                                            resolutions. We also maintain original copies of ordinances, resolutions and
-                                                            other related documents. Sends out copies of ordinances and resolutions to
-                                                            concerned offices/persons for implementaion or information,
-                                                            We also send out publications of approved ordinances and resolutions. We
-                                                            also coordinate with other agencies for information collection.</p>
+                                                        <p>
+                                                        <ol>
+                                                            <li>
+                                                                Attends meetings, public hearings, and any other kind of
+                                                                meeting of the Sanggunian to assist in research work and
+                                                                gathers information for the Sanggunian.
+                                                            </li>
+                                                            <li>
+                                                                Performs research work referred to by the Sanggunian,
+                                                                various offices/agencies, and the general public on
+                                                                approved ordinances and resolutions and other related
+                                                                documents.
+                                                            </li>
+                                                            <li>
+                                                                Keeps and maintains original copies of of the City of
+                                                                Baguio's approved ordinances and resolutions and other
+                                                                related documents.
+                                                            </li>
+                                                            <li>
+                                                                Encodes and maintains records in the SP-LMS database
+                                                                including indices of approved ordinances and
+                                                                resolutions;
+                                                            </li>
+                                                            <li>
+                                                                Sends out copies of ordinances and resolutions to
+                                                                concerned persons/offices for
+                                                                information/implementation.
+                                                            </li>
+                                                            <li>
+                                                                Sends out publication for approved ordinances.
+                                                            </li>
+                                                            <li>
+                                                                Coordinates with other agencies/department in gathering
+                                                                data.
+                                                            </li>
+                                                        </ol>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="story-himg">
-                                                        <img src="/pub2/img/img/burnham.jpg" class="img-fluid wow fadeInUp" data-wow-delay="0.1s"
+                                                        <img src="/pub2/img/img/burnham.jpg"
+                                                             class="img-fluid wow fadeInUp" data-wow-delay="0.1s"
                                                              alt="">
                                                     </div>
                                                 </div>
@@ -170,21 +220,26 @@
                                             <div class="row">
                                                 <div class="col-md-4 col-sm-12">
                                                     <div class="about-p2-cont cl-white">
-                                                        <img src="/pub2/img/img/lake.jpg" class="img-fluid wow fadeInUp" data-wow-delay="0.1s"
+                                                        <img src="/pub2/img/img/lake.jpg" class="img-fluid wow fadeInUp"
+                                                             data-wow-delay="0.1s"
                                                              alt="...">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <div class="about-p2-cont cl-white wow fadeInUp" data-wow-delay="0.3s">
+                                                    <div class="about-p2-cont cl-white wow fadeInUp"
+                                                         data-wow-delay="0.3s">
                                                         <h5>Mission</h5>
-                                                        <p class="cl-white">To enact oridnances, approve resolutions, and appropriate funds for the general welfare of the
+                                                        <p class="cl-white">To enact oridnances, approve resolutions,
+                                                            and appropriate funds for the general welfare of the
                                                             city and its inhabitants.</p>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <div class="about-p2-cont cl-white wow fadeInUp" data-wow-delay="0.5s">
+                                                    <div class="about-p2-cont cl-white wow fadeInUp"
+                                                         data-wow-delay="0.5s">
                                                         <h5>Vision</h5>
-                                                        <p class="cl-white">We envision quality legislation reflective of the aspirations of the people for a better
+                                                        <p class="cl-white">We envision quality legislation reflective
+                                                            of the aspirations of the people for a better
                                                             quality of life in a clean and green environment.</p>
                                                     </div>
                                                 </div>
