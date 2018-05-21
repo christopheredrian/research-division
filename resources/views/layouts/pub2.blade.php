@@ -243,10 +243,10 @@ License URL: https://creativecommons.org/licenses/by/4.0/
     <nav class="navbar navbar-expand navbar-light" id="mainNav" data-toggle="affix">
         <div class="container">
 
-            <div style="padding-top: 15px"><strong>I</strong>nfo<strong>S</strong>enti<strong>A</strong></div>
+            <div style="padding-top: 15px; font-size: x-large"><strong>I</strong>nfo<strong>S</strong>enti<strong>A</strong></div>
             <br>
                <a class="navbar-brand nav-link smooth-scroll text-center" href="/">
-                   <p style="font-size: 12px; padding-top: 30px">Sangguniang Panglungsod ng Baguio
+                   <p style="font-size: 12px; padding-top: 30px; text-indent: 25px">Sangguniang Panglungsod ng Baguio
                        Research Division</p>
                </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
