@@ -232,10 +232,13 @@
                                         <td>{{ str_limit($ordinance->title, $limit = 200, $end = '...') }}</td>
                                         <td class="information">{{ str_limit($ordinance->keywords, $limit = 200, $end = '...') }}</td>
                                         <td>
-                                            <button onclick="window.location.href='/public/showOrdinance/{{$ordinance->id}}\ ' "
+                                            <button style="width: 100%" onclick="window.location.href='/public/showOrdinance/{{$ordinance->id}}\ ' "
                                                     class="btn btn-info pull-right button-two">
-                                                <span>Read More</span>
+                                                <span> <i class="fa fa-book"></i> Read More</span>
                                             </button>
+                                            @if($ordinance->getQuestionnaire())
+                                                <a class="btn btn-danger" href="/answer.o/{{ $ordinance->getQuestionnaire()->id  }}"> <i class="fa fa-reply"></i> Answer Questionnaire</a>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach
@@ -366,7 +369,7 @@
                                                    value="{{ request()->input('col-title') }}"></td>
                                         <td><input type="text" class="form-control" name="col-keywords"
                                                    value="{{ request()->input('col-keywords') }}"></td>
-                                        <td><input class="btn btn-primary" type="submit" value="Filter"></td>
+                                        <td><input class="col-12 btn btn-primary" type="submit" value="Filter"></td>
 
                                         <button type="submit"
                                                 class="btn btn-general btn-blue mr-2" style="display: none">Go
@@ -381,10 +384,14 @@
                                         <td>{{ str_limit($resolution->title, $limit = 200, $end = '...') }}</td>
                                         <td class="information">{{ str_limit($resolution->keywords, $limit = 200, $end = '...') }}</td>
                                         <td>
-                                            <button onclick="window.location.href='/public/showResolution/{{$resolution->id}}\ ' "
+                                            <button style="width: 100%" onclick="window.location.href='/public/showResolution/{{$resolution->id}}\ ' "
                                                     class="btn btn-info pull-right button-two">
-                                                <span>Read More</span>
+                                                <span> <i class="fa fa-book"></i> Read More</span>
                                             </button>
+                                            @if($resolution->getQuestionnaire())
+                                                <a class="btn btn-danger" href="/answer.o/{{ $resolution->getQuestionnaire()->id  }}"> <i class="fa fa-reply"></i> Answer Questionnaire</a>
+                                            @endif
+
                                         </td>
                                     </tr>
                                 @endforeach
