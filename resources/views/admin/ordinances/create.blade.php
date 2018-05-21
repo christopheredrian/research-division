@@ -44,7 +44,7 @@
 
                                 <label for="is_accepting">Comments/Suggestions</label>
                                 <div class="checkbox">
-                                    <label><input name="is_accepting" type="checkbox" value=1>Accept Comments</label>
+                                    <label><input name="is_accepting" type="checkbox" {{ request('type') === 'ME' ? 'checked="checked"' : '' }} value=1>Accept Comments</label>
                                 </div>
 
 

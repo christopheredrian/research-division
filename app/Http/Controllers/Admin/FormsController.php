@@ -30,7 +30,9 @@ class FormsController extends Controller
     public function index()
     {
         return view('forms.index', [
-            'questionnaires' => Questionnaire::all(),
+            'questionnaires' => Questionnaire::orderBy('created_at', 'desc')
+                ->paginate(10)
+            ,
             'flag' => FormsController::ALL
         ]);
     }
@@ -272,11 +274,11 @@ class FormsController extends Controller
     public function acceptSuggestions($id, $flag)
     {
 
-        if($flag === "ordinances"){
+        if ($flag === "ordinances") {
             $ordinance = Ordinance::find($id);
             $ordinance->is_accepting = 1;
             $ordinance->save();
-        }else{
+        } else {
             $resolution = Resolution::find($id);
             $resolution->is_accepting = 1;
             $resolution->save();
@@ -286,11 +288,11 @@ class FormsController extends Controller
 
     public function declineSuggestions($id, $flag)
     {
-        if($flag === "ordinances"){
+        if ($flag === "ordinances") {
             $ordinance = Ordinance::find($id);
             $ordinance->is_accepting = 0;
             $ordinance->save();
-        }else{
+        } else {
             $resolution = Resolution::find($id);
             $resolution->is_accepting = 0;
             $resolution->save();
@@ -323,7 +325,7 @@ class FormsController extends Controller
                     ->orWhere('series', 'LIKE', '%' . $q . '%')
                     ->orWhere('title', 'LIKE', '%' . $q . '%');
             })->where(function ($query) {
-                    $query->where('is_monitoring', 1);
+                $query->where('is_monitoring', 1);
             });
         } else {
             $ordinances = Ordinance::where('is_monitoring', 1);
@@ -336,10 +338,10 @@ class FormsController extends Controller
                 ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
         }
 
-        if($request->status == 'monitored'){
-            $ordinances = $ordinances->where('is_monitored','=',1);
-        }else{
-            $ordinances = $ordinances->where('is_monitored','=',0);
+        if ($request->status == 'monitored') {
+            $ordinances = $ordinances->where('is_monitored', '=', 1);
+        } else {
+            $ordinances = $ordinances->where('is_monitored', '=', 0);
         }
 
         // Implement filtering / sorting
@@ -347,7 +349,6 @@ class FormsController extends Controller
 
         // Paginate with filters
         $ordinances = $ordinances->paginate($limit)->appends($request->all());
-
 
 
         return view('admin.ordinances.index', [
@@ -393,10 +394,10 @@ class FormsController extends Controller
                 ->where('series', 'LIKE', '%' . $request->input('col-series') . '%')
                 ->where('title', 'LIKE', '%' . $request->input('col-title') . '%');
         }
-        if($request->status == 'monitored'){
-            $resolutions = $resolutions->where('is_monitored','=',1);
-        }else{
-            $resolutions = $resolutions->where('is_monitored','=',0);
+        if ($request->status == 'monitored') {
+            $resolutions = $resolutions->where('is_monitored', '=', 1);
+        } else {
+            $resolutions = $resolutions->where('is_monitored', '=', 0);
         }
         // Implement filtering / sorting
         $resolutions = $resolutions->orderBy($colName, $order);
