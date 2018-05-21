@@ -348,6 +348,14 @@ class PublicController extends Controller
             $ordinances = $ordinances->where('is_monitored', '=', 0);
         }
 
+        // Executes when only ordinances with questionnaires will be shown
+        if($request->onlyQuestionnaires){
+            $ordinances = $ordinances
+                ->join('questionnaires', 'ordinances.id', '=', 'questionnaires.ordinance_id')
+                ->where('questionnaires.ordinance_id', '<>', '')
+                ->select('ordinances.*');
+        }
+
 
         // Implement filtering / sorting
         $ordinances = $ordinances->orderBy($colName, $order);
@@ -356,10 +364,12 @@ class PublicController extends Controller
         // Paginate with filters
         $ordinances = $ordinances->paginate($limit)->appends($request->all());
 
+
         $resolutions = null;
 
         if($ordinances->count() > 0)
         {
+
             return view('public.MandE.monitorAndEval')
                 ->with('ordinances', $ordinances)
                 ->with('resolutions', $resolutions);
@@ -419,6 +429,14 @@ class PublicController extends Controller
             $resolutions = $resolutions->where('is_monitored', '=', 1);
         } else {
             $resolutions = $resolutions->where('is_monitored', '=', 0);
+        }
+
+        // Executes when only ordinances with questionnaires will be shown
+        if($request->onlyQuestionnaires){
+            $resolutions = $resolutions
+                ->join('questionnaires', 'resolutions.id', '=', 'questionnaires.resolution_id')
+                ->where('questionnaires.resolution_id', '<>', '')
+                ->select('resolutions.*');
         }
 
         // Implement filtering / sorting
