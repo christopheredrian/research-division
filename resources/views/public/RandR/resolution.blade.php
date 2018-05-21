@@ -11,9 +11,9 @@
                        HOME-P
     ======================================================-->
     <div id="home-p" class="home-p pages-head2 text-center">
-        <div class="container">
-            <h1 class="" data-wow-delay="0.1s">Legislations</h1>
-            <p>
+        <div class="container" style="max-height: 30px">
+            <h4 class="" style="color: #fff0ff" data-wow-delay="0.1s">Legislations</h4>
+            <p style="font-size: 15px">
                 Legislations are important because they are a powerful, vital tool for: (1) addressing the
                 <b>problems</b> of the citizens of the LGU, (2) promoting the <b>general welfare and development</b> of
                 the LGU and its citizens, (3) attaining the <b>vision</b> of the LGU for its citizens.
@@ -26,27 +26,16 @@
     ======================================================-->
     <section id="business-growth-p1" class="business-growth-p1 bg-white">
         <div class="container">
-            <div class="row title-bar">
+            <div class="row title-bar" style="padding-bottom: 0; padding-top: 10px;">
                 <div class="col-md-12">
-                    <h1 class="wow fadeInUp">Resolutions</h1>
+                    <h2 class="wow fadeInUp text-center">Resolutions</h2>
                     <div class="heading-border"></div>
                     <p class="wow fadeInUp" data-wow-delay="0.4s">
-
                         A resolution, on the other hand, is a mere expression of the opinion or sentiment of the local
                         legislative body on matters relating to proprietary function and to private concerns. It is
                         temporary in character.
-
                     </p>
-
-                    <div class="col-md-12" style="margin-bottom: 30px">
-                        <div class="pull-right">
-                            <a style="min-width: 150px" href="{{ url()->current() }}" class="btn btn-primary">
-                                <i class="fa fa-refresh"></i> Reset Filtering
-                            </a>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="ordinance-right">
+                    <div class="ordinance-right" style="padding-top: 0">
                         <div class="col-md-12">
                             @if($resolutions->first() === null)
                                 <div class="row text-center">
@@ -165,11 +154,15 @@
                                                    value="{{ request()->input('col-title') }}"></td>
                                         <td><input type="text" class="form-control" name="col-keywords"
                                                    value="{{ request()->input('col-keywords') }}"></td>
-                                        <td><input class="btn btn-primary" type="submit" value="Filter"></td>
-
-                                        <button type="submit"
-                                                class="btn btn-general btn-blue mr-2" style="display: none">Go
-                                        </button>
+                                        <td class="btn-group">
+                                            <input class="btn btn-sm btn-info" type="submit" value="Filter">
+                                            <button type="submit"
+                                                    class="btn btn-success btn-blue mr-2" style="display: none">Go
+                                            </button>
+                                            <a href="{{ url()->current() }}" class="btn btn-sm btn-primary">
+                                                Reset
+                                            </a>
+                                        </td>
                                     </form>
 
                                     @foreach($resolutions as $resolution)

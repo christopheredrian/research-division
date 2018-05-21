@@ -219,14 +219,14 @@
                         <div class="container-fluid">
                             <div class="row">
                                 <h3 class="mt-0 mb-0 font-weight-bold">
-                                    LEGISLATIONS BEING MONITORED
+                                    LEGISLATIONS CURRENTLY BEING MONITORED
                                 </h3>
                             </div>
                         </div>
                     </section>
                     <br>
                     <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.2s">
-                        <h5 class="legislation-header float-left">Ordinances Being Monitored</h5>
+                        <h5 class="legislation-header float-left">Ordinances Currently Being Monitored</h5>
                         <a href="/ordinances" class="btn btn-sm btn-primary float-right">See all <span
                                     class="badge badge-pil badge-warning"> {{\App\Ordinance::where('is_monitoring',1)->count()}}</span></a>
                         <div class="heading-border-light"></div>

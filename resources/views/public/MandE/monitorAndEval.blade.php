@@ -11,7 +11,7 @@
                        HOME-P
     ======================================================-->
     <div id="home-p" class="home-p pages-head3 text-center">
-        <div class="container">
+        <div class="container" style="max-height: 30px">
             <h1 class="" data-wow-delay="0.1s">Monitoring and Evaluation</h1>
             {{--<p>--}}
             {{----}}
@@ -24,7 +24,7 @@
     ======================================================-->
     <section id="business-growth-p1" class="business-growth-p1 bg-white">
         <div class="container">
-            <div class="row title-bar">
+            <div class="row title-bar" style="padding-bottom: 0; padding-top: 10px;">
                 <div class="col-md-12">
 
                     @if($ordinances !== null)
@@ -35,50 +35,10 @@
                                 <p class="" data-wow-delay="0.4s">
                                     List of ordinances that have already been monitored, with the corresponding legislative actions/measures given as well.
                                 </p>
-                                <p>
-                                    The Sangguniang Panlungsod ng Baguio conducts monitoring on the implementation and
-                                    enforcement
-                                    of the legislations already enacted by the Sanggunian, because it determines the
-                                    effectiveness or
-                                    non-effectiveness and the implementation and non-implementation of these legislations in
-                                    order that
-                                    necessary ammendments, if any, may be introduced. Quality legislation is more likely to
-                                    be realized
-                                    when a legislative measure/action has the capability to address the needs and
-                                    aspirations of a
-                                    target group.
-                                </p>
-                                <p>
-                                    That is why we request the suggestions, recommendations, or comments coming from the
-                                    public, as to
-                                    how we could strengthen and improve the implementation and enforcement of the
-                                    legislations and uphold
-                                    the welfare of the citizens of Baguio.
-                                </p>
                             @else
-                                <h1 class="wow fadeInUp">Ordinances Being Monitored</h1>
+                                <h1 class="wow fadeInUp">Ordinances Currently Being Monitored</h1>
                                 <div class="heading-border"></div>
-                                <p class="" data-wow-delay="0.4s">
-                                    List of ordinances currently being monitored. The Sangguniang Panlungsod ng Baguio conducts monitoring on the implementation and
-                                    enforcement
-                                    of the legislations already enacted by the Sanggunian, because it determines the
-                                    effectiveness or
-                                    non-effectiveness and the implementation and non-implementation of these legislations in
-                                    order that
-                                    necessary ammendments, if any, may be introduced. Quality legislation is more likely to
-                                    be realized
-                                    when a legislative measure/action has the capability to address the needs and
-                                    aspirations of a
-                                    target group.
-                                </p>
-                                <p>
-                                    That is why we request the suggestions, recommendations, or comments coming from the
-                                    public, as to
-                                    how we could strengthen and improve the implementation and enforcement of the
-                                    legislations and uphold
-                                    the welfare of the citizens of Baguio.
-                                </p>
-                                <p>To read more of the ordinances, and also be able to leave comments and suggestions/recommendations about a certain ordinance, click on "Read more."
+                                <p class="" data-wow-delay="0.4s">To read more of the ordinances, and also be able to leave comments and suggestions/recommendations about a certain ordinance, click on "Read more."
                                 </p>
                                 
                             @endif
@@ -91,50 +51,10 @@
                                 <p class="" data-wow-delay="0.4s">
                                     List of resolutions that have already been monitored, with the corresponding legislative actions/measures given as well.
                                 </p>
-                            <p>
-                                    The Sangguniang Panlungsod ng Baguio conducts monitoring on the implementation and
-                                    enforcement
-                                    of the legislations already enacted by the Sanggunian, because it determines the
-                                    effectiveness or
-                                    non-effectiveness and the implementation and non-implementation of these legislations in
-                                    order that
-                                    necessary ammendments, if any, may be introduced. Quality legislation is more likely to
-                                    be realized
-                                    when a legislative measure/action has the capability to address the needs and
-                                    aspirations of a
-                                    target group.
-                                </p>
-                                <p>
-                                    That is why we request the suggestions, recommendations, or comments coming from the
-                                    public, as to
-                                    how we could strengthen and improve the implementation and enforcement of the
-                                    legislations and uphold
-                                    the welfare of the citizens of Baguio.
-                                </p>
                             @else
-                                <h1 class="wow fadeInUp">Resolutions Being Monitored</h1>
+                                <h1 class="wow fadeInUp">Resolutions Currently Being Monitored</h1>
                                 <div class="heading-border"></div>
-                                <p class="" data-wow-delay="0.4s">
-                                    List of resolutions currently being monitored. The Sangguniang Panlungsod ng Baguio conducts monitoring on the implementation and
-                                    enforcement
-                                    of the legislations already enacted by the Sanggunian, because it determines the
-                                    effectiveness or
-                                    non-effectiveness and the implementation and non-implementation of these legislations in
-                                    order that
-                                    necessary ammendments, if any, may be introduced. Quality legislation is more likely to
-                                    be realized
-                                    when a legislative measure/action has the capability to address the needs and
-                                    aspirations of a
-                                    target group.
-                                </p>
-                                <p>
-                                    That is why we request the suggestions, recommendations, or comments coming from the
-                                    public, as to
-                                    how we could strengthen and improve the implementation and enforcement of the
-                                    legislations and uphold
-                                    the welfare of the citizens of Baguio.
-                                </p>
-                                <p>To read more of the resolutions, and also be able to leave comments and suggestions/recommendations about a certain resolution, click on "Read more."
+                                <p class="" data-wow-delay="0.4s">To read more of the resolutions, and also be able to leave comments and suggestions/recommendations about a certain resolution, click on "Read more."
                                 </p>
                                 
                             @endif
