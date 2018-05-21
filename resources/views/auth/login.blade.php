@@ -32,19 +32,6 @@
         .flex-image {
             width: 100%;
         }
-         /*.image-box {*/
-              /*position:relative;*/
-              /*height: 100%;*/
-              /*width:100%;*/
-          /*}*/
-
-         /*.image-box img {*/
-             /*position:absolute;*/
-             /*top:0;*/
-             /*left:0;*/
-             /*right:0;*/
-             /*bottom:0;*/
-             /*margin:auto;*/
          /*}*/
     </style>
 </head>
