@@ -269,18 +269,18 @@ License URL: https://creativecommons.org/licenses/by/4.0/
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light" id="mainNav" data-toggle="affix">
         <div class="container">
-            <div style="padding-top: 15px"><strong>I</strong>nfo<strong>S</strong>enti<strong>A</strong></div>
-                        <br>
-                           <a class="navbar-brand nav-link smooth-scroll text-center" href="/">
-                <p style="font-size: 12px; padding-top: 30px">Sangguniang Panglungsod ng Baguio
-                                          Research Division</p>
-                             </a>
-            {{--<a class="navbar-brand smooth-scroll text-center" href="/">--}}
-                {{--<strong>I</strong>nfo<strong>S</strong>enti<strong>A</strong> <br>--}}
-                {{--<p> Sangguniang Panglungsod ng Baguio<br>--}}
-                {{--Research Division</p>--}}
-                {{--<img class="flex-image" src="/pub2/img/new-hero-logo.png"/>--}}
-            {{--</a>--}}
+            {{--<div style="padding-top: 15px"><strong>I</strong>nfo<strong>S</strong>enti<strong>A</strong></div>--}}
+                        {{--<br>--}}
+                           {{--<a class="navbar-brand nav-link smooth-scroll text-center" href="/">--}}
+                {{--<p style="font-size: 12px; padding-top: 30px">Sangguniang Panglungsod ng Baguio--}}
+                                          {{--Research Division</p>--}}
+                             {{--</a>--}}
+            <a class="navbar-brand smooth-scroll text-center" href="/">
+                <strong>I</strong>nfo<strong>S</strong>enti<strong>A</strong> <br>
+                <p> Sangguniang Panglungsod ng Baguio<br>
+                Research Division</p>
+                <img class="flex-image" src="/pub2/img/new-hero-logo.png"/>
+            </a>
 
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                     data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"

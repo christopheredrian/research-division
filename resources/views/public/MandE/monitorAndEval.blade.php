@@ -36,7 +36,7 @@
                                     List of ordinances that have already been monitored, with the corresponding legislative actions/measures given as well.
                                 </p>
                             @else
-                                <h1 class="wow fadeInUp">Ordinances Being Monitored</h1>
+                                <h1 class="wow fadeInUp">Ordinances Currently Being Monitored</h1>
                                 <div class="heading-border"></div>
                                 <p class="" data-wow-delay="0.4s">To read more of the ordinances, and also be able to leave comments and suggestions/recommendations about a certain ordinance, click on "Read more."
                                 </p>
@@ -52,7 +52,7 @@
                                     List of resolutions that have already been monitored, with the corresponding legislative actions/measures given as well.
                                 </p>
                             @else
-                                <h1 class="wow fadeInUp">Resolutions Being Monitored</h1>
+                                <h1 class="wow fadeInUp">Resolutions Currently Being Monitored</h1>
                                 <div class="heading-border"></div>
                                 <p class="" data-wow-delay="0.4s">To read more of the resolutions, and also be able to leave comments and suggestions/recommendations about a certain resolution, click on "Read more."
                                 </p>
