@@ -146,6 +146,7 @@
                     <div class="icon">
                         <i class="fa fa-question-circle-o"></i>
                     </div>
+                    <a href="/admin/forms" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 
@@ -153,14 +154,15 @@
                 <!-- small box -->
                 <div class="small-box bg-light-blue">
                     <div class="inner">
-                        <h3>{{ \App\Response::count() }}
+                        <h3>{{ \App\Message::count() }}
                         </h3>
 
-                        <p>Feedback</p>
+                        <p>Messages</p>
                     </div>
                     <div class="icon">
                         <i class="fa fa-paper-plane"></i>
-                    </div>            
+                    </div>
+                    <a href="/admin/messages" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 
@@ -178,7 +180,8 @@
                     <div class="icon">
                         <i class="ion ion-chatbox-working"></i>
                     </div>
-                    
+                    <a href="/admin/notifications" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+
                 </div>
             </div>
         </div>

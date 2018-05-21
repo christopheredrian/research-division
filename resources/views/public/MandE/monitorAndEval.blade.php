@@ -80,7 +80,31 @@
 
                     <div class=" col-md-12" style="margin-bottom: 10px">
                         <div class="row">
-                            <div class=" col-md-7"></div>
+                            <div class=" col-md-3"></div>
+                            <div class=" col-md-4">
+                                <ul class="nav nav-pills">
+                                    <li class="nav-item">
+                                        <a  class="nav-link">Show: </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        @php
+                                            $qry = request()->query();
+                                            $qry['onlyQuestionnaires'] = null;
+                                        @endphp
+                                        <a class="nav-link {{ request()->onlyQuestionnaires ? '' : 'active' }}"
+                                           href="{{ request()->fullUrlWithQuery($qry) }}">All</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        @php
+                                            $qry = request()->query();
+                                            $qry['onlyQuestionnaires'] = true;
+                                        @endphp
+                                        <a class="nav-link {{ request()->onlyQuestionnaires ? 'active' : '' }}"
+                                           href="{{request()->fullUrlWithQuery($qry)}}">Only with
+                                            Questionnaires</a>
+                                    </li>
+                                </ul>
+                            </div>
                             <div class=" col-md-3">
                                 <form id="search2" method="get" action="#" class="form-inline pull-right">
                                     @if( app('request')->input('status') === 'monitored')
@@ -238,12 +262,16 @@
                                         <td>{{ str_limit($ordinance->title, $limit = 200, $end = '...') }}</td>
                                         <td class="information">{{ str_limit($ordinance->keywords, $limit = 200, $end = '...') }}</td>
                                         <td>
-                                            <button style="width: 100%" onclick="window.location.href='/public/showOrdinance/{{$ordinance->id}}\ ' "
+                                            <button style="width: 100%"
+                                                    onclick="window.location.href='/public/showOrdinance/{{$ordinance->id}}\ ' "
                                                     class="btn btn-info pull-right button-two">
                                                 <span> <i class="fa fa-book"></i> Read More</span>
                                             </button>
+                                            {{--{{ dd($ordinance->getQuestionnaire()) }}--}}
                                             @if($ordinance->getQuestionnaire())
-                                                <a class="btn btn-danger" href="/answer.o/{{ $ordinance->getQuestionnaire()->id  }}"> <i class="fa fa-reply"></i> Answer Questionnaire</a>
+                                                <a class="btn btn-danger"
+                                                   href="/answer.o/{{ $ordinance->id  }}"> <i
+                                                            class="fa fa-reply"></i> Answer Questionnaire</a>
                                             @endif
                                         </td>
                                     </tr>
@@ -390,12 +418,15 @@
                                         <td>{{ str_limit($resolution->title, $limit = 200, $end = '...') }}</td>
                                         <td class="information">{{ str_limit($resolution->keywords, $limit = 200, $end = '...') }}</td>
                                         <td>
-                                            <button style="width: 100%" onclick="window.location.href='/public/showResolution/{{$resolution->id}}\ ' "
+                                            <button style="width: 100%"
+                                                    onclick="window.location.href='/public/showResolution/{{$resolution->id}}\ ' "
                                                     class="btn btn-info pull-right button-two">
                                                 <span> <i class="fa fa-book"></i> Read More</span>
                                             </button>
                                             @if($resolution->getQuestionnaire())
-                                                <a class="btn btn-danger" href="/answer.r/{{ $resolution->getQuestionnaire()->id  }}"> <i class="fa fa-reply"></i> Answer Questionnaire</a>
+                                                <a class="btn btn-danger"
+                                                   href="/answer.r/{{ $resolution->id  }}"> <i
+                                                            class="fa fa-reply"></i> Answer Questionnaire</a>
                                             @endif
 
                                         </td>

@@ -65,6 +65,10 @@ class Ordinance extends Model
         return $this->hasOne('App\Questionnaire');
     }
 
+    /**
+     * Gets the associated questionnaire for the current model
+     * @return mixed
+     */
     public function getQuestionnaire()
     {
         return Questionnaire::where('ordinance_id', $this->id)->first();
