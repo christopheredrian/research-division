@@ -64,7 +64,7 @@
                             </span>
                         </a> --}}
                     </h5>
-                    <div class="questionnaire-carousel owl-theme">
+                    <div class="owl-carousel owl-theme">
                         @foreach($questionnaires as $item)
                             @if($item->ordinance)
                                 <div class="item">

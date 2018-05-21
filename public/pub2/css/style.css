@@ -1403,7 +1403,7 @@ p {
 
     .legislation-header:after {
         content: '';
-        border-bottom: 5px solid blue;
+        border-bottom: 5px solid #2E9FB8;
         position: absolute;
         bottom: 0;
         left: 0;
