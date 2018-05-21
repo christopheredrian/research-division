@@ -1257,20 +1257,21 @@ p {
 
     .desc-comp-offer h2,
     .desc-comp-offer>.heading-border-light {
-        margin-left: 20px;
+        /*margin-left: 20px;*/
     }
+
 
     .desc-comp-offer-cont {
         margin-bottom: 10px;
         box-shadow: 3px 3px 10px 1px rgba(158, 158, 158, 0.68);
         -webkit-transition: all .5s ease-in-out;
         transition: all .5s ease-in-out;
+        border-bottom: 5px solid #fff;
     }
 
     .desc-comp-offer-cont:hover {
         margin-bottom: 10px;
         border-bottom: 5px solid #2196f3;
-        margin-top: -5px;
         cursor: pointer;
     }
 
@@ -1312,15 +1313,24 @@ p {
         transition: border 0.2s ease, font-size 0.2s ease;
     }
 
-    .desc-comp-offer-cont h3 {
+   /* .desc-comp-offer-cont h3 {
         padding: 30px 10px 0 10px;
         font-size: 18px;
         text-transform: none;
+    }*/
+
+    .questionnaire-wrapper {
+        margin-top: 30px;
+    }
+
+    .desc-comp-offer-cont h5 {
+        font-size: 14px;
+        font-weight: bold;
     }
 
     .desc-comp-offer-cont p {
-        padding: 0 10px;
-        font-size: 14px;
+        padding: 15px;
+        font-size: 12px;
     }
 
     .desc-comp-offer-cont a {
@@ -1382,19 +1392,43 @@ p {
 /*====================================================
                       WHAT WE DO
 ======================================================*/
+    
+    .legislation-header {
+        font-size: 16px;
+        text-transform: none;
+        font-weight: bold;
+        position: relative;
+        padding-bottom: 15px;
+    }
+
+    .legislation-header:after {
+        content: '';
+        border-bottom: 5px solid blue;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 30px;
+    }
+
+    .legislation-read-more {
+        font-size: 12px;
+    }
 
     .what-we-do {
-        padding: 50px 20px;
+        padding: 15px;
     }
 
     .what-we-do h3 {
-        padding-top: 20px;
         color: #fff;
-        font-weight: 700;
+        line-height: 1rem;
+        font-size: 1rem;
     }
 
     .what-we-do .heading-border-light {
         background-color: #fff;
+    }
+    .heading-border-light {
+        display: none;
     }
 
     .what-we-do p {
@@ -1480,7 +1514,7 @@ p {
     }
 
     .service-h-desc {
-        padding: 50px 50px 30px 50px;
+        padding: 10px 50px 0 0;
     }
 
     .service-h-desc>h6 {

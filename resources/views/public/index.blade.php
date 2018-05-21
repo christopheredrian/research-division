@@ -13,6 +13,12 @@
         .top {
             margin-top: 5vh;
         }
+
+        .owl-item a {
+            text-decoration: none;
+        }
+
+
     </style>
     @endsection
 @section('content')
@@ -23,17 +29,17 @@
         </section>
 
     {{-- NEW LAYOUT --}}
-    <div class="container-fluid">
+    <div class="container">
         {{-- upper part --}}
     <div class="top row">
         {{-- Q2 --}}
         <div class="col col-lg-6 col-xs-12">
-                    <hgroup class="wow fadeInUp text-center">
-                        <h1>Let's Work together!</h1>
-                        <h1>We need your <span>
+                    <hgroup class="wow fadeInUp">
+                        <h5 class="font-weight-light">Let's Work together!</h5>
+                        <h3 class="font-weight-bold">We need your <span>
                                     <a href="" class="typewrite" data-period="2000"
                                        data-type='[ " Participation", " Opinion"]'>
-                        <span class="wrap"></span></a></span></h1>
+                        <span class="wrap"></span></a></span></h3>
                     </hgroup>
             <div class="wow fadeInUp" data-wow-delay="0.3s">
                 <div class="service-h-desc">
@@ -46,24 +52,27 @@
                     </p>
                 </div>
             </div>
-            <div class="row">
+            <div class="questionnaire-wrapper">
                 <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.2s">
-                    <h2> Questionnaires
-                        <a href="/forms">
+                    <h5 class="font-weight-bold"> Questionnaires
+                        <a href="/randr/resolutions/" class="btn btn-sm btn-primary float-right">See all <span class="badge badge-pil badge-warning"> {{ $questionnaires->count()  }}</span></a>
+                        <div class="heading-border-light"></div>
+                        <div class="clearfix"></div>
+                      {{--   <a href="/forms">
                             <span class="badge badge-info">
                                 {{ $questionnaires->count() }}
                             </span>
-                        </a>
-                    </h2>
-                    <div class="owl-carousel owl-theme">
+                        </a> --}}
+                    </h5>
+                    <div class="questionnaire-carousel owl-theme">
                         @foreach($questionnaires as $item)
                             @if($item->ordinance)
                                 <div class="item">
                                     <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.4s">
                                         <a href="/answer.o/{{ $item->ordinance->id }}">
-                                        <div class="desc-comp-offer-cont" style="text-align: center">
-                                            <div class="bg-chathams" style="padding: 20px">
-                                                <h5 style="color: white">Ordinance No. {{$item->ordinance->number}}</h5>
+                                        <div class="desc-comp-offer-cont">
+                                            <div class="bg-chathams" style="padding: 15px">
+                                                <h5 class="mb-0" style="color: white">Ordinance No. {{$item->ordinance->number}}</h5>
                                             </div>
                                             <p class="desc" style="margin-top: 10px;">
                                                 {!! Str::words($item->ordinance->title, 30,'...')  !!}
@@ -76,9 +85,9 @@
                                 <div class="item">
                                     <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.4s">
                                         <a href="/answer.r/{{ $item->resolution->id }}">
-                                            <div class="desc-comp-offer-cont" style="text-align: center">
-                                                <div class="bg-chathams" style="padding: 20px">
-                                                    <h5 style="color: white">Resolution No. {{$item->resolution->number}}</h5>
+                                            <div class="desc-comp-offer-cont">
+                                                <div class="bg-chathams" style="padding: 15px">
+                                                    <h5 class="mb-0" style="color: white">Resolution No. {{$item->resolution->number}}</h5>
                                                 </div>
                                                 <p class="desc" style="margin-top: 10px;">
                                                     {!! Str::words($item->resolution->title, 30,'...')  !!}
@@ -97,20 +106,24 @@
         {{-- Q1 --}}
         <div class="col-lg-6 col-xs-12">
             <div>
-                <h2> Why do we conduct Monitoring and Evaluation? </h2>
-                <p style="text-align: justify">
+                <h3 class="font-weight-bold"> Why do we conduct Monitoring and Evaluation? </h3>
+
+                <div class="pt-2">
+                    <p style="text-align: justify">
                         The Sangguniang Panlungsod ng Baguio conducts monitoring on the implementation and enforcement
                     of the legislations already enacted by the Sanggunian, because it determines the effectiveness or
                     non-effectiveness and the implementation and non-implementation of these legislations in order that
                     necessary ammendments, if any, may be introduced. Quality legislation is more likely to be realized
                     when a legislative measure/action has the capability to address the needs and aspirations of a
                     target group.
-                </p>
-                <p style="text-align: justify">
-                    That is why we request the suggestions, recommendations, or comments coming from the public, as to
-                    how we could strengthen and improve the implementation and enforcement of the legislations and uphold
-                    the welfare of the citizens of Baguio.
                     </p>
+                    <p style="text-align: justify">
+                        That is why we request the suggestions, recommendations, or comments coming from the public, as to
+                        how we could strengthen and improve the implementation and enforcement of the legislations and uphold
+                        the welfare of the citizens of Baguio.
+                    </p>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -119,35 +132,39 @@
     <div class="row lower">
         <div class="col-lg-6 col-xs-12">
 
+
+
             <section class="what-we-do bg-gradiant">
-                <div class="container-fluid">
-                    <div class="row">
-                        <h2 class="text-center">
+               
+                    <div class="">
+                        <h3 class="mt-0 mb-0 font-weight-bold">
                              LATEST LEGISLATIONS
-                        </h2>
+                        </h3>
                     </div>
-                </div>
+              
             </section>
             <br>
 
-            <div class="row">
+            <div class="">
                 {{--HORIZONTAL BAR--}}
                 <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.2s">
-                    <h2>Latest ordinances</h2>
+                    <h5 class="legislation-header float-left">Latest ordinances</h5>
+                    <a href="/randr/ordinances/" class="btn btn-sm btn-primary float-right">See all <span class="badge badge-pil badge-warning"> 12</span></a>
                     <div class="heading-border-light"></div>
+                    <div class="clearfix"></div>
                 </div>
                 <div class="owl-carousel owl-theme">
                     @foreach($ordinances as $ordinance)
                         <div class="item">
                             <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.4s">
-                                <div class="desc-comp-offer-cont" style="text-align: center">
-                                    <div class="bg-chathams" style="padding: 20px">
-                                        <h5 style="color: white">Ordinance No. {{$ordinance->number}}</h5>
+                                <div class="desc-comp-offer-cont">
+                                    <div class="bg-chathams" style="padding: 15px">
+                                        <h5 class="mb-0" style="color: white">Ordinance No. {{$ordinance->number}}</h5>
                                     </div>
                                     <p class="desc" style="margin-top: 10px;">
                                         {!! Str::words($ordinance->title, 30,'...')  !!}
                                     </p>
-                                    <a href="/public/showOrdinance/{{$ordinance->id}}"><i
+                                    <a class="legislation-read-more" href="/public/showOrdinance/{{$ordinance->id}}"><i
                                                 class="fa fa-arrow-circle-o-right"></i> Read More</a>
                                 </div>
                             </div>
@@ -158,22 +175,25 @@
 
             <br/>
 
-            <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.2s">
-                <h2>Latest Resolutions</h2>
+            <div class="mt-4 desc-comp-offer wow fadeInUp" data-wow-delay="0.2s">
+                <h5 class="legislation-header float-left">Latest Resolutions</h5>
+                    <a href="/randr/resolutions/" class="btn btn-sm btn-primary float-right">See all <span class="badge badge-pil badge-warning"> 12</span></a>
                 <div class="heading-border-light"></div>
+                <div class="clearfix"></div>
+
             </div>
             <div class="owl-carousel owl-theme">
                 @foreach($resolutions as $resolution)
                     <div class="item">
                         <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.4s">
-                            <div class="desc-comp-offer-cont" style="text-align: center">
-                                <div class="bg-chathams" style="padding: 20px">
-                                    <h5 style="color: white">Resolution No. {{$resolution->number}}</h5>
+                            <div class="desc-comp-offer-cont">
+                                <div class="bg-chathams" style="padding: 15px">
+                                    <h5 class="mb-0" style="color: white">Resolution No. {{$resolution->number}}</h5>
                                 </div>
                                 <p class="desc" style="margin-top: 10px;">
                                     {!! Str::words($resolution->title, 30,'...')  !!}
                                 </p>
-                                <a href="/public/showResolution/{{$resolution->id}}"><i
+                                <a class="legislation-read-more" href="/public/showResolution/{{$resolution->id}}"><i
                                             class="fa fa-arrow-circle-o-right"></i> Read More</a>
                             </div>
                         </div>
@@ -186,30 +206,32 @@
             <section class="what-we-do bg-starship-gradient">
                 <div class="container-fluid">
                     <div class="row">
-                        <h2 class="text-center">
+                        <h3 class="mt-0 mb-0 font-weight-bold">
                             LEGISLATIONS BEING MONITORED
-                        </h2>
+                        </h3>
                     </div>
                 </div>
             </section>
             <br>
             <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.2s">
-                <h2>Ordinances Being Monitored</h2>
+                <h5 class="legislation-header float-left">Ordinances Being Monitored</h5>
+                <a href="/ordinances" class="btn btn-sm btn-primary float-right">See all <span class="badge badge-pil badge-warning"> 12</span></a>
                 <div class="heading-border-light"></div>
+                <div class="clearfix"></div>
             </div>
 
             <div class="owl-carousel owl-theme">
                 @foreach($monitoringOrd as $ordinance)
                     <div class="item">
                         <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.4s">
-                            <div class="desc-comp-offer-cont" style="text-align: center">
-                                <div class="bg-starship" style="padding: 20px">
-                                    <h5 style="color: white">Ordinance No. {{$ordinance->number}}</h5>
+                            <div class="desc-comp-offer-cont">
+                                <div class="bg-starship" style="padding: 15px">
+                                    <h5 class="mb-0" style="color: white">Ordinance No. {{$ordinance->number}}</h5>
                                 </div>
                                 <p class="desc" style="margin-top: 10px;">
                                     {!! Str::words($ordinance->title, 30,'...')  !!}
                                 </p>
-                                <a href="/public/showOrdinance/{{$ordinance->id}}"><i
+                                <a class="legislation-read-more" href="/public/showOrdinance/{{$ordinance->id}}"><i
                                             class="fa fa-arrow-circle-o-right"></i> Read More</a>
                             </div>
                         </div>
@@ -218,9 +240,11 @@
             </div>
 
             {{-- start reso --}}
-            <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.2s">
-                <h2>Resolutions Currently Being Monitored</h2>
+            <div class="mt-4 desc-comp-offer wow fadeInUp" data-wow-delay="0.2s">
+                <h5 class="legislation-header float-left">Resolutions Currently Being Monitored</h5>
+                <a href="/randr/resolutions/" class="btn btn-sm btn-primary float-right">See all <span class="badge badge-pil badge-warning"> 12</span></a>
                 <div class="heading-border-light"></div>
+                <div class="clearfix"></div>
                 {{--<button class="btn btn-general btn-green" role="button">See More</button>--}}
             </div>
 
@@ -228,16 +252,16 @@
                 @foreach($monitoringRes as $resolution)
                     <div class="item">
                         <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.4s">
-                            <div class="desc-comp-offer-cont" style="text-align: center">
-                                <div class="bg-starship" style="padding: 20px">
-                                    <h5 style="color: white">Resolution No. {{$resolution->number}}</h5>
+                            <div class="desc-comp-offer-cont">
+                                <div class="bg-starship" style="padding: 15px">
+                                    <h5 class="mb-0" style="color: white">Resolution No. {{$resolution->number}}</h5>
                                 </div>
 
                                 <p class="desc" style="margin-top: 10px;">
                                     {!! Str::words($resolution->title, 30,'...')  !!}
                                 </p>
 
-                                <a href="/public/showResolution/{{$resolution->id}}"><i
+                                <a class="legislation-read-more" href="/public/showResolution/{{$resolution->id}}"><i
                                             class="fa fa-arrow-circle-o-right"></i> Read More</a>
                             </div>
                         </div>
@@ -508,12 +532,38 @@
     <script>
         var owl = $('.owl-carousel');
         owl.owlCarousel({
-            rtl: true,
+            rtl: false,
             margin: 10,
             nav: true,
             dots: false,
-            startPosition: 11,
-            animateOut: true
+            //startPosition: 11,
+            animateOut: true,
+            responsive:{
+                600:{
+                    items:1
+                },
+                1000:{
+                    items:2
+                }
+            }
+        });
+
+
+        $('.questionnaire-carousel').owlCarousel({
+            rtl: false,
+            margin: 10,
+            nav: true,
+            dots: false,
+            //startPosition: 11,
+            animateOut: true,
+            responsive:{
+                600:{
+                    items:1
+                },
+                1000:{
+                    items:2
+                }
+            }
         });
     </script>
     {{-- removed time out of hero box --}}
