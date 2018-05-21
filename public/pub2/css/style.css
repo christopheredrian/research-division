@@ -578,19 +578,18 @@ p {
 
     .carousel-fade {
         position: relative;
-        height: 90vh;
+        height: 30vh;
     }
 
     .hero {
-        position: absolute;
-        top: 45%;
+        position: relative;
+        top: 20vh;
         left: 50%;
         background: rgba(0, 0, 0, 0.7);
         border: 5px solid #fff;
-        padding: 40px;
+        padding: 10px;
         z-index: 3;
         color: #c0c0c0;
-        text-align: center;
         text-transform: uppercase;
         text-shadow: 1px 1px 0 rgba(0, 0, 0, 0);
         -webkit-transform: translate3d(-50%, -50%, 0);
@@ -605,9 +604,12 @@ p {
         color: #fff;
         font-weight: 700;
         width: 600px;
+        text-align: center;
+        align-content: center;
         margin: 0;
         padding: 0;
         opacity: 1;
+        margin-left: 15%;
         letter-spacing: 2px;
         margin-bottom: 30px;
     }
@@ -683,7 +685,7 @@ p {
         .hero {
             position: absolute;
             top: 45%;
-            padding: 20px 0px;
+            padding: 10px 0px;
         }
         .hero h1 {
             font-size: 1.9em;
@@ -709,7 +711,7 @@ p {
         .hero {
             position: absolute;
             top: 45%;
-            padding: 20px 0;
+            padding: 10px 0;
             border: 3px solid #fff;
         }
         .hero h1 {
