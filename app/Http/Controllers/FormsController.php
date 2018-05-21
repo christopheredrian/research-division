@@ -14,7 +14,9 @@ class FormsController extends Controller
     public function index()
     {
         return view('public.forms.index', [
-            'questionnaires' => Questionnaire::all(),
+            'questionnaires' => Questionnaire::where('isAccepting', 1)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10),
             'flag' => \App\Http\Controllers\Admin\FormsController::ALL
         ]);
     }

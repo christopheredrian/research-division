@@ -389,7 +389,7 @@
                                                 <span> <i class="fa fa-book"></i> Read More</span>
                                             </button>
                                             @if($resolution->getQuestionnaire())
-                                                <a class="btn btn-danger" href="/answer.o/{{ $resolution->getQuestionnaire()->id  }}"> <i class="fa fa-reply"></i> Answer Questionnaire</a>
+                                                <a class="btn btn-danger" href="/answer.r/{{ $resolution->getQuestionnaire()->id  }}"> <i class="fa fa-reply"></i> Answer Questionnaire</a>
                                             @endif
 
                                         </td>
