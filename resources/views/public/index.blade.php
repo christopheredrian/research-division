@@ -240,6 +240,11 @@
             <br/>
 
             <div class="row">
+                <div class="col-md-3 col-sm-6  desc-comp-offer wow fadeInUp" data-wow-delay="0.2s">
+                    <h2>Latest Resolutions</h2>
+                    <div class="heading-border-light"></div>
+                    {{--<button class="btn btn-general btn-green" role="button">See More</button>--}}
+                </div>
 
                 <div class="owl-carousel owl-theme col-9">
 
@@ -272,11 +277,7 @@
                     @endforeach
                 </div>
 
-                <div class="col-md-3 col-sm-6  desc-comp-offer wow fadeInUp" data-wow-delay="0.2s">
-                    <h2>Latest Resolutions</h2>
-                    <div class="heading-border-light"></div>
-                    {{--<button class="btn btn-general btn-green" role="button">See More</button>--}}
-                </div>
+
             </div>
         </div>
     </section>
