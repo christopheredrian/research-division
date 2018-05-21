@@ -276,9 +276,9 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                                           {{--Research Division</p>--}}
                              {{--</a>--}}
             <a class="navbar-brand smooth-scroll text-center" href="/">
-                <strong>I</strong>nfo<strong>S</strong>enti<strong>A</strong> <br>
-                <p> Sangguniang Panglungsod ng Baguio<br>
-                Research Division</p>
+                {{--<strong>I</strong>nfo<strong>S</strong>enti<strong>A</strong> <br>--}}
+                {{--<p> Sangguniang Panglungsod ng Baguio<br>--}}
+                {{--Research Division</p>--}}
                 <img class="flex-image" src="/pub2/img/new-hero-logo.png"/>
             </a>
 
