@@ -58,14 +58,14 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         .end { margin-right: 0 !important; }
         /* Column Grids End */
 
-        .wrapper { width: 980px; margin: 30px auto; position: relative;}
+        .wrapper { width: 650px; margin: 30px auto; position: relative;}
         .counter { background-color: #ffffff; padding: 20px 0; border-radius: 5px;}
         .count-title { font-size: 40px; font-weight: normal;  margin-top: 10px; margin-bottom: 0; text-align: center; }
         .count-text { font-size: 13px; font-weight: normal;  margin-top: 10px; margin-bottom: 0; text-align: center; }
         .fa-2x { margin: 0 auto; float: none; display: table; color: #4ad1e5; }
 
         .pagination li {
-            padding: 5px;
+            padding: 4px;
         }
         .pagination {
             margin-left: 50%;
@@ -125,8 +125,8 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                         </li>
                     @endif
                     {{--<li class="nav-item"><a class="nav-link smooth-scroll" href="/faqs">FAQs</a></li>--}}
-                    <li class="nav-item"><a class="nav-link smooth-scroll" href="/contact">Contact Us</a></li>
                     <li class="nav-item"><a class="nav-link smooth-scroll" href="/about">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link smooth-scroll" href="/contact">Contact Us</a></li>
 
                     <li>
                         <i id="ss" class="search fa fa-search search-btn"></i>
@@ -156,20 +156,14 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         <div class="footer">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4 col-sm-6">
-                        <div class="heading-footer"><h2>Visitor Counter</h2></div>
-                        <div class="wrapper">
-                            <div class="counter col_fourth">
-                                <h2 class="timer count-title count-number" data-to="{{ \App\Log::where('user','public')->distinct()->count('ip')}}" data-speed="1500"></h2>
-                                <p class="count-text ">and still counting!</p>
-                            </div>
-                        </div>
+                    <div class="col-md-4">
+                        <img style="max-width: 60%" src="/images/client/Ph_seal_Baguio.png"/>
                     </div>
-
-                    <div class="col-md-4 col-sm-6">
+                    <div class="col-md-6 col-sm-6">
                         <div class="heading-footer"><h2>Get In Touch</h2></div>
                         <address class="address-details-f">
                             Address: 2nd floor, City Hall, Baguio City<br>
+                            Contact No. : 446-3366<br>
                             Email: <a href="mailto:sanggunianrd@gmail.com">sanggunianrd@gmail.com</a><br>
                             Workdays: Monday-Friday (8:00am - 5:00pm)
                         </address>
@@ -178,8 +172,15 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                         </ul>
                     </div>
 
-                    <div class="col-md-4">
-                        <img style="max-width: 60%" src="/images/client/Ph_seal_Baguio.png"/>
+
+                    <div class="col-md-2 col-sm-6">
+                        <div class="heading-footer"><h2>Visitor Counter</h2></div>
+                        <div class="wrapper">
+                            <div class="counter col_fourth">
+                                <h2 class="timer count-title count-number" data-to="{{ \App\Log::where('user','public')->distinct()->count('ip')}}" data-speed="1500"></h2>
+                                <p class="count-text ">and still counting!</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div><!--/container -->
@@ -197,6 +198,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
             </div>
         </div>
     </div>
+
     <a href="#home" id="back-to-top" class="btn btn-sm btn-green btn-back-to-top smooth-scrolls hidden-sm hidden-xs"
        title="home" role="button">
         <i class="fa fa-angle-up"></i>
