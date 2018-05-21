@@ -98,6 +98,8 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         <div class="container">
             <a class="navbar-brand smooth-scroll text-center" href="/">
                 <strong>I</strong>nfo<strong>S</strong>enti<strong>A</strong> <br>
+                <p> Sangguniang Panglungsod ng Baguio<br>
+                Research Division</p>
             </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                     data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
