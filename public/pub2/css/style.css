@@ -761,7 +761,8 @@ p {
       }
 
       .home-p.pages-head3 {
-        background: url(../img/img/pro-7.jpg) no-repeat;
+        /*background: url(../img/img/pro-7.jpg) no-repeat;*/
+          background: url(../img/img/image_session.jpg) no-repeat;
         background-size: cover;
         background-position: center center;
       }
@@ -923,13 +924,13 @@ p {
     }
 
     .bg-starship-gradient {
-        background: -moz-linear-gradient(45deg,  rgba(248, 255, 99, 1) 0%,  rgba(205, 214, 20, 1)  99%, rgba(205, 214, 19, 1) 100%);
+        background: -moz-linear-gradient(45deg,  rgba(205, 214, 19, 1)  0%,  rgba(205, 214, 20, 1)  99%,rgba(248, 255, 99, 1) 100%);
 
-        background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, rgba(248, 255, 99, 1)), color-stop(99%, rgba(205, 214, 20, 1)), color-stop(100%, rgba(205, 214, 19, 1)));
+        background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, rgba(205, 214, 19, 1)), color-stop(99%, rgba(205, 214, 20, 1)), color-stop(100%, rgba(248, 255, 99, 1)));
         /* safari4+,chrome */
-        background: -webkit-linear-gradient(45deg,  rgba(248, 255, 99, 1) 0%,  rgba(205, 214, 20, 1)  99%, rgba(205, 214, 19, 1) 100%);
+        background: -webkit-linear-gradient(45deg,  rgba(205, 214, 19, 1)  0%,  rgba(205, 214, 20, 1)  99%,rgba(248, 255, 99, 1) 100%);
         /* safari5.1+,chrome10+ */
-        background: -o-linear-gradient(45deg,  rgba(248, 255, 99, 1) 0%,  rgba(205, 214, 20, 1)  99%, rgba(205, 214, 19, 1) 100%);
+        background: -o-linear-gradient(45deg,  rgba(205, 214, 19, 1)  0%,  rgba(205, 214, 20, 1)  99%,rgba(248, 255, 99, 1) 100%);
         /* opera 11.10+ */
     }
 
