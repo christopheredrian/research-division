@@ -52,7 +52,13 @@
         {{-- Q1 --}}
         <div class="col-lg-6 col-xs-12">
             <div>
-                <h2> Why do we conduct Monitoring and Evaluation </h2>
+                <h2> Why do we conduct Monitoring and Evaluation? </h2>
+                <p style="text-align: justify">
+                        The Sangguniang Panlungsod ng Baguio conducts monitoring on the implementation and enforcement of the legislations already enacted by the Sanggunian, because it determines the effectiveness or non-effectiveness and the implementation and non-implementation of these legislations in order that necessary ammendments, if any, may be introduced. Quality legislation is more likely to be realized when a legislative measure/action has the capability to address the needs and aspirations of a target group.
+                </p>
+                <p style="text-align: justify">
+                    That is why we request the suggestions, recommendations, or comments coming from the public, as to how we could strengthen and improve the implementation and enforcement of the legislations and uphold the welfare of the citizens of Baguio. 
+                    </p>
             </div>
         </div>
     </div>
