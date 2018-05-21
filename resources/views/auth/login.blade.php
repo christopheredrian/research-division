@@ -28,20 +28,41 @@
     <!-- Google Font -->
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <style>
+        .flex-image {
+            width: 100%;
+        }
+         /*.image-box {*/
+              /*position:relative;*/
+              /*height: 100%;*/
+              /*width:100%;*/
+          /*}*/
+
+         /*.image-box img {*/
+             /*position:absolute;*/
+             /*top:0;*/
+             /*left:0;*/
+             /*right:0;*/
+             /*bottom:0;*/
+             /*margin:auto;*/
+         /*}*/
+    </style>
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-    <div class="login-logo" >
+    <div class="login-logo">
         <a href="#">
-
-            <b></b>
-            <br>
-            <p>
-                <strong>InfoSentiA</strong> <br>
-                SANGGUNIANG PANLUNSOD
-                City of Baguio
-                <small>Research Division</small>
-            </p>
+            <div class="image-box">
+                <img class="flex-image" src="/pub2/img/new-hero-logo.png"/>
+            </div>
+            {{--<b></b>--}}
+            {{--<br>--}}
+            {{--<p>--}}
+                {{--<strong>InfoSentiA</strong> <br>--}}
+                {{--SANGGUNIANG PANLUNSOD--}}
+                {{--City of Baguio--}}
+                {{--<small>Research Division</small>--}}
+            {{--</p>--}}
         </a>
     </div>
     <!-- /.login-logo -->
