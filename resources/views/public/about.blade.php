@@ -1,6 +1,11 @@
 @extends('layouts.pub2')
 @section('styles')
     <link rel="stylesheet" href="/pub2/css/about.css">
+    <style type="text/css">
+        body {
+            overflow-x: hidden;
+        }
+    </style>
 @endsection
 @section('content')
     <!--====================================================
@@ -145,31 +150,31 @@
                     {{-- END RD --}}
                     <div class="service-h-desc">
                         <div class="service-h-tab">
-                            <div class="tab-content" id="nav-tabContent">
-                                <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
-                                     aria-labelledby="nav-home-tab">
+                            {{--<div class="tab-content" id="nav-tabContent">--}}
+                                {{--<div class="tab-pane fade show active" id="nav-home" role="tabpanel"--}}
+                                     {{--aria-labelledby="nav-home-tab">--}}
 
-                                    <!--====================================================
-                                                            ABOUT-P1
-                                    ======================================================-->
-                                    <section id="story" class="about-p1">
+                                    {{--<!--====================================================--}}
+                                                            {{--ABOUT-P1--}}
+                                    {{--======================================================-->--}}
+                                    {{--<section id="story" class="about-p1">--}}
 
-                                    </section>
+                                    {{--</section>--}}
 
-                                    <!--====================================================
-                                                          ABOUT-P2
-                                   ======================================================-->
-                                </div>
-                                <div class="tab-pane fade" id="nav-profile" role="tabpanel"
-                                     aria-labelledby="nav-profile-tab">
+                                    {{--<!--====================================================--}}
+                                                          {{--ABOUT-P2--}}
+                                   {{--======================================================-->--}}
+                                {{--</div>--}}
+                                {{--<div class="tab-pane fade" id="nav-profile" role="tabpanel"--}}
+                                     {{--aria-labelledby="nav-profile-tab">--}}
 
-                                    <!--====================================================
-                                                            ABOUT-P1
-                                    ======================================================-->
+                                    {{--<!--====================================================--}}
+                                                            {{--ABOUT-P1--}}
+                                    {{--======================================================-->--}}
 
 
-                                </div>
-                            </div>
+                                {{--</div>--}}
+                            {{--</div>--}}
                         </div>
                     </div>
                 </div>

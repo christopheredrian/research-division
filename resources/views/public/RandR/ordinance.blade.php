@@ -1,6 +1,10 @@
 @extends('layouts.pub2')
 @section('styles')
-
+    <style type="text/css">
+        body {
+            overflow-x: hidden;
+        }
+    </style>
 @endsection
 @section('content')
     <!--====================================================

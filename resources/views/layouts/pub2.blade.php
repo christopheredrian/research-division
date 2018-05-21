@@ -146,7 +146,9 @@ License URL: https://creativecommons.org/licenses/by/4.0/
     </nav>
 </header>
 
+<body>
 @yield('content')
+</body>
 
 <!--====================================================
                       FOOTER
