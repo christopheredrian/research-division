@@ -430,21 +430,21 @@ p {
         }
 
         .navbar li>.search {
-            display: none;
+            display: block;
         }
 
-        .navbar .search-open {
-            right: 0;
-            top: 0;
-            display: block;
-            height: auto;
-            line-height: 50px;
-            padding: 4px;
-            position: relative;
-            box-shadow: none;
-            background: none;
-            z-index: 1;
-        }
+        /*.navbar .search-open {*/
+            /*right: 0;*/
+            /*top: 0;*/
+            /*display: block;*/
+            /*height: auto;*/
+            /*line-height: 50px;*/
+            /*padding: 4px;*/
+            /*position: relative;*/
+            /*box-shadow: none;*/
+            /*background: none;*/
+            /*z-index: 1;*/
+        /*}*/
 
         .dropdown-cust {
             margin-top: -2px;

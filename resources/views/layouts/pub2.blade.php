@@ -85,59 +85,87 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         body {
             overflow-x: hidden;
         }
-
         .flex-image {
-            width: 50%;
+            width: 75%;
         }
-        /* ----------- Non-Retina Screens ----------- */
-        @media screen
-        and (min-device-width: 1200px)
-        and (max-device-width: 1600px)
-        and (-webkit-min-device-pixel-ratio: 1) {
+        /* Desktops and laptops ----------- */
+        @media only screen  and (min-width : 1224px) {
+            /* Styles */
             .flex-image {
-                width: 50%;
+                width: 75%;
             }
         }
 
-        /* ----------- Retina Screens ----------- */
-        @media screen
-        and (min-device-width: 1200px)
-        and (max-device-width: 1600px)
-        and (-webkit-min-device-pixel-ratio: 2)
-        and (min-resolution: 192dpi) {
+        /* Large screens ----------- */
+        @media only screen  and (min-width : 1824px) {
+            /* Styles */
             .flex-image {
-                width: 50%;
+                width: 75%;
             }
         }
 
         /* Smartphones (portrait and landscape) ----------- */
-        @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
-            /* Styles */
-        }
-
-        /* Smartphones (landscape) ----------- */
-        @media only screen and (min-width : 321px) {
-            /* Styles */
-        }
+        /*@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {*/
+            /*!* Styles *!*/
+            /*.flex-image {*/
+                /*width: 50%;*/
+            /*}*/
+        /*}*/
 
         /* Smartphones (portrait) ----------- */
-        @media only screen and (max-width : 320px) {
-            /* Styles */
+        /*@media only screen and (max-width : 320px) {*/
+            /*!* Styles *!*/
+            /*.flex-image {*/
+            /*width: 50%;*/
+        /*}*/
         }
 
         /* iPads (portrait and landscape) ----------- */
         @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
-            /* Styles */
+
         }
 
         /* iPads (landscape) ----------- */
         @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
-            /* Styles */
+            /* Styles *//* Styles */
+            .flex-image {
+            width: 40%;
+            }
+
+            .navbar-nav > li {
+                height: 30px;
+                line-height: 15px;
+            }
+
+            .navbar-nav > li > a{
+                font-size: 8px ;
+            }
+
+            #ss {
+                padding: 6px;
+            }
+
         }
 
         /* iPads (portrait) ----------- */
         @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
-            /* Styles */
+            .flex-image {
+                width: 50%;
+                margin-right: -10px !important;
+            }
+
+            .navbar-nav > li {
+                height: 50px;
+                line-height: 15px;
+            }
+
+            .navbar-nav > li > a{
+                font-size: 8px ;
+            }
+
+            #ss {
+                padding: 6px;
+            }
         }
         /**********
         iPad 3
@@ -150,21 +178,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
             /* Styles */
         }
 
-        /* Desktops and laptops ----------- */
-        @media only screen  and (min-width : 1224px) {
-            /* Styles */
-            .flex-image {
-                width: 50%;
-            }
-        }
 
-        /* Large screens ----------- */
-        @media only screen  and (min-width : 1824px) {
-            /* Styles */
-            .flex-image {
-                width: 50%;
-            }
-        }
 
         /* iPhone 4 ----------- */
         @media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
@@ -172,7 +186,9 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         }
 
         @media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
-            /* Styles */
+            .flex-image {
+                width: 75%;
+            }
         }
 
         /* iPhone 5 ----------- */
@@ -181,7 +197,9 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         }
 
         @media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
-            /* Styles */
+            .flex-image {
+                width: 50%;
+            }
         }
 
         /* iPhone 6 ----------- */
@@ -190,16 +208,19 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         }
 
         @media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
-            /* Styles */
+
         }
 
         /* iPhone 6+ ----------- */
         @media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
             /* Styles */
+
         }
 
         @media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
-            /* Styles */
+            .flex-image {
+                width: 25%;
+            }
         }
 
         /* Samsung Galaxy S3 ----------- */
@@ -208,7 +229,9 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         }
 
         @media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
-            /* Styles */
+            .flex-image {
+                width: 100%;
+            }
         }
 
         /* Samsung Galaxy S4 ----------- */
@@ -217,7 +240,9 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         }
 
         @media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
-            /* Styles */
+            .flex-image {
+            width: 50%;
+        }
         }
 
         /* Samsung Galaxy S5 ----------- */
@@ -226,7 +251,9 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         }
 
         @media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
-            /* Styles */
+            .flex-image {
+                width: 100%;
+            }
         }
 
     </style>
@@ -240,14 +267,16 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 
 <header>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand navbar-light" id="mainNav" data-toggle="affix">
+    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav" data-toggle="affix">
         <div class="container">
-            <div style="padding-top: 10px; font-size: large"><strong>I</strong>nfo<strong>S</strong>enti<strong>A</strong></div>
-            <br>
-               <a class="navbar-brand nav-link smooth-scroll text-center" href="/">
-                   <p style="font-size: 12px; padding-top: 30px; text-indent: 25px">Sangguniang Panglungsod ng Baguio
-                       Research Division</p>
-               </a>
+
+            <a class="navbar-brand smooth-scroll text-center" href="/">
+                {{--<strong>I</strong>nfo<strong>S</strong>enti<strong>A</strong> <br>--}}
+                {{--<p> Sangguniang Panglungsod ng Baguio<br>--}}
+                {{--Research Division</p>--}}
+                <img class="flex-image" src="/pub2/img/new-hero-logo.png"/>
+            </a>
+
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                     data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -316,37 +345,26 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                       FOOTER
 ======================================================-->
 <footer>
-    {{--<div id="footer-s1" class="footer-s1">--}}
+    <div id="footer-s1" class="footer-s1">
         {{--<div class="footer">--}}
             {{--<div class="container">--}}
                 {{--<div class="row">--}}
                     {{--<div class="col-md-4">--}}
-                        {{--<img style="max-width: 40%;" src="/images/client/Ph_seal_Baguio.png"/>--}}
+                        {{--<img style="max-width: 50%" src="/images/client/Ph_seal_Baguio.png"/>--}}
                     {{--</div>--}}
+
                     {{--<div class="col-md-6 col-sm-6">--}}
                         {{--<div class="heading-footer"><h2>Get In Touch</h2></div>--}}
-                        {{--<address class="address-details-f" style="font-size: 10px">--}}
+                        {{--<address class="address-details-f">--}}
                             {{--Address: 2nd floor, City Hall, Baguio City<br>--}}
                             {{--Contact No. : 446-3366<br>--}}
-                            {{--Email: <a style="font-size: 10px" href="mailto:sanggunianrd@gmail.com">sanggunianrd@gmail.com</a><br>--}}
-                            {{--Workdays: Monday-Friday (8:00am - 5:00pm)<br>--}}
-                            {{--<a style="font-size: 11px" href="https://www.facebook.com/researchbaguio" target="_blank"><i class="fa fa-facebook"> acebook </i></a>--}}
+                            {{--Email: <a href="mailto:sanggunianrd@gmail.com">sanggunianrd@gmail.com</a><br>--}}
+                            {{--Workdays: Monday-Friday (8:00am - 5:00pm)--}}
                         {{--</address>--}}
+                        {{--<ul class="list-inline social-icon-f top-data">--}}
+                            {{--<li><a href="https://www.facebook.com/researchbaguio" target="_blank"><i class="fa top-social fa-facebook"></i></a></li>--}}
+                        {{--</ul>--}}
                     {{--</div>--}}
-                    {{--<div class="col-md-2 col-sm-6">--}}
-                        {{--<div class="heading-footer"><h2>Visitor Counter</h2></div>--}}
-                        {{--<div class="wrapper">--}}
-                            {{--<div class="counter col_fourth">--}}
-                                {{--<h2 class="timer count-title count-number" style ="font-size: 15px" data-to="{{ \App\Log::where('user','public')->distinct()->count('ip')}}" data-speed="1500"></h2>--}}
-                                {{--<p class="count-text ">and still counting!</p>--}}
-                            {{--</div>--}}
-                        {{--</div>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
-            {{--</div><!--/container -->--}}
-        {{--</div>--}}
-    {{--</div>--}}
-
     <div id="footer-bottom">
                 <div class="row">
                     <div class="container">
@@ -354,10 +372,10 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                             <div class="col-xs-4">
                                 <img style="max-width: 60%" src="/images/client/Ph_seal_Baguio.png"/>
                             </div>
+
                             <div class="col-md-6 col-sm-6">
                                 <div style = "color: #fff0ff; font-family: 'Arial Black';">
                                     Get In Touch </div>
-
                                 <hr>
                                 <address class="address-details-f">
                                     Address: 2nd floor, City Hall, Baguio City<br>
@@ -367,6 +385,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                                     <a href="https://www.facebook.com/researchbaguio" target="_blank"><i class="fa fa-facebook"> acebook </i></a>
                                 </address>
                             </div>
+
                             <div class="col-md-2 col-sm-8">
                                 <div style = "color: #fff0ff; font-family: 'Arial Black';">
                                    Visitor Counter </div>
@@ -379,6 +398,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                             </div>
                         </div>
                     </div>
+
                 <div class="col-md-12">
                     <div id="footer-copyrights" style = "padding-top: 25px">
                         <p>Copyright &copy; 2018 All Rights Reserved by the SANGGUNIANG PANLUNSOD, City of Baguio, Research Division.</p>

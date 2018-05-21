@@ -291,6 +291,7 @@
             </div>
         </div>
     </section>
+    <br>
 
 
 
@@ -592,11 +593,11 @@
         //        setTimeout(closeit, 9000);
     </script>
     <script>
-        document.getElementById('nav-home-tab').onclick = function () {
-            document.getElementById('hi').setAttribute("style", "display:none");
-        };
-        document.getElementById('nav-profile-tab').onclick = function () {
-            document.getElementById('hi').setAttribute("style", "display:block");
-        };
+//        document.getElementById('nav-home-tab').onclick = function () {
+//            document.getElementById('hi').setAttribute("style", "display:none");
+//        };
+//        document.getElementById('nav-profile-tab').onclick = function () {
+//            document.getElementById('hi').setAttribute("style", "display:block");
+//        };
     </script>
 @endsection
