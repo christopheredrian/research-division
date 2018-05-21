@@ -639,9 +639,10 @@ class PublicController extends Controller
         $questions = Question::Where('questionnaire_id', '=', $questionnaire->id)->get();
         $values = Value::WhereIn('question_id', $questions->pluck('id'))->get();
         $required = false;
+        $admin = null;
         return view('public.showOrdinanceQuestionnaire',
             ['questionnaire' => $questionnaire],
-            ['questions' => $questions])->with('values', $values)->with('required', $required);
+            ['questions' => $questions])->with('values', $values)->with('required', $required)->with('admin', $admin);
     }
 
     public function showRequiredOrdinanceQuestionnaire($id, Request $request)
@@ -776,7 +777,8 @@ class PublicController extends Controller
         $questions = Question::Where('questionnaire_id', '=', $questionnaire->id)->get();
         $values = Value::WhereIn('question_id', $questions->pluck('id'))->get();
         $required = false;
-        return view('public.showOrdinanceQuestionnaire', ['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values)->with('required', $required);
+        $admin = null;
+        return view('public.showOrdinanceQuestionnaire', ['questionnaire' => $questionnaire], ['questions' => $questions])->with('values', $values)->with('required', $required)->with('admin', $admin);
     }
 
     public function showRequiredResolutionQuestionnaire($id, Request $request)
