@@ -66,6 +66,9 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         .fa-2x { margin: 0 auto; float: none; display: table; color: #4ad1e5; }
 
 
+        .footer-s1{
+            margin: 0;
+        }
 
         .pagination li {
             padding: 4px;
@@ -101,21 +104,12 @@ License URL: https://creativecommons.org/licenses/by/4.0/
     <!-- Navbar -->
     <nav class="navbar navbar-expand navbar-light" id="mainNav" data-toggle="affix">
         <div class="container">
-<<<<<<< HEAD
             <div style="padding-top: 15px"><strong>I</strong>nfo<strong>S</strong>enti<strong>A</strong></div>
             <br>
                <a class="navbar-brand nav-link smooth-scroll text-center" href="/">
                    <p style="font-size: 12px; padding-top: 30px">Sangguniang Panglungsod ng Baguio
                        Research Division</p>
                </a>
-=======
-            <a class="navbar-brand smooth-scroll text-center" href="/">
-                {{--<strong>I</strong>nfo<strong>S</strong>enti<strong>A</strong> <br>--}}
-                {{--<p> Sangguniang Panglungsod ng Baguio<br>--}}
-                {{--Research Division</p>--}}
-                <img class="flex-image" src="/pub2/img/new-hero-logo.png"/>
-            </a>
->>>>>>> 26a674fb1bff9ce00633cfefdae754cb94148f05
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                     data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -184,51 +178,76 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                       FOOTER
 ======================================================-->
 <footer>
-    <div id="footer-s1" class="footer-s1">
-        <div class="footer">
-            <div class="container">
+    {{--<div id="footer-s1" class="footer-s1">--}}
+        {{--<div class="footer">--}}
+            {{--<div class="container">--}}
+                {{--<div class="row">--}}
+                    {{--<div class="col-md-4">--}}
+                        {{--<img style="max-width: 40%;" src="/images/client/Ph_seal_Baguio.png"/>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-md-6 col-sm-6">--}}
+                        {{--<div class="heading-footer"><h2>Get In Touch</h2></div>--}}
+                        {{--<address class="address-details-f" style="font-size: 10px">--}}
+                            {{--Address: 2nd floor, City Hall, Baguio City<br>--}}
+                            {{--Contact No. : 446-3366<br>--}}
+                            {{--Email: <a style="font-size: 10px" href="mailto:sanggunianrd@gmail.com">sanggunianrd@gmail.com</a><br>--}}
+                            {{--Workdays: Monday-Friday (8:00am - 5:00pm)<br>--}}
+                            {{--<a style="font-size: 11px" href="https://www.facebook.com/researchbaguio" target="_blank"><i class="fa fa-facebook"> acebook </i></a>--}}
+                        {{--</address>--}}
+                    {{--</div>--}}
+                    {{--<div class="col-md-2 col-sm-6">--}}
+                        {{--<div class="heading-footer"><h2>Visitor Counter</h2></div>--}}
+                        {{--<div class="wrapper">--}}
+                            {{--<div class="counter col_fourth">--}}
+                                {{--<h2 class="timer count-title count-number" style ="font-size: 15px" data-to="{{ \App\Log::where('user','public')->distinct()->count('ip')}}" data-speed="1500"></h2>--}}
+                                {{--<p class="count-text ">and still counting!</p>--}}
+                            {{--</div>--}}
+                        {{--</div>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
+            {{--</div><!--/container -->--}}
+        {{--</div>--}}
+    {{--</div>--}}
+
+    <div id="footer-bottom">
                 <div class="row">
-                    <div class="col-md-4">
-                        <img style="max-width: 60%" src="/images/client/Ph_seal_Baguio.png"/>
-                    </div>
-                    <div class="col-md-6 col-sm-6">
-                        <div class="heading-footer"><h2>Get In Touch</h2></div>
-                        <address class="address-details-f">
-                            Address: 2nd floor, City Hall, Baguio City<br>
-                            Contact No. : 446-3366<br>
-                            Email: <a href="mailto:sanggunianrd@gmail.com">sanggunianrd@gmail.com</a><br>
-                            Workdays: Monday-Friday (8:00am - 5:00pm)
-                        </address>
-                        <ul class="list-inline social-icon-f top-data">
-                            <li><a href="https://www.facebook.com/researchbaguio" target="_blank"><i class="fa top-social fa-facebook"></i></a></li>
-                        </ul>
-                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xs-4">
+                                <img style="max-width: 60%" src="/images/client/Ph_seal_Baguio.png"/>
+                            </div>
+                            <div class="col-md-6 col-sm-6">
+                                <div style = "color: #fff0ff; font-family: 'Arial Black';">
+                                    Get In Touch </div>
 
-
-                    <div class="col-md-2 col-sm-6">
-                        <div class="heading-footer"><h2>Visitor Counter</h2></div>
-                        <div class="wrapper">
-                            <div class="counter col_fourth">
-                                <h2 class="timer count-title count-number" data-to="{{ \App\Log::where('user','public')->distinct()->count('ip')}}" data-speed="1500"></h2>
-                                <p class="count-text ">and still counting!</p>
+                                <hr>
+                                <address class="address-details-f">
+                                    Address: 2nd floor, City Hall, Baguio City<br>
+                                    Contact No. : 446-3366<br>
+                                    Email: <a href="mailto:sanggunianrd@gmail.com">sanggunianrd@gmail.com</a><br>
+                                    Workdays: Monday-Friday (8:00am - 5:00pm)<br>
+                                    <a href="https://www.facebook.com/researchbaguio" target="_blank"><i class="fa fa-facebook"> acebook </i></a>
+                                </address>
+                            </div>
+                            <div class="col-md-2 col-sm-8">
+                                <div style = "color: #fff0ff; font-family: 'Arial Black';">
+                                   Visitor Counter </div>
+                                <div class="wrapper">
+                                    <div class="counter col_fourth">
+                                        <h2 class="timer count-title count-number" style ="font-size: 15px" data-to="{{ \App\Log::where('user','public')->distinct()->count('ip')}}" data-speed="1500"></h2>
+                                        <p class="count-text ">and still counting!</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div><!--/container -->
-        </div>
-    </div>
-
-    <div id="footer-bottom">
-        <div class="container">
-            <div class="row">
                 <div class="col-md-12">
-                    <div id="footer-copyrights">
+                    <div id="footer-copyrights" style = "padding-top: 25px">
                         <p>Copyright &copy; 2018 All Rights Reserved by the SANGGUNIANG PANLUNSOD, City of Baguio, Research Division.</p>
                     </div>
                 </div>
+                </div>
             </div>
-        </div>
     </div>
 
     <a href="#home" id="back-to-top" class="btn btn-sm btn-green btn-back-to-top smooth-scrolls hidden-sm hidden-xs"
