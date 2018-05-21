@@ -11,7 +11,7 @@
             <div class="carousel-inner">
                 <div class="carousel-item active slides">
                     <div class="overlay"></div>
-                    <div class="slide-1"></div>
+                    {{--<div class="slide-1"></div>--}}
                     <div id="hero" class="hero">
                         <hgroup class="wow fadeInUp">
                             <h1>Let's Work together!</h1>
@@ -19,17 +19,7 @@
                                     <a href="" class="typewrite" data-period="2000"
                                        data-type='[ " Participation", " Opinion"]'>
                         <span class="wrap"></span></a></span></h1>
-                            <h3>To enhance and improve local legislations</h3>
                         </hgroup>
-                        <div class="row">
-                            <div class="col-md-3"></div>
-                            <div class="col-md-3">
-                                <a href="/ordinances" class="btn btn-general btn-green" role="button">Ordinances</a>
-                            </div>
-                            <div class="col-md-3">
-                                <a href="/resolutions" href="" class="btn btn-general btn-green" role="button">Resolutions</a>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -43,12 +33,7 @@
     <section id="service-h">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-6">
-                    <div class="service-himg">
-                        <iframe src="https://www.youtube.com/embed/IeyB--0Ff4k?rel=0&amp;controls=1&amp;showinfo=0"
-                                frameborder="0" allowfullscreen></iframe>
-                    </div>
-                </div>
+
                 <div class="col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                     <div class="service-h-desc">
                         <h3>Monitoring and Evaluation</h3>
