@@ -33,8 +33,15 @@
 <div class="login-box">
     <div class="login-logo" >
         <a href="#">
-            <b>Sangguniang Panlungsod</b>
-            <br> Research Division
+
+            <b></b>
+            <br>
+            <p>
+                <strong>InfoSentiA</strong> <br>
+                SANGGUNIANG PANLUNSOD
+                City of Baguio
+                <small>Research Division</small>
+            </p>
         </a>
     </div>
     <!-- /.login-logo -->

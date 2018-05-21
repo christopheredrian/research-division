@@ -171,9 +171,9 @@ function skin($user)
         <!-- Logo -->
         <a href="/admin" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>R</b>DBC</span>
+            <span class="logo-mini"><b>I</b>SA</span>
             <!-- logo for regular state and mobile devices -->
-            <span class="logo-lg"><b>Research</b>Division</span>
+            <span class="logo-lg"><b>I</b>nfo<b>S</b>enti<b>A</b> </span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -555,11 +555,11 @@ function skin($user)
 
     <footer class="main-footer">
         <div class="pull-right hidden-xs">
-            <b>Version</b> 0.1
+            <b>Version</b> 1.0
         </div>
-        <strong>Copyright &copy; 2017 Research Division, Baguio City.</strong> All
+        <strong>Copyright &copy; 2017.</strong> All
         rights
-        reserved.
+        reserved by SANGGUNIANG PANLUNSOD, City of Baguio, Research Division.
     </footer>
 
 </div>

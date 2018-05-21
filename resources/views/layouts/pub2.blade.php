@@ -83,8 +83,8 @@ License URL: https://creativecommons.org/licenses/by/4.0/
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light" id="mainNav" data-toggle="affix">
         <div class="container">
-            <a class="navbar-brand smooth-scroll" href="/">
-            Research Division
+            <a class="navbar-brand smooth-scroll text-center" href="/">
+                <strong>I</strong>nfo<strong>S</strong>enti<strong>A</strong> <br>
             </a>
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                     data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
@@ -191,8 +191,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
             <div class="row">
                 <div class="col-md-12">
                     <div id="footer-copyrights">
-                        <p>Copyrights &copy; 2018 All Rights Reserved by Baguio City Government.<a
-                                    href="https://themewagon.com">Template by ThemeWagon</a> and Video by QualityProductions</p>
+                        <p>Copyright &copy; 2018 All Rights Reserved by the SANGGUNIANG PANLUNSOD, City of Baguio, Research Division.</p>
                     </div>
                 </div>
             </div>
