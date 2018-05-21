@@ -16,7 +16,8 @@ License URL: https://creativecommons.org/licenses/by/4.0/
     <meta name="author" content="">
 
     <title>Research Division</title>
-    <link rel="shortcut icon" href="/pub2/img/favicon.ico">
+    <link rel="icon" href="/images/partgov.png">
+    {{--<link rel="shortcut icon" href="/pub2/img/favicon.ico">--}}
 
     <!-- Global Stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
