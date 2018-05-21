@@ -11,9 +11,10 @@
     <!--====================================================
                        HOME-P
 ======================================================-->
+    <div id="home"></div>
     <div id="home-p" class="home-p pages-head4 text-center">
-        <div class="container">
-            <h1 class="wow fadeInUp" data-wow-delay="0.1s">ABOUT US</h1>
+        <div  class="container">
+            <h1 class="wow fadeInUp" data-wow-delay="0.1s">ABOUT US </h1>
             <p></p>
         </div>
         <!--/end container-->
@@ -24,7 +25,7 @@
 ======================================================-->
     <section id="about-p1">
         <div class="container-fluid">
-            <div class="">
+            <div id="">
                 <div class="wow fadeInUp" data-wow-delay="0.3s">
                     {{-- start SPNBRD --}}
                     <div class="container">

@@ -922,6 +922,17 @@ p {
         background: #cdd613;
     }
 
+    .bg-starship-gradient {
+        background: -moz-linear-gradient(45deg,  rgba(248, 255, 99, 1) 0%,  rgba(205, 214, 20, 1)  99%, rgba(205, 214, 19, 1) 100%);
+
+        background: -webkit-gradient(linear, left bottom, right top, color-stop(0%, rgba(248, 255, 99, 1)), color-stop(99%, rgba(205, 214, 20, 1)), color-stop(100%, rgba(205, 214, 19, 1)));
+        /* safari4+,chrome */
+        background: -webkit-linear-gradient(45deg,  rgba(248, 255, 99, 1) 0%,  rgba(205, 214, 20, 1)  99%, rgba(205, 214, 19, 1) 100%);
+        /* safari5.1+,chrome10+ */
+        background: -o-linear-gradient(45deg,  rgba(248, 255, 99, 1) 0%,  rgba(205, 214, 20, 1)  99%, rgba(205, 214, 19, 1) 100%);
+        /* opera 11.10+ */
+    }
+
     .bg-matisse {
         background: #0b385d;
     }

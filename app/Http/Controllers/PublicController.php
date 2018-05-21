@@ -144,13 +144,11 @@ class PublicController extends Controller
         $monitoringOrdinances = Ordinance::where('is_monitoring', 1)
             ->orWhere('is_accepting' , 1)
             ->orderby('created_at', 'asc')
-//            ->limit(4)
             ->get();
 
         $monitoringResolutions = Resolution::where('is_monitoring', 1)
             ->orWhere('is_accepting' , 1)
             ->orderby('created_at', 'asc')
-//            ->limit(4)
             ->get();
 
         $monitoredOrdinances = Ordinance::where('is_monitored', 1)
@@ -163,10 +161,15 @@ class PublicController extends Controller
             ->limit(5)
             ->get();
 
+        $questionnaires = Questionnaire::where('isAccepting', 1)
+            ->orderby('created_At', 'desc')
+            ->get();
+
         if ($monitoredResolutions->isEmpty())
         {
             $monitoredResolutions = null;
         }
+
         if ($monitoredOrdinances->isEmpty())
         {
             $monitoredOrdinances = null;
@@ -177,7 +180,8 @@ class PublicController extends Controller
             ->with('monitoredResolutions',$monitoredResolutions)
             ->with('monitoredOrdinances',$monitoredOrdinances)
             ->with('monitoringRes',$monitoringResolutions)
-            ->with('monitoringOrd',$monitoringOrdinances);
+            ->with('monitoringOrd',$monitoringOrdinances)
+            ->with('questionnaires', $questionnaires);
     }
     //    Monitoring and Eval
     // monitored Resolutions

@@ -14,7 +14,7 @@
         <div class="container">
             <h1 class="" data-wow-delay="0.1s">Legislations</h1>
             <p>
-                Local legislation is important because it is a powerful, vital tool for: (1) addressing the
+                Legislations are important because they are a powerful, vital tool for: (1) addressing the
                 <b>problems</b> of the citizens of the LGU, (2) promoting the <b>general welfare and development</b> of
                 the LGU and its citizens, (3) attaining the <b>vision</b> of the LGU for its citizens.
             </p>

@@ -35,7 +35,6 @@
                                        data-type='[ " Participation", " Opinion"]'>
                         <span class="wrap"></span></a></span></h1>
                     </hgroup>
-            <div class="heading-border-light"></div>
             <div class="wow fadeInUp" data-wow-delay="0.3s">
                 <div class="service-h-desc">
                     <p style="text-align: justify">
@@ -47,6 +46,52 @@
                     </p>
                 </div>
             </div>
+            <div class="row">
+                <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.2s">
+                    <h2> Questionnaires
+                        <a href="/forms">
+                            <span class="badge badge-info">
+                                {{ $questionnaires->count() }}
+                            </span>
+                        </a>
+                    </h2>
+                    <div class="owl-carousel owl-theme">
+                        @foreach($questionnaires as $item)
+                            @if($item->ordinance)
+                                <div class="item">
+                                    <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.4s">
+                                        <a href="/answer.o/{{ $item->ordinance->id }}">
+                                        <div class="desc-comp-offer-cont" style="text-align: center">
+                                            <div class="bg-chathams" style="padding: 20px">
+                                                <h5 style="color: white">Ordinance No. {{$item->ordinance->number}}</h5>
+                                            </div>
+                                            <p class="desc" style="margin-top: 10px;">
+                                                {!! Str::words($item->ordinance->title, 30,'...')  !!}
+                                            </p>
+                                        </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            @elseif($item->resolution)
+                                <div class="item">
+                                    <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.4s">
+                                        <a href="/answer.r/{{ $item->resolution->id }}">
+                                            <div class="desc-comp-offer-cont" style="text-align: center">
+                                                <div class="bg-chathams" style="padding: 20px">
+                                                    <h5 style="color: white">Resolution No. {{$item->resolution->number}}</h5>
+                                                </div>
+                                                <p class="desc" style="margin-top: 10px;">
+                                                    {!! Str::words($item->resolution->title, 30,'...')  !!}
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+            </div>
         </div>
 
         {{-- Q1 --}}
@@ -54,10 +99,17 @@
             <div>
                 <h2> Why do we conduct Monitoring and Evaluation? </h2>
                 <p style="text-align: justify">
-                        The Sangguniang Panlungsod ng Baguio conducts monitoring on the implementation and enforcement of the legislations already enacted by the Sanggunian, because it determines the effectiveness or non-effectiveness and the implementation and non-implementation of these legislations in order that necessary ammendments, if any, may be introduced. Quality legislation is more likely to be realized when a legislative measure/action has the capability to address the needs and aspirations of a target group.
+                        The Sangguniang Panlungsod ng Baguio conducts monitoring on the implementation and enforcement
+                    of the legislations already enacted by the Sanggunian, because it determines the effectiveness or
+                    non-effectiveness and the implementation and non-implementation of these legislations in order that
+                    necessary ammendments, if any, may be introduced. Quality legislation is more likely to be realized
+                    when a legislative measure/action has the capability to address the needs and aspirations of a
+                    target group.
                 </p>
                 <p style="text-align: justify">
-                    That is why we request the suggestions, recommendations, or comments coming from the public, as to how we could strengthen and improve the implementation and enforcement of the legislations and uphold the welfare of the citizens of Baguio. 
+                    That is why we request the suggestions, recommendations, or comments coming from the public, as to
+                    how we could strengthen and improve the implementation and enforcement of the legislations and uphold
+                    the welfare of the citizens of Baguio.
                     </p>
             </div>
         </div>
@@ -66,14 +118,20 @@
     {{-- lower part --}}
     <div class="row lower">
         <div class="col-lg-6 col-xs-12">
+
+            <section class="what-we-do bg-gradiant">
+                <div class="container-fluid">
+                    <div class="row">
+                        <h2 class="text-center">
+                             LATEST LEGISLATIONS
+                        </h2>
+                    </div>
+                </div>
+            </section>
+            <br>
+
             <div class="row">
                 {{--HORIZONTAL BAR--}}
-                <section class="what-we-do bg-gradiant">
-                    <div class="container-fluid">
-                        <div class="row">
-                        </div>
-                    </div>
-                </section>
                 <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.2s">
                     <h2>Latest ordinances</h2>
                     <div class="heading-border-light"></div>
@@ -125,6 +183,16 @@
         </div>
 
         <div class="col-lg-6 col-xs-12">
+            <section class="what-we-do bg-starship-gradient">
+                <div class="container-fluid">
+                    <div class="row">
+                        <h2 class="text-center">
+                            LEGISLATIONS BEING MONITORED
+                        </h2>
+                    </div>
+                </div>
+            </section>
+            <br>
             <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.2s">
                 <h2>Ordinances Being Monitored</h2>
                 <div class="heading-border-light"></div>
