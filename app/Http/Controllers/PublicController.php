@@ -163,6 +163,7 @@ class PublicController extends Controller
 
         $questionnaires = Questionnaire::where('isAccepting', 1)
             ->orderby('created_At', 'desc')
+            ->limit(5)
             ->get();
 
         if ($monitoredResolutions->isEmpty())
