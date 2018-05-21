@@ -242,8 +242,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
     <!-- Navbar -->
     <nav class="navbar navbar-expand navbar-light" id="mainNav" data-toggle="affix">
         <div class="container">
-
-            <div style="padding-top: 15px; font-size: x-large"><strong>I</strong>nfo<strong>S</strong>enti<strong>A</strong></div>
+            <div style="padding-top: 10px; font-size: large"><strong>I</strong>nfo<strong>S</strong>enti<strong>A</strong></div>
             <br>
                <a class="navbar-brand nav-link smooth-scroll text-center" href="/">
                    <p style="font-size: 12px; padding-top: 30px; text-indent: 25px">Sangguniang Panglungsod ng Baguio
@@ -255,7 +254,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar navbar-nav ml-auto" style="font-size: 15px">
                     <li class="nav-item"><a class="nav-link smooth-scroll" href="/">Home</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle smooth-scroll" href="#" id="navbarDropdownMenuLink"
@@ -291,7 +290,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                     <li class="nav-item"><a class="nav-link smooth-scroll" href="/about">About Us</a></li>
                     <li class="nav-item"><a class="nav-link smooth-scroll" href="/contact">Contact Us</a></li>
 
-                    <li>
+                    <li class="nav-item">
                         <i id="ss" class="search fa fa-search search-btn"></i>
                         <div class="search-open">
                             <form id="search_form" action="/search" method="get">
