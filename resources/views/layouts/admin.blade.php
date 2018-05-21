@@ -557,7 +557,7 @@ function skin($user)
         <div class="pull-right hidden-xs">
             <b>Version</b> 1.0
         </div>
-        <strong>Copyright &copy; 2017.</strong> All
+        <strong>Copyright &copy; 2018.</strong> All
         rights
         reserved by SANGGUNIANG PANLUNSOD, City of Baguio, Research Division.
     </footer>

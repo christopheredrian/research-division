@@ -185,7 +185,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                             Workdays: Monday-Friday (8:00am - 5:00pm)
                         </address>
                         <ul class="list-inline social-icon-f top-data">
-                            <li><a href="#" target="_empty"><i class="fa top-social fa-facebook"></i></a></li>
+                            <li><a href="https://www.facebook.com/researchbaguio" target="_blank"><i class="fa top-social fa-facebook"></i></a></li>
                         </ul>
                     </div>
 
