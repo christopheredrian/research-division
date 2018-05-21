@@ -1,7 +1,11 @@
 @extends('layouts.pub2')
 @section('styles')
     <link rel="stylesheet" href="/pub2/css/about.css">
-
+    <style type="text/css">
+        body {
+            overflow-x: hidden;
+        }
+    </style>
 @endsection
 @section('content')
     <!--====================================================

@@ -2,6 +2,11 @@
 
 @section('styles')
     <link rel="stylesheet" href="/pub2/css/contact.css">
+    <style type="text/css">
+        body {
+            overflow-x: hidden;
+        }
+    </style>
 @endsection
 
 @section('content')
