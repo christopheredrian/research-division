@@ -104,7 +104,8 @@
                         <div class="row">
                             <div class=" col-md-3"></div>
                             <div class=" col-md-4">
-                                <ul class="nav nav-pills">
+                                @if(request()->status !== 'monitored')
+                                    <ul class="nav nav-pills">
                                     <li class="nav-item">
                                         <a  class="nav-link">Show: </a>
                                     </li>
@@ -126,6 +127,8 @@
                                             Questionnaires</a>
                                     </li>
                                 </ul>
+
+                                @endif
                             </div>
                             <div class=" col-md-3">
                                 <form id="search2" method="get" action="#" class="form-inline pull-right">
