@@ -11,26 +11,14 @@
                        HOME-P
     ======================================================-->
     <div id="home-p" class="home-p pages-head2 text-center">
-        {{--<div class="container" style="max-height: 30px">--}}
-            {{--<h4 class="" style="color: #fff0ff" data-wow-delay="0.1s">Legislations</h4>--}}
-            {{--<p style="font-size: 15px">--}}
-                {{--Legislations are important because they are a powerful, vital tool for: (1) addressing the--}}
-                {{--<b>problems</b> of the citizens of the LGU, (2) promoting the <b>general welfare and development</b> of--}}
-                {{--the LGU and its citizens, (3) attaining the <b>vision</b> of the LGU for its citizens.--}}
-            {{--</p>--}}
-        {{--</div><!--/end container-->--}}
-        <div class="container text-edit">
-            <div class="row title-bar" style="padding-bottom: 0; padding-top: 10px;">
-                <div class="col-md-12">
-                    <h2 class="wow fadeInUp text-center">Resolutions</h2>
-                    <p class="wow fadeInUp" data-wow-delay="0.4s">
-                        A resolution, on the other hand, is a mere expression of the opinion or sentiment of the local
-                        legislative body on matters relating to proprietary function and to private concerns. It is
-                        temporary in character.
-                    </p>
-                </div>
-            </div>
-        </div>
+        <div class="container" style="max-height: 30px">
+            <h4 class="" style="color: #fff0ff" data-wow-delay="0.1s">Resolutions</h4>
+            <p class="wow fadeInUp" data-wow-delay="0.4s" style="font-size: 15px">
+            A resolution, on the other hand, is a mere expression of the opinion or sentiment of the local
+            legislative body on matters relating to proprietary function and to private concerns. It is
+            temporary in character.
+        </p>
+        </div><!--/end container-->
     </div>
 
     <!--====================================================

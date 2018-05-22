@@ -256,8 +256,9 @@ License URL: https://creativecommons.org/licenses/by/4.0/
             }
         }
 
-        .text-edit p  {
+        .text-edit > p  {
             color: white !important;
+            /*font-size: 0.9em !important;*/
         }
 
         .text-edit h2  {
