@@ -12,10 +12,42 @@
     ======================================================-->
     <div id="home-p" class="home-p pages-head3 text-center">
         <div class="container" style="max-height: 30px">
-            <h1 class="" data-wow-delay="0.1s">Monitoring and Evaluation</h1>
-            {{--<p>--}}
-            {{----}}
-            {{--</p>--}}
+            {{--<h1 class="" data-wow-delay="0.1s">Monitoring and Evaluation</h1>--}}
+            @if($ordinances !== null)
+                <div class="ordinance-heading">
+                    @if( app('request')->input('status') === 'monitored')
+                        <h1 class="wow fadeInUp">Monitored Ordinances</h1>
+                        <p class="wow fadeInDown" data-wow-delay="0.4s">
+                        List of Ordinances that have already been monitored, with the corresponding
+                        legislative actions/measures given as well.
+                        </p>
+                    @else
+                        <h1 class="wow fadeInUp">Ordinances Currently Being Monitored</h1>
+                        <p class="wow fadeInDown" data-wow-delay="0.4s">
+                            To read more of the Ordinance, and also be able
+                            to leave comments and suggestions/recommendations about a certain resolution, click on
+                            "Read more."
+                        </p>
+                    @endif
+                </div>
+            @elseif ($resolutions !== null)
+                <div class="ordinance-heading">
+                    @if( app('request')->input('status') === 'monitored')
+                        <h1 class="wow fadeInUp">Monitored Resolutions</h1>
+                        <p class="wow fadeInDown" data-wow-delay="0.4s">
+                            List of Resolutions that have already been monitored, with the corresponding
+                            legislative actions/measures given as well.
+                        </p>
+                    @else
+                        <h1 class="wow fadeInUp">Resolutions Currently Being Monitored</h1>
+                        <p class="wow fadeInDown" data-wow-delay="0.4s">
+                            To read more of the Resolutions, and also be able
+                            to leave comments and suggestions/recommendations about a certain resolution, click on
+                            "Read more."
+                        </p>
+                    @endif
+                </div>
+            @endif
         </div><!--/end container-->
     </div>
 
@@ -26,42 +58,48 @@
         <div class="container">
             <div class="row title-bar" style="padding-bottom: 0; padding-top: 10px;">
                 <div class="col-md-12">
-
-                    @if($ordinances !== null)
-                        <div class="ordinance-heading">
-                            @if( app('request')->input('status') === 'monitored')
-                                <h1 class="wow fadeInUp">Monitored Ordinances</h1>
-                                <div class="heading-border"></div>
-                                <p class="" data-wow-delay="0.4s">
-                                    List of ordinances that have already been monitored, with the corresponding legislative actions/measures given as well.
-                                </p>
-                            @else
-                                <h1 class="wow fadeInUp">Ordinances Currently Being Monitored</h1>
-                                <div class="heading-border"></div>
-                                <p class="" data-wow-delay="0.4s">To read more of the ordinances, and also be able to leave comments and suggestions/recommendations about a certain ordinance, click on "Read more."
-                                </p>
-                                
-                            @endif
-                        </div>
-                    @elseif ($resolutions !== null)
-                        <div class="ordinance-heading">
-                            @if( app('request')->input('status') === 'monitored')
-                                <h1 class="wow fadeInUp">Monitored Resolutions</h1>
-                                <div class="heading-border"></div>
-                                <p class="" data-wow-delay="0.4s">
-                                    List of resolutions that have already been monitored, with the corresponding legislative actions/measures given as well.
-                                </p>
-                            @else
-                                <h1 class="wow fadeInUp">Resolutions Currently Being Monitored</h1>
-                                <div class="heading-border"></div>
-                                <p class="" data-wow-delay="0.4s">To read more of the resolutions, and also be able to leave comments and suggestions/recommendations about a certain resolution, click on "Read more."
-                                </p>
-                                
-                            @endif
-                        </div>
-                    @endif
-
-
+                    {{--@if($ordinances !== null)--}}
+                        {{--<div class="ordinance-heading">--}}
+                            {{--@if( app('request')->input('status') === 'monitored')--}}
+                                {{--<h1 class="wow fadeInUp">Monitored Ordinances</h1>--}}
+                                {{--<div class="heading-border"></div>--}}
+                                {{--<p class="" data-wow-delay="0.4s">--}}
+                                    {{--List of ordinances that have already been monitored, with the corresponding
+                                    legislative actions/measures given as well.--}}
+                                {{--</p>--}}
+                            {{--@else--}}
+                                {{--<h1 class="wow fadeInUp">Ordinances Currently Being Monitored</h1>--}}
+                                {{--<div class="heading-border"></div>--}}
+                                {{--<p class="" data-wow-delay="0.4s">To read more of the ordinances, and also be able
+                                to leave comments and suggestions/recommendations about a certain ordinance,
+                                click on "Read more."--}}
+                                {{--</p>--}}
+                                {{----}}
+                            {{--@endif--}}
+                        {{--</div>--}}
+                    {{--@elseif ($resolutions !== null)--}}
+                        {{--<div class="ordinance-heading">--}}
+                            {{--@if( app('request')->input('status') === 'monitored')--}}
+                                {{--<h1 class="wow fadeInUp">Monitored Resolutions</h1>--}}
+                                {{--<div class="heading-border"></div>--}}
+                                {{--<p class="" data-wow-delay="0.4s">--}}
+                                    {{--List of resolutions that have already been monitored, with the corresponding
+                                    legislative actions/measures given as well.--}}
+                                {{--</p>--}}
+                            {{--@else--}}
+                                {{--<h1 class="wow fadeInUp">Resolutions Currently Being Monitored</h1>--}}
+                                {{--<div class="heading-border"></div>--}}
+                                {{--<p class="" data-wow-delay="0.4s">To read more of the resolutions, and also be able
+                                to leave comments and suggestions/recommendations about a certain resolution, click on
+                                "Read more."--}}
+                                {{--</p>--}}
+                                {{----}}
+                            {{--@endif--}}
+                        {{--</div>--}}
+                    {{--@endif--}}
+                    <br>
+                    <br>
+                    <br>
                     <div class=" col-md-12" style="margin-bottom: 10px">
                         <div class="row">
                             <div class=" col-md-3"></div>
