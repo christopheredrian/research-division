@@ -384,7 +384,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                                 <hr>
                                 <address class="address-details-f">
                                     Address: 2nd floor, City Hall, Baguio City<br>
-                                    Contact No. : 446-3366<br>
+                                    Contact No. : (074) 446-3366<br>
                                     Email: <a href="mailto:sanggunianrd@gmail.com">sanggunianrd@gmail.com</a><br>
                                     Workdays: Monday-Friday (8:00am - 5:00pm)<br>
                                     <a href="https://www.facebook.com/researchbaguio" target="_blank"><i class="fa fa-facebook"> acebook </i></a>

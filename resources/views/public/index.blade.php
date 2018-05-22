@@ -33,7 +33,7 @@
             {{-- upper part --}}
             <div class="top row">
                 {{-- Q2 --}}
-                <div class="col col-lg-6 col-xs-12">
+                <div class="col col-lg-6 col-xs-12">re
                     <hgroup class="wow fadeInUp">
                         <h5 class="font-weight-light">Let's Work together!</h5>
                         <h3 class="font-weight-bold">We need your <span>
