@@ -38,15 +38,11 @@
                     <div class="contact-p1-cont2">
                         <address class="address-details-f">
                             Address: 2nd floor, City Hall, Baguio City<br>
+                            Contact No. : (074) 446-3366<br>
                             Email: <a href="mailto:sanggunianrd@gmail.com">sanggunianrd@gmail.com</a><br>
-                            Workdays: Monday-Friday (8:00am - 5:00pm)
+                            Workdays: Monday-Friday (8:00am - 5:00pm)<br>
+                            <a href="https://www.facebook.com/researchbaguio" target="_blank"><i class="fa fa-facebook"> acebook </i></a>
                         </address>
-                        <ul class="list-inline social-icon-f top-data">
-                            <li><a href="https://facebook.com/InfoSentiA" target="_empty"><i
-                                            class="fa top-social fa-facebook"
-                                            style="height: 35px; width:35px; line-height: 35px;"></i></a>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>

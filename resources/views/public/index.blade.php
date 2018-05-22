@@ -44,7 +44,7 @@
             <div class="wow fadeInUp" data-wow-delay="0.3s">
                 <div class="service-h-desc">
                     <p style="text-align: justify">
-                        The Sanggunian is pursuing its monitoring of the implementation or enforcement of ordinances
+                        The Sanggunian Panlungsod ng Baguio is pursuing its monitoring of the implementation or enforcement of ordinances
                         and resolutions enacted by the body. This is being conducted because the legislative body is
                         not only tasked to enact new legislations, but it also has a duty to ensure that existing
                         legislations are implemented and administered efficiently, effectively, and in a manner
@@ -54,7 +54,7 @@
             </div>
             <div class="questionnaire-wrapper">
                 <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.2s">
-                    <h5 class="font-weight-bold"> Questionnaires
+                    <h5 class="font-weight-bold"> Answer our Questionnaires
                         <a href="/forms" class="btn btn-sm btn-primary float-right">See all <span class="badge badge-pil badge-warning"> {{ $questionnaires->count()  }}</span></a>
                         <div class="heading-border-light"></div>
                         <div class="clearfix"></div>
@@ -106,7 +106,7 @@
                 {{-- Q1 --}}
                 <div class="col-lg-6 col-xs-12">
                     <div>
-                        <h3 class="font-weight-bold"> Why do we conduct Monitoring and Evaluation? </h3>
+                        <h3 class="font-weight-bold"> Why do we conduct Legislative Monitoring and Evaluation? </h3>
 
                         <div class="pt-2">
                             <p style="text-align: justify">
@@ -116,17 +116,20 @@
                                 effectiveness or
                                 non-effectiveness and the implementation and non-implementation of these legislations in
                                 order that
-                                necessary ammendments, if any, may be introduced. Quality legislation is more likely to
+                                necessary amendments, if any, may be introduced. Quality legislation is more likely to
                                 be realized
                                 when a legislative measure/action has the capability to address the needs and
                                 aspirations of a
                                 target group.
                             </p>
                             <p style="text-align: justify">
-                                And apart from ensuring that all legislations are monitored with regards to its implementation and/or enforcement, we also conduct data gathering and interviews with the stakeholders of the city, particularly the affected coonstituents and the implementing offices and agencies so that all observations, suggestions/recommendations, and even comments would be addressed by the members of the Sanggunian through either ammendments or new proposals.
+                                Apart from ensuring that all legislations are monitored with regards to its implementation and/or enforcement,
+                                we also conduct data gathering and interviews with the stakeholders of the city,
+                                particularly the affected constituents and the implementing offices and agencies so that all observations,
+                                suggestions/recommendations, and even comments would be addressed by the members of the Sanggunian through either amendments or new proposals.
                             </p>
                             <p style="text-align: justify">
-                                That is why we request the suggestions, recommendations, or comments coming from the
+                                Such is the reason why we request the suggestions, recommendations, or comments coming from the
                                 public, as to
                                 how we could strengthen and improve the implementation and enforcement of the
                                 legislations and uphold
@@ -157,7 +160,7 @@
                     <div class="">
                         {{--HORIZONTAL BAR--}}
                         <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.2s">
-                            <h5 class="legislation-header float-left">Latest ordinances</h5>
+                            <h5 class="legislation-header float-left">Latest Ordinances</h5>
                             <a href="/randr/ordinances/" class="btn btn-sm btn-primary float-right">See all <span
                                         class="badge badge-pil badge-warning"> {{\App\Ordinance::where('is_monitoring',0)->count()}}</span></a>
                             <div class="heading-border-light"></div>
@@ -229,7 +232,7 @@
                     </section>
                     <br>
                     <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.2s">
-                        <h5 class="legislation-header float-left">Ordinances Currently Being Monitored</h5>
+                        <h5 class="legislation-header float-left">Ordinances currently being monitored</h5>
                         <a href="/ordinances" class="btn btn-sm btn-primary float-right">See all <span
                                     class="badge badge-pil badge-warning"> {{\App\Ordinance::where('is_monitoring',1)->count()}}</span></a>
                         <div class="heading-border-light"></div>
@@ -259,7 +262,7 @@
 
                     {{-- start reso --}}
                     <div class="mt-4 desc-comp-offer wow fadeInUp" data-wow-delay="0.2s">
-                        <h5 class="legislation-header float-left">Resolutions Currently Being Monitored</h5>
+                        <h5 class="legislation-header float-left">Resolutions currently being monitored</h5>
                         <a href="/resolutions" class="btn btn-sm btn-primary float-right">See all <span
                                     class="badge badge-pil badge-warning"> {{\App\Resolution::where('is_monitoring',1)->count()}}</span></a>
                         <div class="heading-border-light"></div>
