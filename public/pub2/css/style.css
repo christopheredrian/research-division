@@ -564,9 +564,9 @@ p {
 ======================================================*/
 
     .carousel-fade {
-        height: 90vh;
-        background-size: cover;
-        background-position: center center;
+        height: 50%;
+        background-size: 100% 130%;
+        background-position: 0% 0%;
         background-repeat: no-repeat;
         background-image: url(../img/new-hero-cover.jpg);
     }
@@ -773,8 +773,8 @@ p {
       }
 
       .home-p.pages-head4 {
-        background: url(../img/img/City_hall1.jpg) no-repeat;
-        background-size: cover;
+        background: url(../img/img/about-v2.jpg) no-repeat;
+        background-size: 100% 180%;
         background-position: center center;
       }
 
