@@ -40,7 +40,7 @@
     <div class="login-logo">
         <a href="#">
             <div class="image-box">
-                <img class="flex-image" src="/pub2/img/new-hero-logo.png"/>
+                <img class="flex-image" src="/pub2/img/login.png"/>
             </div>
             {{--<b></b>--}}
             {{--<br>--}}
