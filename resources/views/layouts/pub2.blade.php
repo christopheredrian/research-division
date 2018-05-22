@@ -86,15 +86,15 @@ License URL: https://creativecommons.org/licenses/by/4.0/
             overflow-x: hidden;
         }
         .flex-image {
-            width: 75%;
+            width: 290px;
         }
         /* Desktops and laptops ----------- */
-        @media only screen  and (min-width : 1224px) {
+        {{-- @media only screen  and (min-width : 1224px) { --}}
             /* Styles */
-            .flex-image {
+            /*.flex-image {
                 width: 75%;
             }
-        }
+        }*/
 
         /* Large screens ----------- */
         @media only screen  and (min-width : 1824px) {
@@ -275,7 +275,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                 {{--<p style="font-size: 12px; padding-top: 30px">Sangguniang Panglungsod ng Baguio--}}
                                           {{--Research Division</p>--}}
                              {{--</a>--}}
-            <a class="navbar-brand smooth-scroll text-center" href="/">
+            <a class="navbar-brand smooth-scroll" href="/">
                 {{--<strong>I</strong>nfo<strong>S</strong>enti<strong>A</strong> <br>--}}
                 {{--<p> Sangguniang Panglungsod ng Baguio<br>--}}
                 {{--Research Division</p>--}}
@@ -288,7 +288,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar navbar-nav ml-auto" style="font-size: 15px">
+                <ul class="navbar navbar-nav" style="font-size: 15px">
                     <li class="nav-item"><a class="nav-link smooth-scroll" href="/">Home</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle smooth-scroll" href="#" id="navbarDropdownMenuLink"
@@ -371,14 +371,14 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                         {{--</ul>--}}
                     {{--</div>--}}
     <div id="footer-bottom">
-                <div class="row">
+                {{-- <div class="row"> --}}
                     <div class="container">
                         <div class="row">
-                            <div class="col-xs-4">
-                                <img style="max-width: 60%" src="/images/client/Ph_seal_Baguio.png"/>
+                            <div class="col-xs-4 col-md-4 col-sm-4 col-lg-3">
+                                <img style="max-width: 200px" src="/images/client/Ph_seal_Baguio.png"/>
                             </div>
 
-                            <div class="col-md-6 col-sm-6">
+                            <div class="col-xs-4 col-md-4 col-sm-4 col-lg-5">
                                 <div style = "color: #fff0ff; font-family: 'Arial Black';">
                                     Get In Touch </div>
                                 <hr>
@@ -391,7 +391,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                                 </address>
                             </div>
 
-                            <div class="col-md-2 col-sm-8">
+                            <div class="col-xs-4 col-md-4 col-sm-4 col-lg-4">
                                 <div style = "color: #fff0ff; font-family: 'Arial Black';">
                                    Visitor Counter </div>
                                 <div class="wrapper">
@@ -403,13 +403,15 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                             </div>
                         </div>
                     </div>
-
-                <div class="col-md-12">
-                    <div id="footer-copyrights" style = "padding-top: 25px">
-                        <p>Copyright &copy; 2018 All Rights Reserved by the SANGGUNIANG PANLUNSOD, City of Baguio, Research Division.</p>
+                    <div class="row copyright">
+                        <div class="col-md-12">
+                            <div id="footer-copyrights">
+                                <p>Copyright &copy; 2018 All Rights Reserved by the SANGGUNIANG PANLUNSOD, City of Baguio, Research Division.</p>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                </div>
+                    
+                {{-- </div> --}}
             </div>
     </div>
 
