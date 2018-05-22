@@ -256,6 +256,14 @@ License URL: https://creativecommons.org/licenses/by/4.0/
             }
         }
 
+        .text-edit p  {
+            color: white !important;
+        }
+
+        .text-edit h2  {
+            color: white !important;
+        }
+
     </style>
 </head>
 
