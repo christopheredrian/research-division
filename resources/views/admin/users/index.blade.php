@@ -37,7 +37,7 @@
                 </thead>
                 <tbody>
                 @foreach($users as $user)
-                    @if($user->id == Auth::user()->id or $user->id === 1)
+                    @if($user->id === Auth::user()->id || $user->id === 1 || $user->role === 'superadmin')
 
                     @else
                         <tr>

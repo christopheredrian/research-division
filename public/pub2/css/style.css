@@ -568,7 +568,7 @@ p {
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
-        background-image: url(../img/newherobanner.jpg);
+        background-image: url(../img/newherobannerv2.jpg);
     }
 
     .carousel-fade .carousel-inner .carousel-item {
@@ -753,8 +753,9 @@ p {
       }
 
       .home-p.pages-head1 {
-        background: url(../img/img/banner-4.jpg) no-repeat;
-        background-size: cover;
+        /*background: url(../img/img/banner-4.jpg) no-repeat;*/
+          background: url(../img/img/contact-new.jpg) no-repeat;
+          background-size: cover;
         background-position: center center;
       }
 
