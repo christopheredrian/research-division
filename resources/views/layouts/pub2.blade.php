@@ -344,7 +344,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 
 <header>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light" id="mainNav" data-toggle="affix">
+    <nav class="navbar navbar-expand-lg navbar bg-gray navbar-light" id="mainNav" data-toggle="affix">
         <div class="container">
             {{--<div style="padding-top: 15px"><strong>I</strong>nfo<strong>S</strong>enti<strong>A</strong></div>--}}
                         {{--<br>--}}
