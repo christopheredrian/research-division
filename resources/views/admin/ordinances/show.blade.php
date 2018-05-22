@@ -34,7 +34,7 @@
                     </a>
                 @else
                     <a href="/admin/forms/ordinances"><i class="fa fa-file-text"></i>
-                        Ordinances being monitored
+                        Ordinances Currently being monitored
                     </a>
                 @endif
             </li>
