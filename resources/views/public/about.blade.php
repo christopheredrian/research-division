@@ -59,6 +59,7 @@
                     {{-- END SPNBRD --}}
 
                     {{-- START RD--}}
+                    <div id="infosentia"></div>
                     <section id="story" class="about-p1">
                         <div class="container">
                             <div class="row">
@@ -108,8 +109,11 @@
 
 
                                 </div>
-                                <div class=" col-md-6 col-xs-6">
-                                    <h3>InfoSentiA</h3>
+
+
+                                <div  class=" col-md-6 col-xs-6">
+
+                                    <img style="width: 50%" src="/pub2/img/InfoSentiA.png"/>
 
                                     <p class = "mt-3 font-weight-normal text-justify">
                                         InfoSentiA is an web-based application,

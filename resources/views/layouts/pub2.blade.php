@@ -85,8 +85,20 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         body {
             overflow-x: hidden;
         }
+
         .flex-image {
             width: 290px;
+        }
+
+        .flex-image-2 {
+            width: 150px;
+            margin-right: 50%;
+            float: right;
+        }
+
+        .left-image {
+            width: 10px;
+            margin-right: 20vh;
         }
         /* Desktops and laptops ----------- */
         {{-- @media only screen  and (min-width : 1224px) { --}}
@@ -104,6 +116,23 @@ License URL: https://creativecommons.org/licenses/by/4.0/
             }
         }
 
+        @media only screen  and (min-width : 800px) and (max-width : 1280px) and (orientation : landscape) {
+            /* Styles */
+            .flex-image {
+                width: 75%;
+            }
+
+            .flex-image-2 {
+                width: 100%;
+                height: 100%;
+            }
+            .left-image {
+                width: 150px;
+                height: 40px;
+                margin-right: 0;
+            }
+        }
+
         /* Smartphones (portrait and landscape) ----------- */
         /*@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {*/
             /*!* Styles *!*/
@@ -118,7 +147,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
             /*.flex-image {*/
             /*width: 50%;*/
         /*}*/
-        }
+        /*}*/
 
         /* iPads (portrait and landscape) ----------- */
         @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
@@ -129,7 +158,18 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
             /* Styles *//* Styles */
             .flex-image {
-            width: 40%;
+            width: 60%;
+            }
+
+            .flex-image-2 {
+                width: 100%;
+                height: 100%;
+            }
+
+            .left-image {
+                width: 100px;
+                height: 40px;
+                margin-right: 0;
             }
 
             .navbar-nav > li {
@@ -138,7 +178,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
             }
 
             .navbar-nav > li > a{
-                font-size: 8px ;
+                font-size: 8.25px ;
             }
 
             #ss {
@@ -204,22 +244,50 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 
         /* iPhone 6 ----------- */
         @media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
-            /* Styles */
+            .flex-image-2 {
+                display: none;
+            }
+
+            .left-image {
+                display: none;
+            }
         }
 
         @media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
+            .flex-image-2 {
+                display: none;
+            }
 
+            .left-image {
+                display: none;
+            }
         }
 
         /* iPhone 6+ ----------- */
         @media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
-            /* Styles */
+            .flex-image-2 {
+                display: none;
+                width: 0;
+                margin-right: 0;
+            }
+
+            .left-image {
+                display: none;
+            }
 
         }
 
         @media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
             .flex-image {
                 width: 25%;
+            }
+
+            .flex-image-2 {
+                display: none;
+            }
+
+            .left-image {
+                display: none;
             }
         }
 
@@ -294,7 +362,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar navbar-nav" style="font-size: 15px">
+                <ul class="navbar navbar-nav" style="font-size: 15px;">
                     <li class="nav-item"><a class="nav-link smooth-scroll" href="/">Home</a></li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle smooth-scroll" href="#" id="navbarDropdownMenuLink"
@@ -342,10 +410,19 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                             </form>
                         </div>
                     </li>
+
                 </ul>
             </div>
         </div>
+        {{--end container--}}
+        <div class="left-image">
+            <a class="smooth-scroll" href="/about#infosentia">
+                <img class="flex-image-2" src="/pub2/img/InfoSentiA.png"/>
+            </a>
+        </div>
+
     </nav>
+    {{--end nav--}}
 </header>
 
 <body>
