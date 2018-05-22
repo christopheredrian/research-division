@@ -62,7 +62,7 @@
                     <section id="story" class="about-p1">
                         <div class="container">
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-6  col-xs-6 text-justify">
                                     <div class="story-desc">
                                         <h3>Research Division of the Sangguniang Panlungsod</h3>
                                         <div class="heading-border-light"></div>
@@ -105,7 +105,22 @@
                                             </li>
                                         </ol>
                                     </div>
+
+
                                 </div>
+                                <div class=" col-md-6 col-xs-6">
+                                    <h3>InfoSentiA</h3>
+
+                                    <p class = "mt-3 font-weight-normal text-justify">
+                                        InfoSentiA is an web-based application,
+                                        which allows dissemination of ordinances and/or resolutions to the public and as well as collecting feedback from the public and the concerned constituents.
+                                        The application provides electronic version of ordinances and resolutions for public use and information,
+                                        as well as a medium for the public to provide feedback like comments and responses to questionnaires regarding certain legislations.
+                                        The application also provides assistance to the Research Division in the process of dissemination and monitoring & evaluation of the legislations.</p>
+                                    <img src = "/pub2/img/img/sysarch.png" alt="System Architecture of InfoSentiA" class = "img-fluid">
+                                </div>
+
+
                                 <div class="col-md-4">
                                     <div class="story-himg">
                                         <img src="/pub2/img/img/burnham.jpg"
