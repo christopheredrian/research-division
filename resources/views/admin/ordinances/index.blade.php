@@ -28,7 +28,7 @@
 
         <li class="active">
             @if(strpos(request()->url(), 'forms'))
-                {{ app('request')->input('status') === 'monitored' ? 'Monitored Ordinances' : 'Ordinances being monitored' }}
+                {{ app('request')->input('status') === 'monitored' ? 'Monitored Ordinances' : 'Ordinances Currently being Monitored' }}
             @else
                 Ordinances
             @endif
@@ -39,7 +39,7 @@
         <div class="box-header with-border">
             <h3 class="box-title"><i class="fa fa-file-text"></i>
                 @if(strpos(request()->url(), 'forms'))
-                    {{ app('request')->input('status') === 'monitored' ? 'Monitored Ordinances' : 'Ordinances being monitored' }}
+                    {{ app('request')->input('status') === 'monitored' ? 'Monitored Ordinances' : 'Ordinances Currently being Monitored' }}
                 @else
                     Ordinances under Research and Records
                 @endif

@@ -55,7 +55,7 @@
             <div class="questionnaire-wrapper">
                 <div class="desc-comp-offer wow fadeInUp" data-wow-delay="0.2s">
                     <h5 class="font-weight-bold"> Questionnaires
-                        <a href="/randr/resolutions/" class="btn btn-sm btn-primary float-right">See all <span class="badge badge-pil badge-warning"> {{ $questionnaires->count()  }}</span></a>
+                        <a href="/forms" class="btn btn-sm btn-primary float-right">See all <span class="badge badge-pil badge-warning"> {{ $questionnaires->count()  }}</span></a>
                         <div class="heading-border-light"></div>
                         <div class="clearfix"></div>
                       {{--   <a href="/forms">
@@ -257,7 +257,7 @@
                     {{-- start reso --}}
                     <div class="mt-4 desc-comp-offer wow fadeInUp" data-wow-delay="0.2s">
                         <h5 class="legislation-header float-left">Resolutions Currently Being Monitored</h5>
-                        <a href="/randr/resolutions/" class="btn btn-sm btn-primary float-right">See all <span
+                        <a href="/resolutions" class="btn btn-sm btn-primary float-right">See all <span
                                     class="badge badge-pil badge-warning"> {{\App\Resolution::where('is_monitoring',1)->count()}}</span></a>
                         <div class="heading-border-light"></div>
                         <div class="clearfix"></div>

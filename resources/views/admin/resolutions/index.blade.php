@@ -28,7 +28,7 @@
 
         <li class="active">
             @if(strpos(request()->url(), 'forms'))
-                {{ app('request')->input('status') === 'monitored' ? 'Monitored Resolutions' : 'Resolutions being monitored' }}
+                {{ app('request')->input('status') === 'monitored' ? 'Monitored Resolutions' : 'Resolutions Currently being Monitored' }}
             @else
                 Resolutions
             @endif
@@ -39,7 +39,7 @@
         <div class="box-header with-border">
             <h3 class="box-title"><i class="fa fa-file-text"></i>
                 @if(strpos(request()->url(), 'forms'))
-                    {{ app('request')->input('status') === 'monitored' ? 'Monitored Resolutions' : 'Resolutions being monitored' }}
+                    {{ app('request')->input('status') === 'monitored' ? 'Monitored Resolutions' : 'Resolutions Currently being Monitored' }}
                 @else
                     Resolutions under Research and Records
                 @endif

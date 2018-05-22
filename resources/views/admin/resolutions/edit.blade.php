@@ -15,7 +15,7 @@
                     </a>
                 @else
                     <a href="/admin/forms/ordinances"><i class="fa fa-file-text"></i>
-                        Resolutions being monitored
+                        Resolutions Currently being monitored
                     </a>
                 @endif
             </li>
