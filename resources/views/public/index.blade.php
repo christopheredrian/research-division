@@ -123,6 +123,9 @@
                                 target group.
                             </p>
                             <p style="text-align: justify">
+                                And apart from ensuring that all legislations are monitored with regard to its implementation and/or enforcement, we also conduct data gathering and interviews with the stakeholders of the city, particularly the affected coonstituents and the implementing offices and agencies so that all observations, suggestions/recommendations, and even comments would be addressed by the members of the Sanggunian through either ammendments or new proposals.
+                            </p>
+                            <p style="text-align: justify">
                                 That is why we request the suggestions, recommendations, or comments coming from the
                                 public, as to
                                 how we could strengthen and improve the implementation and enforcement of the
