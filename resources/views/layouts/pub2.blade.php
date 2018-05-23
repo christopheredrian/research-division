@@ -77,29 +77,27 @@ License URL: https://creativecommons.org/licenses/by/4.0/
             margin-left: 50%;
         }
 
-        .navbar-nav>li>a {
-            font-size: 12px;
-            font-weight: 500;
-        }
-
+        
         body {
             overflow-x: hidden;
         }
 
-        .flex-image {
+/*        .flex-image {
             width: 290px;
-        }
+        }*/
 
-        .flex-image-2 {
+/*        .flex-image-2 {
             width: 150px;
             margin-right: 50%;
             float: right;
-        }
+        }*/
 
-        .left-image {
+
+
+/*        .left-image {
             width: 10px;
             margin-right: 20vh;
-        }
+        }*/
         /* Desktops and laptops ----------- */
         {{-- @media only screen  and (min-width : 1224px) { --}}
             /* Styles */
@@ -118,19 +116,19 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 
         @media only screen  and (min-width : 800px) and (max-width : 1280px) and (orientation : landscape) {
             /* Styles */
-            .flex-image {
+/*            .flex-image {
                 width: 75%;
-            }
+            }*/
 
-            .flex-image-2 {
+/*            .flex-image-2 {
                 width: 100%;
                 height: 100%;
-            }
-            .left-image {
+            }*/
+  /*          .left-image {
                 width: 150px;
                 height: 40px;
                 margin-right: 0;
-            }
+            }*/
         }
 
         /* Smartphones (portrait and landscape) ----------- */
@@ -157,20 +155,20 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         /* iPads (landscape) ----------- */
         @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
             /* Styles *//* Styles */
-            .flex-image {
+/*            .flex-image {
             width: 60%;
-            }
+            }*/
 
-            .flex-image-2 {
+/*            .flex-image-2 {
                 width: 100%;
                 height: 100%;
-            }
-
+            }*/
+/*
             .left-image {
                 width: 100px;
                 height: 40px;
                 margin-right: 0;
-            }
+            }*/
 
             .navbar-nav > li {
                 height: 30px;
@@ -189,10 +187,10 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 
         /* iPads (portrait) ----------- */
         @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
-            .flex-image {
+/*            .flex-image {
                 width: 50%;
                 margin-right: -10px !important;
-            }
+            }*/
 
             .navbar-nav > li {
                 height: 50px;
@@ -226,9 +224,9 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         }
 
         @media only screen and (min-device-width : 320px) and (max-device-width : 480px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
-            .flex-image {
+/*            .flex-image {
                 width: 75%;
-            }
+            }*/
         }
 
         /* iPhone 5 ----------- */
@@ -237,16 +235,16 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         }
 
         @media only screen and (min-device-width: 320px) and (max-device-height: 568px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
-            .flex-image {
+/*            .flex-image {
                 width: 50%;
-            }
+            }*/
         }
 
         /* iPhone 6 ----------- */
         @media only screen and (min-device-width: 375px) and (max-device-height: 667px) and (orientation : landscape) and (-webkit-device-pixel-ratio: 2){
-            .flex-image-2 {
+ /*           .flex-image-2 {
                 display: none;
-            }
+            }*/
 
             .left-image {
                 display: none;
@@ -278,10 +276,10 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         }
 
         @media only screen and (min-device-width: 414px) and (max-device-height: 736px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
-            .flex-image {
+ /*           .flex-image {
                 width: 25%;
             }
-
+*/
             .flex-image-2 {
                 display: none;
             }
@@ -297,9 +295,9 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         }
 
         @media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 2){
-            .flex-image {
+  /*          .flex-image {
                 width: 100%;
-            }
+            }*/
         }
 
         /* Samsung Galaxy S4 ----------- */
@@ -308,9 +306,9 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         }
 
         @media only screen and (min-device-width: 320px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
-            .flex-image {
+/*            .flex-image {
             width: 50%;
-        }
+        }*/
         }
 
         /* Samsung Galaxy S5 ----------- */
@@ -319,9 +317,9 @@ License URL: https://creativecommons.org/licenses/by/4.0/
         }
 
         @media only screen and (min-device-width: 360px) and (max-device-height: 640px) and (orientation : portrait) and (-webkit-device-pixel-ratio: 3){
-            .flex-image {
+ /*           .flex-image {
                 width: 100%;
-            }
+            }*/
         }
 
         .text-edit > p  {
@@ -344,7 +342,74 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 
 <header>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar bg-gray navbar-light" id="mainNav" data-toggle="affix">
+    <div class="hamburger-menu">
+        <div class="container ">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                    data-target="#navbarResponsive-mobile" aria-controls="navbarResponsive" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+        
+    </div>
+
+    <div class="mobile-menu">
+        <div class="collapse navbar-collapse" id="navbarResponsive-mobile">
+                <ul class="navbar navbar-nav" style="font-size: 15px;">
+                    <li class="nav-item"><a class="nav-link smooth-scroll" href="/">Home</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle smooth-scroll" href="#" id="navbarDropdownMenuLink"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Legislations</a>
+                        <div class="dropdown-menu dropdown-cust" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/randr/ordinances">Ordinances</a>
+                            <a class="dropdown-item" href="/randr/resolutions">Resolutions</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle smooth-scroll" href="#" id="navbarDropdownMenuLink"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Monitoring & Evaluation</a>
+                        <div class="dropdown-menu dropdown-cust" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/ordinances">Ordinances Currently being Monitored</a>
+                            <a class="dropdown-item" href="/resolutions">Resolutions Currently being Monitored</a>
+                            <a class="dropdown-item" href="/ordinances?status=monitored">Monitored Ordinances</a>
+                            <a class="dropdown-item" href="/resolutions?status=monitored">Monitored Resolutions</a>
+                        </div>
+                    </li>
+
+                    @if (\App\Page::all()->count() > 0)
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle smooth-scroll" href="#" id="navbarDropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">More</a>
+                            <div class="dropdown-menu dropdown-cust" aria-labelledby="navbarDropdownMenuLink">
+                                @foreach(\App\Page::all() as $page)
+                                    <a class="dropdown-item" href="/page/{{$page->id}}">{{ $page->title }}</a>
+                                @endforeach
+                            </div>
+                        </li>
+                    @endif
+                    {{--<li class="nav-item"><a class="nav-link smooth-scroll" href="/faqs">FAQs</a></li>--}}
+                    <li class="nav-item"><a class="nav-link smooth-scroll" href="/about">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link smooth-scroll" href="/contact">Contact Us</a></li>
+
+                    <li class="nav-item">
+                        <i id="ss" class="search fa fa-search search-btn"></i>
+                        <div class="search-open">
+                            <form id="search_form" action="/search" method="get">
+                                <div class="input-group animated fadeInUp">
+                                    <input name="q" type="text" id="s" class="form-control" placeholder="Search"
+                                           aria-describedby="basic-addon2">
+                                    <span class="input-group-addon" id="basic-addon2">Go</span>
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+
+                </ul>
+        </div>
+    </div>
+    
+    <nav class="navbar navbar-expand-lg navbar bg-gray navbar-light" id="mainNav" >
+
         <div class="container">
             {{--<div style="padding-top: 15px"><strong>I</strong>nfo<strong>S</strong>enti<strong>A</strong></div>--}}
                         {{--<br>--}}
@@ -356,11 +421,7 @@ License URL: https://creativecommons.org/licenses/by/4.0/
                 <img class="flex-image" src="/pub2/img/SPCBRD.png"/>
             </a>
 
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
-                    data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar navbar-nav" style="font-size: 15px;">
                     <li class="nav-item"><a class="nav-link smooth-scroll" href="/">Home</a></li>
@@ -413,13 +474,14 @@ License URL: https://creativecommons.org/licenses/by/4.0/
 
                 </ul>
             </div>
+            <div class="left-image">
+                <a class="smooth-scroll" href="/about#infosentia">
+                    <img class="flex-image-2" src="/pub2/img/InfoSentiA.png"/>
+                </a>
+            </div>
         </div>
         {{--end container--}}
-        <div class="left-image">
-            <a class="smooth-scroll" href="/about#infosentia">
-                <img class="flex-image-2" src="/pub2/img/InfoSentiA.png"/>
-            </a>
-        </div>
+        
 
     </nav>
     {{--end nav--}}

@@ -193,6 +193,33 @@ p {
     }
 
 
+    .navbar-brand img.flex-image {
+        width: 200px;
+    }
+    .navbar-nav>li {
+        border-bottom: 0 !important;
+    }
+    .navbar-nav>li:hover, .navbar-nav>li:active {
+        border-bottom: 0 !important;
+    }
+    .navbar-nav>li:active a {
+        color: #2196f3 !important;
+    }
+
+    .left-image .flex-image-2 {
+        width: 110px;
+    }
+
+    .navbar-nav {
+        width: 100%;
+        padding-right: 20px !important;
+    }
+    .navbar-nav>li>a {
+        font-size: 12px !important;
+        font-weight: 500;
+    }
+
+
     /*Responsive Topbar*/
 
     @media (max-width: 991px) {
@@ -221,10 +248,10 @@ p {
     }
 
     .navbar {
-        padding: 0;
+        /*padding: 0;*/
         -webkit-transition: all .5s ease-in-out;
         transition: all .5s ease-in-out;
-        background: #fff;
+        /*background: #fff;*/
     }
 
     .navbar-header {
@@ -327,6 +354,10 @@ p {
 
     .vesco-top-nav ul.navbar-nav>li>a.active {
         color: #2196f3!important;
+    }
+
+    .hamburger-menu {
+        background-color: #f0f0f0;
     }
 
     @media (min-width: 992px){
@@ -1958,3 +1989,76 @@ p {
             padding-bottom: 2px;
         }
     }
+
+@media (min-width: 768px) {
+    .container {
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hamburger-menu {
+        display: none;
+    }
+    .mobile-menu {
+        display: none;
+    }
+
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
+    }
+}
+
+@media (max-width: 1110px) {
+    .navbar-nav>li>a {
+        /*font-size: 8.5px !important;*/
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    .navbar-nav li>.search {
+        padding: 0 !important;
+    }
+}
+
+@media (max-width: 1023px) {
+    .navbar-collapse {
+        height: 0;
+    }
+    .navbar-collapse.show {
+        height: auto;
+    }
+    #navbarResponsive {
+        display: none;
+    }
+    #navbarResponsive-mobile .navbar-nav {
+        float: none;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
