@@ -564,11 +564,14 @@
             //startPosition: 11,
             animateOut: true,
             responsive: {
+                0: {
+                    items: 1,
+                },
                 600: {
-                    items: 1
+                    items: 2,
                 },
                 1000: {
-                    items: 2
+                    items: 2,
                 }
             }
         });
