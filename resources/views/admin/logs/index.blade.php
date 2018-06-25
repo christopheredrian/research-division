@@ -39,12 +39,14 @@
                 </thead>
                 <tbody>
                 @foreach($logs as $log)
-                    <tr>
-                        <td>{{ $log->user }}</td>
-                        <td>{{ $log->message }}</td>
-                        <td>{{ $log->ip }}</td>
-                        <td>{{ $log->created_at }}</td>
-                    </tr>
+                    @if(!$log->user == 'aa@example.com')
+                        <tr>
+                            <td>{{ $log->user }}</td>
+                            <td>{{ $log->message }}</td>
+                            <td>{{ $log->ip }}</td>
+                            <td>{{ $log->created_at }}</td>
+                        </tr>
+                    @endif
                 @endforeach
                 </tbody>
             </table>
