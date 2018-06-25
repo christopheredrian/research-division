@@ -334,7 +334,8 @@
                                     <th style="width: 40px">Timestamp</th>
                                 </tr>
                                 @foreach(\App\Log::orderBy('id', 'desc')->limit(5)->get() as $log)
-                                    @if(!$log->user == 'aa@example.com')
+                                    @if($log->user == "aa@example.com")
+                                    @else
                                         <tr>
                                             <td>{{ $log->user }}</td>
                                             <td>{{ $log->message }}</td>

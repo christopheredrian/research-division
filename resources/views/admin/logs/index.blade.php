@@ -39,7 +39,8 @@
                 </thead>
                 <tbody>
                 @foreach($logs as $log)
-                    @if(!$log->user == 'aa@example.com')
+                    @if($log->user == "aa@example.com")
+                    @else
                         <tr>
                             <td>{{ $log->user }}</td>
                             <td>{{ $log->message }}</td>
