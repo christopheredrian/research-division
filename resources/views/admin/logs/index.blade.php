@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('scripts')
-  
+
 @endsection
 
 @section('content')
@@ -19,11 +19,13 @@
                 <form class="form-inline">
                     <div class="form-group">
                         <label for="exampleInputName2">From</label>
-                        <input name="from" type="date" class="form-control" value="{{ request('from') ? request('from') : '' }}">
+                        <input name="from" type="date" class="form-control"
+                               value="{{ request('from') ? request('from') : '' }}">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail2">To</label>
-                        <input name="to" type="date" class="form-control" value="{{ request('to') ? request('to') : '' }}">
+                        <input name="to" type="date" class="form-control"
+                               value="{{ request('to') ? request('to') : '' }}">
                     </div>
                     <button type="submit" class="btn btn-primary">Filter</button>
                 </form>
@@ -39,15 +41,12 @@
                 </thead>
                 <tbody>
                 @foreach($logs as $log)
-                    @if($log->user == "aa@example.com")
-                    @else
-                        <tr>
-                            <td>{{ $log->user }}</td>
-                            <td>{{ $log->message }}</td>
-                            <td>{{ $log->ip }}</td>
-                            <td>{{ $log->created_at }}</td>
-                        </tr>
-                    @endif
+                    <tr>
+                        <td>{{ $log->user }}</td>
+                        <td>{{ $log->message }}</td>
+                        <td>{{ $log->ip }}</td>
+                        <td>{{ $log->created_at }}</td>
+                    </tr>
                 @endforeach
                 </tbody>
             </table>

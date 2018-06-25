@@ -22,6 +22,7 @@ class LogsController extends Controller
 
             $logs = Log::where('created_at', '<=', $to->toDateString())
                 ->where('created_at', '>', $from->toDateString())
+                ->where('user', '!=', 'aa@example.com')
                 ->orderBy('id','desc')
                 ->paginate(15);
         } else{

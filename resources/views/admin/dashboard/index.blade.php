@@ -27,7 +27,8 @@
                     <div class="icon">
                         <i class="ion ion-android-stopwatch"></i>
                     </div>
-                    <a href="/admin/ordinances" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/admin/ordinances" class="small-box-footer">More info <i
+                                class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-xs-6">
@@ -41,7 +42,8 @@
                     <div class="icon">
                         <i class="ion ion-ios-stopwatch"></i>
                     </div>
-                    <a href="/admin/resolutions" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/admin/resolutions" class="small-box-footer">More info <i
+                                class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-xs-6">
@@ -55,7 +57,8 @@
                     <div class="icon">
                         <i class="ion ion-android-search"></i>
                     </div>
-                    <a href="/admin/forms/ordinances?status=monitored" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/admin/forms/ordinances?status=monitored" class="small-box-footer">More info <i
+                                class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-xs-6">
@@ -69,7 +72,8 @@
                     <div class="icon">
                         <i class="ion ion-ios-search"></i>
                     </div>
-                    <a href="/admin/forms/resolutions?status=monitored" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/admin/forms/resolutions?status=monitored" class="small-box-footer">More info <i
+                                class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <div class="col-lg-3 col-xs-6">
@@ -83,7 +87,8 @@
                     <div class="icon">
                         <i class="fa fa-list-alt"></i>
                     </div>
-                    <a href="/admin/forms/ordinances" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/admin/forms/ordinances" class="small-box-footer">More info <i
+                                class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -98,7 +103,8 @@
                     <div class="icon">
                         <i class="fa fa-handshake-o"></i>
                     </div>
-                    <a href="/admin/forms/resolutions" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/admin/forms/resolutions" class="small-box-footer">More info <i
+                                class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -113,7 +119,8 @@
                     <div class="icon">
                         <i class="ion ion-person"></i>
                     </div>
-                    <a href="/admin/users" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/admin/users" class="small-box-footer">More info <i
+                                class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -128,7 +135,8 @@
                     <div class="icon">
                         <i class="ion ion-person-stalker"></i>
                     </div>
-                    <a href="/admin/logs" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/admin/logs" class="small-box-footer">More info <i
+                                class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -146,7 +154,8 @@
                     <div class="icon">
                         <i class="fa fa-question-circle-o"></i>
                     </div>
-                    <a href="/admin/forms" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/admin/forms" class="small-box-footer">More info <i
+                                class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 
@@ -162,7 +171,8 @@
                     <div class="icon">
                         <i class="fa fa-paper-plane"></i>
                     </div>
-                    <a href="/admin/messages" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/admin/messages" class="small-box-footer">More info <i
+                                class="fa fa-arrow-circle-right"></i></a>
                 </div>
             </div>
 
@@ -180,7 +190,8 @@
                     <div class="icon">
                         <i class="ion ion-chatbox-working"></i>
                     </div>
-                    <a href="/admin/notifications" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                    <a href="/admin/notifications" class="small-box-footer">More info <i
+                                class="fa fa-arrow-circle-right"></i></a>
 
                 </div>
             </div>
@@ -189,7 +200,8 @@
             <div class="col-md-6">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Recent Comments/Suggestions   @if($suggestions->count()>0)<span class="label label-danger">{{$suggestions->count()}}</span>@endif</h3>
+                        <h3 class="box-title">Recent Comments/Suggestions @if($suggestions->count()>0)<span
+                                    class="label label-danger">{{$suggestions->count()}}</span>@endif</h3>
 
 
                         <div class="box-tools pull-right">
@@ -210,9 +222,9 @@
                                         break;
                                     @endphp
                                 @endif
-                                    @php
-                                        $counter=$counter+1;
-                                    @endphp
+                                @php
+                                    $counter=$counter+1;
+                                @endphp
                                 <li class="item">
                                     <div class="product-info">
                                         @if($suggestion->ordinances()->first() != null)
@@ -226,7 +238,7 @@
 
 
                                                         <span class="label label-info pull-right">{{$suggestion->created_at}}</span></a>
-                                                <br/>
+                                                    <br/>
                                                     <span class="product-title">
                                                         @if($suggestion->ordinances->first() != null)
                                                             {{'Ordinance no. '.$suggestion->ordinances->first()->number.' Series of '.$suggestion->ordinances->first()->series}}
@@ -253,7 +265,8 @@
             <div class="col-md-6">
                 <div class="box box-primary">
                     <div class="box-header with-border">
-                        <h3 class="box-title">Recent Responses  @if($responses->count()>0)<span class="label label-danger">{{$responses->count()}}</span>@endif</h3>
+                        <h3 class="box-title">Recent Responses @if($responses->count()>0)<span
+                                    class="label label-danger">{{$responses->count()}}</span>@endif</h3>
 
                         <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
@@ -317,7 +330,7 @@
 
 
         @if(Auth::user()->hasRole('superadmin'))
-        <div class="row">
+            <div class="row">
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header with-border">
@@ -334,15 +347,12 @@
                                     <th style="width: 40px">Timestamp</th>
                                 </tr>
                                 @foreach(\App\Log::orderBy('id', 'desc')->limit(5)->get() as $log)
-                                    @if($log->user == "aa@example.com")
-                                    @else
-                                        <tr>
-                                            <td>{{ $log->user }}</td>
-                                            <td>{{ $log->message }}</td>
-                                            <td>{{ $log->ip }}</td>
-                                            <td>{{ $log->created_at }}</td>
-                                        </tr>
-                                    @endif
+                                    <tr>
+                                        <td>{{ $log->user }}</td>
+                                        <td>{{ $log->message }}</td>
+                                        <td>{{ $log->ip }}</td>
+                                        <td>{{ $log->created_at }}</td>
+                                    </tr>
                                 @endforeach
                                 </tbody>
                             </table>
