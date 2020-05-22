@@ -1,4 +1,1 @@
-Readme file
-
-This new repository for the research-division
-
+Application URL : https://researchbaguio.herokuapp.com/
